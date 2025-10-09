@@ -47,6 +47,19 @@
         .tracking-wider { letter-spacing: 0.05em; }
         .max-w-4xl { max-width: 56rem; }
 
+        /* Body text readability */
+body {
+  line-height: 1.75;   /* increases line spacing */
+  letter-spacing: 0.01em;
+  color: #374151;      /* softer gray; good balance of contrast and comfort */
+}
+
+/* Paragraph spacing */
+p {
+  margin-bottom: 1.25em;
+}
+
+
         /* Instruction Sections */
         .instruction-section {
             background-color: #ffffff;
@@ -64,6 +77,7 @@
         }
         table {
             width: 100%;
+            height: 100%;
             text-align: center;
             border-collapse: collapse;
         }
@@ -104,6 +118,135 @@
         
         /* Hidden elements */
         .hidden { display: none; }
+
+        /* Put this with your existing CSS (no removals needed) */
+.instruction-section { padding: 0; }              /* Remove inner padding from the shell */
+.instruction-section > summary { 
+  padding: 1rem 1.5rem; 
+  cursor: pointer; 
+  list-style: none; 
+  border-bottom: 1px solid #e5e7eb; 
+}
+.instruction-section[open] > summary { 
+  border-bottom-color: transparent; 
+}
+.instruction-section > *:not(summary) { 
+  padding: 1rem 1.5rem; 
+}
+.instruction-section > summary::-webkit-details-marker { display: none; }
+.instruction-section > summary::after {
+  content: "▸";
+  float: right;
+  font-weight: 600;
+  transform: translateY(2px);
+}
+.instruction-section[open] > summary::after { content: "▾"; }
+
+/* Simple responsive row that wraps to one column on small screens */
+
+.media-row {
+  display: grid;
+  grid-template-columns: auto auto; /* two columns side-by-side */
+  justify-content: center;          /* center the pair within the page */
+  align-items: start;               /* top-align them */
+  column-gap: 100px;                 /* spacing between the two images */
+}
+
+/* Make diagrams/images scale nicely */
+.diagram-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: .5rem;
+  background: #fff;
+}
+
+/* A compact table style for small explanatory tables */
+.mini-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+ margin: 0 auto;
+}
+.mini-table th, .mini-table td {
+  border: 1px solid #d1d5db;
+  padding: 0.25rem;
+  text-align: center;
+  vertical-align: middle;
+}
+.mini-table thead { background: #f3f4f6; }
+
+figure figcaption {
+
+font-size: 0.75rem;
+color: #6b7280;
+margin-top: 0.25rem;
+line-height: 1.2;
+
+/* --- Improve section spacing and centering --- */
+
+/* Give each section breathing room */
+details.instruction-section {
+  margin-bottom: 3rem; /* separates each collapsible section */
+}
+
+/* Keep content neatly centered within a readable width */
+details.instruction-section > div,
+details.instruction-section > p,
+
+/* Neater figure captions */
+figure figcaption {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* --- Center and align the big interactive consonant table --- */
+
+/* Add consistent spacing above and below */
+.table-container {
+  max-width: 1100px;   /* keeps it centered within the main container */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2.5rem;
+  margin-bottom: 3rem;
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* Slightly refine table visuals */
+.table-container table {
+  border-collapse: collapse;
+  width: 100%;
+  background: #fff;
+}
+
+.table-container th, 
+.table-container td {
+  border: 1px solid #d1d5db;
+  padding: 0.5rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Headings slightly bolder and with consistent spacing */
+.table-container thead th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding: 0.75rem;
+}
+
+}
+
+
     </style>
 </head>
 <body>
@@ -111,81 +254,582 @@
     <div class="container">
         <!-- Header and Instructions remain the same -->
         <header class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-gray-900">Isibheqe soHlamvu Consonants</h1>
-            <div class="mt-4 text-md text-gray-700 max-w-4xl mx-auto space-y-2">
-               <p>Welcome! This chart shows how the Isibheqe symbols are written and pronounced. Click on any symbol to hear its sound. Hover over it to see examples in different languages.</p>
-               <p class="italic">Wamkelekile kuleli khasi elifundisayo elizokukhombisa ukuthi kungani izimpawu zesiBheqe zilotshwa ziphinde zizwakala ngendlela ezinjalo. Chofoza uphawu ukuze uzwe umsindo walo.</p>
+            <h1 class="text-4xl font-bold text-gray-900">The IsiBheqe soHlamvu syllabary </h1>
+            <h2>A simple explainer page with interactive chart</h2>
+            <div class="mt-4 text-md text-gray-700 max-w-4xl mx-auto space-y-3">
+
+               IsiBheqe soHlamvu is a modern, <strong><i>phonetically-based</i></strong> indigenous writing system developed for all Southern African isiNtu languages. It is also known as Ditema tsa Dinoko, or Xifhungo xa Manungu, or Vhuga ha Madungo.<br><br> 
+                IsiBheqe soHlamvu roughly means "the <i>ibheqe</i>-style of the syllable" or "the <i>ibheqe</i> method of writing syllables". Thus, it is a <strong><i>syllabary.</i></strong> <br><br>
+
+                IsiBheqe/Ditema draws from  Southern African traditional art, like Sesotho <i>litema</i> (mural art) and isiZulu <i>ucu</i> (beadwork bracelets). 
+                
+                This art was decorative; but used systems of shapes to convey romantic messages, or report cultural news to neighbours and travelers. Shapes indicated births, childrens' coming-of-age milestones and the like.<br><br>
+
+                These inspire IsiBheqe/Ditema both as an 'art style' but as a communicative cultural technology. <br><br>
+
+                The script can be used for all Southern African isiNtu languages & dialects. <br><br> It is especially useful for those languages that don't have a formal Latin orthography, such as the Eastern Sotho language of sePulana and a majority of the Tekela languages 
+                of the Nguni language group like isiBhaca, isiHlubi, sePhuthi, isiLala, isiNhlangwini, and Northern Transvaal isiNdebele 
+                (also known as Sumayela Ndebele).<br><br>
+
+                <h2><i>Using this interactive page</i> <br><br></h2>
+
+                We've created this page to show you how the IsiBheqe script looks and sounds.<br><br> 
+                
+                The script is fundamentally <i>phonetic</i> - meaning based on <strong>sounds</strong>; so it can only be learnt by repeating the sounds out loud to oneself.  <br><br>
+
+                <strong>Explainer Sections:</strong> explore the basic idea, vowels, consonants and related features of the Isibheqe syllables<br><br>
+                 <strong>Interactive Clickable Chart:</strong> shows you a one full set of syllables with image, caption and audio. <br><br>
+               <p> </p>
             </div>
         </header>
+        <div class="max-w-4xl mx-auto mb-3" style="display:flex; gap:.5rem;">
+  <button onclick="toggleAll(true)">Expand all</button>
+  <button onclick="toggleAll(false)">Collapse all</button>
+</div>
 
-        <div class="max-w-4xl mx-auto space-y-8 mb-12">
-            <section class="instruction-section">
-                <h2 class="text-2xl font-bold text-gray-800 mb-3">How to Read the Chart</h2>
-                <p class="text-gray-600">Your detailed instructions on the chart's layout, IPA symbols, and language abbreviations (NGU, SOT, etc.) can go here. Explain what "featural" means and how the shapes relate to sounds.</p>
-            </section>
-            <section class="instruction-section">
-                <h2 class="text-2xl font-bold text-gray-800 mb-3">The Logic of the Shapes</h2>
-                <p class="text-gray-600">Use this section to explain the core principles of the Isibheqe script. For example, describe how different base shapes correspond to places of articulation (e.g., triangles for alveolar sounds) and how modifications indicate the manner of articulation (e.g., a top bar for plosives).</p>
-            </section>
-            <section class="instruction-section">
-                <h2 class="text-2xl font-bold text-gray-800 mb-3">About the Project</h2>
-                <p class="text-gray-600">This is a great place to add background information about Isibheqe soHlamvu, its creators, its purpose, and links to further resources or communities.</p>
-            </section>
-        </div>
+<script>
+  function toggleAll(open) {
+    document.querySelectorAll('details.instruction-section')
+      .forEach(d => d.open = open);
+  }
+</script>
 
-        <!-- CONSONANT CHART -->
-        <div class="table-container">
+<!-- THE MAIN IDEA-->
+
+<details class="instruction-section"> <!--OPEN-->
+  <summary class="text-2xl font-bold text-gray-800 mb-3"> BASIC IDEA OF THE ISIBHEQE/DITEMA SCRIPT </summary>
+  <div class="text-gray-600">
+  <p class="text-gray-600">
+
+  IsiBheqe/Ditema is a <strong><i>syllabary</i></strong>, which is <strong><i>featural</i></strong> in nature. <br><br>
+  
+  This is a fancy way of saying that the symbols are based on 'syllables'; and that the specific markings you use are related to the linguistics <i>features<i>
+    
+    As a <i>syllabary</i>, each symbol represents a 'syllable' and in the system is known as an <i>ibheqe</i> (plural, <i>amabheqe</i>). <br><br>
+  
+  Syllables are made of a vowel (which) and consonant. The VOWEL forms the 'nucleus' of the syllabic block. It is represented by either a triangle or a chevron. <br><br> 
+  
+  Consonants and their phonetic features are then placed around this nucleus.<br><br>
+  
+  Take the word "SAWUBONA" (the isiZulu word for "hello"). <br><br>
+  
+  In Isibheqe, it is written as: <br><br>
+  
+        <figure class="text-center my-6">
+        <img src="images/sawubona.png" alt="SA WU BONA written in Isibheqe text" class="mx-auto" style="width:500px;">
+        <figcaption class="text-sm text-gray-500 mt-2"> Figure 1: The isiZulu word SA-WU-BO-NA, broken down into syllables. <br>
+          Each syllable gets its nucleus from the specific vowel. Then, the consonants are drawn around it.
+        </figcaption>
+        </figure> <br><br>
+
+  Here are more examples, from different languages. Look at all the vowels, and how you make the syllables of three words.<br><br>
+  On the right are the words, <i>Xilo</i> ("thing" in Xitsonga), <i>Vhathu</i> ("people" in Tshivenda) and the phrase <i>Ho tlêtse</i> ("it is full" in Sesotho). <br><br>
+
+        <figure class="text-center my-6">
+        <img src="images/Xilo_Vhathu_Ho_tlêtse.jpg" alt="The words 'Xilo''Vhathu'and the phrase 'Ho_tlêtse' from the Xitsonga, Tshivenda and Sesotho languages, written in isiBheqe" class="mx-auto max-w-xs">
+        <figcaption class="text-sm text-gray-500 mt-2"> Figure 2: There are set triangles (or chevrons) for vowels, and then particular shapes are put to indicate consonants and their phonetic features.
+        </figcaption>
+        </figure> <br><br>
+
+  </p>
+  </div>
+  </details>
+
+
+<!--VOWELS EXPLAINER SECTION-->            
+
+<details class="instruction-section">
+ <summary class="text-2xl font-bold text-gray-800 mb-3">VOWELS</summary>
+
+  <h2> The vowel shapes in isiBheqe </h2> <br><br>
+
+   <p class="text-gray-600">
+
+
+  Specific vowels are represented by the DIRECTION of the triangle or chevron. The uses
+  
+  The vowels <i>i</i> and <i>u</i>, are called 'high' vowels, because the tongue moves upward in the mouth when you say them.  
+  Because of this, the <i>i</i> vowel is represented by an UPWARD-pointing triangle - while the <i>u</i> vowel is represented by an UPWARD-pointing chevron.<br><br>
+
+  Likewise, the 'low' vowel <i>a</i> is represented by a downward pointing triangle.<br><br>
+  
+  The other vowels work in a similar fashion. <br><br>
+
+  The vowels <i>e</i> and <i>ɛ</i> are called 'fronted' vowels, because you make them at the front of the mouth. Relatedly, <i>o</i>
+  </p>
+  
+<!--THE VOWEL TRIANGLE-->
+
+<div class="text-gray-600">
+<div class="media-row" style="display:flex">
+  <!--LEFT: Image of the vowel triangle-->
+
+ <figure class="text-center my-6" style="height:100%">
+  <img src="images/Onkamisa_(Emlonyeni).jpg" alt="The seven vowels in Isibheqe" class="mx-auto" style="width:500px; height:100%";>
+  
+  </figure>
+
+  <!--RIGHT: Interactive vowel triangle table-->
+
+  <div class="table-container">
+  <table class="mini-table">
+
+  <!--Row 1--> 
+  <!--<thead> Click on the image to hear the sound. Say it out loud.</thead><br><br-->
+  <tbody style="height: 400px;">
+  <tr> 
+<td>
+  <img 
+    src="images/i.png" 
+    alt="/i/ vowel" 
+    class="symbol-img mx-auto" 
+    onclick="playAudio('i_sound')"> </td>
+    
+</td> </td>
+         <td></td> 
+         <td></td> 
+         <td></td> 
+         <td></td> 
+         <td></td>
+         <td> <img 
+    src="images/u.png" 
+    alt="/u/ vowel" 
+    class="symbol-img mx-auto" 
+    onclick="playAudio('u_sound')"></td>
+
+  </tr>
+  
+  <!--Row 2--> 
+  <tr> 
+  <td></td> 
+  <td>   <img 
+    src="images/e.png" 
+    alt="/e/ sound" 
+    class="symbol-img mx-auto" 
+    onclick="playAudio('e_sound')"></td>
+  <td></td> 
+  <td></td> 
+  <td></td> 
+  <td><img 
+    src="images/o.png" 
+    alt="/o/ sound" 
+    class="symbol-img mx-auto" 
+    onclick="playAudio('o_sound')"></td>
+  <td></td>
+  </tr>
+
+   <!--Row 3--> 
+  <tr> 
+  <td></td> 
+  <td></td>
+  <td>
+<img 
+    src="images/ɛ.png" 
+    alt="/ɛ/ vowel" 
+    class="symbol-img mx-auto" 
+    onclick="playAudio('ɛ_sound')">
+
+  </td> 
+  <td></td>  
+  <td><img 
+    src="images/ɔ.png" 
+    alt="ɔ_vowel" 
+    class="symbol-img mx-auto" 
+    onclick="playAudio('ɔ_sound')"></td> 
+  <td></td>
+  <td></td>
+  </tr>
+
+    <!--Row 4--> 
+  <tr> 
+  <td></td> 
+  <td></td>
+  <td></td> 
+  <td>   <img 
+    src="images/a.png" 
+    alt="a_vowel" 
+    class="symbol-img mx-auto" 
+    onclick="playAudio('a_sound')"></td> 
+  <td></td>  
+  <td></td> 
+  <td></td>
+  </tr>
+  </tbody>
+  </table>
+</div>
+</div>
+<p class="text-gray-600">    
+  
+  These vowels than go on to be vocal tract!
+  </p>
+  </div>
+  </details>
+  
+<!--CONSONANTS SECTION EXPLAINER-->
+
+<details class="instruction-section">
+<summary class="text-2xl font-bold text-gray-800 mb-3">CONSONANTS</summary>
+
+<p class="text-gray-600">
+In isiBheqe, the vowel symbol is meant to resemble the 'vocal tract'. <br><br> 
+
+This is just the space where human speech sounds are articulated. It collectively consists of the throat, mouth and nose - <br><br>
+
+Inside the vocal tract, sits the body parts one uses to make speech sounds. These parts are called "articulators".<br> 
+They include your lips, teeth, gums, tongue, roof of your mouth, throat, vocal cords, nose etc. <br><br>
+
+See the diagram below. <br><br>
+</p>
+
+<div class="media-row">
+    <img src="images/a mouth diagram.png" alt="a vowel" style="width: 500px; height: 500px;">
+<img src="images/ɛ mouth diagram.png" alt="ɛ vowel" style="width: 500px; height: 500px;">
+</div>
+
+<!--CONSONANTS EXPLAINER TABLE-->
+<table> 
+<thead>
+<tr><td rowspan="3">MANNER OF ARTICULATION</td><td rowspan="3">How the sound is made</td><td rowspan="3"> How the symbol is drawn</td><td colspan="5">Selected examples to illustrate</td>
+
+<tr>            <td>Bilabial<br>(both lips)</td><td>Labiodental<br>(bottom lips <br>and top teeth)</td><td>Alveolar<br>(ridge behind <br>the top front teeth)</td><td>Velar<br>(soft part <br>at back of mouth)</td><td>Lateral<br>(side of<br>mouth)</td></tr>
+</thead>
+<tbody>
+<!--Plosive explainers-->
+<tr><td>Plosives (or stops)<br><br><i>("plosive" means "to pop", think "explosive")</i></td><td>Airflow is completely stopped, then released.</td><td>Straight lines</td>
+
+<td><figure style="margin:0; text-align:center;">
+<img src="images/Aspirated_bilabial_plosive.svg.png" 
+         alt="Bilabial Plosive"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Aspirated_bilabial_plosive')">
+    <figcaption style="font-size:12px; margin-top:4px;">pʰ</figcaption>
+  </figure></td>
+
+<td></td>
+
+
+<td><figure style="margin:0; text-align:center;">
+    <img src="images/Aspirated_alveolar_plosive.svg.png" 
+         alt="Alveolar Plosive"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Aspirated_bilabial_plosive')">
+    <figcaption style="font-size:12px; margin-top:4px;">tʰ</figcaption>
+</figure></td>
+
+<td><figure style="margin:0; text-align:center;">
+    <img src="images/Aspirated_velar_plosive.svg.png" 
+         alt="Dental Plosive"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Aspirated_bilabial_plosive')">
+    <figcaption style="font-size:12px; margin-top:4px;">kʰ</figcaption>
+
+<td></td>
+    
+</figure></td>
+
+
+<tr><td>Fricatives<br><br><i>(think "friction")</i></td><td>Airflow is partially blocked, creating friction.</td><td>Curved lines</td>
+
+  <td><figure style="margin:0; text-align:center;">
+<img src="images/Voiceless_bilabial_fricative.svg.png" 
+         alt="Bilabial Fricative"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Bilabial fricative')">
+    <figcaption style="font-size:12px; margin-top:4px;">ɸ<br><br>"fh" in Tshivenda</figcaption>
+  </figure></td>
+
+    <td><figure style="margin:0; text-align:center;">
+<img src="images/Voiceless_labiodental_fricative.svg.png" 
+         alt="Labiodental Fricative"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Labiodental fricative')">
+    <figcaption style="font-size:12px; margin-top:4px;">f<br></figcaption>
+
+<td><figure style="margin:0; text-align:center;">
+    <img src="images/Voiceless_alveolar_fricative.svg.png" 
+         alt="Alveolar Fricative"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Bilabial_fricative')">
+    <figcaption style="font-size:12px; margin-top:4px;">s</figcaption>
+</figure></td>
+
+<td><figure style="margin:0; text-align:center;">
+    <img src="images/Voiceless_velar_fricative.svg.png" 
+         alt="Velar fricative"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Velar Fricative')">
+    <figcaption style="font-size:12px; margin-top:4px;">x<br><br>"x" in Sepedi<br><br>"rh" in isiXhosa<br></figcaption>
+
+<td><figure style="margin:0; text-align:center;">
+    <img src="images/Lateral_fricative.svg.png" 
+         alt="Lateral fricative"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Lateral_fricative')">
+    <figcaption style="font-size:12px; margin-top:4px;">hl</figcaption>
+
+
+<tr><td>Affricates</td><td>Airflow is stopped, then released into a narrow constriction, combining a plosive and a fricative.</td><td>Joint straight line and curved lines</td>
+
+  <td></td>
+
+<td><figure style="margin:0; text-align:center;">
+<img src="images/Voiceless_labiodental_affricate.svg.png" 
+         alt="Labiodental Affricate"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Bilabial fricative')">
+    <figcaption style="font-size:12px; margin-top:4px;">pf</figcaption>
+  </figure></td>
+
+<td><figure style="margin:0; text-align:center;">
+    <img src="images/Aspirated_alveolar_affricate.svg.png" 
+         alt="Alveolar Affricate"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Alveolar_Affricate')">
+    <figcaption style="font-size:12px; margin-top:4px;">tsʰ</figcaption>
+</figure></td>
+
+<td><figure style="margin:0; text-align:center;">
+    <img src="images/Aspirated_velar_affricate.svg.png" 
+         alt="Velar Affricate"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Velar Affricate')">
+    <figcaption style="font-size:12px; margin-top:4px;">kxʰ<br><br>"kg" in Setswana<br>"kh" in Sesotho<br></figcaption></td>
+
+<td><figure style="margin:0; text-align:center;">
+    <img src="images/Lateral_affricate.svg.png" 
+         alt="Lateral Affricate"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Lateral Affricate')">
+    <figcaption style="font-size:12px; margin-top:4px;">t͡ɬʰ<br><br>"tlh" in Sesotho</figcaption></td>
+
+
+
+<tr><td>Approximants</td><td>Articulators approach each other but do not create friction.</td><td>Parallel lines or a line with a right angle in it.</td>
+
+  <td><figure style="margin:0; text-align:center;">
+<img src="images/Bilabial_approximant.svg.png" 
+         alt="Bilabial Approximant"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Bilabial approximant')">
+    <figcaption style="font-size:12px; margin-top:4px;">w</figcaption>
+  </figure></td>
+
+  <td> </td>
+  <td> </td>
+  <td> </td>
+<td> 
+  <img src="images/Lateral_approximant.svg.png" 
+         alt="Lateral Approximant"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Lateral approximant')">
+    <figcaption style="font-size:12px; margin-top:4px;">l</figcaption>
+  </figure></td>
+
+<tr><td>Trills</td><td>Sound produced by vibrations between articulators.</td><td>Right angles</td>
+
+<td></td>
+
+<td></td>
+
+<td> 
+  <img src="images/Alveolar_trill.svg.png" 
+         alt="Alveolar Trill"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Alveolar Trill')">
+    <figcaption style="font-size:12px; margin-top:4px;">r</figcaption>
+  </figure></td>
+
+  <td></td>
+  <td></td>
+
+<tr><td>Clicks</td><td>Airflow is stopped, then released with a suction ‘click’ sound made in the mouth.</td><td>Bottomless hourglass like shapes</td>
+
+  <td>
+  <img src="images/Bilabial click.png" 
+         alt="Aspirated bilabial_click"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Bilabial click')">
+    <figcaption style="font-size:12px; margin-top:4px;">ʘʰ</figcaption>
+  </figure></td>
+
+  <td></td>
+
+  <td>
+  <img src="images/Aspirated_alveolar_click.svg.png" 
+         alt="Aspirated bilabial_click"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Bilabial click')">
+    <figcaption style="font-size:12px; margin-top:4px;">ǃʰ<br><br> "qh" in isiZulu, isiXhosa</figcaption>
+  </figure></td>
+
+  <td></td>
+  <td>
+
+      <img src="images/Aspirated_lateral_click.svg.png" 
+         alt="Aspirated_lateral_click"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Aspirated_lateral_click')">
+    <figcaption style="font-size:12px; margin-top:4px;">ǁʰ<br><br>"xh" in isiZulu, isiXhosa</figcaption>
+  </figure></td>
+
+</tr>
+  
+
+<tr><td>Nasals</td><td>Air escapes through the nose.</td><td>Circles at apex of triangle</td>
+
+<td>
+  <img src="images/Bilabial_nasal.svg.png" 
+         alt="Bilabial_nasal"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Bilabial_nasal')">
+    <figcaption style="font-size:12px; margin-top:4px;">m</figcaption>
+  </figure></td>
+
+<td></td>
+
+<td><img src="images/Alveolar_nasal.svg.png" 
+         alt="Alveolar_nasal.svg.png"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Alveolar_nasal.svg.png')">
+    <figcaption style="font-size:12px; margin-top:4px;">n</figcaption>
+  </figure></td>
+  
+<td>
+  <img src="images/Velar_nasal.svg.png" 
+         alt="Velar_nasal.svg.png"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Velar_nasal.svg.png')">
+    <figcaption style="font-size:12px; margin-top:4px;">ŋ <br><br>"ng-" as in<br> most languages</figcaption>
+  </figure>
+</td>
+
+<td></td>
+
+<tr><td>Syllabic Nasals</td><td>Nasal consonants that form a syllable on their own</td><td>Circles that take up the whole space</td>
+
+<td>
+<img src="images/Bilabial_syllabic_nasal.svg.png" 
+         alt="Bilabial_syllabic_nasal"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Bilabial_syllabic_nasal')">
+    <figcaption style="font-size:12px; margin-top:4px;">m̩<br><br>The <strong>m</strong> in words like '<strong>m</strong>na in isiNguni. Usually contractions. Cf. "siyaMUthanda" → siyaMthanda" 
+  </figcaption></figure>  
+</td>
+<td>
+<img src="images/Alveolar_syllabic_nasal.svg.png" 
+         alt="Alveolar_syllabic_nasal"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Alveolar_syllabic_nasal')">
+    <figcaption style="font-size:12px; margin-top:4px;">n̩<br><br>The <strong>nn-</strong> of words like <strong>nn</strong>ete</figcaption>
+  </figure>
+
+</td>
+<td>
+<img src="images/Velar_syllabic_nasal.svg.png" 
+         alt="Velar_syllabic_nasal"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Velar_syllabic_nasal')">
+    <figcaption style="font-size:12px; margin-top:4px;">ɲ̩-ŋ̍<br><br>The <strong>-ng</strong> in words like tsayama<strong>ng<strong>(Cf. tsamaya → tsamayaNG, bona → bonaNG)</figcaption>
+  </figure>
+  
+</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr><td>Syllabic Trills</td><td>Trill consonants that form a syllable on their own</td><td>Double up the lines in the ordinary version</td>
+
+<td></td>
+<td></td>  
+<td><img src="images/Alveolar_syllabic_trill.svg.png" 
+         alt="Alveolar_syllabic_trill"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Alveolar_syllabic_trill')">
+    <figcaption style="font-size:12px; margin-top:4px;">r̩<br><br>The <strong>rr-</strong> of words like <strong>rr</strong>a (father)</figcaption>
+  </figure>
+</td>
+
+<td></td>
+<td>
+<img src="images/Lateral_syllabic_approximant.svg.png" 
+         alt="Lateral_syllabic_approximant"
+         class="symbol-img mx-auto" 
+         onclick="playAudio('Lateral_syllabic_approximant')">
+    <figcaption style="font-size:12px; margin-top:4px;">l̩<br><br>The <strong>ll-</strong> of words like <strong>ll</strong>a (cry)</figcaption>
+  </figure>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Articulatory modes</h2>
+
+The last types of shape are those that show articulatory modes.
+
+
+
+The other shapes are <i>articulatory mode<i> of a consonant.
+
+<h3>Voicing</h3>
+
+
+<
+
+</details>
+
+
+        <!-- CONSONANTS CHART -->
+        <div class="table-container mx-auto">
             <table>
                 <thead>
+                  <tr> 
+                    <th colspan="5"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="This column lists the manners of articulation, describing how the sound is produced.">CONSONANTS CHART (Scroll -> for more)</span></th>
+                  </tr>
                     <tr>
-                        <th><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="This column lists the manners of articulation, describing how the sound is produced.">Consonants</span></th>
+                        <th><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="The columns list the places of articulation, describing WHERE the sound is produced.">Places</span></th>
                         <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with both lips.">Bilabial</span></th>
                         <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with the lower lip and upper teeth.">Labio-dental</span></th>
                         <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with the tongue against the upper teeth.">Dental</span></th>
                         <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with the tongue against the alveolar ridge.">Alveolar</span></th>
-                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Your explanation for Post-alveolar sounds here.">Post-alveolar</span></th>
-                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Your explanation for Retroflex sounds here.">Retroflex</span></th>
-                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Your explanation for Palatal sounds here.">Palatal</span></th>
-                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Your explanation for Velar sounds here.">Velar</span></th>
-                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Your explanation for Glottal sounds here.">Glottal</span></th>
-                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Your explanation for Lateral sounds here.">Lateral</span></th>
+                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with the tongue just behind the alveolar ridge.">Post-alveolar</span></th>
+                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with the tongue curled/bending backwards .">Retroflex</span></th>
+                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with the tongue against the hard roof of the mouth.">Palatal</span></th>
+                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with the back of the tongue against the soft palate (velum).">Velar</span></th>
+                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with the vocal folds in the glottis.">Glottal</span></th>
+                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with the tongue blocking the center but letting air pass along the sides.">Lateral</span></th>
                     </tr>
-
-                    <td> </td>
-
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-
-
 
                     <tr> 
 
+                    <th><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="The rows list the manners of articulation, describing HOW the sound is produced.">Manners</span></th>
 
-
+                    <td> Aspirated or voiceless</td>
+                    <td> Voiced</td>
+                    <td> Aspirated or voiceless</td>
+                    <td> Voiced</td>
+                    <td> Aspirated or voiceless</td>
+                    <td> Voiced</td>
+                    <td> Aspirated or voiceless</td>
+                    <td> Voiced</td>
+                    <td> Aspirated or voiceless</td>
+                    <td> Voiced</td>
+                    <td> Aspirated or voiceless</td>
+                    <td> Voiced</td>
+                    <td> Aspirated or voiceless</td>
+                    <td> Voiced</td>
+                    <td> Aspirated or voiceless</td>
+                    <td> Voiced</td>
+                    <td> Aspirated or voiceless</td>
+                    <td> Voiced</td>
+                    <td> Aspirated or voiceless</td>
+                    <td> Voiced</td>
                     </tr>
                 </thead>
                 <tbody>
-                    </tr>
 
- <!-- PLOSIVE -->
+                  <tr>
+
+ <!-- PLOSIVES -->
 
 
 <td class="font-medium">
@@ -196,7 +840,7 @@
 <!--Aspirated Bilabial Plosive -->
 <td>
   <figure style="margin:0; text-align:center;">
-    <img src="images/SVGs/Aspirated_bilabial.svg.png" 
+    <img src="images/Aspirated_bilabial_plosive.png" 
          alt="Aspirated Bilabial Plosive" 
          class="symbol-img has-tooltip" 
          onclick="playAudio('Aspirated_bilabial_plosive')" 
@@ -224,11 +868,11 @@
 <!--Aspirated Dental Plosive -->
 <td>
   <figure style="margin:0; text-align:center;">
-    <img src="images/SVGs/Aspirated_dental_plosive.svg.png" 
+    <img src="images/Aspirated_dental_plosive.png" 
          alt="Aspirated_dental_plosive" 
          class="symbol-img has-tooltip" 
          onclick="playAudio('Aspirated_dental_plosive')" 		
-         data-tooltip-text="<strong>VEN:</strong> ṱa">
+         data-tooltip-text="<strong>VEN:</strong> ṱha">
     <figcaption style="font-size:12px; margin-top:4px;">t̪ʰ </figcaption>
   </figure>
 </td>
@@ -248,7 +892,7 @@
 <!--Aspirated Alveolar Plosive -->
 <td>
   <figure style="margin:0; text-align:center;">
-    <img src="images/SVGs/Aspirated_alveolar_plosive.svg.png" 
+    <img src="images/Aspirated_alveolar_plosive.png"
          alt="Aspirated_alveolar_plosive" 
          class="symbol-img has-tooltip" 
          onclick="playAudio('Aspirated_alveolar_plosive')" 
@@ -277,7 +921,7 @@
 <!--Aspirated Palatal Plosive -->
 <td>
   <figure style="margin:0; text-align:center;">
-    <img src="images/SVGs/Aspirated_palatal_plosive.svg.png" 
+    <img src="images/Aspirated_palatal_plosive.png"
          alt="Aspirated_palatal_plosive" 
          class="symbol-img has-tooltip" 
          onclick="playAudio('Aspirated_palatal_plosive')" 
@@ -291,7 +935,7 @@
 <!--Aspirated Velar Plosive -->
 <td>
   <figure style="margin:0; text-align:center;">
-    <img src="images/SVGs/Aspirated_velar_plosive.svg.png" 
+    <img src="images/Aspirated_velar_plosive.png"
          alt="Aspirated_velar_plosive" 
          class="symbol-img has-tooltip" 
          onclick="playAudio('Aspirated_velar_plosive')" 
@@ -314,12 +958,94 @@
 
 <td class="impossible"></td> <!-- Glottal -->
 <td class="impossible"></td> <!-- Glottal -->
-
 <td class="impossible"></td> <!-- Laterals -->
 <td class="impossible"></td> <!-- Laterals -->
 </tr>
 
- <!-- FRICATIVE -->
+<!-- EJECTIVES & IMPLOSIVE -->
+ <tr>
+  <td class="font-medium">
+    <span class="has-tooltip" data-tooltip-text="Ejective: A plosive made with a burst of air released by raising the closed vocal folds, not from the lungs.<br> 
+      Implosive: A plosive made while slightly pulling air inward with the vocal folds as the closure is released.">
+      (Ejectives & Implosive)
+    </span>
+  </td>
+
+<td>
+  <img src="images/Bilabial_ejective_plosive.png" 
+       alt="Bilabial ejective plosive [pʼ]" 
+       class="symbol-img has-tooltip" 
+       onclick="playAudio('Ejective_bilabial')" 
+       data-tooltip-text="<strong>NGU:</strong> pa<br><strong>SOT:</strong> pa<br><strong>TSO:</strong> pa<br><strong>VEN:</strong> pa">
+       <figcaption style="font-size:12px; margin-top:4px;">pʼ</figcaption>
+    </figure>
+</td>
+
+
+<td>
+  <img src="images/Bilabial_implosive.png" 
+       alt="Bilabial implosive [ɓ]" 
+       class="symbol-img has-tooltip" 
+       onclick="playAudio('Implosive_bilabial')" 
+       data-tooltip-text="<strong>NGU:</strong> ba<br><strong>SOT:</strong> ba<br><strong>TSO:</strong> ba<br><strong>VEN:</strong> ba">
+       <figcaption style="font-size:12px; margin-top:4px;">ɓ</figcaption>
+    </figure>
+
+
+       
+  <td class="impossible"></td>
+  <td class="impossible"></td>
+  <td>
+  <figure style="margin:0; text-align:center;">
+    <img src="images/Dental_ejective_plosive.png" 
+         alt="Dental_ejective_plosive" 
+         class="symbol-img has-tooltip" 
+         onclick="playAudio('Dental_ejective_plosive')" 		
+         data-tooltip-text="<strong>VEN:</strong> ṱa">
+    <figcaption style="font-size:12px; margin-top:4px;">t̪</figcaption>
+  </figure>
+</td>
+  <td class="impossible"></td>
+
+<td>
+  <img src="images/Alveolar_ejective_plosive.png" 
+       alt="Alveolar ejective plosive [tʼ]" 
+       class="symbol-img has-tooltip" 
+       onclick="playAudio('Ejective_alveolar')" 
+       data-tooltip-text="<strong>NGU:</strong> ta<br><strong>SOT:</strong> ta<br><strong>TSO:</strong> ta<br><strong>VEN:</strong> ta">
+       <figcaption style="font-size:12px; margin-top:4px;">tʼ</figcaption>
+    </figure>
+</td>
+
+
+  <td class="impossible"></td>
+  <td class="impossible"></td> 
+  <td class="impossible"></td>
+  <td class="impossible"></td>
+  <td class="impossible"></td>
+  <td class="impossible"></td>
+  <td class="impossible"></td>
+
+<td>
+  <img src="images/Velar_ejective_plosive.png" 
+       alt="Velar ejective plosive [kʼ]" 
+       class="symbol-img has-tooltip" 
+       onclick="playAudio('Ejective_velar')" 
+       data-tooltip-text="<strong>NGU:</strong> ka<br><strong>SOT:</strong> ka<br><strong>TSO:</strong> ka<br><strong>VEN:</strong> ka">
+       <figcaption style="font-size:12px; margin-top:4px;">kʼ</figcaption>
+    </figure>
+</td>
+
+
+  
+  <td class="impossible"></td>
+  <td class="impossible"></td>
+  <td class="impossible"></td> 
+  <td class="impossible"></td>
+  <td class="impossible"></td>
+
+  </tr>
+<!-- FRICATIVES -->
 
   <tr>
   <td class="font-medium">
@@ -501,10 +1227,160 @@
     </figure>
   </td>
 
+</tr>
 
-  <!-- APPROXIMANTS -->
+<!-- AFFRICATES -->
 
-                    <tr>
+<tr> 
+  <td class="font-medium">
+    <span class="has-tooltip" data-tooltip-text="Airflow is stopped, then released into a narrow constriction, combining a plosive and a fricative.">
+      Affricate
+    </span>
+  </td>
+<td class="impossible"></td> <!-- Aspirated Bilabial affricate-->
+<td class="impossible"></td> <!-- Voiced Bilabial affricate-->
+
+<!-- Aspirated labiodental affricate -->
+<td>
+  <figure style="margin:0; text-align:center;">
+    <img src="images/Aspirated_labiodental_affricate.png"
+         alt="Aspirated_labiodental_affricate"
+         class="symbol-img has-tooltip"
+         onclick="playAudio('Aspirated_labiodental_affricate')"
+         data-tooltip-text="<strong>TSO:</strong> pfha<br><strong>VEN:</strong> pfa">
+    <figcaption style="font-size:12px; margin-top:4px;">pf</figcaption>
+  </figure>
+</td>
+
+
+<!-- Voiced labiodental affricate -->
+<td>
+  <figure style="margin:0; text-align:center;">
+    <img src="images/Voiced_labiodental_affricate.png"
+         alt="Voiced_labiodental_affricate"
+         class="symbol-img has-tooltip"
+         onclick="playAudio('Voiced_labiodental_affricate')"
+         data-tooltip-text="<strong>TSO:</strong> bva<br><strong>VEN:</strong> bva">
+    <figcaption style="font-size:12px; margin-top:4px;">bv</figcaption>
+  </figure>
+</td>
+
+<td class="impossible"></td> <!-- Aspirated dental affricate-->
+<td class="impossible"></td> <!-- Voiced dental affricate-->
+
+<!-- Aspirated alveolar affricate -->
+<td>
+  <figure style="margin:0; text-align:center;">
+    <img src="images/Aspirated_alveolar_affricate.png"
+         alt="Aspirated alveolar affricate"
+         class="symbol-img has-tooltip"
+         onclick="playAudio('Aspirated_alveolar_affricate')"
+         data-tooltip-text="<strong>NGU:</strong> tsa<br><strong>SOT:</strong> tsa<br><strong>TSO:</strong> tsa<br><strong>VEN:</strong> tsa">
+    <figcaption style="font-size:12px; margin-top:4px;">ts</figcaption>
+  </figure>
+</td>
+
+<!-- Voiced alveolar affricate -->
+<td>
+  <figure style="margin:0; text-align:center;">
+    <img src="images/Voiced_alveolar_affricate.png"
+         alt="Voiced alveolar affricate"
+         class="symbol-img has-tooltip"
+         onclick="playAudio('Voiced_alveolar_affricate')"
+         data-tooltip-text="<strong>NGU:</strong> dza<br><strong>SOT:</strong> dza<br><strong>TSO:</strong> dza<br><strong>VEN:</strong> dza">
+    <figcaption style="font-size:12px; margin-top:4px;">dz</figcaption>
+  </figure>
+</td>
+
+<!-- Aspirated post-alveolar affricate-->
+<td>
+  <figure style="margin:0; text-align:center;">
+    <img src="images/Aspirated_postalveolar_affricate.png"
+         alt="Aspirated post-alveolar affricate"
+         class="symbol-img has-tooltip"
+         onclick="playAudio('Aspirated_postalveolar_affricate')"
+         data-tooltip-text="<strong>NGU:</strong> tsh<br><strong>SOT:</strong> tš<br><strong>TSO:</strong> c<br><strong>VEN:</strong> tsh">
+    <figcaption style="font-size:12px; margin-top:4px;">t͡ʃ</figcaption>
+  </figure>
+</td>
+
+<!-- Voiced post-alveolar affricate -->
+<td>
+  <figure style="margin:0; text-align:center;">
+    <img src="images/Voiced_postalveolar_affricate.png"
+         alt="Voiced post-alveolar affricate"
+         class="symbol-img has-tooltip"
+         onclick="playAudio('Voiced_postalveolar_affricate')"
+         data-tooltip-text="<strong>NGU:</strong> ja<br><strong>SOT:</strong> ja<br><strong>TSO:</strong> ja<br><strong>VEN:</strong>">
+    <figcaption style="font-size:12px; margin-top:4px;">d͡ʒ</figcaption>
+  </figure>
+</td>
+
+<!-- Aspirated retroflex affricate -->
+<td>
+  <figure style="margin:0; text-align:center;">
+    <img src="images/Aspirated_retroflex_affricate.png"
+         alt="Aspirated_retroflex_affricate"
+         class="symbol-img has-tooltip"
+         onclick="playAudio('Aspirated_retroflex_affricate')"
+         data-tooltip-text="<strong>TSO:</strong> tswa">
+    <figcaption style="font-size:12px; margin-top:4px;">t͡ʂʰ</figcaption>
+  </figure>
+</td>
+
+<td class="impossible"></td> <!-- Voiced retroflex affricate-->
+<td class="impossible"></td> <!-- Aspirated palatal affricate-->
+<td class="impossible"></td> <!-- Voiced palatal affricate-->
+
+<!-- Voiceless velar affricate -->
+
+<td>
+  <figure style="margin:0; text-align:center;">
+    <img src="images/Aspirated_velar_affricate.png"
+         alt="Aspirated_retroflex_affricate"
+         class="symbol-img has-tooltip"
+         onclick="playAudio('Aspirated_retroflex_affricate')"
+         data-tooltip-text="<strong>NGU:</strong> kla<br><strong>SOT:</strong> kha/kga<br><strong>TSO:</strong><br><strong>VEN:</strong>">
+    <figcaption style="font-size:12px; margin-top:4px;">k͡xʰ</figcaption>
+  </figure>
+</td>
+
+<td class="impossible"></td> <!-- Voiced velar affricate-->
+<td class="impossible"></td> <!-- Aspirated glottal affricate-->
+<td class="impossible"></td> <!-- Voiced glottal affricate-->
+
+<!-- Aspirated lateral affricate -->
+<td>
+  <figure style="margin:0; text-align:center;">
+    <img src="images/Aspirated_lateral_affricate.png"
+         alt="Aspirated_velar_affricate"
+         class="symbol-img has-tooltip"
+         onclick="playAudio('Aspirated_lateral_affricate')"
+         data-tooltip-text="<strong>SOT:</strong> tlha">
+    <figcaption style="font-size:12px; margin-top:4px;">t͡ɬʰ</figcaption>
+  </figure>
+</td>
+
+<!-- Voiced lateral affricate -->
+
+<td>
+  <figure style="margin:0; text-align:center;">
+    <img src="images/Voiced_lateral_affricate.png"
+         alt="Voiced_lateral_affricate"
+         class="symbol-img has-tooltip"
+         onclick="playAudio('Voiced_lateral_affricate')"
+         data-tooltip-text="<strong>TSO:</strong> tlha">
+    <figcaption style="font-size:12px; margin-top:4px;"></figcaption>
+  </figure>
+</td>
+
+</tr>
+
+
+
+<!-- APPROXIMANTS -->
+
+<tr>
   <td class="font-medium">
     <span class="has-tooltip" data-tooltip-text="Articulators approach each other but do not create friction.">
       Approximant
@@ -552,7 +1428,7 @@
            alt="Voiced_lateral_approximant"
            class="symbol-img has-tooltip"
            onclick="playAudio('Voiced_alveolar_lateral_approximant')"
-           data-tooltip-text="<strong>IPA:</strong> /l/<br><strong>All Languages</strong>">
+           data-tooltip-text="<strong>NGU:</strong> la<br><strong>SOT:</strong> la<br><strong>TSO:</strong> la">
       <figcaption style="font-size:12px; margin-top:4px;">l</figcaption>
     </figure>
   </td>
@@ -652,7 +1528,7 @@
   
  <tr>
   <td class="font-medium">
-    <span class="has-tooltip" data-tooltip-text="Velaric ingressive airstream.">
+    <span class="has-tooltip" data-tooltip-text="Airflow is stopped, then released with a suction ‘click’ sound made in the mouth.">
       Clicks
     </span>
   </td>
@@ -939,14 +1815,24 @@
   </td>
 </tr>
 
-
-
                 </tbody>
             </table>
         </div>
         
         <!-- Audio elements container -->
         <div id="audio-players" class="hidden">
+
+            <!-- Vowel-->
+
+            <audio id="i_sound" src="audio/i_sound.ogg"></audio>
+            <audio id="e_sound" src="audio/e_sound.ogg"></audio>
+            <audio id="ɛ_sound" src="audio/ɛ_sound.ogg"></audio>
+            <audio id="a_sound" src="audio/a_sound.ogg"></audio>
+            <audio id="ɔ_sound" src="audio/ɔ_sound.ogg"></audio>
+            <audio id="o_sound" src="audio/o_sound.ogg"></audio>
+            <audio id="u_sound" src="audio/u_sound.ogg"></audio>
+
+            
             <!-- Plosives -->
             <audio id="Aspirated_bilabial_plosive" src="audio/Aspirated_voiceless_bilabial_stop.ogg"></audio>
             <audio id="Voiced_bilabial_plosive" src="audio/Voiced_bilabial_plosive.mp3"></audio>
@@ -972,7 +1858,7 @@
             <audio id="Voiceless_glottal_fricative" src="audio/Voiceless_glottal_fricative.ogg.mp3"></audio>
             <audio id="Voiced_glottal_fricative" src="audio/Voiced_glottal_fricative.ogg.mp3"></audio>
             <audio id="Voiceless_lateral_fricative" src="audio/Voiceless_alveolar_lateral_fricative.ogg.mp3"></audio>
-            <audioo id="Voiced_lateral_fricative" src="audio/voiced_alveolar_lateral_fricative.ogg.mp3"></audio>
+            <audio id="Voiced_lateral_fricative" src="audio/voiced_alveolar_lateral_fricative.ogg.mp3"></audio>
             <!-- Approximants -->
             <audio id="Voiced_labial–velar_approximant" src="audio/Voiced_labio-velar_approximant.ogg.mp3"></audio>
             <audio id="Voiced_palatal_approximant" src="audio/voiced_palatal_approximant.ogg.mp3"></audio>
