@@ -68,6 +68,8 @@ p {
             border: 1px solid #e5e7eb;
             box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
         }
+            /* Fade header tags when their columns are hidden */
+          .th-collapsed { opacity: .35; text-decoration: line-through; }
 
         /* Table Styling */
         .table-container {
@@ -206,7 +208,7 @@ figure figcaption {
   text-align: center;
 }
 
-/* --- Center and align the big interactive consonant table --- */
+/*--- Center and align the big interactive consonant table --- */
 
 /* Add consistent spacing above and below */
 .table-container {
@@ -256,26 +258,25 @@ figure figcaption {
         <header class="text-center mb-12">
             <h1 class="text-4xl font-bold text-gray-900">The IsiBheqe soHlamvu syllabary </h1>
             <h2>A simple explainer page with interactive chart</h2>
-            <div class="mt-4 text-md text-gray-700 max-w-4xl mx-auto space-y-3">
+            
+            <div class="mt-4 text-md text-gray-700 max-w-4xl mx-auto space-y-3"> 
 
                IsiBheqe soHlamvu is a modern, <strong><i>phonetically-based</i></strong> indigenous writing system developed for all Southern African isiNtu languages. It is also known as Ditema tsa Dinoko, or Xifhungo xa Manungu, or Vhuga ha Madungo.<br><br> 
-                IsiBheqe soHlamvu roughly means "the <i>ibheqe</i>-style of the syllable" or "the <i>ibheqe</i> method of writing syllables". Thus, it is a <strong><i>syllabary.</i></strong> <br><br>
+                IsiBheqe soHlamvu roughly means "the <i>ibheqe</i>-style syllable" or "the <i>ibheqe</i> method of writing syllables".  <br><br>
 
-                IsiBheqe/Ditema draws from  Southern African traditional art, like Sesotho <i>litema</i> (mural art) and isiZulu <i>ucu</i> (beadwork bracelets). 
+                IsiBheqe/Ditema draws from Southern African traditional art, like Sesotho <i>litema</i> art (used on murals) and isiZulu <i>ucu</i> art (used on beadwork bracelets). 
                 
-                This art was decorative; but used systems of shapes to convey romantic messages, or report cultural news to neighbours and travelers. Shapes indicated births, childrens' coming-of-age milestones and the like.<br><br>
+                This art is decorative; but used systems of shapes to convey romantic messages, or report cultural news to neighbours and travelers. Different shapes indicated births, childrens' coming-of-age milestones and the like.<br><br>
 
-                These inspire IsiBheqe/Ditema both as an 'art style' but as a communicative cultural technology. <br><br>
+                In that tradition, IsiBheqe/Ditema is a communicative cultural technology, that can be used as an 'art style'. <br><br>
 
-                The script can be used for all Southern African isiNtu languages & dialects. <br><br> It is especially useful for those languages that don't have a formal Latin orthography, such as the Eastern Sotho language of sePulana and a majority of the Tekela languages 
+                The script can be used for all Southern African isiNtu languages & dialects. It is especially useful for those languages that don't have a formal Latin orthography. These include the Eastern Sotho language of sePulana and a majority of the Tekela languages 
                 of the Nguni language group like isiBhaca, isiHlubi, sePhuthi, isiLala, isiNhlangwini, and Northern Transvaal isiNdebele 
                 (also known as Sumayela Ndebele).<br><br>
 
-                <h2><i>Using this interactive page</i> <br><br></h2>
+                <h2><i>Using this interactive page</i></h2>
 
-                We've created this page to show you how the IsiBheqe script looks and sounds.<br><br> 
-                
-                The script is fundamentally <i>phonetic</i> - meaning based on <strong>sounds</strong>; so it can only be learnt by repeating the sounds out loud to oneself.  <br><br>
+                We've created this page to show you how the IsiBheqe script looks and sounds.<br><br>
 
                 <strong>Explainer Sections:</strong> explore the basic idea, vowels, consonants and related features of the Isibheqe syllables<br><br>
                  <strong>Interactive Clickable Chart:</strong> shows you a one full set of syllables with image, caption and audio. <br><br>
@@ -299,69 +300,69 @@ figure figcaption {
 <details class="instruction-section"> <!--OPEN-->
   <summary class="text-2xl font-bold text-gray-800 mb-3"> BASIC IDEA OF THE ISIBHEQE/DITEMA SCRIPT </summary>
   <div class="text-gray-600">
-  <p class="text-gray-600">
 
-  IsiBheqe/Ditema is a <strong><i>syllabary</i></strong>, which is <strong><i>featural</i></strong> in nature. <br><br>
+   <h3 class="text-center"> The Isibheqe/Ditema writing system is a featural syllabary </h3> 
+   
+   It is a <strong><i>syllabary</i></strong> because its symbols stand for 'syllables' - not letters. <br><br>
   
-  This is a fancy way of saying that the symbols are based on 'syllables'; and that the specific markings you use are related to the linguistics <i>features<i>
-    
-    As a <i>syllabary</i>, each symbol represents a 'syllable' and in the system is known as an <i>ibheqe</i> (plural, <i>amabheqe</i>). <br><br>
+  It is <strong><i>featural</i></strong> because a symbol is designed to visually show you how its syllable is pronounced - 
+  i.e.  show you the syllable's phonetic <i>features.</i> <br><br>
+
+  An isiBheqe symbol is known as an <i>ibheqe</i>, or <i>amabheqe</i>, in plural.
+
+   <h3 class="text-center"> The vowel 'nucleus' and the consonants </h3>
   
-  Syllables are made of a vowel (which) and consonant. The VOWEL forms the 'nucleus' of the syllabic block. It is represented by either a triangle or a chevron. <br><br> 
+  Which features are shown? One is the vowel, which is visually shown by the direction the triangle or chevron is pointing.<br><br>
+
+  The triangle is the 'nucleus' of an <i>ibheqe</i>. Visually, it is meant to look like a mouth (or more accurately a vocal tract - which includes the mouth, nose & throat). 
+  The apex of the triangle is the front of the mouth (lips) with the base of the triangle being the throat. <br><br>
+
+  Then, features of the syllable's consonant sounds - like 'where' and 'how' the consonant is pronounced in the mouth (vocal tract) - are shown, in corresponding places on the triangle. 
+
+  Linguists call these features the "place of articulation" and the "manner of articulation" respectively. <br><br>
   
-  Consonants and their phonetic features are then placed around this nucleus.<br><br>
+  Finally, the ibheqe can also show the "articulatory mode" of a sound. This is the type of airflow used to pronounce the sound.
   
-  Take the word "SAWUBONA" (the isiZulu word for "hello"). <br><br>
+  <br><br>
+
+  <!--Take the word "SAWUBONA" (the isiZulu word for "hello"). <br><br>
   
   In Isibheqe, it is written as: <br><br>
   
-        <figure class="text-center my-6">
+       <figure class="text-center my-6">
         <img src="images/sawubona.png" alt="SA WU BONA written in Isibheqe text" class="mx-auto" style="width:500px;">
         <figcaption class="text-sm text-gray-500 mt-2"> Figure 1: The isiZulu word SA-WU-BO-NA, broken down into syllables. <br>
           Each syllable gets its nucleus from the specific vowel. Then, the consonants are drawn around it.
         </figcaption>
-        </figure> <br><br>
+        </figure> <br><br>---*/
 
   Here are more examples, from different languages. Look at all the vowels, and how you make the syllables of three words.<br><br>
   On the right are the words, <i>Xilo</i> ("thing" in Xitsonga), <i>Vhathu</i> ("people" in Tshivenda) and the phrase <i>Ho tlêtse</i> ("it is full" in Sesotho). <br><br>
+-->
 
-        <figure class="text-center my-6">
-        <img src="images/Xilo_Vhathu_Ho_tlêtse.jpg" alt="The words 'Xilo''Vhathu'and the phrase 'Ho_tlêtse' from the Xitsonga, Tshivenda and Sesotho languages, written in isiBheqe" class="mx-auto max-w-xs">
-        <figcaption class="text-sm text-gray-500 mt-2"> Figure 2: There are set triangles (or chevrons) for vowels, and then particular shapes are put to indicate consonants and their phonetic features.
-        </figcaption>
-        </figure> <br><br>
-
-  </p>
   </div>
   </details>
 
+  
+  <br><br>
 
 <!--VOWELS EXPLAINER SECTION-->            
 
 <details class="instruction-section">
- <summary class="text-2xl font-bold text-gray-800 mb-3">VOWELS</summary>
+ <summary class="text-2xl font-bold text-gray-800 mb-3 text-center">VOWELS</summary>
 
-  <h2> The vowel shapes in isiBheqe </h2> <br><br>
+  <h3 class="text-center"> The vowel shapes in isiBheqe </h3>
 
-   <p class="text-gray-600">
+  <p class="text-gray-600">
 
+  In the IsiBheqe/Ditema writing system, the vowel is shown by the the DIRECTION of the triangle in the middle. <br><br>
 
-  Specific vowels are represented by the DIRECTION of the triangle or chevron. The uses
-  
-  The vowels <i>i</i> and <i>u</i>, are called 'high' vowels, because the tongue moves upward in the mouth when you say them.  
-  Because of this, the <i>i</i> vowel is represented by an UPWARD-pointing triangle - while the <i>u</i> vowel is represented by an UPWARD-pointing chevron.<br><br>
+  This direction is based on how the vowel is articulated. </p><br><br>
 
-  Likewise, the 'low' vowel <i>a</i> is represented by a downward pointing triangle.<br><br>
-  
-  The other vowels work in a similar fashion. <br><br>
-
-  The vowels <i>e</i> and <i>ɛ</i> are called 'fronted' vowels, because you make them at the front of the mouth. Relatedly, <i>o</i>
-  </p>
-  
 <!--THE VOWEL TRIANGLE-->
 
 <div class="text-gray-600">
-<div class="media-row" style="display:flex">
+<div class="media-row" style="display:flex; gap: 10px;">
   <!--LEFT: Image of the vowel triangle-->
 
  <figure class="text-center my-6" style="height:100%">
@@ -373,6 +374,9 @@ figure figcaption {
 
   <div class="table-container">
   <table class="mini-table">
+  <thead aria-colspan="7"> 
+  <!--<figcaption style="font-size:12px; margin-top:4px;"><!-->
+  <strong>Click on a block in this table, to hear the corresponding vowel in the image of the left.</strong><!--</figcaption>-->
 
   <!--Row 1--> 
   <!--<thead> Click on the image to hear the sound. Say it out loud.</thead><br><br-->
@@ -455,36 +459,71 @@ figure figcaption {
   <td></td>
   </tr>
   </tbody>
+
   </table>
 </div>
 </div>
-<p class="text-gray-600">    
-  
-  These vowels than go on to be vocal tract!
-  </p>
   </div>
-  </details>
+
+<p class="text-gray-600">
+  <strong> HIGH AND LOW VOWELS:</strong> <br><br>
+
+  The vowels <i>i</i> and <i>u</i> are 'high' vowels. <br><br>
+
+  <strong>'High'</strong> vowels are so named because the jaw moves UPWARD when you make the sound. Since isiBheqe is a featural script, 'high' vowels are visually shown using an 'upward' pointing triangle.<br><br>
+  Specifically, the <i>i</i> vowel is an upward-pointing <strong>TRIANGLE</strong>. <br>
+  The vowel <i>u</i> is an upward-pointing <strong>CHEVRON</strong>.<br><br>
+
+  The <strong>'low'</strong> vowel <i>a</i> is a 'low' vowel. <br>
+  
+  DOWNWARD pointing triangle.<br><br>
+
+  <strong> FRONTED VOWELS:</strong>
+  The vowels <i>e</i> and <i>ɛ</i> are called 'front' vowels, because you make them at the front of the mouth. <br><br>
+
+  <strong> Back vowels</strong>
+  
+  The vowels <i>o</i> and <i>ɔ</i> are 'back' vowels, because you make them at the back of the mouth. 
+
+</p>
+
+<br><br>
+    
+ <figure class="text-center my-6">
+        <img src="images/Xilo_Vhathu_Ho_tlêtse.jpg" alt="The words 'Xilo''Vhathu'and the phrase 'Ho_tlêtse' from the Xitsonga, Tshivenda and Sesotho languages, written in isiBheqe" class="mx-auto max-w-xs">
+        <figcaption class="text-sm text-gray-500 mt-2"> Figure 1: There are set triangles (or chevrons) for vowels, and then particular shapes are put to indicate consonants and their phonetic features.
+        </figcaption>
+        </figure>
+
+  </details> 
+
+  <br><br>
   
 <!--CONSONANTS SECTION EXPLAINER-->
 
 <details class="instruction-section">
 <summary class="text-2xl font-bold text-gray-800 mb-3">CONSONANTS</summary>
 
+<h2 class="text-center"> Place of articulation </h2>
 <p class="text-gray-600">
-In isiBheqe, the vowel symbol is meant to resemble the 'vocal tract'. <br><br> 
 
-This is just the space where human speech sounds are articulated. It collectively consists of the throat, mouth and nose - <br><br>
+  Recall, the vowel triangle resembles the 'vocal tract'. <br><br> 
 
 Inside the vocal tract, sits the body parts one uses to make speech sounds. These parts are called "articulators".<br> 
 They include your lips, teeth, gums, tongue, roof of your mouth, throat, vocal cords, nose etc. <br><br>
 
-See the diagram below. <br><br>
-</p>
+<strong> See the diagram below. </p> 
+  
+<br><br>
+
 
 <div class="media-row">
     <img src="images/a mouth diagram.png" alt="a vowel" style="width: 500px; height: 500px;">
 <img src="images/ɛ mouth diagram.png" alt="ɛ vowel" style="width: 500px; height: 500px;">
 </div>
+<br><br>
+
+<h2> Manner of articulation </h2>
 
 <!--CONSONANTS EXPLAINER TABLE-->
 <table> 
@@ -766,18 +805,19 @@ See the diagram below. <br><br>
 
 The last types of shape are those that show articulatory modes.
 
-
-
 The other shapes are <i>articulatory mode<i> of a consonant.
 
-<h3>Voicing</h3>
+<h3>Voicing</h3> <br><br>
 
+<h3> Nasal </h3> <br><br>
 
-<
+<h3> <br><br>
+
 
 </details>
 
-
+<br><br>
+        
         <!-- CONSONANTS CHART -->
         <div class="table-container mx-auto">
             <table>
@@ -785,6 +825,9 @@ The other shapes are <i>articulatory mode<i> of a consonant.
                   <tr> 
                     <th colspan="5"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="This column lists the manners of articulation, describing how the sound is produced.">CONSONANTS CHART (Scroll -> for more)</span></th>
                   </tr>
+
+                  <div id="chart-toggles" class="max-w-4xl mx-auto mb-3" style="display:flex;flex-wrap:wrap;gap:.5rem"></div>
+
                     <tr>
                         <th><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="The columns list the places of articulation, describing WHERE the sound is produced.">Places</span></th>
                         <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with both lips.">Bilabial</span></th>
@@ -1954,6 +1997,122 @@ The other shapes are <i>articulatory mode<i> of a consonant.
             }
         }
     </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Find the BIG consonant chart by its title text
+  const bigTable = Array.from(document.querySelectorAll('.table-container table'))
+    .find(t => t.querySelector('thead')?.textContent?.includes('CONSONANTS CHART'));
+  if (!bigTable) return;
+
+  const thead = bigTable.tHead;
+  const tbody = bigTable.tBodies[0];
+  const rPlaces = thead?.rows?.[1];      // places row (Bilabial… each colspan=2)
+  const rAspiVoiced = thead?.rows?.[2];  // row with "Manners" + subheaders
+  if (!rPlaces || !rAspiVoiced || !tbody) return;
+
+  // Build place map (skip the first header cell: "Places")
+  let colIndex = 0;
+  const placeMap = [];
+  for (let i = 1; i < rPlaces.cells.length; i++) {
+    const th = rPlaces.cells[i];
+    const span = Number(th.colSpan || 1);     // usually 2
+    const key = th.textContent.trim().toLowerCase().replace(/\s+/g,'-');
+    placeMap.push({ key, th, start: colIndex, span });
+    colIndex += span;
+  }
+
+  // Build manner map from first body cell of each row
+  const mannerRows = {};
+  Array.from(tbody.rows).forEach(tr => {
+    const firstCell = tr.cells[0];
+    if (!firstCell) return;
+    const key = firstCell.textContent.trim().toLowerCase().replace(/\s+/g,'_');
+    (mannerRows[key] ||= []).push(tr);
+  });
+
+  // Helpers
+  function setColumnVisible(placeKey, visible) {
+    const m = placeMap.find(p => p.key === placeKey);
+    if (!m) return;
+
+    // Dim the top place TH
+    m.th.classList.toggle('th-collapsed', !visible);
+
+    // Row 3 headers: skip the first "Manners" cell at index 0
+    for (let i = 0; i < m.span; i++) {
+      const headCell = rAspiVoiced.cells[1 + m.start + i];
+      if (headCell) headCell.style.display = visible ? '' : 'none';
+    }
+
+    // Body cells: skip first Manners cell per row (index 0)
+    Array.from(tbody.rows).forEach(tr => {
+      for (let i = 0; i < m.span; i++) {
+        const td = tr.cells[1 + m.start + i];
+        if (td) td.style.display = visible ? '' : 'none';
+      }
+    });
+  }
+
+  function setMannerVisible(mannerKey, visible) {
+    (mannerRows[mannerKey] || []).forEach(tr => { tr.style.display = visible ? '' : 'none'; });
+  }
+
+  // State
+  const colState = Object.fromEntries(placeMap.map(p => [p.key, true]));
+  const rowState = Object.fromEntries(Object.keys(mannerRows).map(k => [k, true]));
+
+  // Ensure a toolbar exists (create if missing)
+  let panel = document.getElementById('chart-toggles');
+  if (!panel) {
+    panel = document.createElement('div');
+    panel.id = 'chart-toggles';
+    panel.style.display = 'flex';
+    panel.style.flexWrap = 'wrap';
+    panel.style.gap = '.5rem';
+    panel.style.justifyContent = 'center';
+    bigTable.closest('.table-container')?.before(panel);
+  }
+
+  // Row (manner) buttons
+  Object.keys(mannerRows).forEach(key => {
+    const btn = document.createElement('button');
+    btn.textContent = `Toggle ${key.replace(/_/g,' ')}`;
+    btn.onclick = () => {
+      rowState[key] = !rowState[key];
+      setMannerVisible(key, rowState[key]);
+    };
+    panel.appendChild(btn);
+  });
+
+  // Column (place) buttons
+  placeMap.forEach(p => {
+    const btn = document.createElement('button');
+    btn.textContent = `Toggle ${p.key.replace(/-/g,' ')}`;
+    btn.onclick = () => {
+      colState[p.key] = !colState[p.key];
+      setColumnVisible(p.key, colState[p.key]);
+    };
+    panel.appendChild(btn);
+  });
+
+  // Quick actions
+  const showAll = document.createElement('button');
+  showAll.textContent = 'Show all';
+  showAll.onclick = () => {
+    Object.keys(rowState).forEach(k => { rowState[k] = true; setMannerVisible(k, true); });
+    placeMap.forEach(p => { colState[p.key] = true; setColumnVisible(p.key, true); });
+  };
+  panel.appendChild(showAll);
+
+  const hideAllCols = document.createElement('button');
+  hideAllCols.textContent = 'Hide all columns';
+  hideAllCols.onclick = () => {
+    placeMap.forEach(p => { colState[p.key] = false; setColumnVisible(p.key, false); });
+  };
+  panel.appendChild(hideAllCols);
+});
+</script>
 
 </body>
 </html>
