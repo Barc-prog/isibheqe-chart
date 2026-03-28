@@ -10,254 +10,251 @@
     
     <!-- Self-contained CSS -->
     <style>
-        /* General Body Styling */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f9fafb;
-            color: #1f2937;
-            margin: 0;
-            padding: 1rem;
-        }
 
-        @media (min-width: 768px) {
-            body { padding: 2rem; }
-        }
+    /* ── Base ───────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
 
-        /* Container and Layout */
-        .container { max-width: 1280px; margin-left: auto; margin-right: auto; }
-        .text-center { text-align: center; }
-        .mb-12 { margin-bottom: 3rem; }
-        .mb-3 { margin-bottom: 0.75rem; }
-        .mt-4 { margin-top: 1rem; }
-        .mx-auto { margin-left: auto; margin-right: auto; }
-        .space-y-2 > * + * { margin-top: 0.5rem; }
-        .space-y-8 > * + * { margin-top: 2rem; }
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f9fafb;
+        color: #374151;
+        margin: 0;
+        padding: 1rem;
+        line-height: 1.75;
+        letter-spacing: 0.01em;
+    }
+    @media (min-width: 768px) { body { padding: 2rem; } }
 
-        /* Typography */
-        .text-4xl { font-size: 2.25rem; }
-        .text-2xl { font-size: 1.5rem; }
-        .font-bold { font-weight: 700; }
-        .font-semibold { font-weight: 600; }
-        .font-medium { font-weight: 500; }
-        .italic { font-style: italic; }
-        .text-gray-900 { color: #111827; }
-        .text-gray-800 { color: #1f2937; }
-        .text-gray-700 { color: #374151; }
-        .text-gray-600 { color: #4b5563; }
-        .tracking-wider { letter-spacing: 0.05em; }
-        .max-w-4xl { max-width: 56rem; }
+    p { margin-bottom: 1.25em; }
 
-        /* Body text readability */
-body {
-  line-height: 1.75;   /* increases line spacing */
-  letter-spacing: 0.01em;
-  color: #374151;      /* softer gray; good balance of contrast and comfort */
-}
+    /* ── Layout helpers ─────────────────────────────────────── */
+    .container    { max-width: 1280px; margin: 0 auto; }
+    .text-center  { text-align: center; }
+    .mb-12        { margin-bottom: 3rem; }
+    .mb-3         { margin-bottom: 0.75rem; }
+    .mt-4         { margin-top: 1rem; }
+    .mx-auto      { margin-left: auto; margin-right: auto; }
+    .max-w-4xl    { max-width: 56rem; }
+    .hidden       { display: none; }
 
-/* Paragraph spacing */
-p {
-  margin-bottom: 1.25em;
-}
+    /* ── Typography ─────────────────────────────────────────── */
+    .text-4xl     { font-size: clamp(1.6rem, 5vw, 2.25rem); }
+    .text-2xl     { font-size: 1.5rem; }
+    .font-bold    { font-weight: 700; }
+    .font-semibold{ font-weight: 600; }
+    .font-medium  { font-weight: 500; }
+    .italic       { font-style: italic; }
+    .text-gray-900{ color: #111827; }
+    .text-gray-800{ color: #1f2937; }
+    .text-gray-700{ color: #374151; }
+    .text-gray-600{ color: #4b5563; }
+    .tracking-wider{ letter-spacing: 0.05em; }
 
+    /* ── Tooltip ────────────────────────────────────────────── */
+    .dynamic-tooltip {
+        position: absolute;
+        width: 240px;
+        background-color: #1f2937;
+        color: #fff;
+        text-align: left;
+        padding: 10px;
+        border-radius: 8px;
+        z-index: 100;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
 
-        /* Instruction Sections */
-        .instruction-section {
-            background-color: #ffffff;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-        }
-            /* Fade header tags when their columns are hidden */
-          .th-collapsed { opacity: .35; text-decoration: line-through; }
+    /* ── Symbol images ──────────────────────────────────────── */
+    .symbol-img {
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+        display: inline-block;
+        object-fit: contain;
+    }
+    @media (max-width: 640px) {
+        .symbol-img { width: 44px; height: 44px; }
+    }
 
-        /* Table Styling */
-        .table-container {
-            overflow-x: auto;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-            border-radius: 0.5rem;
-        }
-        table {
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            border-collapse: collapse;
-        }
-        th, td {
-            vertical-align: middle;
-            min-width: 85px; /* Slightly increased min-width */
-            padding: 0.5rem;
-            border: 1px solid #d1d5db;
-        }
-        thead { background-color: #e5e7eb; }
-        tbody { background-color: #ffffff; }
-        .impossible { background-color: #f3f4f6; } /* Lighter gray for impossible cells */
+    figure figcaption {
+        font-size: 0.75rem;
+        color: #6b7280;
+        margin-top: 0.25rem;
+        line-height: 1.2;
+        text-align: center;
+    }
 
-        /* JAVASCRIPT-POWERED TOOLTIP */
-        .dynamic-tooltip {
-            position: absolute;
-            visibility: visible; /* Controlled by adding/removing from DOM */
-            width: 240px;
-            background-color: #1f2937;
-            color: #fff;
-            text-align: left;
-            padding: 10px;
-            border-radius: 8px;
-            z-index: 100; /* Ensure it's on top */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            opacity: 0; /* Start invisible for transition */
-            transition: opacity 0.2s ease-in-out;
-        }
-        
-        /* Symbol Image Styles */
-        .symbol-img {
-            width: 60px;
-            height: 60px;
-            cursor: pointer;
-            display: inline-block;
-            object-fit: contain; /* Ensure image aspect ratio is maintained */
-        }
-        
-        /* Let example-strip images be responsive (overrides .symbol-img 60x60) */
-        .example-strip .symbol-img {
-             width: auto;
-             height: auto;
-              max-width: 100%;
-              display: block;
-              margin: 0 auto;
-              object-fit: contain;
-}
+    /* ── Collapsed column header ────────────────────────────── */
+    .th-collapsed { opacity: .35; text-decoration: line-through; }
 
-        /* Hidden elements */
-        .hidden { display: none; }
+    /* ── Toggle panel (chip UI) ─────────────────────────────── */
+    .toggle-panel {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.75rem;
+        padding: 1rem 1.25rem;
+        margin-bottom: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-bottom: none;
+    }
+    @media (max-width: 640px) { .toggle-panel { padding: 0.75rem; } }
 
-        /* Put this with your existing CSS (no removals needed) */
-.instruction-section { padding: 0; }              /* Remove inner padding from the shell */
-.instruction-section > summary { 
-  padding: 1rem 1.5rem; 
-  cursor: pointer; 
-  list-style: none; 
-  border-bottom: 1px solid #e5e7eb; 
-}
-.instruction-section[open] > summary { 
-  border-bottom-color: transparent; 
-}
-.instruction-section > *:not(summary) { 
-  padding: 1rem 1.5rem; 
-}
-.instruction-section > summary::-webkit-details-marker { display: none; }
-.instruction-section > summary::after {
-  content: "▸";
-  float: right;
-  font-weight: 600;
-  transform: translateY(2px);
-}
-.instruction-section[open] > summary::after { content: "▾"; }
+    .toggle-presets {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+    }
+    .toggle-section { margin-bottom: 0.75rem; }
+    .toggle-section:last-child { margin-bottom: 0; }
+    .toggle-section-label {
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        color: #9ca3af;
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+    .toggle-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        justify-content: center;
+    }
+    .chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.3rem 0.8rem;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 500;
+        border: 1.5px solid transparent;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        min-height: 34px;
+        line-height: 1;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .chip-place.on   { background: #dbeafe; border-color: #3b82f6; color: #1d4ed8; }
+    .chip-place.off  { background: #f3f4f6; border-color: #e5e7eb; color: #9ca3af; }
+    .chip-manner.on  { background: #d1fae5; border-color: #10b981; color: #065f46; }
+    .chip-manner.off { background: #f3f4f6; border-color: #e5e7eb; color: #9ca3af; }
+    .chip-preset {
+        background: #1f2937; border-color: #1f2937; color: #fff;
+        font-size: 0.75rem; padding: 0.3rem 1rem;
+    }
+    .chip-preset:hover { background: #374151; border-color: #374151; }
+    .chip-preset.active-preset { background: #4f46e5; border-color: #4f46e5; }
 
-/* Simple responsive row that wraps to one column on small screens */
+    /* ── Table container ────────────────────────────────────── */
+    .chart-section {
+        max-width: 1100px;
+        margin: 2.5rem auto 3rem;
+    }
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid #e5e7eb;
+        border-radius: 0 0 0.75rem 0.75rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    table {
+        width: 100%;
+        text-align: center;
+        border-collapse: collapse;
+        background: #fff;
+    }
+    th, td {
+        vertical-align: middle;
+        min-width: 85px;
+        padding: 0.5rem;
+        border: 1px solid #d1d5db;
+    }
+    @media (max-width: 640px) {
+        th, td { padding: 0.35rem 0.25rem; font-size: 0.75rem; min-width: 60px; }
+    }
+    thead { background-color: #f8f9ff; }
+    tbody { background-color: #ffffff; }
+    .impossible { background-color: #f9fafb; }
 
-.media-row {
-  display: flex;
-  grid-template-columns: auto auto; /* two columns side-by-side */
-  justify-content: center;          /* center the pair within the page */
-  align-items: flex-start;               /* top-align them */
-  column-gap: 200px;                 /* spacing between the two images */
-}
+    /* Chart header row */
+    .table-container thead tr:first-child th {
+        background: #4f46e5;
+        color: #fff;
+        font-size: 0.8rem;
+        letter-spacing: 0.06em;
+        padding: 0.65rem 1rem;
+        border-color: #4338ca;
+        border-radius: 0;
+    }
+    /* Place row */
+    .table-container thead tr:nth-child(2) th {
+        background: #ede9fe;
+        color: #4f46e5;
+        font-weight: 600;
+        font-size: 0.78rem;
+        padding: 0.5rem 0.4rem;
+        border-color: #c4b5fd;
+    }
+    /* Aspirated/Voiced subheader row */
+    .table-container thead tr:nth-child(3) th,
+    .table-container thead tr:nth-child(3) td {
+        background: #f5f3ff;
+        font-size: 0.7rem;
+        color: #6b7280;
+        padding: 0.35rem 0.25rem;
+        font-weight: 500;
+    }
 
-/* Make diagrams/images scale nicely */
-.diagram-img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
-  padding: .5rem;
-  background: #fff;
-}
-
-/* A compact table style for small explanatory tables */
-.mini-table {
-  width: 100%;
-  table-layout: fixed;
-  border-collapse: collapse;
- margin: 0 auto;
-}
-.mini-table th, .mini-table td {
-  border: 1px solid #d1d5db;
-  padding: 0.25rem;
-  text-align: center;
-  vertical-align: middle;
-}
-.mini-table thead { background: #f3f4f6; }
-
-figure figcaption {
-
-font-size: 0.75rem;
-color: #6b7280;
-margin-top: 0.25rem;
-line-height: 1.2;
-
-/* --- Improve section spacing and centering --- */
-
-/* Give each section breathing room */
-details.instruction-section {
-  margin-bottom: 3rem; /* separates each collapsible section */
-}
-
-/* Keep content neatly centered within a readable width */
-details.instruction-section > div,
-details.instruction-section > p,
-
-/* Neater figure captions */
-figure figcaption {
-  font-size: 0.75rem;
-  color: #6b7280;
-  margin-top: 0.25rem;
-  line-height: 1.2;
-  text-align: center;
-}
-
-/*--- Center and align the big interactive consonant table --- */
-
-/* Add consistent spacing above and below */
-.table-container {
-  max-width: 1100px;   /* keeps it centered within the main container */
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 2.5rem;
-  margin-bottom: 3rem;
-  overflow-x: auto;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-
-/* Slightly refine table visuals */
-.table-container table {
-  border-collapse: collapse;
-  width: 100%;
-  background: #fff;
-}
-
-.table-container th, 
-.table-container td {
-  border: 1px solid #d1d5db;
-  padding: 0.5rem;
-  text-align: center;
-  vertical-align: middle;
-}
-
-/* Headings slightly bolder and with consistent spacing */
-.table-container thead th {
-  background-color: #f3f4f6;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  padding: 0.75rem;
-}
-
-}
-
+    /* ── Articulatory Modes collapsible ────────────────────── */
+    .modes-section {
+        max-width: 760px;
+        margin: 0 auto 2.5rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        background: #fff;
+    }
+    .modes-section > summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #4f46e5;
+        background: #f5f3ff;
+        border-bottom: 1px solid #e5e7eb;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        user-select: none;
+    }
+    .modes-section > summary::-webkit-details-marker { display: none; }
+    .modes-section > summary::after { content: "▸"; font-size: 0.9rem; color: #a5b4fc; }
+    .modes-section[open] > summary::after { content: "▾"; }
+    .modes-section > summary:hover { background: #ede9fe; }
+    .modes-body { padding: 1.5rem; }
+    .modes-intro { font-size: 0.9rem; color: #4b5563; text-align: center; margin-bottom: 1.5rem; line-height: 1.6; }
+    .mode-block { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 1.1rem 1.25rem; margin-bottom: 1rem; }
+    .mode-block:last-child { margin-bottom: 0; }
+    .mode-block-title { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.6rem; }
+    .mode-block p { font-size: 0.875rem; color: #374151; margin-bottom: 0.6rem; line-height: 1.65; }
+    .mode-try { background: #eff6ff; border-left: 3px solid #6366f1; border-radius: 0 0.4rem 0.4rem 0; padding: 0.55rem 0.85rem; font-size: 0.82rem; color: #374151; margin: 0.75rem 0; line-height: 1.6; }
+    .mode-pair { display: flex; gap: 0.75rem; margin-top: 0.75rem; flex-wrap: wrap; }
+    .mode-pair-card { flex: 1; min-width: 110px; background: #fff; border: 1.5px solid #e5e7eb; border-radius: 0.65rem; padding: 0.75rem; text-align: center; }
+    .mode-pair-card img { width: 56px; height: 56px; object-fit: contain; display: block; margin: 0 auto; }
+    .mode-pair-phoneme { font-size: 1.05rem; font-weight: 700; color: #1f2937; margin-top: 0.25rem; }
+    .mode-pair-label { font-size: 0.68rem; color: #6b7280; margin-top: 0.1rem; }
+    .mode-pair-word { font-size: 0.72rem; color: #9ca3af; font-style: italic; margin-top: 0.1rem; }
+    .mode-callout-ntu { background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 0.4rem 0.4rem 0; padding: 0.55rem 0.85rem; font-size: 0.82rem; color: #374151; margin-top: 0.75rem; line-height: 1.6; }
 
     </style>
 </head>
@@ -265,297 +262,550 @@ figure figcaption {
 
     <div class="container">
         <!-- Header and Instructions remain the same -->
-        <header class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-gray-900">The IsiBheqe soHlamvu syllabary </h1>
-            <h2>A simple explainer page with interactive chart</h2>
+    <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900">The IsiBheqe soHlamvu Syllabary</h1>
+            <p style="font-size: 1.25rem; color: #6b7280; margin-top: 0.5rem;">A simple explainer page with interactive chart</p>
             
-            <div class="mt-4 text-md text-gray-700 max-w-4xl mx-auto space-y-3"> 
-
-               IsiBheqe soHlamvu is a modern, <strong><i>phonetically-based</i></strong> indigenous writing system developed for all Southern African isiNtu languages. It is also known as Ditema tsa Dinoko, or Xifhungo xa Manungu, or Vhuga ha Madungo.<br><br> 
-                IsiBheqe soHlamvu roughly means "the <i>ibheqe</i>-style syllable" or "the <i>ibheqe</i> method of writing syllables".  <br><br>
-
-                IsiBheqe/Ditema draws from Southern African traditional art, like Sesotho <i>litema</i> art (used on murals) and isiZulu <i>ucu</i> art (used on beadwork bracelets). 
+            <div class="mt-4 text-gray-700 max-w-4xl mx-auto" style="font-size: 1rem; line-height: 1.8;"> 
+                <p>IsiBheqe soHlamvu is a modern, <strong>phonetically-based</strong> indigenous writing system developed for all Southern African isiNtu languages. It is also known as <em>Ditema tsa Dinoko</em>, <em>Xifhungo xa Manungu</em>, or <em>Vhuga ha Madungo</em>.</p>
                 
-                This art is decorative; but used systems of shapes to convey romantic messages, or report cultural news to neighbours and travelers. Different shapes indicated births, childrens' coming-of-age milestones and the like.<br><br>
+                <p>IsiBheqe/Ditema draws from Southern African traditional art, like Sesotho <em>litema</em> art (used on murals) and isiZulu <em>ucu</em> art (used on beadwork). This art was decorative but also used systems of shapes to convey messages—births, milestones, news for neighbors and travelers.</p>
 
-                In that tradition, IsiBheqe/Ditema is a communicative cultural technology, that can be used as an 'art style'. <br><br>
+                <p>The script can be used for all Southern African isiNtu languages and dialects. It's especially useful for languages without formal Latin orthography, like sePulana, isiBhaca, isiHlubi, sePhuthi, isiLala, isiNhlangwini, and Northern Transvaal isiNdebele.</p>
 
-                The script can be used for all Southern African isiNtu languages & dialects. It is especially useful for those languages that don't have a formal Latin orthography. These include the Eastern Sotho language of sePulana and a majority of the Tekela languages 
-                of the Nguni language group like isiBhaca, isiHlubi, sePhuthi, isiLala, isiNhlangwini, and Northern Transvaal isiNdebele 
-                (also known as Sumayela Ndebele).<br><br>
-
-                <h2><i>Using this interactive page</i></h2>
-
-                We've created this page to show you how the IsiBheqe script looks and sounds.<br><br>
-
-                <strong>Explainer Sections:</strong> explore the basic idea, vowels, consonants and related features of the Isibheqe syllables<br><br>
-                 <strong>Interactive Clickable Chart:</strong> shows you a one full set of syllables with image, caption and audio. <br><br>
-               <p> </p>
+                <div style="background: #eff6ff; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6; margin-top: 2rem;">
+                    <p style="margin: 0;"><strong>Using this page:</strong></p>
+                    <p style="margin-top: 0.5rem;">👆 <strong>Step through the walkthrough</strong> below to understand the writing system<br>
+                    🎵 <strong>Interactive chart</strong> — click any symbol to hear it</p>
+                </div>
             </div>
         </header>
-        <div class="max-w-4xl mx-auto mb-3" style="display:flex; gap:.5rem;">
-  <button onclick="toggleAll(true)">Expand all</button>
-  <button onclick="toggleAll(false)">Collapse all</button>
+     </div>
+        
+      
+<!-- ══════════════════════════════════════════════
+     INTERACTIVE WALKTHROUGH
+     ══════════════════════════════════════════════ -->
+<style>
+.walkthrough {
+  max-width: 760px;
+  margin: 0 auto 3.5rem;
+}
+.wt-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+.wt-step-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  padding: 0 0.5rem;
+}
+.wt-step-num {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  color: #9ca3af;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.875rem;
+  transition: background 0.2s, color 0.2s;
+}
+.wt-step-btn.active .wt-step-num  { background: #4f46e5; color: #fff; }
+.wt-step-btn.done   .wt-step-num  { background: #10b981; color: #fff; }
+.wt-step-label {
+  font-size: 0.72rem; font-weight: 600;
+  color: #9ca3af; white-space: nowrap;
+  transition: color 0.2s;
+}
+.wt-step-btn.active .wt-step-label { color: #4f46e5; }
+.wt-step-btn.done   .wt-step-label { color: #10b981; }
+.wt-step-divider {
+  flex: 1; height: 2px;
+  background: #e5e7eb;
+  max-width: 72px;
+  margin-bottom: 18px;
+}
+.wt-panel-wrap {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.wt-panel {
+  display: none;
+  padding: 1.75rem 2rem;
+  animation: wtFade 0.28s ease;
+}
+.wt-panel.active { display: block; }
+@keyframes wtFade {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.wt-heading    { font-size: 1.2rem; font-weight: 700; color: #111827; margin: 0 0 0.2rem; }
+.wt-subheading { font-size: 0.875rem; color: #6b7280; margin: 0 0 1.25rem; }
+.wt-cols { display: flex; gap: 1.75rem; align-items: flex-start; }
+.wt-col-visual { flex: 0 0 auto; text-align: center; }
+.wt-col-text   { flex: 1; font-size: 0.9rem; color: #374151; line-height: 1.7; }
+.wt-col-text p { margin: 0 0 0.75rem; }
+.wt-symbol-box {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  display: inline-block;
+}
+.wt-symbol-box img { width: 88px; height: 88px; object-fit: contain; display: block; }
+.wt-symbol-cap { font-size: 1.15rem; font-weight: 700; color: #1f2937; margin-top: 0.4rem; }
+.wt-play {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  background: #eff6ff; border: 1.5px solid #bfdbfe; color: #1d4ed8;
+  border-radius: 999px; padding: 0.3rem 0.85rem;
+  font-size: 0.78rem; font-weight: 600; cursor: pointer;
+  margin-top: 0.5rem; transition: background 0.15s, border-color 0.15s;
+}
+.wt-play:hover  { background: #dbeafe; }
+.wt-play.playing { background: #dbeafe; border-color: #3b82f6; }
+.vowel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+.vowel-card {
+  background: #f9fafb;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 0.65rem 0.4rem;
+  text-align: center;
+}
+.vowel-card.vc-high { border-color: #bfdbfe; background: #eff6ff; }
+.vowel-card.vc-low  { border-color: #fde68a; background: #fffbeb; }
+.vowel-card.vc-mid  { border-color: #bbf7d0; background: #f0fdf4; }
+.vowel-card.vc-openmid { border-color: #fed7aa; background: #fff7ed; }
+.vowel-syms  { font-size: 1.2rem; font-weight: 700; color: #1f2937; line-height: 1; margin: 0.35rem 0 0.2rem; }
+.vowel-lbl   { font-size: 0.68rem; color: #6b7280; font-weight: 600; }
+.vowel-eg    { font-size: 0.68rem; color: #9ca3af; font-style: italic; margin-top: 0.15rem; }
+.manner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+  margin-top: 0.5rem;
+}
+.manner-card {
+  background: #f9fafb; border: 1.5px solid #e5e7eb;
+  border-radius: 0.65rem; padding: 0.6rem 0.75rem;
+  display: flex; gap: 0.65rem; align-items: center;
+}
+.manner-icon { font-size: 1.4rem; flex: 0 0 auto; }
+.manner-name { font-weight: 700; font-size: 0.85rem; color: #1f2937; }
+.manner-tech { font-size: 0.7rem; color: #9ca3af; font-style: italic; }
+.manner-eg   { font-size: 0.78rem; color: #4b5563; margin-top: 0.15rem; }
+.mode-grid {
+  display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;
+  margin-top: 0.5rem;
+}
+.mode-card {
+  background: #f9fafb; border: 1.5px solid #e5e7eb;
+  border-radius: 0.75rem; padding: 0.75rem 1rem;
+  text-align: center; flex: 1; min-width: 105px;
+}
+.mode-card img { width: 60px; height: 60px; object-fit: contain; display: block; margin: 0 auto 0.35rem; }
+.mode-phoneme  { font-size: 1.1rem; font-weight: 700; color: #1f2937; }
+.mode-name     { font-size: 0.7rem; color: #6b7280; margin-top: 0.1rem; }
+.mode-word     { font-size: 0.75rem; color: #4b5563; font-style: italic; margin-top: 0.15rem; }
+.wt-section-label {
+  font-size: 0.72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+}
+.wt-nav {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 0.9rem;
+}
+.wt-nav-btn {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.5rem 1.35rem; border-radius: 999px;
+  font-size: 0.85rem; font-weight: 600; cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+  border: 1.5px solid transparent;
+}
+.wt-nav-btn.sec { background: #fff; border-color: #d1d5db; color: #374151; }
+.wt-nav-btn.sec:hover { background: #f9fafb; }
+.wt-nav-btn.sec:disabled { opacity: 0.35; cursor: default; pointer-events: none; }
+.wt-nav-btn.pri { background: #4f46e5; color: #fff; }
+.wt-nav-btn.pri:hover { background: #4338ca; }
+.wt-prog { font-size: 0.78rem; color: #9ca3af; }
+.wt-callout {
+  background: #eff6ff;
+  border-left: 3px solid #6366f1;
+  border-radius: 0 0.4rem 0.4rem 0;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.85rem; color: #374151;
+  margin-top: 1rem; line-height: 1.6;
+}
+.place-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.place-pill {
+  background: #ede9fe; color: #5b21b6;
+  padding: 0.25rem 0.65rem; border-radius: 999px;
+  font-weight: 600; font-size: 0.78rem;
+}
+@media (max-width: 580px) {
+  .wt-cols { flex-direction: column; }
+  .wt-panel { padding: 1.2rem 1rem; }
+  .manner-grid { grid-template-columns: 1fr; }
+  .wt-step-label { display: none; }
+}
+</style>
+
+<div class="walkthrough">
+
+  <div class="wt-steps">
+    <div class="wt-step-btn active" data-step="0">
+      <div class="wt-step-num">1</div>
+      <div class="wt-step-label">The Syllable</div>
+    </div>
+    <div class="wt-step-divider"></div>
+    <div class="wt-step-btn" data-step="1">
+      <div class="wt-step-num">2</div>
+      <div class="wt-step-label">The Vowel</div>
+    </div>
+    <div class="wt-step-divider"></div>
+    <div class="wt-step-btn" data-step="2">
+      <div class="wt-step-num">3</div>
+      <div class="wt-step-label">The Consonant</div>
+    </div>
+  </div>
+
+  <div class="wt-panel-wrap">
+
+    <!-- Panel 1: The Syllable -->
+    <div class="wt-panel active" id="wt-p0">
+      <div class="wt-heading">Every symbol is a whole syllable</div>
+      <div class="wt-subheading">Not letter by letter &mdash; one symbol, one complete sound unit</div>
+      <div class="wt-cols">
+        <div class="wt-col-visual">
+          <div class="wt-symbol-box">
+            <img src="images/Aspirated_bilabial_plosive.png" alt="ibheqe for pha">
+          </div>
+          <div class="wt-symbol-cap">p&#x02B0;a</div>
+          <button class="wt-play" onclick="wtPlay('Aspirated_bilabial_plosive',this)">&#9654; Hear it</button>
+        </div>
+        <div class="wt-col-text">
+          <p>In English you write one letter per sound: <em>b-a-l-l</em> = 4 letters. IsiBheqe works differently &mdash; one symbol captures a full syllable: vowel and consonant bundled together.</p>
+          <p>A single symbol is called an <strong>ibheqe</strong> (plural: <em>amabheqe</em>). The symbol to the left is the ibheqe for <strong>p&#x02B0;a</strong> &mdash; the syllable in <em>pha</em>, meaning "give" in isiZulu and Sesotho.</p>
+          <div class="wt-callout">
+            Every ibheqe has <strong>two parts</strong>: a triangle in the middle (the <em>vowel</em>), and marks around it (the <em>consonant</em>). The next two steps explain each.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 2: The Vowel -->
+    <div class="wt-panel" id="wt-p1">
+      <div class="wt-heading">The triangle is the vowel</div>
+      <div class="wt-subheading">Its direction mirrors where your jaw actually goes</div>
+      <p style="font-size:0.875rem;color:#374151;margin:0 0 0.9rem;">At the centre of every ibheqe is a triangle &mdash; the <strong>nucleus</strong>. Think of it as your mouth, open. The direction it points encodes the vowel, because it maps directly onto your jaw position when you make that sound.</p>
+
+      <div class="vowel-grid">
+        <div class="vowel-card vc-high">
+          <svg width="34" height="30" viewBox="0 0 34 30"><polygon points="17,1 33,29 1,29" fill="#3b82f6" opacity="0.85"/></svg>
+          <div class="vowel-syms">i</div>
+          <div class="vowel-lbl">High &mdash; jaw up</div>
+          <div class="vowel-eg"><em>impi</em> (army, isiZulu)</div>
+          <button class="wt-play" style="margin:0.35rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('i_sound',this)">&#9654;</button>
+        </div>
+
+        <div class="vowel-card vc-mid">
+          <svg width="34" height="30" viewBox="0 0 34 30"><polygon points="17,1 33,29 1,29" fill="#10b981" opacity="0.75"/></svg>
+          <div class="vowel-syms">e &thinsp; &#x025B;</div>
+          <div class="vowel-lbl">Mid-front</div>
+          <div class="vowel-eg"><em>etha</em> (give, Sesotho)</div>
+          <button class="wt-play" style="margin:0.35rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('e_sound',this)">&#9654;</button>
+        </div>
+
+        <div class="vowel-card vc-high">
+          <svg width="34" height="30" viewBox="0 0 34 30"><polyline points="1,27 17,3 33,27" fill="none" stroke="#3b82f6" stroke-width="3.5" stroke-linejoin="round"/></svg>
+          <div class="vowel-syms">u</div>
+          <div class="vowel-lbl">High, back</div>
+          <div class="vowel-eg"><em>ubuntu</em></div>
+          <button class="wt-play" style="margin:0.35rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('u_sound',this)">&#9654;</button>
+        </div>
+
+        <div class="vowel-card vc-low">
+          <svg width="34" height="30" viewBox="0 0 34 30"><polygon points="17,29 33,1 1,1" fill="#f59e0b" opacity="0.9"/></svg>
+          <div class="vowel-syms">a</div>
+          <div class="vowel-lbl">Low &mdash; jaw drops</div>
+          <div class="vowel-eg"><em>amanzi</em> (water)</div>
+          <button class="wt-play" style="margin:0.35rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('a_sound',this)">&#9654;</button>
+        </div>
+
+        <div class="vowel-card vc-openmid" style="grid-column:2/4;">
+          <svg width="34" height="30" viewBox="0 0 34 30"><polygon points="17,29 33,1 1,1" fill="#ea580c" opacity="0.75"/></svg>
+          <div class="vowel-syms">o &thinsp; &#x0254;</div>
+          <div class="vowel-lbl">Mid-back</div>
+          <div class="vowel-eg"><em>opha</em> (bleed, isiZulu)</div>
+          <button class="wt-play" style="margin:0.35rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('o_sound',this)">&#9654;</button>
+        </div>
+      </div>
+
+      <p style="font-size:0.78rem;color:#6b7280;margin-top:0.75rem;text-align:center;">
+        Try it: say <em>i</em> (as in <em>impi</em>) &mdash; feel your jaw close. Now say <em>a</em> (as in <em>amanzi</em>) &mdash; feel it drop. That physical difference is what the triangle direction encodes.
+      </p>
+    </div>
+
+    <!-- Panel 3: The Consonant -->
+    <div class="wt-panel" id="wt-p2">
+      <div class="wt-heading">The marks show the consonant</div>
+      <div class="wt-subheading">Where in your mouth, how the air moves, and which exact version</div>
+
+      <div style="margin-bottom:1.1rem;">
+        <div class="wt-section-label" style="color:#6366f1;">&#9312; WHERE &mdash; Place of articulation</div>
+        <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">The position of the mark around the triangle shows <em>where</em> in your mouth the sound is formed:</p>
+        <div class="place-pills">
+          <span class="place-pill">Lips &rarr; <em>pha, ba, ma</em></span>
+          <span class="place-pill">Teeth/Ridge &rarr; <em>ta, da, na</em></span>
+          <span class="place-pill">Roof of mouth &rarr; <em>ja, nya</em></span>
+          <span class="place-pill">Back of throat &rarr; <em>ka, ga</em></span>
+        </div>
+      </div>
+
+      <div style="margin-bottom:1.1rem;">
+        <div class="wt-section-label" style="color:#059669;">&#9313; HOW &mdash; Manner of articulation</div>
+        <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">The <em>shape</em> of the mark shows how the air moves. You already know all four from everyday speech:</p>
+        <div class="manner-grid">
+          <div class="manner-card">
+            <div class="manner-icon">&#128165;</div>
+            <div>
+              <div class="manner-name">A pop <span class="manner-tech">(Plosive)</span></div>
+              <div class="manner-eg"><em>pha</em> &mdash; "give" (isiZulu)</div>
+            </div>
+          </div>
+          <div class="manner-card">
+            <div class="manner-icon">&#127788;</div>
+            <div>
+              <div class="manner-name">A hiss <span class="manner-tech">(Fricative)</span></div>
+              <div class="manner-eg"><em>sala</em> &mdash; "stay" (isiZulu)</div>
+            </div>
+          </div>
+          <div class="manner-card">
+            <div class="manner-icon">&#129296;</div>
+            <div>
+              <div class="manner-name">A hum <span class="manner-tech">(Nasal)</span></div>
+              <div class="manner-eg"><em>mama</em> &mdash; universal</div>
+            </div>
+          </div>
+          <div class="manner-card">
+            <div class="manner-icon">&#128070;</div>
+            <div>
+              <div class="manner-name">A click <span class="manner-tech">(Click)</span></div>
+              <div class="manner-eg"><em>cela</em> &mdash; "ask/please" (isiZulu)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="wt-section-label" style="color:#b45309;">&#9314; WHICH VERSION &mdash; Articulatory mode</div>
+        <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">Same lips, same pop &mdash; three distinct sounds. A small extra mark on the symbol tells them apart:</p>
+        <div class="mode-grid">
+          <div class="mode-card">
+            <img src="images/Aspirated_bilabial_plosive.png" alt="ph">
+            <div class="mode-phoneme">p&#x02B0;</div>
+            <div class="mode-name">Breathy burst</div>
+            <div class="mode-word"><em>pha</em> &mdash; "give"</div>
+            <button class="wt-play" style="margin:0.4rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('Aspirated_bilabial_plosive',this)">&#9654;</button>
+          </div>
+          <div class="mode-card">
+            <img src="images/Bilabial_ejective_plosive.png" alt="p'">
+            <div class="mode-phoneme">p&#x02BC;</div>
+            <div class="mode-name">Sharp pop</div>
+            <div class="mode-word"><em>pa</em> &mdash; clipped</div>
+          </div>
+          <div class="mode-card">
+            <img src="images/Voiced_bilabial_plosive.png" alt="b">
+            <div class="mode-phoneme">b</div>
+            <div class="mode-name">Voiced rumble</div>
+            <div class="mode-word"><em>ba</em> &mdash; "is" (isiZulu)</div>
+            <button class="wt-play" style="margin:0.4rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('Voiced_bilabial_plosive',this)">&#9654;</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="wt-nav">
+    <button class="wt-nav-btn sec" id="wt-back" disabled onclick="wtNav(-1)">&larr; Back</button>
+    <span class="wt-prog" id="wt-prog">Step 1 of 3</span>
+    <button class="wt-nav-btn pri" id="wt-next" onclick="wtNav(1)">Next &rarr;</button>
+  </div>
+
 </div>
 
 <script>
-  function toggleAll(open) {
-    document.querySelectorAll('details.instruction-section')
-      .forEach(d => d.open = open);
-  }
+(function(){
+  var cur = 0;
+  var TOTAL = 3;
+  var panels = ['wt-p0','wt-p1','wt-p2'];
+
+  window.wtNav = function(dir) {
+    var next = cur + dir;
+    if (next < 0 || next >= TOTAL) return;
+    var steps = document.querySelectorAll('.wt-step-btn');
+    steps[cur].classList.remove('active');
+    if (dir > 0) steps[cur].classList.add('done');
+    else         steps[cur].classList.remove('done');
+    document.getElementById(panels[cur]).classList.remove('active');
+    cur = next;
+    document.getElementById(panels[cur]).classList.add('active');
+    steps[cur].classList.remove('done');
+    steps[cur].classList.add('active');
+    document.getElementById('wt-back').disabled = (cur === 0);
+    document.getElementById('wt-prog').textContent = 'Step ' + (cur+1) + ' of ' + TOTAL;
+    var nextBtn = document.getElementById('wt-next');
+    if (cur === TOTAL - 1) {
+      nextBtn.textContent = '\u2193 Explore the chart';
+      nextBtn.onclick = function() {
+        var el = document.querySelector('.table-container');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+    } else {
+      nextBtn.textContent = 'Next \u2192';
+      nextBtn.onclick = function() { wtNav(1); };
+    }
+  };
+
+  window.wtPlay = function(id, btn) {
+    var audio = document.getElementById(id);
+    if (!audio) return;
+    if (btn) btn.classList.add('playing');
+    audio.currentTime = 0;
+    audio.play().catch(function(){});
+    audio.addEventListener('ended', function() {
+      if (btn) btn.classList.remove('playing');
+    }, { once: true });
+  };
+
+  document.querySelectorAll('.wt-step-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = parseInt(btn.dataset.step);
+      if (target < cur) wtNav(target - cur);
+    });
+  });
+})();
 </script>
 
-<!-- THE MAIN IDEA-->
 
-<details class="instruction-section"> <!--OPEN-->
-  <summary class="text-2xl font-bold text-gray-800 mb-3">The isiBheqe/Ditema writing system - the basic idea</summary>
-  <div class="text-gray-600">
+        
+<!-- ══════════════════════════════════════════════
+     ARTICULATORY MODES — collapsible deep-dive
+     ══════════════════════════════════════════════ -->
 
-   <h3 > The Isibheqe/Ditema script is a featural syllabary </h3> 
-   
-  It's a <strong><i>syllabary</i></strong> because each symbol stands for a 'syllable' rather than a single letter.
-  It's <strong><i>featural</i></strong> because each symbol is <i>designed to show how the syllable sounds</i>. Its phonetic features
-  are built right into its shape.<br><br>
+<details class="modes-section">
+  <summary>Articulatory modes — a closer look <span style="font-size:0.75rem;font-weight:500;color:#a5b4fc;margin-left:0.5rem;">Optional</span></summary>
+  <div class="modes-body">
 
-  An individual symbol is called an <strong>ibheqe</strong> (plural: <i>amabheqe</i>).
+    <p class="modes-intro">The walkthrough showed you <em>where</em> and <em>how</em> — this section zooms in on the extra marks that tell you <em>which version</em> of a sound you're looking at. Same place, same shape, different release.</p>
 
-Every <em>ibheqe</em> has a triangle-shaped nucleus in the middle. This shows the <strong>vowel</strong>.<br> 
-The 'nucleus' resembles a mouth. Then, marks and shapes are positioned around this nucleus to indicate the <strong>consonants</strong> sounds. 
-These are positioned so they mimic <em>where</em> and <em>how</em> the cononant sounds are made in the mouth.
-Where necessary, other markings can show additional features like <strong>articulatory mode</strong> which can further distingush consonants.
-Examples of articulatory mode include vibration of vocal cords, or source of airflow. 
+    <!-- VOICING -->
+    <div class="mode-block">
+      <div class="mode-block-title" style="color:#4f46e5;">① Voicing — the dot</div>
+      <p>Your vocal cords can buzz (voiced) or stay quiet (voiceless) for any consonant. In the symbol, a small filled dot means voiced — you can feel it as a continuous buzz in your throat from the first moment of the sound.</p>
+      <div class="mode-try"><strong>Try it:</strong> Put your hand on your throat. Say <strong>"pha"</strong> — no buzz at the start. Now say <strong>"bha"</strong> — the buzz starts immediately.</div>
+      <div class="mode-pair">
+        <div class="mode-pair-card">
+          <img src="images/Aspirated_bilabial_plosive.png" alt="ph">
+          <div class="mode-pair-phoneme">p&#x02B0;</div>
+          <div class="mode-pair-label">No dot — voiceless</div>
+          <div class="mode-pair-word"><em>pha</em> — "give"</div>
+          <button class="wt-play" style="margin:0.4rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('Aspirated_bilabial_plosive',this)">&#9654;</button>
+        </div>
+        <div class="mode-pair-card">
+          <img src="images/Voiced_bilabial_plosive.png" alt="b">
+          <div class="mode-pair-phoneme">b</div>
+          <div class="mode-pair-label">Filled dot — voiced</div>
+          <div class="mode-pair-word"><em>bha</em> — "be" (isiZulu)</div>
+          <button class="wt-play" style="margin:0.4rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('Voiced_bilabial_plosive',this)">&#9654;</button>
+        </div>
+      </div>
+    </div>
 
- <figure class="text-center my-6">
-        <img src="images/Xilo_Vhathu_Ho_tlêtse.jpg" alt="The words 'xilo' ('things' in Xitsonga) and'vhathu'('people' in Tshivenda) and the phrase 'ho tlê tse' ('it is finished' in Sesotho) written in isiBheqe/Ditema" class="mx-auto max-w-xs">
-        <figcaption class="text-sm text-gray-500 mt-2"> "The words 'xilo' ('things' in Xitsonga) and'vhathu'('people' in Tshivenda) and the phrase 'ho tlê tse' ('it is finished' in Sesotho) written in isiBheqe/Ditema"
-        </figcaption>
-        </figure>
-  
-  <br><br>
+    <!-- EJECTIVES -->
+    <div class="mode-block">
+      <div class="mode-block-title" style="color:#b45309;">② Ejectives — the lerothodi</div>
+      <p>English doesn't have ejectives, but they're common in isiZulu, Sesotho, and Setswana. It's a stop with an extra sharp burst — instead of air from the lungs alone, the closed throat pushes up a quick extra pulse of pressure.</p>
+      <div class="mode-try"><strong>Try it:</strong> Say <strong>"pha"</strong> normally. Now hold your breath tight, close your lips, and release sharply — that popping sensation is close to an ejective.</div>
+      <div class="mode-pair">
+        <div class="mode-pair-card">
+          <img src="images/Aspirated_bilabial_plosive.png" alt="ph">
+          <div class="mode-pair-phoneme">p&#x02B0;</div>
+          <div class="mode-pair-label">Plain aspirated</div>
+          <div class="mode-pair-word"><em>pha</em></div>
+          <button class="wt-play" style="margin:0.4rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('Aspirated_bilabial_plosive',this)">&#9654;</button>
+        </div>
+        <div class="mode-pair-card">
+          <img src="images/Bilabial_ejective_plosive.png" alt="p'">
+          <div class="mode-pair-phoneme">p&#x02BC;</div>
+          <div class="mode-pair-label">Lerothodi — ejective</div>
+          <div class="mode-pair-word"><em>pa</em> — clipped</div>
+          <button class="wt-play" style="margin:0.4rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('Ejective_bilabial',this)">&#9654;</button>
+        </div>
+      </div>
+      <div class="mode-callout-ntu">
+        <strong>For isiNtu speakers:</strong> You already make ejectives naturally — they're the "sharp" stops in words like <em>phakathi</em> (isiZulu) or <em>tshela</em> (Sesotho). The lerothodi marks that version of the sound.
+      </div>
+    </div>
+
+    <!-- IMPLOSIVES -->
+    <div class="mode-block">
+      <div class="mode-block-title" style="color:#065f46;">③ Implosives</div>
+      <p>An implosive looks voiced — and it is — but there's a subtle extra quality. As the lips close and release, air briefly draws <em>inward</em> before the burst outward. It gives the sound a slightly hollow, sunken quality.</p>
+      <div class="mode-try"><strong>Note for English speakers:</strong> The English "b" in "banana" is actually closer to an implosive than a plain voiced stop. In isiNtu languages, <strong>bha</strong> is the plain voiced stop (like English "b"), and <strong>ba</strong> is the true implosive — subtly different, but your ear will catch it with the audio.</div>
+      <div class="mode-pair">
+        <div class="mode-pair-card">
+          <img src="images/Voiced_bilabial_plosive.png" alt="b">
+          <div class="mode-pair-phoneme">b</div>
+          <div class="mode-pair-label">Plain voiced</div>
+          <div class="mode-pair-word"><em>bha</em></div>
+          <button class="wt-play" style="margin:0.4rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('Voiced_bilabial_plosive',this)">&#9654;</button>
+        </div>
+        <div class="mode-pair-card">
+          <img src="images/Bilabial_implosive.png" alt="ɓ">
+          <div class="mode-pair-phoneme">&#x0253;</div>
+          <div class="mode-pair-label">Implosive</div>
+          <div class="mode-pair-word"><em>ba</em> — "is" (isiZulu)</div>
+          <button class="wt-play" style="margin:0.4rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('Implosive_bilabial',this)">&#9654;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRENASALISATION -->
+    <div class="mode-block">
+      <div class="mode-block-title" style="color:#1d4ed8;">④ Prenasalisation — the ingungwana</div>
+      <p>A nasal hum that flows directly into the consonant — so fast it sounds like one sound, not two. The ingungwana (nasalisation circle) sits at the apex of the triangle, because nasals live at the front of the mouth.</p>
+      <div class="mode-try"><strong>Try it:</strong> Say <strong>"umbrella"</strong> slowly — feel the "mm" flowing straight into the "b"? Now speed it up until the two sounds fuse. That's prenasalisation: <em>mba, nda, nga</em> in isiNtu are single onset sounds, not clusters.</div>
+      <div class="mode-callout-ntu">
+        <strong>In the chart:</strong> Prenasalised consonants appear in their own rows. Look for the ingungwana circle at the apex in the symbol images.
+      </div>
+    </div>
+
   </div>
-  </details>
-
-  
-  <br><br>
-
-<!--VOWELS EXPLAINER SECTION-->            
-
-<details class="instruction-section">
- <summary class="text-2xl font-bold text-gray-800 mb-3">Vowels</summary>
-
- <p class="text-gray-600">
-
-  In IsiBheqe, the vowel is shown by the the <strong>direction of the triangle</strong> inside the symbol. <br>
-  This direction mirrors how the vowel is physically made.<br><br> </p>
-
- <!--THE VOWEL TRIANGLE-->
-
-<div class="text-gray-600">
-<div class="media-row" style="display:flex; gap: 10px;">
-  <!--LEFT: Image of the vowel triangle-->
-
- <figure class="text-center my-6" style="height:100%">
-  <img src="images/Onkamisa_(Emlonyeni).jpg" alt="The seven vowels in Isibheqe" class="mx-auto" style="width:500px; height:400px;">
-  
-  </figure>
-
-  <!--RIGHT: Interactive vowel triangle table-->
-
-  <div class="table-container">
-  <table class="mini-table">
-
-  <!--Row 1--> 
-  <!--<thead> Click on the image to hear the sound. Say it out loud.</thead><br><br-->
-  <tbody style="height: 400px;">
-  <tr> 
-<td>
-  <img 
-    src="images/i.png" 
-    alt="/i/ vowel" 
-    class="symbol-img mx-auto" 
-    onclick="playAudio('i_sound')"> </td>
-    
-</td> </td>
-         <td></td> 
-         <td></td> 
-         <td></td> 
-         <td></td> 
-         <td></td>
-         <td> <img 
-    src="images/u.png" 
-    alt="/u/ vowel" 
-    class="symbol-img mx-auto" 
-    onclick="playAudio('u_sound')"></td>
-
-  </tr>
-  
-  <!--Row 2--> 
-  <tr> 
-  <td></td> 
-  <td>   <img 
-    src="images/e.png" 
-    alt="/e/ sound" 
-    class="symbol-img mx-auto" 
-    onclick="playAudio('e_sound')"></td>
-  <td></td> 
-  <td></td> 
-  <td></td> 
-  <td><img 
-    src="images/o.png" 
-    alt="/o/ sound" 
-    class="symbol-img mx-auto" 
-    onclick="playAudio('o_sound')"></td>
-  <td></td>
-  </tr>
-
-   <!--Row 3--> 
-  <tr> 
-  <td></td> 
-  <td></td>
-  <td>
-<img 
-    src="images/ɛ.png" 
-    alt="/ɛ/ vowel" 
-    class="symbol-img mx-auto" 
-    onclick="playAudio('ɛ_sound')">
-
-  </td> 
-  <td></td>  
-  <td><img 
-    src="images/ɔ.png" 
-    alt="ɔ_vowel" 
-    class="symbol-img mx-auto" 
-    onclick="playAudio('ɔ_sound')"></td> 
-  <td></td>
-  <td></td>
-  </tr>
-
-    <!--Row 4--> 
-  <tr> 
-  <td></td> 
-  <td></td>
-  <td></td> 
-  <td>   <img 
-    src="images/a.png" 
-    alt="a_vowel" 
-    class="symbol-img mx-auto" 
-    onclick="playAudio('a_sound')"></td> 
-  <td></td>  
-  <td></td> 
-  <td></td>
-  </tr>
-  </tbody>
-<figcaption style="font-size:15px; margin-top:4px;"><strong>Click any of the IMAGES to hear its sound</strong></figcaption>
-  </table>
-</div>
-</div>
-  </div>
-
-<p class="text-gray-600">
-
-<strong>High and Low vowels:</strong>
-<ul>
-  <li>The vowels <em>i</em> and <em>u</em> are <strong>high vowels</strong> — the jaw moves <em>upward</em> to make these sounds.<br>
-  → They’re shown with an <strong>upward-pointing</strong> triangle.</li>
-  <ul>
-    <li><em>i</em> uses a <strong>solid triangle</strong>.</li>
-    <li><em>u</em> uses an <strong>upward-pointing chevron</strong> shape.</li> <br><br>
-  </ul>
-  <li>The vowel <em>a</em> is a <strong>low vowel</strong> — the jaw <em>lowers</em>.<br>
-  → It’s shown with a <strong>downward-pointing</strong> triangle.</li>
-</ul> <p>
-
-<p class="text-gray-600"><strong>Front and Back vowels:</strong></p>
-<ul>
-  <li><em>e</em> and <em>ɛ</em> are <strong>front vowels</strong>, made near the <em>front of the mouth</em>.</li>
-  <li><em>o</em> and <em>ɔ</em> are <strong>back vowels</strong>, made toward the <em>back of the mouth</em>.</li>
-</ul>
-
-<p>Thus, vowel direction in IsiBheqe maps visually to the <em>shape of the mouth and tongue</em> when pronouncing it.</p>
-  </details> 
-
-  <br><br>
-  
-<!--CONSONANTS SECTION EXPLAINER-->
-
-<details class="instruction-section">
-<summary class="text-2xl font-bold text-gray-800 mb-3">Consonants</summary>
-
-<p>If the vowel triangle represents the <em>vocal tract</em>, then the consonant features show <em>what happens inside it</em>.
-<ul>
-  <li><strong>Place of articulation</strong> — <em>where</em> in the mouth the sound is formed (lips, teeth, palate, velum, etc.).</li>
-  <li><strong>Manner of articulation</strong> — <em>how</em> the airflow is shaped (plosive, fricative, nasal, click, etc.).</li><br>
-
-  Beyond place and manner, sounds differ in <em>how the air moves</em>
- <li><strong>Articulatory mode</strong> — for example, whether the airflow is steady, stopped, or burst out sharply (as in ejectives).</li>
-</ul>
-</p>
-
-<h2> Place of articulation (positions around the triangle) </h2>
-  
-  <div class="media-row">
-    <img src="images/a mouth diagram.png" alt="a vowel" style="width: 500px; height: 500px;">
-<img src="images/ɛ mouth diagram.png" alt="ɛ vowel" style="width: 500px; height: 500px;">
-</div>
-
-<h2> Manners of articulation & articulatory mode (shapes and markers)</h2>
-
-<h3> Manners of articulation</h3>
-
-<div class="table-container">
-<table class="mini-table">
-<thead><tr><td>Plosives</td><td>Fricatives</td><td>Affricates</td><td>Approximants</td><td>Trill</td></tr> </thead>
-
-<tbody><tr><td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Aspirated_bilabial_plosive.svg.png" 
-         alt="Aspirated Bilabial Plosive" 
-         class="symbol-img has-tooltip" 
-         onclick="playAudio('Aspirated_bilabial_plosive')" 
-         data-tooltip-text="<strong>NGU:</strong> pha<br><strong>SOT:</strong> pha<br><strong>TSO:</strong>pha<br><strong>VEN:</strong> pha">
-    <figcaption style="font-size:12px; margin-top:4px;">pʰa</figcaption>
-  </figure></td>
-  
-  <td>Fricatives</td><td>Affricates</td><td>Approximants</td><td>Trill</td></tr><tbody>
-
-<thead><tr> <td>Tap or flap</td><td>Click</td><td>Nasal</td><td>Syllabic Nasal</td><td>Syllabic Trill</td></tr> </thead>
-
-<tbody><tr><td>Plosives</td><td>Fricatives</td><td>Affricates</td><td>Approximants</td><td>Trill</td></tr><tbody>
-
-
-</tbody>
-</table>
-
-
-<h4> Plosives </h4>
-
-<h4> Fricatives </h4>
-
-<h4> Affricate </h4>
-
-<h4> Approximants </h4>
-
-<h4> Affricate </h4>
-
-<h4> Clicks  </h4>
-
-<h4> Affricate </h4>
-
-<!-- Manner of articulation-->
-
 </details>
 
-<br><br><br>
-        
  <!-- CONSONANTS CHART -->
-        <div class="table-container mx-auto">
+        <div class="chart-section">
+            <div id="chart-toggles"></div>
+            <div class="table-container">
             <table>
                 <thead>
                   <tr> 
                     <th colspan="5"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="This column lists the manners of articulation, describing how the sound is produced.">CONSONANTS CHART (Scroll -> for more)</span></th>
                   </tr>
-
-                  <div id="chart-toggles" class="max-w-4xl mx-auto mb-3" style="display:flex;flex-wrap:wrap;gap:.5rem"></div>
 
                     <tr>
                         <th><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="The columns list the places of articulation, describing WHERE the sound is produced.">Places</span></th>
@@ -744,6 +994,7 @@ Examples of articulatory mode include vibration of vocal cords, or source of air
   </td>
 
 <td>
+  <figure style="margin:0; text-align:center;">
   <img src="images/Bilabial_ejective_plosive.png" 
        alt="Bilabial ejective plosive [pʼ]" 
        class="symbol-img has-tooltip" 
@@ -755,6 +1006,7 @@ Examples of articulatory mode include vibration of vocal cords, or source of air
 
 
 <td>
+  <figure style="margin:0; text-align:center;">
   <img src="images/Bilabial_implosive.png" 
        alt="Bilabial implosive [ɓ]" 
        class="symbol-img has-tooltip" 
@@ -1589,7 +1841,8 @@ Examples of articulatory mode include vibration of vocal cords, or source of air
 
                 </tbody>
             </table>
-        </div>
+        </div><!-- end table-container -->
+        </div><!-- end chart-section -->
         
         <!-- Audio elements container -->
         <div id="audio-players" class="hidden">
@@ -1608,6 +1861,8 @@ Examples of articulatory mode include vibration of vocal cords, or source of air
             <!-- Plosives -->
             <audio id="Aspirated_bilabial_plosive" src="audio/Aspirated_voiceless_bilabial_stop.ogg"></audio>
             <audio id="Voiced_bilabial_plosive" src="audio/Voiced_bilabial_plosive.mp3"></audio>
+            <audio id="Ejective_bilabial" src="audio/Bilabial_ejective_plosive.ogg"></audio>
+            <audio id="Implosive_bilabial" src="audio/Bilabial_implosive.ogg"></audio>
             <audio id="Aspirated_dental_plosive" src="audio/Aspirated_dental_plosive.ogg"></audio> 
             <audio id="Voiced_dental_plosive" src="audio/Voiced_dental_plosive.ogg"></audio>"
             <audio id="Aspirated_alveolar_plosive" src="audio/Aspirated_voiceless_bilabial_stop.ogg"></audio> <!--Not aspirated sound>-->
@@ -1643,7 +1898,6 @@ Examples of articulatory mode include vibration of vocal cords, or source of air
              <audio id="Bilabial_click" src="audio/Bilabial_click.mp3"></audio>
             <audio id="Voiceless_dental_click" src="audio/Dental_click.ogg.mp3"></audio>
             <audio id="Voiceless_alveolar_click" src="audio/Alveolar_click.ogg"></audio>
-            <audio id="Voiceless_dental_click" src="audio/Dental_click.ogg.mp3"></audio>
             <audio id="Voiceless_palatal_click" src="audio/Palatal_click.ogg"></audio>
             <audio id="Voiceless_lateral_click" src="audio/Alveolar_lateral_click.ogg.mp3"></audio>
             <!-- Nasals -->
@@ -1660,51 +1914,43 @@ Examples of articulatory mode include vibration of vocal cords, or source of air
         // --- DYNAMIC TOOLTIP SCRIPT ---
         document.addEventListener('DOMContentLoaded', function () {
             const tooltipTriggers = document.querySelectorAll('.has-tooltip');
-            let tooltipElement = null;
 
             tooltipTriggers.forEach(trigger => {
-                trigger.addEventListener('mouseenter', event => {
-                    // Get tooltip content from data attribute
+                trigger.addEventListener('mouseenter', () => {
                     const tooltipText = trigger.dataset.tooltipText;
                     if (!tooltipText) return;
 
-                    // Create tooltip element
-                    tooltipElement = document.createElement('div');
-                    tooltipElement.className = 'dynamic-tooltip';
-                    tooltipElement.innerHTML = tooltipText;
-                    document.body.appendChild(tooltipElement);
+                    // Remove any existing orphaned tooltips before creating a new one
+                    document.querySelectorAll('.dynamic-tooltip').forEach(el => el.remove());
 
-                    // Position tooltip
+                    const tip = document.createElement('div');
+                    tip.className = 'dynamic-tooltip';
+                    tip.innerHTML = tooltipText;
+                    document.body.appendChild(tip);
+
                     const triggerRect = trigger.getBoundingClientRect();
-                    const tooltipRect = tooltipElement.getBoundingClientRect();
-                    
-                    let top = triggerRect.top - tooltipRect.height - 8; // 8px spacing
-                    let left = triggerRect.left + (triggerRect.width / 2) - (tooltipRect.width / 2);
+                    const tipRect = tip.getBoundingClientRect();
 
-                    // Adjust if tooltip goes off-screen
+                    let top = triggerRect.top - tipRect.height - 8;
+                    let left = triggerRect.left + (triggerRect.width / 2) - (tipRect.width / 2);
+
                     if (left < 0) left = 8;
-                    if (left + tooltipRect.width > window.innerWidth) left = window.innerWidth - tooltipRect.width - 8;
+                    if (left + tipRect.width > window.innerWidth) left = window.innerWidth - tipRect.width - 8;
                     if (top < 0) top = triggerRect.bottom + 8;
 
-                    tooltipElement.style.left = `${left}px`;
-                    tooltipElement.style.top = `${top + window.scrollY}px`;
-                    
-                    // Fade in
-                    setTimeout(() => {
-                        if (tooltipElement) tooltipElement.style.opacity = '1';
-                    }, 10);
+                    tip.style.left = `${left}px`;
+                    tip.style.top = `${top + window.scrollY}px`;
+
+                    setTimeout(() => tip.style.opacity = '1', 10);
                 });
 
                 trigger.addEventListener('mouseleave', () => {
-                    if (tooltipElement) {
-                        tooltipElement.style.opacity = '0';
-                        setTimeout(() => {
-                            if (tooltipElement && tooltipElement.parentNode === document.body) {
-                                document.body.removeChild(tooltipElement);
-                            }
-                            tooltipElement = null;
-                        }, 200); // Match CSS transition time
-                    }
+                    // Capture THIS tooltip in closure — immune to race conditions
+                    const tips = document.querySelectorAll('.dynamic-tooltip');
+                    tips.forEach(tip => {
+                        tip.style.opacity = '0';
+                        setTimeout(() => tip.remove(), 200);
+                    });
                 });
             });
         });
@@ -1729,52 +1975,58 @@ Examples of articulatory mode include vibration of vocal cords, or source of air
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  // Find the BIG consonant chart by its title text
+
+  // ── 1. Find the table ────────────────────────────────────
   const bigTable = Array.from(document.querySelectorAll('.table-container table'))
     .find(t => t.querySelector('thead')?.textContent?.includes('CONSONANTS CHART'));
   if (!bigTable) return;
 
   const thead = bigTable.tHead;
   const tbody = bigTable.tBodies[0];
-  const rPlaces = thead?.rows?.[1];      // places row (Bilabial… each colspan=2)
-  const rAspiVoiced = thead?.rows?.[2];  // row with "Manners" + subheaders
-  if (!rPlaces || !rAspiVoiced || !tbody) return;
+  const rPlaces     = thead?.rows?.[1];   // "Bilabial", "Alveolar" … (each colspan=2)
+  const rSubheaders = thead?.rows?.[2];   // "Aspirated/Voiced" subheaders
+  if (!rPlaces || !rSubheaders || !tbody) return;
 
-  // Build place map (skip the first header cell: "Places")
+  // ── 2. Build place map ───────────────────────────────────
   let colIndex = 0;
   const placeMap = [];
   for (let i = 1; i < rPlaces.cells.length; i++) {
-    const th = rPlaces.cells[i];
-    const span = Number(th.colSpan || 1);     // usually 2
-    const key = th.textContent.trim().toLowerCase().replace(/\s+/g,'-');
-    placeMap.push({ key, th, start: colIndex, span });
+    const th   = rPlaces.cells[i];
+    const span = Number(th.colSpan || 1);
+    const label = th.textContent.trim();
+    const key   = label.toLowerCase().replace(/\s+/g, '-');
+    placeMap.push({ key, label, th, start: colIndex, span });
     colIndex += span;
   }
 
-  // Build manner map from first body cell of each row
-  const mannerRows = {};
+  // ── 3. Build manner map ──────────────────────────────────
+  const mannerRows   = {};
+  const mannerLabels = {};
   Array.from(tbody.rows).forEach(tr => {
-    const firstCell = tr.cells[0];
-    if (!firstCell) return;
-    const key = firstCell.textContent.trim().toLowerCase().replace(/\s+/g,'_');
+    const cell = tr.cells[0];
+    if (!cell) return;
+    const label = cell.textContent.trim();
+    const key   = label.toLowerCase().replace(/[\s()&]+/g, '_').replace(/_+/g, '_').replace(/^_|_$/g, '');
+    mannerLabels[key] = label;
     (mannerRows[key] ||= []).push(tr);
   });
 
-  // Helpers
+  // ── 4. State ─────────────────────────────────────────────
+  const colState = Object.fromEntries(placeMap.map(p => [p.key, true]));
+  const rowState = Object.fromEntries(Object.keys(mannerRows).map(k => [k, true]));
+
+  // Core preset: the places most common across SA languages
+  const CORE_PLACES = new Set(['bilabial', 'alveolar', 'palatal', 'velar', 'lateral']);
+
+  // ── 5. Visibility helpers ────────────────────────────────
   function setColumnVisible(placeKey, visible) {
     const m = placeMap.find(p => p.key === placeKey);
     if (!m) return;
-
-    // Dim the top place TH
     m.th.classList.toggle('th-collapsed', !visible);
-
-    // Row 3 headers: skip the first "Manners" cell at index 0
     for (let i = 0; i < m.span; i++) {
-      const headCell = rAspiVoiced.cells[1 + m.start + i];
-      if (headCell) headCell.style.display = visible ? '' : 'none';
+      const hCell = rSubheaders.cells[1 + m.start + i];
+      if (hCell) hCell.style.display = visible ? '' : 'none';
     }
-
-    // Body cells: skip first Manners cell per row (index 0)
     Array.from(tbody.rows).forEach(tr => {
       for (let i = 0; i < m.span; i++) {
         const td = tr.cells[1 + m.start + i];
@@ -1783,68 +2035,147 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  function setMannerVisible(mannerKey, visible) {
-    (mannerRows[mannerKey] || []).forEach(tr => { tr.style.display = visible ? '' : 'none'; });
+  function setMannerVisible(key, visible) {
+    (mannerRows[key] || []).forEach(tr => { tr.style.display = visible ? '' : 'none'; });
   }
 
-  // State
-  const colState = Object.fromEntries(placeMap.map(p => [p.key, true]));
-  const rowState = Object.fromEntries(Object.keys(mannerRows).map(k => [k, true]));
+  // ── 6. Chip factory ──────────────────────────────────────
+  const placeChips  = {};
+  const mannerChips = {};
 
-  // Ensure a toolbar exists (create if missing)
-  let panel = document.getElementById('chart-toggles');
-  if (!panel) {
-    panel = document.createElement('div');
-    panel.id = 'chart-toggles';
-    panel.style.display = 'flex';
-    panel.style.flexWrap = 'wrap';
-    panel.style.gap = '.5rem';
-    panel.style.justifyContent = 'center';
-    bigTable.closest('.table-container')?.before(panel);
-  }
-
-  // Row (manner) buttons
-  Object.keys(mannerRows).forEach(key => {
+  function makeChip(label, classes, onClick) {
     const btn = document.createElement('button');
-    btn.textContent = `Toggle ${key.replace(/_/g,' ')}`;
-    btn.onclick = () => {
-      rowState[key] = !rowState[key];
-      setMannerVisible(key, rowState[key]);
-    };
-    panel.appendChild(btn);
+    btn.textContent = label;
+    btn.className   = 'chip ' + classes;
+    btn.addEventListener('click', onClick);
+    return btn;
+  }
+
+  function updateChip(btn, isOn, type) {
+    btn.classList.toggle('on',  isOn);
+    btn.classList.toggle('off', !isOn);
+  }
+
+  // ── 7. Preset logic ───────────────────────────────────────
+  let activePreset = null; // 'core' | 'all' | null
+
+  function applyPreset(preset) {
+    activePreset = preset;
+    // Update preset chip highlights
+    document.querySelectorAll('.chip-preset').forEach(c => {
+      c.classList.toggle('active-preset', c.dataset.preset === preset);
+    });
+
+    if (preset === 'all') {
+      placeMap.forEach(p => {
+        colState[p.key] = true;
+        setColumnVisible(p.key, true);
+        if (placeChips[p.key]) updateChip(placeChips[p.key], true, 'place');
+      });
+      Object.keys(mannerRows).forEach(k => {
+        rowState[k] = true;
+        setMannerVisible(k, true);
+        if (mannerChips[k]) updateChip(mannerChips[k], true, 'manner');
+      });
+    } else if (preset === 'core') {
+      placeMap.forEach(p => {
+        const on = CORE_PLACES.has(p.key);
+        colState[p.key] = on;
+        setColumnVisible(p.key, on);
+        if (placeChips[p.key]) updateChip(placeChips[p.key], on, 'place');
+      });
+      Object.keys(mannerRows).forEach(k => {
+        rowState[k] = true;
+        setMannerVisible(k, true);
+        if (mannerChips[k]) updateChip(mannerChips[k], true, 'manner');
+      });
+    }
+  }
+
+  // ── 8. Build the panel ────────────────────────────────────
+  const panel = document.getElementById('chart-toggles');
+  if (!panel) return;
+  panel.innerHTML = '';
+  panel.className = 'toggle-panel';
+
+  // Presets row
+  const presetsRow = document.createElement('div');
+  presetsRow.className = 'toggle-presets';
+
+  const presetDefs = [
+    { label: '⭐ Core languages', key: 'core',
+      title: 'Shows Bilabial, Alveolar, Palatal, Velar & Lateral — the places used across most SA languages' },
+    { label: '🌍 Show all', key: 'all',
+      title: 'Show every place of articulation and every manner' },
+  ];
+  presetDefs.forEach(({ label, key, title }) => {
+    const btn = makeChip(label, 'chip-preset', () => applyPreset(key));
+    btn.dataset.preset = key;
+    btn.title = title;
+    presetsRow.appendChild(btn);
   });
+  panel.appendChild(presetsRow);
 
-  // Column (place) buttons
+  // Places section
+  const placesSection = document.createElement('div');
+  placesSection.className = 'toggle-section';
+  const placesLabel = document.createElement('div');
+  placesLabel.className = 'toggle-section-label';
+  placesLabel.textContent = 'Places of articulation';
+  const placesChips = document.createElement('div');
+  placesChips.className = 'toggle-chips';
+
   placeMap.forEach(p => {
-    const btn = document.createElement('button');
-    btn.textContent = `Toggle ${p.key.replace(/-/g,' ')}`;
-    btn.onclick = () => {
+    const btn = makeChip(p.label, 'chip chip-place on', () => {
+      activePreset = null;
+      document.querySelectorAll('.chip-preset').forEach(c => c.classList.remove('active-preset'));
       colState[p.key] = !colState[p.key];
       setColumnVisible(p.key, colState[p.key]);
-    };
-    panel.appendChild(btn);
+      updateChip(btn, colState[p.key], 'place');
+    });
+    updateChip(btn, true, 'place');
+    placeChips[p.key] = btn;
+    placesChips.appendChild(btn);
   });
 
-  // Quick actions
-  const showAll = document.createElement('button');
-  showAll.textContent = 'Show all';
-  showAll.onclick = () => {
-    Object.keys(rowState).forEach(k => { rowState[k] = true; setMannerVisible(k, true); });
-    placeMap.forEach(p => { colState[p.key] = true; setColumnVisible(p.key, true); });
-  };
-  panel.appendChild(showAll);
+  placesSection.appendChild(placesLabel);
+  placesSection.appendChild(placesChips);
+  panel.appendChild(placesSection);
 
-  const hideAllCols = document.createElement('button');
-  hideAllCols.textContent = 'Hide all columns';
-  hideAllCols.onclick = () => {
-    placeMap.forEach(p => { colState[p.key] = false; setColumnVisible(p.key, false); });
-  };
-  panel.appendChild(hideAllCols);
+  // Manners section
+  const mannersSection = document.createElement('div');
+  mannersSection.className = 'toggle-section';
+  const mannersLabel = document.createElement('div');
+  mannersLabel.className = 'toggle-section-label';
+  mannersLabel.textContent = 'Manners of articulation';
+  const mannersChips = document.createElement('div');
+  mannersChips.className = 'toggle-chips';
+
+  Object.keys(mannerRows).forEach(key => {
+    const label = mannerLabels[key] || key.replace(/_/g, ' ');
+    const btn = makeChip(label, 'chip chip-manner on', () => {
+      activePreset = null;
+      document.querySelectorAll('.chip-preset').forEach(c => c.classList.remove('active-preset'));
+      rowState[key] = !rowState[key];
+      setMannerVisible(key, rowState[key]);
+      updateChip(btn, rowState[key], 'manner');
+    });
+    updateChip(btn, true, 'manner');
+    mannerChips[key] = btn;
+    mannersChips.appendChild(btn);
+  });
+
+  mannersSection.appendChild(mannersLabel);
+  mannersSection.appendChild(mannersChips);
+  panel.appendChild(mannersSection);
+
+  // ── 9. Auto-apply Core preset on mobile ──────────────────
+  if (window.innerWidth < 768) {
+    applyPreset('core');
+  }
+
 });
 </script>
-
-</body>
-</html>
 
 </body>
 </html>

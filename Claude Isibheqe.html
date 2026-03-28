@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Isibheqe soHlamvu Chart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+            color: #374151;
+            margin: 0;
+            padding: 1rem;
+            line-height: 1.75;
+            letter-spacing: 0.01em;
+        }
+
+        @media (min-width: 768px) {
+            body { padding: 2rem; }
+        }
+
+        /* Container and Layout */
+        .container { max-width: 1280px; margin-left: auto; margin-right: auto; }
+        .text-center { text-align: center; }
+        .mb-12 { margin-bottom: 3rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .space-y-2 > * + * { margin-top: 0.5rem; }
+        .space-y-8 > * + * { margin-top: 2rem; }
+
+        /* Typography */
+        .text-4xl { font-size: 2.25rem; line-height: 1.2; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-xl { font-size: 1.25rem; }
+        .font-bold { font-weight: 700; }
+        .font-semibold { font-weight: 600; }
+        .font-medium { font-weight: 500; }
+        .italic { font-style: italic; }
+        .text-gray-900 { color: #111827; }
+        .text-gray-800 { color: #1f2937; }
+        .text-gray-700 { color: #374151; }
+        .text-gray-600 { color: #4b5563; }
+        .tracking-wider { letter-spacing: 0.05em; }
+        .max-w-4xl { max-width: 56rem; }
+
+        p { margin-bottom: 1.25em; }
+
+        /* Instruction Sections */
+        .instruction-section {
+            background-color: #ffffff;
+            padding: 0;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            margin-bottom: 3rem;
+            border-left: 4px solid #d97706;
+            transition: all 0.3s ease;
+        }
+        
+        .instruction-section:hover {
+            border-left-width: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .instruction-section > summary { 
+            padding: 1rem 1.5rem; 
+            cursor: pointer; 
+            list-style: none; 
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .instruction-section[open] > summary { 
+            border-bottom-color: transparent; 
+        }
+        
+        .instruction-section > *:not(summary) { 
+            padding: 1rem 1.5rem; 
+        }
+        
+        .instruction-section > summary::-webkit-details-marker { display: none; }
+        .instruction-section > summary::after {
+            content: "▸";
+            float: right;
+            font-weight: 600;
+            transform: translateY(2px);
+        }
+        .instruction-section[open] > summary::after { content: "▾"; }
+
+        /* Section styling */
+        .section-intro {
+            font-size: 1.125rem;
+            text-align: center;
+            margin: 1.5rem auto;
+            max-width: 42rem;
+            font-weight: 500;
+        }
+        
+        .content-block {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: #f9fafb;
+            border-radius: 0.5rem;
+        }
+        
+        .content-block h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+        
+        .try-it-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.25rem;
+        }
+        
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .example-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .step-by-step {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f9fafb;
+            border-radius: 0.5rem;
+        }
+        
+        .step-number {
+            background: #d97706;
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .shape-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .shape-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .shape-card .shape-visual {
+            font-size: 3rem;
+            margin: 1rem 0;
+            color: #d97706;
+        }
+        
+        .shape-card .shape-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.25rem;
+        }
+
+        /* Table Styling */
+        .th-collapsed { opacity: .35; text-decoration: line-through; }
+        
+        .table-container {
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 2.5rem;
+            margin-bottom: 3rem;
+            overflow-x: auto;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        
+        table {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            border-collapse: collapse;
+            background: #fff;
+        }
+        
+        th, td {
+            vertical-align: middle;
+            min-width: 85px;
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+        }
+        
+        thead { background-color: #f3f4f6; }
+        thead th {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            padding: 0.75rem;
+        }
+        tbody { background-color: #ffffff; }
+        .impossible { background-color: #f3f4f6; }
+
+        /* JAVASCRIPT-POWERED TOOLTIP */
+        .dynamic-tooltip {
+            position: absolute;
+            visibility: visible;
+            width: 240px;
+            background-color: #1f2937;
+            color: #fff;
+            text-align: left;
+            padding: 10px;
+            border-radius: 8px;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+        
+        /* Symbol Image Styles */
+        .symbol-img {
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            display: inline-block;
+            object-fit: contain;
+            transition: all 0.2s;
+        }
+        
+        .symbol-img:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+        }
+        
+        /* Hidden elements */
+        .hidden { display: none; }
+
+        /* Media row */
+        .media-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            justify-content: center;
+            align-items: start;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .media-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Diagrams */
+        .diagram-img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: .5rem;
+            background: #fff;
+        }
+
+        /* Mini table */
+        .mini-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+        .mini-table th, .mini-table td {
+            border: 1px solid #d1d5db;
+            padding: 0.25rem;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .mini-table thead { background: #f3f4f6; }
+
+        figure figcaption {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        /* Buttons */
+        button {
+            background: #d97706;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+        }
+
+        button:hover {
+            background: #b45309;
+            transform: translateY(-1px);
+        }
+        
+        /* Toggle buttons container */
+        .toggle-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin: 1rem auto 2rem;
+            max-width: 1100px;
+            padding: 1rem;
+            background: #f9fafb;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+/* Vowel map + explanation side-by-side */
+.vowel-explainer-row {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 2rem;
+  margin: 2rem 0;
+  align-items: start;
+}
+
+.vowel-map-panel {
+  background: #eff6ff;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+}
+
+.vowel-map-panel .panel-title {
+  text-align: center;
+  font-size: 1.125rem;
+  margin: 0 0 1rem 0;
+}
+
+.vowel-cards-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Stack on mobile */
+@media (max-width: 768px) {
+  .vowel-explainer-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900">The IsiBheqe soHlamvu Syllabary</h1>
+            <p style="font-size: 1.25rem; color: #6b7280; margin-top: 0.5rem;">A simple explainer page with interactive chart</p>
+            
+            <div class="mt-4 text-gray-700 max-w-4xl mx-auto" style="font-size: 1rem; line-height: 1.8;"> 
+                <p>IsiBheqe soHlamvu is a modern, <strong>phonetically-based</strong> indigenous writing system developed for all Southern African isiNtu languages. It is also known as <em>Ditema tsa Dinoko</em>, <em>Xifhungo xa Manungu</em>, or <em>Vhuga ha Madungo</em>.</p>
+                
+                <p>IsiBheqe/Ditema draws from Southern African traditional art, like Sesotho <em>litema</em> art (used on murals) and isiZulu <em>ucu</em> art (used on beadwork). This art was decorative but also used systems of shapes to convey messages—births, milestones, news for neighbors and travelers.</p>
+
+                <p>The script can be used for all Southern African isiNtu languages and dialects. It's especially useful for languages without formal Latin orthography, like sePulana, isiBhaca, isiHlubi, sePhuthi, isiLala, isiNhlangwini, and Northern Transvaal isiNdebele.</p>
+
+                <div style="background: #eff6ff; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6; margin-top: 2rem;">
+                    <p style="margin: 0;"><strong>Using this page:</strong></p>
+                    <p style="margin-top: 0.5rem;">📖 <strong>Explainer sections</strong> below introduce the basic concepts<br>
+                    🎵 <strong>Interactive chart</strong> at the bottom lets you click and hear each syllable</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- EXPAND/COLLAPSE ALL -->
+        <div class="max-w-4xl mx-auto mb-3" style="display:flex; gap:.5rem; justify-content: center;">
+            <button onclick="toggleAll(true)">Expand all sections</button>
+            <button onclick="toggleAll(false)">Collapse all sections</button>
+        </div>
+
+        <!-- BASIC IDEA SECTION -->
+        <details class="instruction-section">
+            <summary>BASIC IDEA OF THE ISIBHEQE/DITEMA SCRIPT</summary>
+            <div>
+                <div class="section-intro">
+                    IsiBheqe/Ditema is a <strong>featural syllabary</strong>.
+                </div>
+
+                <div class="content-block">
+                    <h3>What does that mean?</h3>
+                    <p><strong>Syllabary:</strong> Each symbol stands for a syllable (not a letter).<br>
+                    An IsiBheqe symbol is called an <em>ibheqe</em> (plural: <em>amabheqe</em>).</p>
+
+                    <p><strong>Featural:</strong> The symbol visually shows you how to pronounce it.<br>
+                    It shows the syllable's phonetic <em>features</em>.</p>
+                </div>
+
+                <div class="content-block">
+                    <h3>The triangle = your mouth</h3>
+                    <p>The triangle (or chevron) is the "nucleus" of an <em>ibheqe</em>.</p>
+                    <p>Think of it as your vocal tract:</p>
+                    <ul style="margin-left: 2rem;">
+                        <li><strong>Tip of triangle</strong> = front of mouth (lips)</li>
+                        <li><strong>Base of triangle</strong> = back of throat</li>
+                    </ul>
+                </div>
+
+                <div class="content-block">
+                    <h3>What the symbols show</h3>
+                    <p><strong>1. The vowel:</strong> Which direction the triangle points<br>
+                    <strong>2. Where the consonant is made:</strong> Lips? Teeth? Throat?<br>
+                    <strong>3. How the consonant is made:</strong> Stop air? Let it flow?<br>
+                    <strong>4. Voice and airflow:</strong> Extra markings show voicing, ejection, nasalization</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p style="margin: 0;"><strong>The key principle:</strong> One symbol captures one sound—consistently across all Southern African languages.</p>
+                </div>
+            </div>
+        </details>
+
+        <!-- VOWELS SECTION (YOUR NEW VERSION) -->
+        <details class="instruction-section" open>
+            <summary>VOWELS</summary>
+            <div>
+    
+                <div class="section-intro">
+                    The vowel determines <strong>which way the triangle points</strong>.
+                </div>
+                
+                <!-- Interactive Demo -->
+                <div style="background: #eff6ff; padding: 1.5rem; border-radius: 0.5rem; margin: 2rem 0;">
+                    <p style="text-align: center; font-size: 1.125rem; margin-bottom: 1.5rem;">
+                        👆 <strong>Click any symbol to hear it. Say it out loud.</strong>
+                    </p>
+
+
+                    
+<img src="images/Onkamisa_(Emlonyeni).jpg" usemap="#image-map">
+<map name="image-map">
+    
+   <map name="vowel-map">
+  <!-- i -->
+  <area 
+    alt="i vowel" 
+    title="i vowel"
+    onclick="playAudio('i_sound');"
+    coords="201,83,18" 
+    shape="circle">
+
+  <!-- e -->
+  <area 
+    alt="e vowel" 
+    title="e vowel"
+    onclick="playAudio('e_sound');"
+    coords="228,132,20" 
+    shape="circle">
+
+  <!-- ɛ -->
+  <area 
+    alt="ɛ vowel" 
+    title="ɛ vowel"
+    onclick="playAudio('ɛ_sound');"
+    coords="252,183,19" 
+    shape="circle">
+
+  <!-- a -->
+  <area 
+    alt="a vowel" 
+    title="a vowel"
+    onclick="playAudio('a_sound');"
+    coords="275,231,19" 
+    shape="circle">
+
+  <!-- ɔ -->
+  <area 
+    alt="ɔ vowel" 
+    title="ɔ vowel"
+    onclick="playAudio('ɔ_sound');"
+    coords="298,183,19" 
+    shape="circle">
+
+  <!-- o -->
+  <area 
+    alt="o vowel" 
+    title="o vowel"
+    onclick="playAudio('o_sound');"
+    coords="323,132,22" 
+    shape="circle">
+
+  <!-- u -->
+  <area 
+    alt="u vowel" 
+    title="u vowel"
+    onclick="playAudio('u_sound');"
+    coords="349,81,17" 
+    shape="circle">
+</map>
+                
+                <!-- How It Works -->
+                <div class="content-block">
+                    <h3>High vowels → Triangle points UP ▲</h3>
+                    
+                    <div class="try-it-box">
+                        <strong>Try this:</strong> Say "<strong>ee</strong>" (as in "see"). Feel your jaw move up?<br>
+                        Now say "<strong>oo</strong>" (as in "boot"). Same upward movement.
+                    </div>
+                    
+                    <p>High vowels use upward triangles:</p>
+                    <div class="example-grid">
+                        <div class="example-card">
+                            <div style="font-size: 2rem;">▲</div>
+                            <strong>/i/</strong> = triangle pointing up
+                        </div>
+                        <div class="example-card">
+                            <div style="font-size: 2rem;">⋀</div>
+                            <strong>/u/</strong> = chevron pointing up
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-block">
+                    <h3>Low vowels → Triangle points DOWN ▼</h3>
+                    
+                    <div class="try-it-box">
+                        <strong>Try this:</strong> Say "<strong>ah</strong>" (as in "father"). Your jaw drops down.
+                    </div>
+                    
+                    <p>That's <strong>/a/</strong> → downward triangle ▼</p>
+                </div>
+                
+                <div class="content-block">
+                    <h3>Front vs Back vowels</h3>
+                    
+                    <div class="try-it-box">
+                        <strong>Try this:</strong> Put your finger in front of your mouth.<br>
+                        • Say "<strong>eh</strong>" (/e/) → you feel air at the front<br>
+                        • Say "<strong>oh</strong>" (/o/) → the sound comes from further back
+                    </div>
+                    
+                    <p>The triangle points <strong>toward</strong> where you make the sound:</p>
+                    <ul style="margin-left: 2rem;">
+                        <li>Front vowels (/e/, /ɛ/) → triangle leans forward</li>
+                        <li>Back vowels (/o/, /ɔ/) → triangle leans backward</li>
+                    </ul>
+
+                </div>
+                </div>
+                <!--End of How It Works-->
+
+                <!-- Why This Matters -->
+                <div class="highlight-box">
+                    <h3 style="margin-top: 0;">Why This Matters</h3>
+                    <p><strong>Same vowel = same triangle direction</strong>, no matter which language.</p>
+                    
+                    <figure style="margin-top: 1rem;">
+                        <img src="images/Xilo_Vhathu_Ho_tlêtse.jpg" 
+                             alt="Example words in IsiBheqe" 
+                             style="max-width: 400px; display: block; margin: 0 auto; border: 1px solid #d1d5db; border-radius: 0.5rem;">
+                        <figcaption>Words from Xitsonga, Tshivenda, and Sesotho—same vowels, same symbols</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </details>
+
+        <!-- CONSONANTS SECTION (YOUR NEW VERSION) -->
+        <details class="instruction-section" open>
+            <summary>CONSONANTS</summary>
+            <div>
+                <div class="section-intro">
+                    Every consonant symbol answers <strong>three questions</strong> about how you say it.
+                </div>
+                
+                <!-- The Three Questions -->
+                <div class="step-by-step">
+                    <h3 style="text-align: center; margin-bottom: 1.5rem;">The Three Questions</h3>
+                    
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <strong>WHERE in your mouth?</strong><br>
+                            Lips? Teeth? Tongue? Throat?<br>
+                            <em>→ Front sounds = front of triangle. Back sounds = back of triangle.</em>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <strong>HOW do you make it?</strong><br>
+                            Stop the air? Let it flow? Make a click?<br>
+                            <em>→ Each method gets its own shape.</em>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <strong>Is your VOICE on or off?</strong><br>
+                            <div class="try-it-box" style="margin-top: 0.5rem; background: #fef3c7; border-color: #f59e0b;">
+                                Put your hand on your throat:<br>
+                                • Say "<strong>sssss</strong>" → no buzz (voiceless)<br>
+                                • Say "<strong>zzzzz</strong>" → feel the buzz? (voiced)
+                            </div>
+                            <em>→ Voiced sounds are filled in. Voiceless sounds are empty outlines.</em>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- The Shapes -->
+                <div class="content-block">
+                    <h3>The SHAPES - How You Make Sounds</h3>
+                    <p>Different ways of making sound = different shapes:</p>
+                    
+                    <div class="shape-showcase">
+                        <div class="shape-card">
+                            <div class="shape-label">Stops</div>
+                            <div class="shape-visual">│</div>
+                            <p style="font-size: 0.875rem; margin: 0;">Block the air → <strong>straight lines</strong></p>
+                            <p style="font-size: 0.75rem; color: #6b7280; margin-top: 0.5rem;">Like popping a balloon: p, t, k</p>
+                        </div>
+                        
+                        <div class="shape-card">
+                            <div class="shape-label">Fricatives</div>
+                            <div class="shape-visual">⌒</div>
+                            <p style="font-size: 0.875rem; margin: 0;">Squeeze air through → <strong>curved lines</strong></p>
+                            <p style="font-size: 0.75rem; color: #6b7280; margin-top: 0.5rem;">Like air hissing: f, s, sh</p>
+                        </div>
+                        
+                        <div class="shape-card">
+                            <div class="shape-label">Affricates</div>
+                            <div class="shape-visual">├⌒</div>
+                            <p style="font-size: 0.875rem; margin: 0;">Stop then squeeze → <strong>straight + curved</strong></p>
+                            <p style="font-size: 0.75rem; color: #6b7280; margin-top: 0.5rem;">Combination: ts, tsh</p>
+                        </div>
+                        
+                        <div class="shape-card">
+                            <div class="shape-label">Clicks</div>
+                            <div class="shape-visual">⧗</div>
+                            <p style="font-size: 0.875rem; margin: 0;">Suction sound → <strong>hourglass</strong></p>
+                            <p style="font-size: 0.75rem; color: #6b7280; margin-top: 0.5rem;">q, x, c in isiZulu</p>
+                        </div>
+                        
+                        <div class="shape-card">
+                            <div class="shape-label">Nasals</div>
+                            <div class="shape-visual">●</div>
+                            <p style="font-size: 0.875rem; margin: 0;">Through your nose → <strong>circles</strong></p>
+                            <p style="font-size: 0.75rem; color: #6b7280; margin-top: 0.5rem;">At front of triangle: m, n, ng</p>
+                        </div>
+                        
+                        <div class="shape-card">
+                            <div class="shape-label">Trills</div>
+                            <div class="shape-visual">⊏⊐</div>
+                            <p style="font-size: 0.875rem; margin: 0;">Vibrating/rolling → <strong>angles</strong></p>
+                            <p style="font-size: 0.75rem; color: #6b7280; margin-top: 0.5rem;">Rolled r</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mouth Diagrams -->
+                <div class="content-block">
+                    <h3>The POSITIONS - Where in Your Mouth</h3>
+                    <p>The triangle represents your mouth. Markings go where you make the sound:</p>
+                    
+                    <div class="media-row">
+                        <figure>
+                            <img src="images/a mouth diagram.png" 
+                                 alt="Mouth diagram showing /a/" 
+                                 class="diagram-img"
+                                 style="max-height: 400px; object-fit: contain;">
+                            <figcaption>Side view: Your mouth when saying /a/</figcaption>
+                        </figure>
+
+                                <!-- Audio elements container -->
+        <div id="audio-players" class="hidden">
+
+            <!-- Vowel-->
+
+            <audio id="i_sound" src="audio/i_sound.ogg"></audio>
+            <audio id="e_sound" src="audio/e_sound.ogg"></audio>
+            <audio id="ɛ_sound" src="audio/ɛ_sound.ogg"></audio>
+            <audio id="a_sound" src="audio/a_sound.ogg"></audio>
+            <audio id="ɔ_sound" src="audio/ɔ_sound.ogg"></audio>
+            <audio id="o_sound" src="audio/o_sound.ogg"></audio>
+            <audio id="u_sound" src="audio/u_sound.ogg"></audio>
+
+            
+            <!-- Plosives -->
+            <audio id="Aspirated_bilabial_plosive" src="audio/Aspirated_voiceless_bilabial_stop.ogg"></audio>
+            <audio id="Voiced_bilabial_plosive" src="audio/Voiced_bilabial_plosive.mp3"></audio>
+            <audio id="Aspirated_dental_plosive" src="audio/Aspirated_dental_plosive.ogg"></audio> 
+            <audio id="Voiced_dental_plosive" src="audio/Voiced_dental_plosive.ogg"></audio>"
+            <audio id="Aspirated_alveolar_plosive" src="audio/Aspirated_voiceless_bilabial_stop.ogg"></audio> <!--Not aspirated sound>-->
+            <audio id="Voiced alveolar plosive" src="audio/Voiced_alveolar_plosive.ogg"></audio>
+            <audio id="Voiceless_palatal_plosive" src="audio/Voiceless_palatal_plosive.ogg"></audio>
+            <audio id="Voiced_palatal_plosive" src="audio/Voiced_palatal_plosive.ogg"></audio>
+            <audio id="Aspirated_velar_plosive" src="audio/Voiceless_velar_plosive.ogg"></audio>
+            <audio id="Voiced_velar_plosive" src="audio/Voiced_velar_plosive.ogg"></audio>
+            <!-- Fricatives -->
+            <audio id="Voiceless_bilabial_fricative" src="audio/Voiceless_bilabial_fricative.mp3"></audio>
+            <audio id="Voiced_bilabial_fricative" src="audio/Voiced_bilabial_fricative.ogg.mp3"></audio>
+            <audio id="Voiceless_labiodental_fricative" src="audio/Voiceless_labio-dental_fricative.ogg.mp3"></audio>
+            <audio id="Voiced_labiodental_fricative" src="audio/Voiced_bilabial_fricative.ogg.mp3"></audio>
+            <audio id="Voiceless_alveolar_fricative" src="audio/Voiceless_alveolar_sibilant.ogg.mp3"></audio>
+            <audio id="Voiced_alveolar_fricative" src="audio/Voiced_alveolar_sibilant.ogg.mp3"></audio>
+            <audio id="Voiceless_postalveolar_fricative" src="audio/Voiceless_palato-alveolar_sibilant.ogg.mp3"></audio>
+            <audio id="Voiced_postalveolar_fricative" src="audio/Voiced_palato-alveolar_sibilant.ogg.mp3"></audio>
+            <audio id="Voiceless_velar_fricative" src="audio/Voiceless_velar_fricative.ogg.mp3"></audio> </audio>
+            <audio id="Voiced_velar_fricative" src="audio/Voiced_velar_fricative.ogg.mp3"></audio>
+            <audio id="Voiceless_glottal_fricative" src="audio/Voiceless_glottal_fricative.ogg.mp3"></audio>
+            <audio id="Voiced_glottal_fricative" src="audio/Voiced_glottal_fricative.ogg.mp3"></audio>
+            <audio id="Voiceless_lateral_fricative" src="audio/Voiceless_alveolar_lateral_fricative.ogg.mp3"></audio>
+            <audio id="Voiced_lateral_fricative" src="audio/voiced_alveolar_lateral_fricative.ogg.mp3"></audio>
+            <!-- Approximants -->
+            <audio id="Voiced_labial–velar_approximant" src="audio/Voiced_labio-velar_approximant.ogg.mp3"></audio>
+            <audio id="Voiced_palatal_approximant" src="audio/voiced_palatal_approximant.ogg.mp3"></audio>
+            <audio id="Voiceless_alveolar_lateral_approximant" src="audio/Alveolar_lateral_approximant.ogg.mp3"></audio>
+            <!-- Trill -->
+            <audio id="Voiced_alveolar_trill" src="audio/Alveolar_trill.ogg.mp3"></audio>
+            <!-- Tap or flap -->
+            <audio id="Voiced_retroflex_tap" src="audio/Retroflex_flap.ogg.mp3"></audio>
+            <!-- Clicks -->
+             <audio id="Bilabial_click" src="audio/Bilabial_click.mp3"></audio>
+            <audio id="Voiceless_dental_click" src="audio/Dental_click.ogg.mp3"></audio>
+            <audio id="Voiceless_alveolar_click" src="audio/Alveolar_click.ogg"></audio>
+            <audio id="Voiceless_dental_click" src="audio/Dental_click.ogg.mp3"></audio>
+            <audio id="Voiceless_palatal_click" src="audio/Palatal_click.ogg"></audio>
+            <audio id="Voiceless_lateral_click" src="audio/Alveolar_lateral_click.ogg.mp3"></audio>
+            <!-- Nasals -->
+            <audio id="Voiced_bilabial_nasal" src="audio/Bilabial_nasal.ogg.mp3"></audio>
+            <audio id="Voiced_alveolar_nasal" src="audio/Alveolar_nasal.ogg.mp3" ></audio>
+            <audio id="Voiced_palatal_nasal" src="audio/Palatal_nasal.ogg.mp3"></audio>
+            <audio id="Voiced_velar_nasal" src="audio/Velar_nasal.ogg.mp3"></audio>
+            <!-- Syllabics -->
+
+        </div>
+<script>               
+        // --- AUDIO PLAYBACK SCRIPT ---
+        function playAudio(soundId) {
+            const audio = document.getElementById(soundId);
+            if (audio) {
+                if (!audio.getAttribute('src') || audio.getAttribute('src') === '') {
+                    console.warn(`Audio source for '${soundId}' is not set.`);
+                    return;
+                }
+                audio.currentTime = 0;
+                audio.play().catch(error => {
+                    console.error("Audio playback failed for:", soundId, error);
+                });
+            } else {
+                console.warn("Audio element not found for ID:", soundId);
+            }
+        }
+</script>
