@@ -256,6 +256,31 @@
     .mode-pair-word { font-size: 0.72rem; color: #9ca3af; font-style: italic; margin-top: 0.1rem; }
     .mode-callout-ntu { background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 0.4rem 0.4rem 0; padding: 0.55rem 0.85rem; font-size: 0.82rem; color: #374151; margin-top: 0.75rem; line-height: 1.6; }
 
+    /* ── Interactive Onkamisa diagram ──────────────────────── */
+    .onkamisa-wrap { margin: 0.75rem 0 0.5rem; }
+    .onkamisa-hint { font-size: 0.82rem; color: #6b7280; text-align: center; margin-bottom: 0.5rem; }
+    .onkamisa-container { position: relative; display: block; width: 100%; }
+    .onkamisa-img { width: 100%; height: auto; display: block; border-radius: 0.5rem; border: 1px solid #e5e7eb; }
+    .onkamisa-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .vowel-hot {
+        fill: transparent;
+        stroke: transparent;
+        stroke-width: 2;
+        cursor: pointer;
+        transition: fill 0.15s, stroke 0.15s;
+    }
+    .vowel-hot:hover { fill: rgba(99,102,241,0.18); stroke: #6366f1; stroke-width: 3; }
+    .vowel-hot.vh-playing { fill: rgba(16,185,129,0.22); stroke: #10b981; stroke-width: 3; }
+    .onkamisa-lbl {
+        min-height: 1.6rem;
+        text-align: center;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #4f46e5;
+        margin-top: 0.4rem;
+        letter-spacing: 0.01em;
+    }
+
     </style>
 </head>
 <body>
@@ -509,51 +534,65 @@
     <div class="wt-panel" id="wt-p1">
       <div class="wt-heading">The triangle is the vowel</div>
       <div class="wt-subheading">Its direction mirrors where your jaw actually goes</div>
-      <p style="font-size:0.875rem;color:#374151;margin:0 0 0.9rem;">At the centre of every ibheqe is a triangle &mdash; the <strong>nucleus</strong>. Think of it as your mouth, open. The direction it points encodes the vowel, because it maps directly onto your jaw position when you make that sound.</p>
+      <p style="font-size:0.875rem;color:#374151;margin:0 0 0.75rem;">At the centre of every ibheqe is a triangle &mdash; the <strong>nucleus</strong>. The direction it points encodes the vowel, because it maps directly onto where your jaw goes when you make that sound. High vowels (jaw up) point upward. Low vowels (jaw drops) point down.</p>
 
-      <div class="vowel-grid">
-        <div class="vowel-card vc-high">
-          <svg width="34" height="30" viewBox="0 0 34 30"><polygon points="17,1 33,29 1,29" fill="#3b82f6" opacity="0.85"/></svg>
-          <div class="vowel-syms">i</div>
-          <div class="vowel-lbl">High &mdash; jaw up</div>
-          <div class="vowel-eg"><em>impi</em> (army, isiZulu)</div>
-          <button class="wt-play" style="margin:0.35rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('i_sound',this)">&#9654;</button>
-        </div>
+      <!-- Interactive Onkamisa diagram -->
+      <div class="onkamisa-wrap">
+        <p class="onkamisa-hint">👆 Click any vowel shape to hear it</p>
+        <div class="onkamisa-container">
+          <img src="images/isibheqe-onkamisa-768x515.png"
+               alt="The Onkamisa diagram showing all seven vowels of IsiBheqe inside a large inverted triangle"
+               class="onkamisa-img">
+          <svg class="onkamisa-svg" viewBox="0 0 768 515" xmlns="http://www.w3.org/2000/svg">
 
-        <div class="vowel-card vc-mid">
-          <svg width="34" height="30" viewBox="0 0 34 30"><polygon points="17,1 33,29 1,29" fill="#10b981" opacity="0.75"/></svg>
-          <div class="vowel-syms">e &thinsp; &#x025B;</div>
-          <div class="vowel-lbl">Mid-front</div>
-          <div class="vowel-eg"><em>etha</em> (give, Sesotho)</div>
-          <button class="wt-play" style="margin:0.35rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('e_sound',this)">&#9654;</button>
-        </div>
+            <!-- i — solid upward triangle, top-left -->
+            <polygon class="vowel-hot"
+                     data-label="i — high vowel, jaw rises (as in impi)"
+                     points="234,39 190,120 277,118"
+                     onclick="onkamisaPlay('i_sound', this)"/>
 
-        <div class="vowel-card vc-high">
-          <svg width="34" height="30" viewBox="0 0 34 30"><polyline points="1,27 17,3 33,27" fill="none" stroke="#3b82f6" stroke-width="3.5" stroke-linejoin="round"/></svg>
-          <div class="vowel-syms">u</div>
-          <div class="vowel-lbl">High, back</div>
-          <div class="vowel-eg"><em>ubuntu</em></div>
-          <button class="wt-play" style="margin:0.35rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('u_sound',this)">&#9654;</button>
-        </div>
+            <!-- u — open upward chevron, top-right -->
+            <polygon class="vowel-hot"
+                     data-label="u — high back vowel (as in ubuntu)"
+                     points="468,117 512,42 553,118"
+                     onclick="onkamisaPlay('u_sound', this)"/>
 
-        <div class="vowel-card vc-low">
-          <svg width="34" height="30" viewBox="0 0 34 30"><polygon points="17,29 33,1 1,1" fill="#f59e0b" opacity="0.9"/></svg>
-          <div class="vowel-syms">a</div>
-          <div class="vowel-lbl">Low &mdash; jaw drops</div>
-          <div class="vowel-eg"><em>amanzi</em> (water)</div>
-          <button class="wt-play" style="margin:0.35rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('a_sound',this)">&#9654;</button>
-        </div>
+            <!-- e / ɪ — leftward-pointing diamond, middle-left -->
+            <polygon class="vowel-hot"
+                     data-label="e / ɪ — mid-front vowel (as in etha)"
+                     points="219,173 301,128 301,220"
+                     onclick="onkamisaPlay('e_sound', this)"/>
 
-        <div class="vowel-card vc-openmid" style="grid-column:2/4;">
-          <svg width="34" height="30" viewBox="0 0 34 30"><polygon points="17,29 33,1 1,1" fill="#ea580c" opacity="0.75"/></svg>
-          <div class="vowel-syms">o &thinsp; &#x0254;</div>
-          <div class="vowel-lbl">Mid-back</div>
-          <div class="vowel-eg"><em>opha</em> (bleed, isiZulu)</div>
-          <button class="wt-play" style="margin:0.35rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('o_sound',this)">&#9654;</button>
+            <!-- o / ʊ — rightward-pointing diamond, middle-right -->
+            <polygon class="vowel-hot"
+                     data-label="o / ʊ — mid-back vowel (as in opha)"
+                     points="450,128 450,220 532,178"
+                     onclick="onkamisaPlay('o_sound', this)"/>
+
+            <!-- ɛ — small leftward solid triangle, lower-middle-left -->
+            <polygon class="vowel-hot"
+                     data-label="ɛ — open-mid front vowel (as in ewe)"
+                     points="272,272 349,224 349,320"
+                     onclick="onkamisaPlay('ɛ_sound', this)"/>
+
+            <!-- ɔ — small rightward solid triangle, lower-middle-right -->
+            <polygon class="vowel-hot"
+                     data-label="ɔ — open-mid back vowel"
+                     points="402,230 401,317 475,276"
+                     onclick="onkamisaPlay('ɔ_sound', this)"/>
+
+            <!-- a — solid downward triangle, bottom-centre -->
+            <polygon class="vowel-hot"
+                     data-label="a — low vowel, jaw drops (as in amanzi)"
+                     points="332,339 421,335 376,420"
+                     onclick="onkamisaPlay('a_sound', this)"/>
+
+          </svg>
         </div>
+        <div class="onkamisa-lbl" id="onkamisa-lbl">&nbsp;</div>
       </div>
 
-      <p style="font-size:0.78rem;color:#6b7280;margin-top:0.75rem;text-align:center;">
+      <p style="font-size:0.78rem;color:#6b7280;margin-top:0.25rem;text-align:center;">
         Try it: say <em>i</em> (as in <em>impi</em>) &mdash; feel your jaw close. Now say <em>a</em> (as in <em>amanzi</em>) &mdash; feel it drop. That physical difference is what the triangle direction encodes.
       </p>
     </div>
@@ -678,6 +717,19 @@
       nextBtn.textContent = 'Next \u2192';
       nextBtn.onclick = function() { wtNav(1); };
     }
+  };
+
+  // ── Onkamisa diagram click handler ──────────────────────
+  window.onkamisaPlay = function(id, el) {
+    // Play audio
+    var audio = document.getElementById(id);
+    if (audio) { audio.currentTime = 0; audio.play().catch(function(){}); }
+    // Show label
+    var lbl = document.getElementById('onkamisa-lbl');
+    if (lbl && el) lbl.textContent = el.dataset.label;
+    // Briefly highlight the shape
+    el.classList.add('vh-playing');
+    setTimeout(function() { el.classList.remove('vh-playing'); }, 900);
   };
 
   window.wtPlay = function(id, btn) {
