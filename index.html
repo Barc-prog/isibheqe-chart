@@ -102,6 +102,10 @@
         border-bottom: none;
     }
     @media (max-width: 640px) { .toggle-panel { padding: 0.75rem; } }
+    @media (max-width: 640px) {
+        .chip { min-height: 44px; padding: 0.4rem 0.9rem; }
+        .wt-play { min-height: 44px; padding: 0.5rem 1rem; font-size: 0.82rem; }
+    }
 
     .toggle-presets {
         display: flex;
@@ -290,15 +294,22 @@
     <header class="text-center mb-12">
             <h1 class="text-4xl font-bold text-gray-900">The IsiBheqe soHlamvu Syllabary</h1>
             <p style="font-size: 1.25rem; color: #6b7280; margin-top: 0.5rem;">A simple explainer page with interactive chart</p>
+            <a href="#consonants-chart" style="display:inline-block;margin-top:0.5rem;font-size:0.8rem;color:#6366f1;font-weight:600;text-decoration:none;">↓ Skip to interactive chart</a>
             
             <div class="mt-4 text-gray-700 max-w-4xl mx-auto" style="font-size: 1rem; line-height: 1.8;"> 
                 <p>IsiBheqe soHlamvu is a modern, <strong>phonetically-based</strong> indigenous writing system developed for all Southern African isiNtu languages. It is also known as <em>Ditema tsa Dinoko</em>, <em>Xifhungo xa Manungu</em>, or <em>Vhuga ha Madungo</em>.</p>
-                
-                <p>IsiBheqe/Ditema draws from Southern African traditional art, like Sesotho <em>litema</em> art (used on murals) and isiZulu <em>ucu</em> art (used on beadwork). This art was decorative but also used systems of shapes to convey messages—births, milestones, news for neighbors and travelers.</p>
 
-                <p>The script can be used for all Southern African isiNtu languages and dialects. It's especially useful for languages without formal Latin orthography, like sePulana, isiBhaca, isiHlubi, sePhuthi, isiLala, isiNhlangwini, and Northern Transvaal isiNdebele.</p>
+                <details style="margin: 0.5rem 0 1rem;">
+                    <summary style="cursor:pointer; font-size:0.85rem; color:#6366f1; font-weight:600; list-style:none; display:inline-flex; align-items:center; gap:0.3rem;">
+                        <span id="hdr-more-label">&#x25B8; Background &amp; context</span>
+                    </summary>
+                    <div style="margin-top:0.75rem;">
+                        <p>IsiBheqe/Ditema draws from Southern African traditional art, like Sesotho <em>litema</em> art (used on murals) and isiZulu <em>ucu</em> art (used on beadwork). This art was decorative but also used systems of shapes to convey messages—births, milestones, news for neighbors and travelers.</p>
+                        <p>The script can be used for all Southern African isiNtu languages and dialects. It's especially useful for languages without formal Latin orthography, like sePulana, isiBhaca, isiHlubi, sePhuthi, isiLala, isiNhlangwini, and Northern Transvaal isiNdebele.</p>
+                    </div>
+                </details>
 
-                <div style="background: #eff6ff; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6; margin-top: 2rem;">
+                <div style="background: #eff6ff; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6; margin-top: 1rem;">
                     <p style="margin: 0;"><strong>Using this page:</strong></p>
                     <p style="margin-top: 0.5rem;">👆 <strong>Step through the walkthrough</strong> below to understand the writing system<br>
                     🎵 <strong>Interactive chart</strong> — click any symbol to hear it</p>
@@ -850,7 +861,7 @@
 </details>
 
  <!-- CONSONANTS CHART -->
-        <div class="chart-section">
+        <div class="chart-section" id="consonants-chart">
             <div id="chart-toggles"></div>
             <div class="table-container">
             <table>
@@ -1963,48 +1974,75 @@
     </div>
 
     <script>
-        // --- DYNAMIC TOOLTIP SCRIPT ---
+        // --- DYNAMIC TOOLTIP SCRIPT (hover + touch) ---
         document.addEventListener('DOMContentLoaded', function () {
             const tooltipTriggers = document.querySelectorAll('.has-tooltip');
+            const isTouch = () => window.matchMedia('(hover: none)').matches;
+
+            function positionTip(tip, trigger) {
+                const triggerRect = trigger.getBoundingClientRect();
+                const tipRect    = tip.getBoundingClientRect();
+                let top  = triggerRect.top - tipRect.height - 8;
+                let left = triggerRect.left + (triggerRect.width / 2) - (tipRect.width / 2);
+                if (left < 8) left = 8;
+                if (left + tipRect.width > window.innerWidth) left = window.innerWidth - tipRect.width - 8;
+                if (top < 8) top = triggerRect.bottom + 8;
+                tip.style.left = `${left}px`;
+                tip.style.top  = `${top + window.scrollY}px`;
+            }
+
+            function showTip(trigger) {
+                const tooltipText = trigger.dataset.tooltipText;
+                if (!tooltipText) return null;
+                document.querySelectorAll('.dynamic-tooltip').forEach(el => el.remove());
+                const tip = document.createElement('div');
+                tip.className = 'dynamic-tooltip';
+                tip.innerHTML = tooltipText;
+                document.body.appendChild(tip);
+                positionTip(tip, trigger);
+                setTimeout(() => tip.style.opacity = '1', 10);
+                return tip;
+            }
+
+            function removeAllTips() {
+                document.querySelectorAll('.dynamic-tooltip').forEach(tip => {
+                    tip.style.opacity = '0';
+                    setTimeout(() => tip.remove(), 200);
+                });
+            }
 
             tooltipTriggers.forEach(trigger => {
+
+                // ── Hover (desktop) ──────────────────────────
                 trigger.addEventListener('mouseenter', () => {
-                    const tooltipText = trigger.dataset.tooltipText;
-                    if (!tooltipText) return;
-
-                    // Remove any existing orphaned tooltips before creating a new one
-                    document.querySelectorAll('.dynamic-tooltip').forEach(el => el.remove());
-
-                    const tip = document.createElement('div');
-                    tip.className = 'dynamic-tooltip';
-                    tip.innerHTML = tooltipText;
-                    document.body.appendChild(tip);
-
-                    const triggerRect = trigger.getBoundingClientRect();
-                    const tipRect = tip.getBoundingClientRect();
-
-                    let top = triggerRect.top - tipRect.height - 8;
-                    let left = triggerRect.left + (triggerRect.width / 2) - (tipRect.width / 2);
-
-                    if (left < 0) left = 8;
-                    if (left + tipRect.width > window.innerWidth) left = window.innerWidth - tipRect.width - 8;
-                    if (top < 0) top = triggerRect.bottom + 8;
-
-                    tip.style.left = `${left}px`;
-                    tip.style.top = `${top + window.scrollY}px`;
-
-                    setTimeout(() => tip.style.opacity = '1', 10);
+                    if (isTouch()) return;
+                    showTip(trigger);
+                });
+                trigger.addEventListener('mouseleave', () => {
+                    if (isTouch()) return;
+                    removeAllTips();
                 });
 
-                trigger.addEventListener('mouseleave', () => {
-                    // Capture THIS tooltip in closure — immune to race conditions
-                    const tips = document.querySelectorAll('.dynamic-tooltip');
-                    tips.forEach(tip => {
-                        tip.style.opacity = '0';
-                        setTimeout(() => tip.remove(), 200);
-                    });
+                // ── Tap (touch) ──────────────────────────────
+                trigger.addEventListener('touchend', (e) => {
+                    if (!isTouch()) return;
+                    const existing = document.querySelector('.dynamic-tooltip');
+                    // If a tip is already open for THIS trigger, close it
+                    if (existing && existing.dataset.owner === trigger.dataset.tooltipText) {
+                        removeAllTips();
+                        return;
+                    }
+                    const tip = showTip(trigger);
+                    if (tip) tip.dataset.owner = trigger.dataset.tooltipText;
+                    // Auto-dismiss after 3.5 seconds
+                    setTimeout(removeAllTips, 3500);
                 });
             });
+
+            // Tap anywhere else closes open tooltips on touch
+            document.addEventListener('touchstart', (e) => {
+                if (!e.target.closest('.has-tooltip')) removeAllTips();
+            }, { passive: true });
         });
 
         // --- AUDIO PLAYBACK SCRIPT ---
@@ -2221,9 +2259,28 @@ document.addEventListener('DOMContentLoaded', function () {
   mannersSection.appendChild(mannersChips);
   panel.appendChild(mannersSection);
 
-  // ── 9. Auto-apply Core preset on mobile ──────────────────
+  // ── 9. Auto-apply Core preset on mobile + hide sparse rows ──
+  const SPARSE_ROWS = new Set([
+    'tap_or_flap',
+    'syllabic_approximants_&_trills',
+    'ejectives_&_implosive'
+  ]);
+
   if (window.innerWidth < 768) {
     applyPreset('core');
+    // Hide sparse manner rows on mobile by default
+    Object.keys(mannerRows).forEach(k => {
+      if (SPARSE_ROWS.has(k)) {
+        rowState[k] = false;
+        setMannerVisible(k, false);
+        if (mannerChips[k]) updateChip(mannerChips[k], false, 'manner');
+      }
+    });
+    // Add a small note under the manner chips
+    const sparseNote = document.createElement('p');
+    sparseNote.style.cssText = 'font-size:0.72rem;color:#9ca3af;text-align:center;margin:0.5rem 0 0;';
+    sparseNote.textContent = 'Some rare sounds hidden — tap their chip to show them.';
+    mannersSection.appendChild(sparseNote);
   }
 
 });
