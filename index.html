@@ -496,6 +496,23 @@
   .manner-grid { grid-template-columns: 1fr; }
   .wt-step-label { display: none; }
 }
+
+/* --- Oct 2026 review additions --- */
+.vowel-hot { fill: rgba(99,102,241,0.10); stroke: #818cf8; stroke-width: 3; }
+.vowel-btns { display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:center; margin-top:0.6rem; }
+.vowel-btn { min-width:44px; min-height:44px; border-radius:999px; border:1.5px solid #bfdbfe; background:#eff6ff;
+  color:#1d4ed8; font-weight:700; font-size:1rem; cursor:pointer; }
+.vowel-btn:active { background:#dbeafe; }
+.house-callout { background:#fefce8; border-left:4px solid #ca8a04; border-radius:0.5rem; padding:0.7rem 0.9rem;
+  font-size:0.85rem; color:#422006; margin:0 0 1rem; line-height:1.5; }
+.word-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; margin-top:0.6rem; }
+.word-card { background:#f9fafb; border:1.5px solid #e5e7eb; border-radius:0.75rem; padding:0.7rem; text-align:center; }
+.word-card img { height:40px; max-width:100%; display:block; margin:0 auto 0.4rem; }
+.word-card .wc-word { font-size:1rem; color:#1f2937; }
+.word-card .wc-gloss { font-size:0.75rem; color:#6b7280; }
+.word-card .wc-mode { font-size:0.75rem; font-weight:700; color:#b45309; margin-bottom:0.3rem; }
+.chart-hint { text-align:center; font-size:0.9rem; font-weight:600; color:#1d4ed8; background:#eff6ff;
+  border:1.5px solid #bfdbfe; border-radius:999px; padding:0.45rem 0.9rem; margin:0 auto 0.75rem; width:fit-content; }
 </style>
 
 <div class="walkthrough">
@@ -515,6 +532,11 @@
       <div class="wt-step-num">3</div>
       <div class="wt-step-label">The Consonant</div>
     </div>
+    <div class="wt-step-divider"></div>
+    <div class="wt-step-btn" data-step="3">
+      <div class="wt-step-num">4</div>
+      <div class="wt-step-label">The Mode</div>
+    </div>
   </div>
 
   <div class="wt-panel-wrap">
@@ -522,7 +544,7 @@
     <!-- Panel 1: The Syllable -->
     <div class="wt-panel active" id="wt-p0">
       <div class="wt-heading">Every symbol is a whole syllable</div>
-      <div class="wt-subheading">Not letter by letter &mdash; one symbol, one complete sound unit</div>
+      <div class="wt-subheading">Not sound by sound &mdash; one symbol, one complete syllable unit</div>
       <div class="wt-cols">
         <div class="wt-col-visual">
           <div class="wt-symbol-box">
@@ -532,8 +554,8 @@
           <button class="wt-play" onclick="wtPlay('Aspirated_bilabial_plosive',this)">&#9654; Hear it</button>
         </div>
         <div class="wt-col-text">
-          <p>In English you write one letter per sound: <em>b-a-l-l</em> = 4 letters. IsiBheqe works differently &mdash; one symbol captures a full syllable: vowel and consonant bundled together.</p>
-          <p>A single symbol is called an <strong>ibheqe</strong> (plural: <em>amabheqe</em>). The symbol to the left is the ibheqe for <strong>p&#x02B0;a</strong> &mdash; the syllable in <em>pha</em>, meaning "give" in isiZulu and Sesotho.</p>
+          <p>In English you write one letter per sound: <em>g-e-t</em> = 3 letters for 3 sounds. IsiBheqe works differently &mdash; one symbol captures a full syllable: vowel and consonant bundled together.</p>
+          <p>A single symbol is called an <strong>ibheqe</strong> (plural: <em>amabheqe</em>). The symbol to the left is the ibheqe for <strong>p&#x02B0;a</strong> &mdash; the syllable in <em>pha</em>, meaning "give" in isiZulu and Sesotho. Two symbols already make words: <em>i&middot;pha</em> (give) and <em>m&middot;pha</em> (give me).</p>
           <div class="wt-callout">
             Every ibheqe has <strong>two parts</strong>: a triangle in the middle (the <em>vowel</em>), and marks around it (the <em>consonant</em>). The next two steps explain each.
           </div>
@@ -544,12 +566,12 @@
     <!-- Panel 2: The Vowel -->
     <div class="wt-panel" id="wt-p1">
       <div class="wt-heading">The triangle is the vowel</div>
-      <div class="wt-subheading">Its direction mirrors where your jaw actually goes</div>
-      <p style="font-size:0.875rem;color:#374151;margin:0 0 0.75rem;">At the centre of every ibheqe is a triangle &mdash; the <strong>nucleus</strong>. The direction it points encodes the vowel, because it maps directly onto where your jaw goes when you make that sound. High vowels (jaw up) point upward. Low vowels (jaw drops) point down.</p>
+      <div class="wt-subheading">Its direction shows where your tongue goes</div>
+      <p style="font-size:0.875rem;color:#374151;margin:0 0 0.75rem;">At the centre of every ibheqe is a triangle &mdash; the <strong>nucleus</strong>. Think of the triangle as your mouth. The direction it points shows where your <strong>tongue</strong> goes when you make the vowel. For <em>i</em> the tongue rises to the roof of your mouth, so the triangle points up. For <em>a</em> the tongue drops to the floor of your mouth, so it points down. Your jaw only moves to make room: it drops for <em>a</em> because the tongue needs the space.</p>
 
       <!-- Interactive Onkamisa diagram -->
       <div class="onkamisa-wrap">
-        <p class="onkamisa-hint">👆 Click any of the big triangles with a vowel inside it to hear it</p>
+        <p class="onkamisa-hint">👆 Tap a vowel to hear it &mdash; on the diagram or the buttons below</p>
         <div class="onkamisa-container">
           <img src="images/isibheqe-onkamisa-768x515.png"
                alt="The Onkamisa diagram showing all seven vowels of IsiBheqe inside a large inverted triangle"
@@ -558,7 +580,7 @@
 
             <!-- i — solid upward triangle, top-left -->
             <polygon class="vowel-hot"
-                     data-label="i — high vowel, jaw rises (as in impi)"
+                     data-label="i — high vowel, tongue rises (as in impi)"
                      points="234,39 190,120 277,118"
                      onclick="onkamisaPlay('i_sound', this)"/>
 
@@ -594,30 +616,42 @@
 
             <!-- a — solid downward triangle, bottom-centre -->
             <polygon class="vowel-hot"
-                     data-label="a — low vowel, jaw drops (as in amanzi)"
+                     data-label="a — low vowel, tongue drops (as in amanzi)"
                      points="332,339 421,335 376,420"
                      onclick="onkamisaPlay('a_sound', this)"/>
 
           </svg>
         </div>
+        <div class="vowel-btns">
+          <button class="vowel-btn" onclick="onkamisaPlay('i_sound', null, 'i — high vowel, tongue rises')">i</button>
+          <button class="vowel-btn" onclick="onkamisaPlay('u_sound', null, 'u — high back vowel')">u</button>
+          <button class="vowel-btn" onclick="onkamisaPlay('e_sound', null, 'e — mid-front vowel')">e</button>
+          <button class="vowel-btn" onclick="onkamisaPlay('o_sound', null, 'o — mid-back vowel')">o</button>
+          <button class="vowel-btn" onclick="onkamisaPlay('ɛ_sound', null, 'ɛ — open-mid front vowel')">ɛ</button>
+          <button class="vowel-btn" onclick="onkamisaPlay('ɔ_sound', null, 'ɔ — open-mid back vowel')">ɔ</button>
+          <button class="vowel-btn" onclick="onkamisaPlay('a_sound', null, 'a — low vowel, tongue drops')">a</button>
+        </div>
         <div class="onkamisa-lbl" id="onkamisa-lbl">&nbsp;</div>
       </div>
 
       <p style="font-size:0.78rem;color:#6b7280;margin-top:0.25rem;text-align:center;">
-        Try it: say <em>i</em> (as in <em>impi</em>) &mdash; feel your jaw close. Now say <em>a</em> (as in <em>amanzi</em>) &mdash; feel it drop. That physical difference is what the triangle direction encodes.
+        Try it: say <em>lilimi</em> and feel where your tongue sits. Now say <em>lala</em>. With <em>lilimi</em> your tongue rises to the roof of your mouth; with <em>lala</em> it drops to the floor. That is why <em>i</em> points up and <em>a</em> points down. For <em>e</em> and <em>o</em>, try <em>ewe</em> and <em>oko oko</em>.
       </p>
     </div>
 
     <!-- Panel 3: The Consonant -->
     <div class="wt-panel" id="wt-p2">
       <div class="wt-heading">The marks show the consonant</div>
-      <div class="wt-subheading">Where in your mouth, how the air moves, and which exact version</div>
+      <div class="wt-subheading">Where in your mouth, and how the air moves</div>
+      <div class="house-callout">
+        Think of the triangle as a house, and the house as your mouth. The <strong>tip</strong> is your lips: the doorway the breath leaves through, like the smoke-hole at the top of a thatched house. The <strong>base</strong> is the back of your throat. The <strong>sides</strong> are the sides of your tongue. A consonant mark shows which part of the house the sound is made in, and what happens there.
+      </div>
 
       <div style="margin-bottom:1.1rem;">
         <div class="wt-section-label" style="color:#6366f1;">&#9312; WHERE &mdash; Place of articulation</div>
-        <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">The position of the mark around the triangle shows <em>where</em> in your mouth the sound is formed:</p>
+        <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">Start with <em>where</em>. The position of the mark around the triangle shows where in the mouth-house the sound is made:</p>
         <div class="place-pills">
-          <span class="place-pill">Lips &rarr; <em>pha, ba, ma</em></span>
+          <span class="place-pill">Lips (<em>ndebembili</em>) &rarr; <em>pha, ba, ma</em></span>
           <span class="place-pill">Teeth/Ridge &rarr; <em>ta, da, na</em></span>
           <span class="place-pill">Roof of mouth &rarr; <em>ja, nya</em></span>
           <span class="place-pill">Back of throat &rarr; <em>ka, ga</em></span>
@@ -626,72 +660,89 @@
 
       <div style="margin-bottom:1.1rem;">
         <div class="wt-section-label" style="color:#059669;">&#9313; HOW &mdash; Manner of articulation</div>
-        <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">The <em>shape</em> of the mark shows how the air moves. You already know all four from everyday speech:</p>
+        <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">Then <em>how</em>. The <em>shape</em> of the mark shows how the air moves. There are two basic kinds of sound: a <strong>once-off</strong> sound, where the air is stopped and released in one pop, and a <strong>continuous</strong> sound, where the air keeps flowing. Everything else builds on these two:</p>
         <div class="manner-grid">
           <div class="manner-card">
             <div class="manner-icon">&#128165;</div>
             <div>
-              <div class="manner-name">A pop <span class="manner-tech">(Plosive)</span></div>
-              <div class="manner-eg"><em>pha</em> &mdash; "give" (isiZulu)</div>
+              <div class="manner-name">Once-off <span class="manner-tech">(Plosive)</span></div>
+              <div class="manner-eg"><em>thatha</em> &mdash; "take" (isiZulu)</div>
             </div>
           </div>
           <div class="manner-card">
             <div class="manner-icon">&#127788;</div>
             <div>
-              <div class="manner-name">A hiss <span class="manner-tech">(Fricative)</span></div>
-              <div class="manner-eg"><em>sala</em> &mdash; "stay" (isiZulu)</div>
+              <div class="manner-name">Continuous, with a hiss <span class="manner-tech">(Fricative)</span></div>
+              <div class="manner-eg"><em>sapha</em> &mdash; "hand over" (isiXhosa)</div>
+            </div>
+          </div>
+          <div class="manner-card">
+            <div class="manner-icon">&#128165;&#127788;</div>
+            <div>
+              <div class="manner-name">Once-off, then continuous <span class="manner-tech">(Affricate)</span></div>
+              <div class="manner-eg"><em>tsatsa</em> &mdash; "take" (siSwati)</div>
+            </div>
+          </div>
+          <div class="manner-card">
+            <div class="manner-icon">&#12336;</div>
+            <div>
+              <div class="manner-name">Continuous, no hiss <span class="manner-tech">(Approximant)</span></div>
+              <div class="manner-eg"><em>lala</em> &mdash; "sleep" (isiZulu)</div>
             </div>
           </div>
           <div class="manner-card">
             <div class="manner-icon">&#129296;</div>
             <div>
-              <div class="manner-name">A hum <span class="manner-tech">(Nasal)</span></div>
-              <div class="manner-eg"><em>mama</em> &mdash; universal</div>
-            </div>
-          </div>
-          <div class="manner-card">
-            <div class="manner-icon">&#128070;</div>
-            <div>
-              <div class="manner-name">A click <span class="manner-tech">(Click)</span></div>
-              <div class="manner-eg"><em>cela</em> &mdash; "ask/please" (isiZulu)</div>
+              <div class="manner-name">Continuous, through the nose <span class="manner-tech">(Nasal)</span></div>
+              <div class="manner-eg"><em>nana</em> &mdash; "child" (isiXhosa)</div>
             </div>
           </div>
         </div>
+        <p style="font-size:0.78rem;color:#6b7280;margin:0.5rem 0 0;">Clicks have their own shapes; you will meet them in the chart.</p>
       </div>
 
-      <div>
-        <div class="wt-section-label" style="color:#b45309;">&#9314; WHICH VERSION &mdash; Articulatory mode</div>
-        <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">Same lips, same pop &mdash; three distinct sounds. A small extra mark on the symbol tells them apart:</p>
-        <div class="mode-grid">
-          <div class="mode-card">
-            <img src="images/Aspirated_bilabial_plosive.png" alt="ph">
-            <div class="mode-phoneme">p&#x02B0;</div>
-            <div class="mode-name">Breathy burst</div>
-            <div class="mode-word"><em>pha</em> &mdash; "give"</div>
-            <button class="wt-play" style="margin:0.4rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('Aspirated_bilabial_plosive',this)">&#9654;</button>
-          </div>
-          <div class="mode-card">
-            <img src="images/Bilabial_ejective_plosive.png" alt="p'">
-            <div class="mode-phoneme">p&#x02BC;</div>
-            <div class="mode-name">Sharp pop</div>
-            <div class="mode-word"><em>pa</em> &mdash; clipped</div>
-          </div>
-          <div class="mode-card">
-            <img src="images/Voiced_bilabial_plosive.png" alt="b">
-            <div class="mode-phoneme">b</div>
-            <div class="mode-name">Voiced rumble</div>
-            <div class="mode-word"><em>ba</em> &mdash; "is" (isiZulu)</div>
-            <button class="wt-play" style="margin:0.4rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('Voiced_bilabial_plosive',this)">&#9654;</button>
-          </div>
+    </div>
+
+    <!-- Panel 4: The Mode -->
+    <div class="wt-panel" id="wt-p3">
+      <div class="wt-heading">Small marks change the version</div>
+      <div class="wt-subheading">Same place, same shape &mdash; a different sound</div>
+      <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">Your lips make all four of these words the same way. What changes is what your throat does. Two extra marks show it: the <strong>uphimbo</strong>, a line down the middle of the triangle, means voiced (your throat buzzes); the <strong>lerothodi</strong>, a small dot, means the air does not come from your lungs. Tap a word to hear it.</p>
+      <div class="word-grid">
+        <div class="word-card" onclick="wtPlay('w_phapha',null)" role="button">
+          <div class="wc-mode">No extra mark</div>
+          <img src="images/words/phapha.svg" alt="phapha in isiBheqe">
+          <div class="wc-word"><strong>pha</strong>pha &#128264;</div>
+          <div class="wc-gloss">be overenthusiastic (isiZulu, Sesotho)</div>
+        </div>
+        <div class="word-card" onclick="wtPlay('w_bhabha',null)" role="button">
+          <div class="wc-mode">Uphimbo: voiced</div>
+          <img src="images/words/bhabha.svg" alt="bhabha in isiBheqe">
+          <div class="wc-word"><strong>bha</strong>bha &#128264;</div>
+          <div class="wc-gloss">trap (isiZulu)</div>
+        </div>
+        <div class="word-card" onclick="wtPlay('w_papadi',null)" role="button">
+          <div class="wc-mode">Lerothodi: ejective</div>
+          <img src="images/words/papadi.svg" alt="papadi in isiBheqe">
+          <div class="wc-word"><strong>pa</strong>padi &#128264;</div>
+          <div class="wc-gloss">a game (Sesotho)</div>
+        </div>
+        <div class="word-card" onclick="wtPlay('w_baba',null)" role="button">
+          <div class="wc-mode">Uphimbo + lerothodi: implosive</div>
+          <img src="images/words/baba.svg" alt="baba in isiBheqe">
+          <div class="wc-word"><strong>ba</strong>ba &#128264;</div>
+          <div class="wc-gloss">be bitter (isiZulu)</div>
         </div>
       </div>
-
+      <div class="wt-callout" style="margin-top:0.8rem;">
+        Spelling in the Latin alphabet hides these differences: <em>p</em>, <em>ph</em>, <em>b</em> and <em>bh</em> mean different sounds in different languages. In isiBheqe the mark always tells you what your throat is doing. The closer look below goes through each mark.
+      </div>
     </div>
   </div>
 
   <div class="wt-nav">
     <button class="wt-nav-btn sec" id="wt-back" disabled onclick="wtNav(-1)">&larr; Back</button>
-    <span class="wt-prog" id="wt-prog">Step 1 of 3</span>
+    <span class="wt-prog" id="wt-prog">Step 1 of 4</span>
     <button class="wt-nav-btn pri" id="wt-next" onclick="wtNav(1)">Next &rarr;</button>
   </div>
 
@@ -700,8 +751,8 @@
 <script>
 (function(){
   var cur = 0;
-  var TOTAL = 3;
-  var panels = ['wt-p0','wt-p1','wt-p2'];
+  var TOTAL = 4;
+  var panels = ['wt-p0','wt-p1','wt-p2','wt-p3'];
 
   window.wtNav = function(dir) {
     var next = cur + dir;
@@ -731,16 +782,18 @@
   };
 
   // ── Onkamisa diagram click handler ──────────────────────
-  window.onkamisaPlay = function(id, el) {
+  window.onkamisaPlay = function(id, el, label) {
     // Play audio
     var audio = document.getElementById(id);
     if (audio) { audio.currentTime = 0; audio.play().catch(function(){}); }
     // Show label
     var lbl = document.getElementById('onkamisa-lbl');
-    if (lbl && el) lbl.textContent = el.dataset.label;
+    if (lbl) lbl.textContent = el ? el.dataset.label : (label || '');
     // Briefly highlight the shape
-    el.classList.add('vh-playing');
-    setTimeout(function() { el.classList.remove('vh-playing'); }, 900);
+    if (el) {
+      el.classList.add('vh-playing');
+      setTimeout(function() { el.classList.remove('vh-playing'); }, 900);
+    }
   };
 
   window.wtPlay = function(id, btn) {
@@ -778,20 +831,20 @@
     <!-- VOICING -->
     <div class="mode-block">
       <div class="mode-block-title" style="color:#4f46e5;">① Voicing — the line down the middle</div>
-      <p>Your vocal cords can buzz (voiced) or stay quiet (voiceless) for any consonant. In the symbol, a small filled dot means voiced — you can feel it as a continuous buzz in your throat from the first moment of the sound.</p>
+      <p>Your vocal cords can buzz (voiced) or stay quiet (voiceless) for any consonant. In the symbol, voicing is the <strong>uphimbo</strong>: a vertical line from the tip of the triangle to its base, like the central post of a house. You can feel it as a buzz in your throat from the first moment of the sound.</p>
       <div class="mode-try"><strong>Try it:</strong> Put your hand on your throat. Say <strong>"pha"</strong> — no buzz at the start. Now say <strong>"bha"</strong> — the buzz starts immediately.</div>
       <div class="mode-pair">
         <div class="mode-pair-card">
           <img src="images/Aspirated_bilabial_plosive.png" alt="ph">
           <div class="mode-pair-phoneme">p&#x02B0;</div>
-          <div class="mode-pair-label">No dot — voiceless</div>
+          <div class="mode-pair-label">No line — voiceless</div>
           <div class="mode-pair-word"><em>pha</em> — "give"</div>
           <button class="wt-play" style="margin:0.4rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('Aspirated_bilabial_plosive',this)">&#9654;</button>
         </div>
         <div class="mode-pair-card">
           <img src="images/Voiced_bilabial_plosive.png" alt="b">
           <div class="mode-pair-phoneme">b</div>
-          <div class="mode-pair-label">Filled dot — voiced</div>
+          <div class="mode-pair-label">Uphimbo line — voiced</div>
           <div class="mode-pair-word"><em>bha</em> — "be" (isiZulu)</div>
           <button class="wt-play" style="margin:0.4rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('Voiced_bilabial_plosive',this)">&#9654;</button>
         </div>
@@ -800,8 +853,8 @@
 
     <!-- EJECTIVES -->
     <div class="mode-block">
-      <div class="mode-block-title" style="color:#b45309;">② Ejectives — the dot/lerothodi/iliconsi</div>
-      <p>English doesn't have ejectives, but they're common in isiZulu, Sesotho, and Setswana. It's a stop with an extra sharp burst — instead of air from the lungs alone, the closed throat pushes up a quick extra pulse of pressure.</p>
+      <div class="mode-block-title" style="color:#b45309;">② Ejectives — the lerothodi dot (also <em>ilithonsi</em>, <em>iliconsi</em>)</div>
+      <p>English doesn't have ejectives, but they're common in isiZulu, Sesotho, and Setswana. The air does not come from your lungs. Your throat closes, the air trapped in your mouth is squeezed, and it pops out sharply. <em>Lerothodi</em>, <em>ilithonsi</em> and <em>iliconsi</em> all mean a droplet.</p>
       <div class="mode-try"><strong>Try it:</strong> Say <strong>"pha"</strong> normally. Now hold your breath tight, close your lips, and release sharply — that popping sensation is close to an ejective.</div>
       <div class="mode-pair">
         <div class="mode-pair-card">
@@ -820,16 +873,15 @@
         </div>
       </div>
       <div class="mode-callout-ntu">
-        <strong>For isiNtu speakers:</strong> You already make ejectives naturally — they're the "sharp" stops in words like <em>phakathi</em> (isiZulu) or <em>tshela</em> (Sesotho). The lerothodi marks that version of the sound.
+        <strong>For isiNtu speakers:</strong> You already make ejectives naturally: the <em>p</em> in <em>papadi</em> (Sesotho, "a game") and the <em>k</em> in <em>koko</em> are ejective, while <em>ph</em> and <em>kh</em> are not. The lerothodi marks that version of the sound.
       </div>
     </div>
 
     <!-- IMPLOSIVES -->
-     <!--
     <div class="mode-block">
       <div class="mode-block-title" style="color:#065f46;">③ Implosives</div>
       <p>An implosive looks voiced — and it is — but there's a subtle extra quality. As the lips close and release, air briefly draws <em>inward</em> before the burst outward. It gives the sound a slightly hollow, sunken quality.</p>
-      <div class="mode-try"><strong>Note for English speakers:</strong> The English "b" in "banana" is actually closer to an implosive than a plain voiced stop. In isiNtu languages, <strong>bha</strong> is the plain voiced stop (like English "b"), and <strong>ba</strong> is the true implosive — subtly different, but your ear will catch it with the audio.</div>
+      <div class="mode-try"><strong>Listen for it:</strong> In isiZulu, <strong>bha</strong> is the plain voiced sound and <strong>ba</strong> is the implosive. In isiBheqe the implosive carries both marks: the uphimbo (voiced) and the lerothodi (no air from the lungs).</div>
       <div class="mode-pair">
         <div class="mode-pair-card">
           <img src="images/Voiced_bilabial_plosive.png" alt="b">
@@ -841,30 +893,31 @@
         <div class="mode-pair-card">
           <img src="images/Bilabial_implosive.png" alt="ɓ">
           <div class="mode-pair-phoneme">&#x0253;</div>
-          <div class="mode-pair-label">Implosive</div>
-          <div class="mode-pair-word"><em>ba</em> — "is" (isiZulu)</div>
+          <div class="mode-pair-label">Uphimbo + lerothodi — implosive</div>
+          <div class="mode-pair-word"><em>baba</em> — "be bitter" (isiZulu)</div>
           <button class="wt-play" style="margin:0.4rem auto 0;font-size:0.7rem;padding:0.2rem 0.6rem;" onclick="wtPlay('Implosive_bilabial',this)">&#9654;</button>
         </div>
       </div>
     </div>
-  -->
+
     <!-- PRENASALISATION -->
-     <!-- 
     <div class="mode-block">
       <div class="mode-block-title" style="color:#1d4ed8;">④ Prenasalisation — the ingungwana</div>
-      <p>A nasal hum that flows directly into the consonant — so fast it sounds like one sound, not two. The ingungwana (nasalisation circle) sits at the apex of the triangle, because nasals live at the front of the mouth.</p>
-      <div class="mode-try"><strong>Try it:</strong> Say <strong>"umbrella"</strong> slowly — feel the "mm" flowing straight into the "b"? Now speed it up until the two sounds fuse. That's prenasalisation: <em>mba, nda, nga</em> in isiNtu are single onset sounds, not clusters.</div>
+      <p>The ingungwana is a circle at the tip of the triangle, touching it. It opens a second doorway for the air: the nose. The air starts out through your nose, then the consonant follows through your mouth, so fast that it is one sound, not two.</p>
+      <img src="images/DtsD_Example_Diacritic_Consonant_Prenasalization.svg.png" alt="The ingungwana: a circle touching the tip of the triangle" style="width:90px;display:block;margin:0.5rem auto;">
+      <div class="mode-try"><strong>Try it:</strong> Say <strong>inkosi</strong> slowly &mdash; feel the <em>n</em> flowing straight into the <em>k</em>? That is prenasalisation: <em>mba, nda, nga</em> in isiNtu are single onset sounds, not clusters.</div>
+      <p>It also does grammar. In many siNtu languages a nasal at the front turns a verb into a noun. Sesotho <em>ruta</em> (teach) becomes <em>thuto</em> (a lesson): it was once <em>n + ruto</em>, and the nasal changed the <em>r</em> to <em>th</em> before it dropped away.</p>
       <div class="mode-callout-ntu">
         <strong>In the chart:</strong> Prenasalised consonants appear in their own rows. Look for the ingungwana circle at the apex in the symbol images.
       </div>
     </div>
 
   </div>
--->
 </details>
 
  <!-- CONSONANTS CHART -->
         <div class="chart-section" id="consonants-chart">
+            <div class="chart-hint">&#128264; Tap any symbol in the chart to hear it</div>
             <div id="chart-toggles"></div>
             <div class="table-container">
             <table>
@@ -1915,20 +1968,24 @@
 
             <!-- Vowel-->
 
-            <audio id="i_sound" src="audio/i_sound.ogg"></audio>
-            <audio id="e_sound" src="audio/e_sound.ogg"></audio>
-            <audio id="ɛ_sound" src="audio/ɛ_sound.ogg"></audio>
-            <audio id="a_sound" src="audio/a_sound.ogg"></audio>
-            <audio id="ɔ_sound" src="audio/ɔ_sound.ogg"></audio>
-            <audio id="o_sound" src="audio/o_sound.ogg"></audio>
-            <audio id="u_sound" src="audio/u_sound.ogg"></audio>
+            <audio id="w_phapha" src="audio/words/phapha.mp3" preload="auto"></audio>
+            <audio id="w_bhabha" src="audio/words/bhabha.mp3" preload="auto"></audio>
+            <audio id="w_papadi" src="audio/words/papadi.mp3" preload="auto"></audio>
+            <audio id="w_baba" src="audio/words/baba.mp3" preload="auto"></audio>
+            <audio id="i_sound" src="audio/i_sound.ogg" preload="auto"></audio>
+            <audio id="e_sound" src="audio/e_sound.ogg" preload="auto"></audio>
+            <audio id="ɛ_sound" src="audio/ɛ_sound.ogg" preload="auto"></audio>
+            <audio id="a_sound" src="audio/a_sound.ogg" preload="auto"></audio>
+            <audio id="ɔ_sound" src="audio/ɔ_sound.ogg" preload="auto"></audio>
+            <audio id="o_sound" src="audio/o_sound.ogg" preload="auto"></audio>
+            <audio id="u_sound" src="audio/u_sound.ogg" preload="auto"></audio>
 
             
             <!-- Plosives -->
             <audio id="Aspirated_bilabial_plosive" src="audio/Aspirated_voiceless_bilabial_stop.ogg"></audio>
             <audio id="Voiced_bilabial_plosive" src="audio/Voiced_bilabial_plosive.mp3"></audio>
-            <audio id="Ejective_bilabial" src="audio/Bilabial_ejective_plosive.ogg"></audio>
-            <audio id="Implosive_bilabial" src="audio/Bilabial_implosive.ogg"></audio>
+            <audio id="Ejective_bilabial" src="audio/Bilabial_ejective_plosive.mp3"></audio>
+            <audio id="Implosive_bilabial" src="audio/Voiced_bilabial_implosive.mp3"></audio>
             <audio id="Aspirated_dental_plosive" src="audio/Aspirated_dental_plosive.ogg"></audio> 
             <audio id="Voiced_dental_plosive" src="audio/Voiced_dental_plosive.ogg"></audio>"
             <audio id="Aspirated_alveolar_plosive" src="audio/Aspirated_voiceless_bilabial_stop.ogg"></audio> <!--Not aspirated sound>-->
@@ -1951,10 +2008,10 @@
             <audio id="Voiceless_glottal_fricative" src="audio/Voiceless_glottal_fricative.ogg.mp3"></audio>
             <audio id="Voiced_glottal_fricative" src="audio/Voiced_glottal_fricative.ogg.mp3"></audio>
             <audio id="Voiceless_lateral_fricative" src="audio/Voiceless_alveolar_lateral_fricative.ogg.mp3"></audio>
-            <audio id="Voiced_lateral_fricative" src="audio/voiced_alveolar_lateral_fricative.ogg.mp3"></audio>
+            <audio id="Voiced_lateral_fricative" src="audio/Voiced_alveolar_lateral_fricative.ogg.mp3"></audio>
             <!-- Approximants -->
             <audio id="Voiced_labial–velar_approximant" src="audio/Voiced_labio-velar_approximant.ogg.mp3"></audio>
-            <audio id="Voiced_palatal_approximant" src="audio/voiced_palatal_approximant.ogg.mp3"></audio>
+            <audio id="Voiced_palatal_approximant" src="audio/Palatal_approximant.ogg.mp3"></audio>
             <audio id="Voiceless_alveolar_lateral_approximant" src="audio/Alveolar_lateral_approximant.ogg.mp3"></audio>
             <!-- Trill -->
             <audio id="Voiced_alveolar_trill" src="audio/Alveolar_trill.ogg.mp3"></audio>
