@@ -88,7 +88,6 @@
     }
 
     /* ── Collapsed column header ────────────────────────────── */
-    .th-collapsed { opacity: .35; text-decoration: line-through; }
 
     /* ── Toggle panel (chip UI) ─────────────────────────────── */
     .toggle-panel {
@@ -513,6 +512,36 @@
 .word-card .wc-mode { font-size:0.75rem; font-weight:700; color:#b45309; margin-bottom:0.3rem; }
 .chart-hint { text-align:center; font-size:0.9rem; font-weight:600; color:#1d4ed8; background:#eff6ff;
   border:1.5px solid #bfdbfe; border-radius:999px; padding:0.45rem 0.9rem; margin:0 auto 0.75rem; width:fit-content; }
+
+/* --- Consonant chart (drawn from data) --- */
+.chart-note { max-width:760px; margin:0.9rem auto 0.4rem; font-size:0.88rem; color:#374151; text-align:center; line-height:1.5; }
+.chart-legend { font-size:0.72rem; color:#6b7280; text-align:center; margin:0 0 0.75rem; }
+.chart-title { font-size:1rem; font-weight:700; color:#1f2937; margin:1.4rem 0 0.4rem; }
+.chart-title span, .chart-more summary span { font-weight:400; color:#6b7280; font-size:0.8rem; margin-left:0.35rem; }
+.chart-more { margin-top:1.4rem; }
+.chart-more summary { cursor:pointer; font-size:1rem; font-weight:700; color:#1f2937; padding:0.4rem 0; }
+.chart-empty { padding:1rem; text-align:center; color:#6b7280; font-size:0.85rem; }
+.chart-tbl { width:max-content; min-width:100%; }
+.chart-tbl td.cc { min-width:116px; max-width:150px; vertical-align:top; padding:0.5rem 0.35rem; }
+.chart-tbl td.cc-empty { background:#f9fafb; }
+.chart-tbl th.row-head, .chart-tbl th.corner { position:sticky; left:0; z-index:2; min-width:96px; }
+.chart-tbl th.row-head { background:#f8f9ff; font-size:0.8rem; font-weight:600; color:#374151; text-align:left; }
+.chart-tbl th.corner { font-size:0.65rem; font-weight:500; }
+.cc-in { display:flex; flex-direction:column; align-items:center; gap:0.25rem; }
+.cc-glyph { display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px;
+  border:1.5px solid #c7d2fe; background:#eef2ff; border-radius:0.6rem; padding:0.3rem; cursor:pointer; }
+.cc-glyph img { width:48px; height:48px; object-fit:contain; display:block; }
+.cc-glyph.mute { border-color:#e5e7eb; background:transparent; cursor:default; }
+.cc-glyph.playing, .cc-word.playing { background:#d1fae5; border-color:#10b981; }
+.cc-ipa { font-size:0.95rem; font-weight:700; color:#1f2937; }
+.cc-sp { display:block; font-size:0.74rem; color:#4b5563; line-height:1.3; }
+.cc-sp i { font-style:normal; font-size:0.62rem; color:#9ca3af; letter-spacing:0.03em; }
+.cc-word { display:block; width:100%; margin-top:0.15rem; padding:0.25rem 0.3rem; border:1px solid #e5e7eb; border-radius:0.5rem;
+  background:#f9fafb; font:inherit; font-size:0.8rem; color:#1f2937; text-align:center; line-height:1.3; }
+button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-height:44px; }
+.cc-word b { color:#4338ca; font-weight:800; text-decoration:underline; text-underline-offset:2px; }
+.cc-gloss { display:block; font-size:0.66rem; color:#6b7280; font-weight:400; }
+@media (max-width:640px){ .chart-tbl td.cc { min-width:104px; } .cc-glyph img { width:40px; height:40px; } }
 </style>
 
 <div class="walkthrough">
@@ -917,1050 +946,20 @@
 
  <!-- CONSONANTS CHART -->
         <div class="chart-section" id="consonants-chart">
-            <div class="chart-hint">&#128264; Tap any symbol in the chart to hear it</div>
+            <div class="chart-hint">&#128264; Tap a symbol to hear its syllable, or a word to hear the word</div>
             <div id="chart-toggles"></div>
-            <div class="table-container">
-            <table>
-                <thead>
-                  <tr> 
-                    <th colspan="5"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="This column lists the manners of articulation, describing how the sound is produced.">CONSONANTS CHART (Scroll -> for more)</span></th>
-                  </tr>
-
-                    <tr>
-                        <th><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="The columns list the places of articulation, describing WHERE the sound is produced.">Places</span></th>
-                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with both lips.">Bilabial</span></th>
-                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with the lower lip and upper teeth.">Labio-dental</span></th>
-                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with the tongue against the upper teeth.">Dental</span></th>
-                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with the tongue against the alveolar ridge.">Alveolar</span></th>
-                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with the tongue just behind the alveolar ridge.">Post-alveolar</span></th>
-                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with the tongue curled/bending backwards .">Retroflex</span></th>
-                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with the tongue against the hard roof of the mouth.">Palatal</span></th>
-                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with the back of the tongue against the soft palate (velum).">Velar</span></th>
-                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with the vocal folds in the glottis.">Glottal</span></th>
-                        <th colspan="2"><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="Sounds made with the tongue blocking the center but letting air pass along the sides.">Lateral</span></th>
-                    </tr>
-
-                    <tr> 
-
-                    <th><span class="font-semibold tracking-wider has-tooltip" data-tooltip-text="The rows list the manners of articulation, describing HOW the sound is produced.">Manners</span></th>
-
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    <td> Aspirated or voiceless</td>
-                    <td> Voiced</td>
-                    </tr>
-                </thead>
-                <tbody>
-
-                  <tr>
-
- <!-- PLOSIVES -->
-
-
-<td class="font-medium">
-  <span class="has-tooltip" data-tooltip-text="Airflow is completely stopped, then released.">
-    Plosive
-  </span>
-</td>
-<!--Aspirated Bilabial Plosive -->
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Aspirated_bilabial_plosive.png" 
-         alt="Aspirated Bilabial Plosive" 
-         class="symbol-img has-tooltip" 
-         onclick="playAudio('Aspirated_bilabial_plosive')" 
-         data-tooltip-text="<strong>NGU:</strong> pha<br><strong>SOT:</strong> pha<br><strong>TSO:</strong>pha<br><strong>VEN:</strong> pha">
-    <figcaption style="font-size:12px; margin-top:4px;">pʰ</figcaption>
-  </figure>
-</td>
-
-<!--Voiced Bilabial Plosive -->
-
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Voiced_bilabial_plosive.png" 
-         alt="Voiced_bilabial_plosive" 
-         class="symbol-img has-tooltip" 
-         onclick="playAudio('Voiced_bilabial_plosive')" 
-         data-tooltip-text="<strong>NGU:</strong> bha<br><strong>SOT:</strong> bha<br><strong>TSO:</strong> bha<br><strong>VEN:</strong> ba">
-    <figcaption style="font-size:12px; margin-top:4px;">b</figcaption>
-  </figure>
-</td>
-
-<td class="impossible"></td> <!-- Labiodental -->
-<td class="impossible"></td> <!-- Labiodental -->
-
-<!--Aspirated Dental Plosive -->
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Aspirated_dental_plosive.png" 
-         alt="Aspirated_dental_plosive" 
-         class="symbol-img has-tooltip" 
-         onclick="playAudio('Aspirated_dental_plosive')" 		
-         data-tooltip-text="<strong>VEN:</strong> ṱha">
-    <figcaption style="font-size:12px; margin-top:4px;">t̪ʰ </figcaption>
-  </figure>
-</td>
-
-<!--Voiced Dental Plosive -->
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Voiced_dental_plosive.png" 
-         alt="Voiced_dental_plosive" 
-         class="symbol-img has-tooltip" 
-         onclick="playAudio('Voiced_dental_plosive')" 
-         data-tooltip-text="<strong>VEN:</strong> ḓa">
-    <figcaption style="font-size:12px; margin-top:4px;">d̪</figcaption>
-  </figure>
-</td>
-
-<!--Aspirated Alveolar Plosive -->
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Aspirated_alveolar_plosive.png"
-         alt="Aspirated_alveolar_plosive" 
-         class="symbol-img has-tooltip" 
-         onclick="playAudio('Aspirated_alveolar_plosive')" 
-         data-tooltip-text="<strong>NGU:</strong> tha<br><strong>SOT:</strong> tha<br><strong>TSO:</strong> tha<br><strong>VEN:</strong> tha">
-    <figcaption style="font-size:12px; margin-top:4px;">t</figcaption>
-  </figure>
-</td>
-
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Voiced_alveolar_plosive.png" 
-         alt="Voiced_alveolar_plosive" 
-         class="symbol-img has-tooltip" 
-         onclick="playAudio('Voiced_alveolar_plosive')" 
-         data-tooltip-text="<strong>NGU:</strong> da<br><strong>SOT:</strong> da, la<br><strong>TSO:</strong> da<br><strong>VEN:</strong> da">
-    <figcaption style="font-size:12px; margin-top:4px;">d</figcaption>
-  </figure>
-</td>
-
-<td class="impossible"></td> <!-- Post-alveolar -->
-<td class="impossible"></td> <!-- Post-alveolar -->
-
-<td class="impossible"></td> <!-- Retroflex -->
-<td class="impossible"></td> <!-- Retroflex -->
-
-<!--Aspirated Palatal Plosive -->
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Aspirated_palatal_plosive.png"
-         alt="Aspirated_palatal_plosive" 
-         class="symbol-img has-tooltip" 
-         onclick="playAudio('Aspirated_palatal_plosive')" 
-         data-tooltip-text="<strong>NGU:</strong> tya<br><strong>SOT:</strong> tja<br><strong>TSO:</strong> —<br><strong>VEN:</strong> tya">   
-    <figcaption style="font-size:12px; margin-top:4px;">cʰ</figcaption>
-  </figure>
-</td>
-
-<td class="impossible"></td> <!-- Voiced Palatal Plosive -->
-
-<!--Aspirated Velar Plosive -->
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Aspirated_velar_plosive.png"
-         alt="Aspirated_velar_plosive" 
-         class="symbol-img has-tooltip" 
-         onclick="playAudio('Aspirated_velar_plosive')" 
-         data-tooltip-text="<strong>NGU:</strong> kha<br><strong>SOT:</strong> kha<br><strong>TSO:</strong> kha<br><strong>VEN:</strong> kha">
-    <figcaption style="font-size:12px; margin-top:4px;">kʰ</figcaption>
-  </figure>
-</td>
-
-<!--Voiced Velar Plosive -->
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Voiced_velar_plosive.png" 
-         alt="Voiced_velar_plosive" 
-         class="symbol-img has-tooltip" 
-         onclick="playAudio('Voiced_velar_plosive')" 
-         data-tooltip-text="<strong>NGU:</strong> ga<br><strong>SOT:</strong> ga<br><strong>TSO:</strong> ga<br><strong>VEN:</strong> ga">
-    <figcaption style="font-size:12px; margin-top:4px;">g</figcaption>
-  </figure>
-</td>
-
-<td class="impossible"></td> <!-- Glottal -->
-<td class="impossible"></td> <!-- Glottal -->
-<td class="impossible"></td> <!-- Laterals -->
-<td class="impossible"></td> <!-- Laterals -->
-</tr>
-
-<!-- EJECTIVES & IMPLOSIVE -->
- <tr>
-  <td class="font-medium">
-    <span class="has-tooltip" data-tooltip-text="Ejective: A plosive made with a burst of air released by raising the closed vocal folds, not from the lungs.<br> 
-      Implosive: A plosive made while slightly pulling air inward with the vocal folds as the closure is released.">
-      (Ejectives & Implosive)
-    </span>
-  </td>
-
-<td>
-  <figure style="margin:0; text-align:center;">
-  <img src="images/Bilabial_ejective_plosive.png" 
-       alt="Bilabial ejective plosive [pʼ]" 
-       class="symbol-img has-tooltip" 
-       onclick="playAudio('Ejective_bilabial')" 
-       data-tooltip-text="<strong>NGU:</strong> pa<br><strong>SOT:</strong> pa<br><strong>TSO:</strong> pa<br><strong>VEN:</strong> pa">
-       <figcaption style="font-size:12px; margin-top:4px;">pʼ</figcaption>
-    </figure>
-</td>
-
-
-<td>
-  <figure style="margin:0; text-align:center;">
-  <img src="images/Bilabial_implosive.png" 
-       alt="Bilabial implosive [ɓ]" 
-       class="symbol-img has-tooltip" 
-       onclick="playAudio('Implosive_bilabial')" 
-       data-tooltip-text="<strong>NGU:</strong> ba<br><strong>SOT:</strong> ba<br><strong>TSO:</strong> ba<br><strong>VEN:</strong> ba">
-       <figcaption style="font-size:12px; margin-top:4px;">ɓ</figcaption>
-    </figure>
-
-
-       
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Dental_ejective_plosive.png" 
-         alt="Dental_ejective_plosive" 
-         class="symbol-img has-tooltip" 
-         onclick="playAudio('Dental_ejective_plosive')" 		
-         data-tooltip-text="<strong>VEN:</strong> ṱa">
-    <figcaption style="font-size:12px; margin-top:4px;">t̪</figcaption>
-  </figure>
-</td>
-  <td class="impossible"></td>
-
-<td>
-  <img src="images/Alveolar_ejective_plosive.png" 
-       alt="Alveolar ejective plosive [tʼ]" 
-       class="symbol-img has-tooltip" 
-       onclick="playAudio('Ejective_alveolar')" 
-       data-tooltip-text="<strong>NGU:</strong> ta<br><strong>SOT:</strong> ta<br><strong>TSO:</strong> ta<br><strong>VEN:</strong> ta">
-       <figcaption style="font-size:12px; margin-top:4px;">tʼ</figcaption>
-    </figure>
-</td>
-
-
-  <td class="impossible"></td>
-  <td class="impossible"></td> 
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-
-<td>
-  <img src="images/Velar_ejective_plosive.png" 
-       alt="Velar ejective plosive [kʼ]" 
-       class="symbol-img has-tooltip" 
-       onclick="playAudio('Ejective_velar')" 
-       data-tooltip-text="<strong>NGU:</strong> ka<br><strong>SOT:</strong> ka<br><strong>TSO:</strong> ka<br><strong>VEN:</strong> ka">
-       <figcaption style="font-size:12px; margin-top:4px;">kʼ</figcaption>
-    </figure>
-</td>
-
-
-  
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td> 
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-
-  </tr>
-<!-- FRICATIVES -->
-
-  <tr>
-  <td class="font-medium">
-    <span class="has-tooltip" data-tooltip-text="Airflow is partially blocked, creating friction.">
-      Fricative
-    </span>
-  </td>
-<!--Voiceless Bilabial Fricative -->
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiceless_bilabial_fricative.png"
-           alt="Voiceless_bilabial_fricative"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiceless_bilabial_fricative')"
-           data-tooltip-text="<strong>VEN:</strong> fha">
-      <figcaption style="font-size:12px; margin-top:4px;">ɸ</figcaption>
-    </figure>
-  </td>
-<!--Voiced Bilabial Fricative -->
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiced_bilabial_fricative.png"
-           alt="Voiced_bilabial_fricative"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiced_bilabial_fricative')"
-           data-tooltip-text="<strong>VEN:</strong> vha">
-      <figcaption style="font-size:12px; margin-top:4px;">β</figcaption>
-    </figure>
-  </td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiceless_labiodental_fricative.png"
-           alt="Voiceless_labiodental_fricative"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiceless_labiodental_fricative')"
-           data-tooltip-text="<strong>NGU:</strong> fa<br><strong>SOT:</strong> fa<br><strong>TSO:</strong> fa<br><strong>VEN:</strong> fa">
-      <figcaption style="font-size:12px; margin-top:4px;">f</figcaption>
-    </figure>
-  </td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiced_labiodental_fricative.png"
-           alt="Voiced_labiodental_fricative"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiced_labiodental_fricative')"
-           data-tooltip-text="<strong>NGU:</strong> va<br><strong>SOT:</strong> va<br><strong>TSO:</strong> <br><strong>VEN:</strong> va">
-      <figcaption style="font-size:12px; margin-top:4px;">v</figcaption>
-    </figure>
-  </td>
-
-  <td class="impossible"></td> <!-- Dentals -->
-  <td class="impossible"></td> <!-- Dentals -->
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiceless_alveolar_fricative.png"
-           alt="Voiceless_alveolar_fricative"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiceless_alveolar_fricative')"
-           data-tooltip-text="<strong>NGU:</strong> sa<br><strong>SOT:</strong> sa<br><strong>TSO:</strong> sa<br><strong>VEN:</strong> sa">
-      <figcaption style="font-size:12px; margin-top:4px;">s</figcaption>
-    </figure>
-  </td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiced_alveolar_fricative.png"
-           alt="Voiced_alveolar_fricative"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiced_alveolar_fricative')"
-           data-tooltip-text="<strong>NGU:</strong> za<br><strong>SOT:</strong> za<br><strong>TSO:</strong> za<br><strong>VEN:</strong> za">
-      <figcaption style="font-size:12px; margin-top:4px;">z</figcaption>
-    </figure>
-  </td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiceless_postalveolar_fricative.png"
-           alt="Voiceless_postalveolar_fricative"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiceless_postalveolar_fricative')"
-           data-tooltip-text="<strong>NGU:</strong> sha<br><strong>SOT:</strong> sha<br><strong>TSO:</strong> xa<br><strong>VEN:</strong> sha">
-      <figcaption style="font-size:12px; margin-top:4px;">ʃ</figcaption>
-    </figure>
-  </td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiced_postalveolar_fricative.png"
-           alt="Voiced_postalveolar_fricative"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiced_postalveolar_fricative')"
-           data-tooltip-text="<strong>SOT:</strong> ja<br><strong>TSO:</strong> ja<br><strong>VEN:</strong> zwa">
-      <figcaption style="font-size:12px; margin-top:4px;">ʒ</figcaption>
-    </figure>
-  </td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiceless_retroflex_fricative.png"
-           alt="Voiceless_retroflex_fricative"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiceless_retroflex_fricative')"
-           data-tooltip-text="<strong>TSO:</strong> swa">
-      <figcaption style="font-size:12px; margin-top:4px;">ʂ</figcaption>
-    </figure>
-  </td>
-
- <td class="impossible"></td> <!-- Voiced retroflex fricative -->
-  <td class="impossible"></td> <!-- Palatals -->
-  <td class="impossible"></td> <!-- Palatals -->
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiceless_velar_fricative.png"
-           alt="Voiceless_velar_fricative"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiceless_velar_fricative')"
-           data-tooltip-text="<strong>NGU:</strong> rha">
-      <figcaption style="font-size:12px; margin-top:4px;">x</figcaption>
-    </figure>
-  </td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiced_velar_fricative.png"
-           alt="Voiced_velar_fricative"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiced_velar_fricative')"
-           data-tooltip-text="<strong>NGU:</strong> gra<br><strong>SOT:</strong> ga">
-      <figcaption style="font-size:12px; margin-top:4px;">ɣ</figcaption>
-    </figure>
-  </td>
-
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiceless_glottal_fricative.png"
-           alt="Voiceless_glottal_fricative"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiceless_glottal_fricative')"
-           data-tooltip-text="<strong>NGU:</strong> ha<br><strong>SOT:</strong> ha<br><strong>TSO:</strong> ha<br><strong>VEN:</strong> ha">
-      <figcaption style="font-size:12px; margin-top:4px;">h</figcaption>
-    </figure>
-  </td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiced_glottal_fricative.png"
-           alt="Voiced_glottal_fricative"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiced_glottal_fricative')"
-           data-tooltip-text="<strong>NGU:</strong> hha<br><strong>SOT:</strong> ha<br><strong>TSO:</strong> hha">
-      <figcaption style="font-size:12px; margin-top:4px;">ɦ</figcaption>
-    </figure>
-  </td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiceless_lateral_fricative.png"
-           alt="Voiceless_lateral_fricative"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiceless_lateral_fricative')"
-           data-tooltip-text="<strong>NGU:</strong> hla<br><strong>SOT:</strong> hla<br><strong>TSO:</strong> hla">
-      <figcaption style="font-size:12px; margin-top:4px;">ɬ</figcaption>
-    </figure>
-  </td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiced_lateral_fricative.png"
-           alt="Voiced_lateral_fricative"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiced_lateral_fricative')"
-           data-tooltip-text="<strong>NGU:</strong> dla">
-      <figcaption style="font-size:12px; margin-top:4px;">ɮ</figcaption>
-    </figure>
-  </td>
-
-</tr>
-
-<!-- AFFRICATES -->
-
-<tr> 
-  <td class="font-medium">
-    <span class="has-tooltip" data-tooltip-text="Airflow is stopped, then released into a narrow constriction, combining a plosive and a fricative.">
-      Affricate
-    </span>
-  </td>
-<td class="impossible"></td> <!-- Aspirated Bilabial affricate-->
-<td class="impossible"></td> <!-- Voiced Bilabial affricate-->
-
-<!-- Aspirated labiodental affricate -->
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Aspirated_labiodental_affricate.png"
-         alt="Aspirated_labiodental_affricate"
-         class="symbol-img has-tooltip"
-         onclick="playAudio('Aspirated_labiodental_affricate')"
-         data-tooltip-text="<strong>TSO:</strong> pfha<br><strong>VEN:</strong> pfa">
-    <figcaption style="font-size:12px; margin-top:4px;">pf</figcaption>
-  </figure>
-</td>
-
-
-<!-- Voiced labiodental affricate -->
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Voiced_labiodental_affricate.png"
-         alt="Voiced_labiodental_affricate"
-         class="symbol-img has-tooltip"
-         onclick="playAudio('Voiced_labiodental_affricate')"
-         data-tooltip-text="<strong>TSO:</strong> bva<br><strong>VEN:</strong> bva">
-    <figcaption style="font-size:12px; margin-top:4px;">bv</figcaption>
-  </figure>
-</td>
-
-<td class="impossible"></td> <!-- Aspirated dental affricate-->
-<td class="impossible"></td> <!-- Voiced dental affricate-->
-
-<!-- Aspirated alveolar affricate -->
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Aspirated_alveolar_affricate.png"
-         alt="Aspirated alveolar affricate"
-         class="symbol-img has-tooltip"
-         onclick="playAudio('Aspirated_alveolar_affricate')"
-         data-tooltip-text="<strong>NGU:</strong> tsa<br><strong>SOT:</strong> tsa<br><strong>TSO:</strong> tsa<br><strong>VEN:</strong> tsa">
-    <figcaption style="font-size:12px; margin-top:4px;">ts</figcaption>
-  </figure>
-</td>
-
-<!-- Voiced alveolar affricate -->
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Voiced_alveolar_affricate.png"
-         alt="Voiced alveolar affricate"
-         class="symbol-img has-tooltip"
-         onclick="playAudio('Voiced_alveolar_affricate')"
-         data-tooltip-text="<strong>NGU:</strong> dza<br><strong>SOT:</strong> dza<br><strong>TSO:</strong> dza<br><strong>VEN:</strong> dza">
-    <figcaption style="font-size:12px; margin-top:4px;">dz</figcaption>
-  </figure>
-</td>
-
-<!-- Aspirated post-alveolar affricate-->
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Aspirated_postalveolar_affricate.png"
-         alt="Aspirated post-alveolar affricate"
-         class="symbol-img has-tooltip"
-         onclick="playAudio('Aspirated_postalveolar_affricate')"
-         data-tooltip-text="<strong>NGU:</strong> tsh<br><strong>SOT:</strong> tš<br><strong>TSO:</strong> c<br><strong>VEN:</strong> tsh">
-    <figcaption style="font-size:12px; margin-top:4px;">t͡ʃ</figcaption>
-  </figure>
-</td>
-
-<!-- Voiced post-alveolar affricate -->
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Voiced_postalveolar_affricate.png"
-         alt="Voiced post-alveolar affricate"
-         class="symbol-img has-tooltip"
-         onclick="playAudio('Voiced_postalveolar_affricate')"
-         data-tooltip-text="<strong>NGU:</strong> ja<br><strong>SOT:</strong> ja<br><strong>TSO:</strong> ja<br><strong>VEN:</strong>">
-    <figcaption style="font-size:12px; margin-top:4px;">d͡ʒ</figcaption>
-  </figure>
-</td>
-
-<!-- Aspirated retroflex affricate -->
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Aspirated_retroflex_affricate.png"
-         alt="Aspirated_retroflex_affricate"
-         class="symbol-img has-tooltip"
-         onclick="playAudio('Aspirated_retroflex_affricate')"
-         data-tooltip-text="<strong>TSO:</strong> tswa">
-    <figcaption style="font-size:12px; margin-top:4px;">t͡ʂʰ</figcaption>
-  </figure>
-</td>
-
-<td class="impossible"></td> <!-- Voiced retroflex affricate-->
-<td class="impossible"></td> <!-- Aspirated palatal affricate-->
-<td class="impossible"></td> <!-- Voiced palatal affricate-->
-
-<!-- Voiceless velar affricate -->
-
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Aspirated_velar_affricate.png"
-         alt="Aspirated_retroflex_affricate"
-         class="symbol-img has-tooltip"
-         onclick="playAudio('Aspirated_retroflex_affricate')"
-         data-tooltip-text="<strong>NGU:</strong> kla<br><strong>SOT:</strong> kha/kga<br><strong>TSO:</strong><br><strong>VEN:</strong>">
-    <figcaption style="font-size:12px; margin-top:4px;">k͡xʰ</figcaption>
-  </figure>
-</td>
-
-<td class="impossible"></td> <!-- Voiced velar affricate-->
-<td class="impossible"></td> <!-- Aspirated glottal affricate-->
-<td class="impossible"></td> <!-- Voiced glottal affricate-->
-
-<!-- Aspirated lateral affricate -->
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Aspirated_lateral_affricate.png"
-         alt="Aspirated_velar_affricate"
-         class="symbol-img has-tooltip"
-         onclick="playAudio('Aspirated_lateral_affricate')"
-         data-tooltip-text="<strong>SOT:</strong> tlha">
-    <figcaption style="font-size:12px; margin-top:4px;">t͡ɬʰ</figcaption>
-  </figure>
-</td>
-
-<!-- Voiced lateral affricate -->
-
-<td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Voiced_lateral_affricate.png"
-         alt="Voiced_lateral_affricate"
-         class="symbol-img has-tooltip"
-         onclick="playAudio('Voiced_lateral_affricate')"
-         data-tooltip-text="<strong>TSO:</strong> tlha">
-    <figcaption style="font-size:12px; margin-top:4px;"></figcaption>
-  </figure>
-</td>
-
-</tr>
-
-
-
-<!-- APPROXIMANTS -->
-
-<tr>
-  <td class="font-medium">
-    <span class="has-tooltip" data-tooltip-text="Articulators approach each other but do not create friction.">
-      Approximant
-    </span>
-  </td>
-
-  <td class="impossible"></td> <!-- Voiceless_bilabial approximant -->
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiced_labial–velar_approximant.png"
-           alt="Voiced_labial–velar_approximant.png"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiced_labial–velar_approximant')"
-           data-tooltip-text="<strong>NGU:</strong> wa<br><strong>SOT:</strong> wa<br><strong>TSO:</strong> wa<br><strong>VEN:</strong> wa">
-      <figcaption style="font-size:12px; margin-top:4px;">w</figcaption>
-    </figure>
-  </td>
-
-  <td class="impossible"></td> <!-- Approximant -->
-  <td class="impossible"></td> <!-- Approximant -->
-  <td class="impossible"></td> <!-- Approximant -->
-  <td class="impossible"></td> <!-- Approximant -->
-  <td class="impossible"></td> <!-- Approximant -->
-  <td class="impossible"></td> <!-- Approximant -->
-  <td class="impossible"></td> <!-- Approximant -->
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiced_palatal_approximant.png"
-           alt="Voiced_palatal_approximant"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiced_palatal_approximant')"
-           data-tooltip-text="<strong>NGU:</strong> ya<br><strong>SOT:</strong> ya<br><strong>TSO:</strong> ya<br><strong>VEN:</strong> ya">
-      <figcaption style="font-size:12px; margin-top:4px;">j</figcaption>
-    </figure>
-  </td>
-
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiced_lateral_approximant.png"
-           alt="Voiced_lateral_approximant"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiced_alveolar_lateral_approximant')"
-           data-tooltip-text="<strong>NGU:</strong> la<br><strong>SOT:</strong> la<br><strong>TSO:</strong> la">
-      <figcaption style="font-size:12px; margin-top:4px;">l</figcaption>
-    </figure>
-  </td>
-
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-</tr>
-
-<!-- TRILLS -->
-<tr>
-  <td class="font-medium">
-    <span class="has-tooltip" data-tooltip-text="Sound produced by vibrations between articulators.">
-      Trill
-    </span>
-  </td>
-
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiced_alveolar_trill.png"
-           alt="Voiced_alveolar_trill"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiced_alveolar_trill')"
-           data-tooltip-text="<strong>NGU:</strong> ra<br><strong>SOT:</strong> ra<br><strong>TSO:</strong> ra<br><strong>VEN:</strong> ra">
-      <figcaption style="font-size:12px; margin-top:4px;">r</figcaption>
-    </figure>
-  </td>
-
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-
-  <td class="impossible"></td> <!-- Trills -->
-  <td class="impossible"></td> <!-- Trills -->
-  <td class="impossible"></td> <!-- Trills -->
-  <td class="impossible"></td> <!-- Trills -->
-  <td class="impossible"></td> <!-- Trills -->
-  <td class="impossible"></td> <!-- Trills -->
-  <td class="impossible"></td> <!-- Trills -->
-
-</tr>
-
-<!-- TAP OR FLAP -->
-
-    <tr>
-   <td class="font-medium"><span class="has-tooltip" data-tooltip-text="A single, rapid contact between articulators.">Tap or Flap</span></td>
-  
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-
-  <td>
-  <figure style="margin:0; text-align:center;">
-    <img src="images/Voiced_retroflex_tap.png"
-         alt="Voiced_retroflex_tap"
-         class="symbol-img has-tooltip"
-         onclick="playAudio('Voiced_retroflex_tap')"
-         data-tooltip-text="<strong>VEN:</strong> la">
-    <figcaption style="font-size:12px; margin-top:4px;">ɽ</figcaption>
-  </figure>
-</td>
-  
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  </tr>
-
- <!-- CLICKS -->
-  
- <tr>
-  <td class="font-medium">
-    <span class="has-tooltip" data-tooltip-text="Airflow is stopped, then released with a suction ‘click’ sound made in the mouth.">
-      Clicks
-    </span>
-  </td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Bilabial click.png"
-           alt="Bilabial_click"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Bilabial_click')"
-           data-tooltip-text="">
-      <figcaption style="font-size:12px; margin-top:4px;">ʘʰ</figcaption>
-    </figure>
-  </td>
-
-
-  <td class="impossible"></td> <!-- Labiodental Click -->
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiceless_dental_click.png"
-           alt="Voiceless_dental_click"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiceless_dental_click')"
-           data-tooltip-text="<strong>NGU:</strong> cha<br><strong>SOT:</strong> qha">
-      <figcaption style="font-size:12px; margin-top:4px;">ǀʰ</figcaption>
-    </figure>
-  </td>
-
-  <td class="impossible"></td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiceless_alveolar_click.png"
-           alt="Voiceless_alveolar_click"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiceless_alveolar_click')"
-           data-tooltip-text="<strong>NGU:</strong> qha">
-      <figcaption style="font-size:12px; margin-top:4px;">ǃʰ</figcaption>
-    </figure>
-  </td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Palatal_Click.png"
-           alt="Voiceless_palatal_click"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiceless_palatal_click')"
-           data-tooltip-text="">
-      <figcaption style="font-size:12px; margin-top:4px;">ǀʰ</figcaption>
-    </figure>
-  </td>
-
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiceless_lateral_click.png"
-           alt="Voiceless_lateral_click"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiceless_lateral_click')"
-           data-tooltip-text="<strong>NGU:</strong> xa">
-      <figcaption style="font-size:12px; margin-top:4px;">ǁ</figcaption>
-    </figure>
-  </td>
-
-
-
-</tr>
-
-<!-- NASALS -->
-
-<tr>
-  
-  <td class="font-medium">
-    <span class="has-tooltip" data-tooltip-text="Air escapes through the nose.">
-      Nasal
-    </span>
-  </td>
-  <td class="impossible"></td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiced_bilabial_nasal.png"
-           alt="Voiced_bilabial_nasal"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiced_bilabial_nasal')"
-           data-tooltip-text="<strong>NGU:</strong> ma<br><strong>SOT:</strong> ma<br><strong>TSO:</strong> ma<br><strong>VEN:</strong> ma">
-      <figcaption style="font-size:12px; margin-top:4px;">m</figcaption>
-    </figure>
-  </td>
-
-  <td class="impossible"></td>
-  <td class="impossible"></td> <!--Labiodental-->
-  <td class="impossible"></td> <!--Labiodental-->
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiced_dental_nasal.png"
-           alt="Voiced_dental_nasal"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiced_dental_nasal')"
-           data-tooltip-text="<strong>VEN</strong> ṋa">
-      <figcaption style="font-size:12px; margin-top:4px;">n̪</figcaption>
-    </figure>
-  </td>
-
-  <td class="impossible"></td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiced_alveolar_nasal.png"
-           alt="Voiced_alveolar_nasal"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiced_alveolar_nasal')"
-           data-tooltip-text="<strong>NGU:</strong> na<br><strong>SOT:</strong> na<br><strong>TSO:</strong> na<br><strong>VEN:</strong> na">
-      <figcaption style="font-size:12px; margin-top:4px;">n</figcaption>
-    </figure>
-  </td>
-
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiced_palatal_nasal.png"
-           alt="Voiced_palatal_nasal"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiced_palatal_nasal')"
-           data-tooltip-text="<strong>NGU:</strong> nya<br><strong>SOT:</strong> nya<br><strong>TSO:</strong> nya<br><strong>VEN:</strong> nya">
-      <figcaption style="font-size:12px; margin-top:4px;">ɲ</figcaption>
-    </figure>
-  </td>
-
-  <td class="impossible"></td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Voiced_velar_nasal.png"
-           alt="Voiced_velar_nasal"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('Voiced_velar_nasal')"
-           data-tooltip-text="<strong>NGU:</strong> nga<br><strong>SOT:</strong> nga<br><strong>TSO:</strong> nga<br><strong>VEN:</strong> nga">
-      <figcaption style="font-size:12px; margin-top:4px;">ŋ</figcaption>
-    </figure>
-  </td>
-
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-</tr>
-
-<!-- SYLLABIC NASAL -->
-
-
-<tr>
-  <td class="font-medium">
-    <span class="has-tooltip" data-tooltip-text="Consonants that form a syllable on their own.">
-      Syllabic Nasal
-    </span>
-  </td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Syllabic_bilabial_nasal.png"
-           alt="Syllabic M"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('m_syllabic')"
-           data-tooltip-text="<strong>SOT: mm</strong>a">
-      <figcaption style="font-size:12px; margin-top:4px;">m̩</figcaption>
-    </figure>
-  </td>
-
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Syllabic_alveolar_nasal.png"
-           alt="Syllabic N"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('n_syllabic')"
-           data-tooltip-text="<strong>SOT: ng</strong>">
-      <figcaption style="font-size:12px; margin-top:4px;">n̩</figcaption>
-    </figure>
-  </td>
-
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-
-  <td>
-    <figure style="margin:0; text-align:center;">
-      <img src="images/Syllabic_palatal_nasal.png"
-           alt="Syllabic NG"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('ng_syllabic')"
-           data-tooltip-text="<strong>SOT:</strong> ng">
-      <figcaption style="font-size:12px; margin-top:4px;">ŋ̍</figcaption>
-    </figure>
-  </td>
-
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  
-</tr>
-
-<!-- SYLLABIC APPROXIMANTS AND TRILLS -->
-
-<tr>
- <td class="font-medium">
-    <span class="has-tooltip" data-tooltip-text="Consonants that form a syllable on their own.">
-      Syllabic Approximants & Trills
-    </span>
-  </td>
-
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-    
-<td>
-  <figure style="margin:0; text-align:center;">
-      <img src="images/Syllabic_alveolar_trill.png"
-           alt="Syllabic R"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('R_syllabic')"
-           data-tooltip-text="<strong>SOT: rr</strong>a">
-      <figcaption style="font-size:12px; margin-top:4px;">r̩</figcaption>
-    </figure>
-  </td>
-
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-  <td class="impossible"></td>
-
-  <td>
-  <figure style="margin:0; text-align:center;">
-      <img src="images/Syllabic_lateral_approximant.png"
-           alt="Syllabic L"
-           class="symbol-img has-tooltip"
-           onclick="playAudio('L_syllabic')"
-           data-tooltip-text= "<strong>SOT: ll</strong>a">
-      <figcaption style="font-size:12px; margin-top:4px;">l̩</figcaption>
-    </figure>
-  </td>
-</tr>
-
-                </tbody>
-            </table>
-        </div><!-- end table-container -->
+            <p class="chart-note">Every symbol in this chart is a whole syllable: the consonant written with the vowel <em>a</em> (the downward triangle). Turn the triangle to change the vowel; the consonant marks stay where they are.</p>
+            <p class="chart-legend">Spellings: <b>Ng</b> Nguni &middot; <b>So</b> Sotho &middot; <b>Ts</b> Xitsonga &middot; <b>Ve</b> Tshivenda. A spelling with no tag is the same in all four.</p>
+            <h3 class="chart-title">Core sounds <span>the five basic manners</span></h3>
+            <div class="table-container" id="chart-core"></div>
+            <details class="chart-more" id="chart-more-wrap" open>
+              <summary>More sounds <span>ejectives, implosives, trills, clicks and syllabic consonants</span></summary>
+              <div class="table-container" id="chart-more"></div>
+            </details>
+            <!-- Chart data: one entry per cell. m = manner, p = place, v = voiceless/voiced,
+                 sp = Latin spelling by language group (kept from the old hover text),
+                 words = example words (src R = recorded, M = confirmed in the 9 Oct meeting). -->
+            <script type="application/json" id="chart-data">[{"m":"Plosive","p":"Bilabial","v":"voiceless","img":"images/Aspirated_bilabial_plosive.png","ipa":"pʰ","syl":true,"snd":"audio/cues/Aspirated_bilabial_plosive_a.mp3","sp":{"NGU":"pha","SOT":"pha","TSO":"pha","VEN":"pha"},"words":[{"w":"phapha","hl":"pha","lang":"isiZulu, Sesotho","gloss":"be overenthusiastic","audio":"audio/words/phapha.mp3","src":"R"},{"w":"phalla","hl":"pha","lang":"Sesotho","gloss":"flow","audio":null,"src":"M"}]},{"m":"Plosive","p":"Bilabial","v":"voiced","img":"images/Voiced_bilabial_plosive.png","ipa":"b","syl":true,"snd":"audio/cues/Voiced_bilabial_plosive_a.mp3","sp":{"NGU":"bha","SOT":"bha","TSO":"bha","VEN":"ba"},"words":[{"w":"bhabha","hl":"bha","lang":"isiZulu","gloss":"trap","audio":"audio/words/bhabha.mp3","src":"R"}]},{"m":"Plosive","p":"Dental","v":"voiceless","img":"images/Aspirated_dental_plosive.png","ipa":"t̪ʰ","syl":true,"snd":"audio/cues/Aspirated_dental_plosive_a.mp3","sp":{"VEN":"ṱha"},"words":[]},{"m":"Plosive","p":"Dental","v":"voiced","img":"images/Voiced_dental_plosive.png","ipa":"d̪","syl":true,"snd":"audio/Voiced_dental_plosive.ogg","sp":{"VEN":"ḓa"},"words":[]},{"m":"Plosive","p":"Alveolar","v":"voiceless","img":"images/Aspirated_alveolar_plosive.png","ipa":"tʰ","syl":true,"snd":"audio/cues/Aspirated_alveolar_plosive_a.mp3","sp":{"NGU":"tha","SOT":"tha","TSO":"tha","VEN":"tha"},"words":[{"w":"thatha","hl":"tha","lang":"isiZulu","gloss":"take","audio":"audio/words/thatha.mp3","src":"R"}]},{"m":"Plosive","p":"Alveolar","v":"voiced","img":"images/Voiced_alveolar_plosive.png","ipa":"d","syl":true,"snd":"audio/cues/Voiced_alveolar_plosive_a.mp3","sp":{"NGU":"da","SOT":"da, la","TSO":"da","VEN":"da"},"words":[{"w":"idada","hl":"da","lang":"isiZulu","gloss":"duck","audio":"audio/words/idada.mp3","src":"R"}]},{"m":"Plosive","p":"Palatal","v":"voiceless","img":"images/Aspirated_palatal_plosive.png","ipa":"cʰ","syl":true,"snd":"audio/cues/Voiceless_palatal_plosive_a.mp3","sp":{"NGU":"tya","SOT":"tja","VEN":"tya"},"words":[]},{"m":"Plosive","p":"Velar","v":"voiceless","img":"images/Aspirated_velar_plosive.png","ipa":"kʰ","syl":true,"snd":"audio/cues/Aspirated_velar_plosive_a.mp3","sp":{"NGU":"kha","SOT":"kha","TSO":"kha","VEN":"kha"},"words":[{"w":"khokho","hl":"kho","lang":"isiZulu","gloss":"ancestor","audio":"audio/words/khokho.mp3","src":"R"}]},{"m":"Plosive","p":"Velar","v":"voiced","img":"images/Voiced_velar_plosive.png","ipa":"g","syl":true,"snd":"audio/cues/Voiced_velar_plosive_a.mp3","sp":{"NGU":"ga","SOT":"ga","TSO":"ga","VEN":"ga"},"words":[{"w":"gogo","hl":"go","lang":"isiZulu","gloss":"grandmother","audio":"audio/words/gogo.mp3","src":"R"}]},{"m":"Ejectives & Implosive","p":"Bilabial","v":"voiceless","img":"images/Bilabial_ejective_plosive.png","ipa":"pʼ","syl":true,"snd":"audio/cues/Bilabial_ejective_stop_a.mp3","sp":{"NGU":"pa","SOT":"pa","TSO":"pa","VEN":"pa"},"words":[{"w":"papadi","hl":"pa","lang":"Sesotho","gloss":"a game","audio":"audio/words/papadi.mp3","src":"R"}]},{"m":"Ejectives & Implosive","p":"Bilabial","v":"voiced","img":"images/Bilabial_implosive.png","ipa":"ɓ","syl":true,"snd":"audio/cues/Voiced_bilabial_implosive_a.mp3","sp":{"NGU":"ba","SOT":"ba","TSO":"ba","VEN":"ba"},"words":[{"w":"baba","hl":"ba","lang":"isiZulu","gloss":"be bitter","audio":"audio/words/baba.mp3","src":"R"}]},{"m":"Ejectives & Implosive","p":"Dental","v":"voiceless","img":"images/Dental_ejective_plosive.png","ipa":"t̪ʼ","syl":true,"snd":null,"sp":{"VEN":"ṱa"},"words":[{"w":"ṱaṱa","hl":"ṱa","lang":"Tshivenda","gloss":"argue","audio":"audio/words/tata_ve.mp3","src":"R"}]},{"m":"Ejectives & Implosive","p":"Alveolar","v":"voiceless","img":"images/Alveolar_ejective_plosive.png","ipa":"tʼ","syl":true,"snd":"audio/cues/Alveolar_ejective_stop_a.mp3","sp":{"NGU":"ta","SOT":"ta","TSO":"ta","VEN":"ta"},"words":[{"w":"tata","hl":"ta","lang":"isiXhosa","gloss":"father","audio":"audio/words/tata_xh.mp3","src":"R"}]},{"m":"Ejectives & Implosive","p":"Velar","v":"voiceless","img":"images/Velar_ejective_plosive.png","ipa":"kʼ","syl":true,"snd":"audio/cues/Velar_ejective_stop_a.mp3","sp":{"NGU":"ka","SOT":"ka","TSO":"ka","VEN":"ka"},"words":[{"w":"kuku","hl":"ku","lang":"Sesotho","gloss":"cake","audio":"audio/words/kuku.mp3","src":"R"}]},{"m":"Fricative","p":"Bilabial","v":"voiceless","img":"images/Voiceless_bilabial_fricative.png","ipa":"ɸ","syl":true,"snd":"audio/Voiceless_bilabial_fricative.mp3","sp":{"VEN":"fha"},"words":[]},{"m":"Fricative","p":"Bilabial","v":"voiced","img":"images/Voiced_bilabial_fricative.png","ipa":"β","syl":true,"snd":"audio/Voiced_bilabial_fricative.ogg.mp3","sp":{"VEN":"vha"},"words":[]},{"m":"Fricative","p":"Labio-dental","v":"voiceless","img":"images/Voiceless_labiodental_fricative.png","ipa":"f","syl":true,"snd":"audio/Voiceless_labio-dental_fricative.ogg.mp3","sp":{"NGU":"fa","SOT":"fa","TSO":"fa","VEN":"fa"},"words":[{"w":"fenya","hl":"fe","lang":"Sesotho","gloss":"conquer","audio":null,"src":"M"}]},{"m":"Fricative","p":"Labio-dental","v":"voiced","img":"images/Voiced_labiodental_fricative.png","ipa":"v","syl":true,"snd":"audio/Voiced_bilabial_fricative.ogg.mp3","sp":{"NGU":"va","SOT":"va","VEN":"va"},"words":[]},{"m":"Fricative","p":"Alveolar","v":"voiceless","img":"images/Voiceless_alveolar_fricative.png","ipa":"s","syl":true,"snd":"audio/cues/Voiceless_alveolar_fricative_a.mp3","sp":{"NGU":"sa","SOT":"sa","TSO":"sa","VEN":"sa"},"words":[{"w":"sapha","hl":"sa","lang":"isiXhosa","gloss":"hand over","audio":"audio/words/sapha.mp3","src":"R"}]},{"m":"Fricative","p":"Alveolar","v":"voiced","img":"images/Voiced_alveolar_fricative.png","ipa":"z","syl":true,"snd":"audio/Voiced_alveolar_sibilant.ogg.mp3","sp":{"NGU":"za","SOT":"za","TSO":"za","VEN":"za"},"words":[]},{"m":"Fricative","p":"Post-alveolar","v":"voiceless","img":"images/Voiceless_postalveolar_fricative.png","ipa":"ʃ","syl":true,"snd":"audio/cues/Voiceless_post-alveolar_fricative_a.mp3","sp":{"NGU":"sha","SOT":"sha","TSO":"xa","VEN":"sha"},"words":[]},{"m":"Fricative","p":"Post-alveolar","v":"voiced","img":"images/Voiced_postalveolar_fricative.png","ipa":"ʒ","syl":true,"snd":"audio/Voiced_palato-alveolar_sibilant.ogg.mp3","sp":{"SOT":"ja","TSO":"ja","VEN":"zwa"},"words":[]},{"m":"Fricative","p":"Retroflex","v":"voiceless","img":"images/Voiceless_retroflex_fricative.png","ipa":"ʂ","syl":true,"snd":null,"sp":{"TSO":"swa"},"words":[]},{"m":"Fricative","p":"Velar","v":"voiceless","img":"images/Voiceless_velar_fricative.png","ipa":"x","syl":true,"snd":"audio/Voiceless_velar_fricative.ogg.mp3","sp":{"NGU":"rha"},"words":[]},{"m":"Fricative","p":"Velar","v":"voiced","img":"images/Voiced_velar_fricative.png","ipa":"ɣ","syl":true,"snd":"audio/Voiced_velar_fricative.ogg.mp3","sp":{"NGU":"gra","SOT":"ga"},"words":[]},{"m":"Fricative","p":"Glottal","v":"voiceless","img":"images/Voiceless_glottal_fricative.png","ipa":"h","syl":true,"snd":"audio/Voiceless_glottal_fricative.ogg.mp3","sp":{"NGU":"ha","SOT":"ha","TSO":"ha","VEN":"ha"},"words":[]},{"m":"Fricative","p":"Glottal","v":"voiced","img":"images/Voiced_glottal_fricative.png","ipa":"ɦ","syl":true,"snd":"audio/Voiced_glottal_fricative.ogg.mp3","sp":{"NGU":"hha","SOT":"ha","TSO":"hha"},"words":[]},{"m":"Fricative","p":"Lateral","v":"voiceless","img":"images/Voiceless_lateral_fricative.png","ipa":"ɬ","syl":true,"snd":"audio/Voiceless_alveolar_lateral_fricative.ogg.mp3","sp":{"NGU":"hla","SOT":"hla","TSO":"hla"},"words":[]},{"m":"Fricative","p":"Lateral","v":"voiced","img":"images/Voiced_lateral_fricative.png","ipa":"ɮ","syl":true,"snd":"audio/Voiced_alveolar_lateral_fricative.ogg.mp3","sp":{"NGU":"dla"},"words":[]},{"m":"Affricate","p":"Labio-dental","v":"voiceless","img":"images/Aspirated_labiodental_affricate.png","ipa":"pf","syl":true,"snd":"audio/Voiceless_labiodental_affricate.ogg","sp":{"TSO":"pfha","VEN":"pfa"},"words":[]},{"m":"Affricate","p":"Labio-dental","v":"voiced","img":"images/Voiced_labiodental_affricate.png","ipa":"bv","syl":true,"snd":"audio/Voiced_labiodental_affricate.ogg","sp":{"TSO":"bva","VEN":"bva"},"words":[]},{"m":"Affricate","p":"Alveolar","v":"voiceless","img":"images/Aspirated_alveolar_affricate.png","ipa":"ts","syl":true,"snd":"audio/cues/Aspirated_alveolar_affricate_a.mp3","sp":{"NGU":"tsa","SOT":"tsa","TSO":"tsa","VEN":"tsa"},"words":[{"w":"tsatsa","hl":"tsa","lang":"siSwati","gloss":"take","audio":"audio/words/tsatsa.mp3","src":"R"}]},{"m":"Affricate","p":"Alveolar","v":"voiced","img":"images/Voiced_alveolar_affricate.png","ipa":"dz","syl":true,"snd":null,"sp":{"NGU":"dza","SOT":"dza","TSO":"dza","VEN":"dza"},"words":[]},{"m":"Affricate","p":"Post-alveolar","v":"voiceless","img":"images/Aspirated_postalveolar_affricate.png","ipa":"t͡ʃ","syl":true,"snd":"audio/cues/Aspirated_post-alveolar_affricate_a.mp3","sp":{"NGU":"tsh","SOT":"tš","TSO":"c","VEN":"tsh"},"words":[{"w":"intsha","hl":"tsha","lang":"isiZulu","gloss":"youth","audio":"audio/words/intsha.mp3","src":"R"}]},{"m":"Affricate","p":"Post-alveolar","v":"voiced","img":"images/Voiced_postalveolar_affricate.png","ipa":"d͡ʒ","syl":true,"snd":null,"sp":{"NGU":"ja","SOT":"ja","TSO":"ja"},"words":[]},{"m":"Affricate","p":"Retroflex","v":"voiceless","img":"images/Aspirated_retroflex_affricate.png","ipa":"t͡ʂʰ","syl":true,"snd":null,"sp":{"TSO":"tswa"},"words":[]},{"m":"Affricate","p":"Velar","v":"voiceless","img":"images/Aspirated_velar_affricate.png","ipa":"k͡xʰ","syl":true,"snd":"audio/Voiceless_velar_affricate.ogg","sp":{"NGU":"kla","SOT":"kha/kga"},"words":[]},{"m":"Affricate","p":"Lateral","v":"voiceless","img":"images/Aspirated_lateral_affricate.png","ipa":"t͡ɬʰ","syl":true,"snd":"audio/Voiceless_alveolar_lateral_affricate.ogg","sp":{"SOT":"tlha"},"words":[]},{"m":"Affricate","p":"Lateral","v":"voiced","img":"images/Voiced_lateral_affricate.png","ipa":"","syl":false,"snd":null,"sp":{"TSO":"tlha"},"words":[]},{"m":"Approximant","p":"Bilabial","v":"voiced","img":"images/Voiced_labial–velar_approximant.png","ipa":"w","syl":true,"snd":"audio/Voiced_labio-velar_approximant.ogg.mp3","sp":{"NGU":"wa","SOT":"wa","TSO":"wa","VEN":"wa"},"words":[]},{"m":"Approximant","p":"Palatal","v":"voiced","img":"images/Voiced_palatal_approximant.png","ipa":"j","syl":true,"snd":"audio/Palatal_approximant.ogg.mp3","sp":{"NGU":"ya","SOT":"ya","TSO":"ya","VEN":"ya"},"words":[]},{"m":"Approximant","p":"Lateral","v":"voiced","img":"images/Voiced_lateral_approximant.png","ipa":"l","syl":true,"snd":"audio/Alveolar_lateral_approximant.ogg.mp3","sp":{"NGU":"la","SOT":"la","TSO":"la"},"words":[{"w":"lala","hl":"la","lang":"isiZulu","gloss":"sleep","audio":"audio/words/lala.mp3","src":"R"}]},{"m":"Trill","p":"Alveolar","v":"voiced","img":"images/Voiced_alveolar_trill.png","ipa":"r","syl":true,"snd":"audio/cues/Alveolar_trill_a.mp3","sp":{"NGU":"ra","SOT":"ra","TSO":"ra","VEN":"ra"},"words":[{"w":"rara","hl":"ra","lang":"Sesotho","gloss":"be entangled","audio":"audio/words/rara.mp3","src":"R"}]},{"m":"Tap or Flap","p":"Retroflex","v":"voiced","img":"images/Voiced_retroflex_tap.png","ipa":"ɽ","syl":true,"snd":"audio/cues/Retroflex_tap_a.mp3","sp":{"VEN":"la"},"words":[]},{"m":"Clicks","p":"Bilabial","v":"voiceless","img":"images/Bilabial click.png","ipa":"ʘʰ","syl":true,"snd":"audio/Bilabial_click.mp3","sp":{},"words":[]},{"m":"Clicks","p":"Dental","v":"voiceless","img":"images/Voiceless_dental_click.png","ipa":"ǀʰ","syl":true,"snd":"audio/Dental_click.ogg.mp3","sp":{"NGU":"cha","SOT":"qha"},"words":[]},{"m":"Clicks","p":"Alveolar","v":"voiceless","img":"images/Voiceless_alveolar_click.png","ipa":"ǃʰ","syl":true,"snd":"audio/cues/Aspirated_alveolar_click_a.mp3","sp":{"NGU":"qha"},"words":[{"w":"qhaqha","hl":"qha","lang":"isiZulu","gloss":"dismantle","audio":"audio/words/qhaqha.mp3","src":"R"}]},{"m":"Clicks","p":"Palatal","v":"voiceless","img":"images/Palatal_Click.png","ipa":"ǂʰ","syl":true,"snd":"audio/Palatal_click.ogg","sp":{},"words":[]},{"m":"Clicks","p":"Lateral","v":"voiceless","img":"images/Voiceless_lateral_click.png","ipa":"ǁ","syl":true,"snd":"audio/Alveolar_lateral_click.ogg.mp3","sp":{"NGU":"xa"},"words":[{"w":"xoxa","hl":"xo","lang":"isiZulu","gloss":"discuss","audio":null,"src":"M"}]},{"m":"Nasal","p":"Bilabial","v":"voiced","img":"images/Voiced_bilabial_nasal.png","ipa":"m","syl":true,"snd":"audio/Bilabial_nasal.ogg.mp3","sp":{"NGU":"ma","SOT":"ma","TSO":"ma","VEN":"ma"},"words":[{"w":"mama","hl":"ma","lang":"all","gloss":"mother","audio":null,"src":"M"}]},{"m":"Nasal","p":"Dental","v":"voiced","img":"images/Voiced_dental_nasal.png","ipa":"n̪","syl":true,"snd":null,"sp":{"VEN":"ṋa"},"words":[]},{"m":"Nasal","p":"Alveolar","v":"voiced","img":"images/Voiced_alveolar_nasal.png","ipa":"n","syl":true,"snd":"audio/cues/Voiced_alveolar_nasal_a.mp3","sp":{"NGU":"na","SOT":"na","TSO":"na","VEN":"na"},"words":[{"w":"nana","hl":"na","lang":"isiXhosa","gloss":"child","audio":"audio/words/nana.mp3","src":"R"}]},{"m":"Nasal","p":"Palatal","v":"voiced","img":"images/Voiced_palatal_nasal.png","ipa":"ɲ","syl":true,"snd":"audio/cues/Voiced_palatal_nasal_a.mp3","sp":{"NGU":"nya","SOT":"nya","TSO":"nya","VEN":"nya"},"words":[{"w":"nyanya","hl":"nya","lang":"isiZulu","gloss":"loathe","audio":"audio/words/nyanya.mp3","src":"R"}]},{"m":"Nasal","p":"Velar","v":"voiced","img":"images/Voiced_velar_nasal.png","ipa":"ŋ","syl":true,"snd":"audio/Velar_nasal.ogg.mp3","sp":{"NGU":"nga","SOT":"nga","TSO":"nga","VEN":"nga"},"words":[]},{"m":"Syllabic Nasal","p":"Bilabial","v":"voiced","img":"images/Syllabic_bilabial_nasal.png","ipa":"m̩","syl":false,"snd":null,"sp":{"SOT":"mma"},"words":[]},{"m":"Syllabic Nasal","p":"Alveolar","v":"voiced","img":"images/Syllabic_alveolar_nasal.png","ipa":"n̩","syl":false,"snd":null,"sp":{"SOT":"ng"},"words":[]},{"m":"Syllabic Nasal","p":"Velar","v":"voiced","img":"images/Syllabic_palatal_nasal.png","ipa":"ŋ̍","syl":false,"snd":null,"sp":{"SOT":"ng"},"words":[]},{"m":"Syllabic Approximants & Trills","p":"Alveolar","v":"voiced","img":"images/Syllabic_alveolar_trill.png","ipa":"r̩","syl":false,"snd":"audio/cues/Alveolar_syllabic_trill_a.mp3","sp":{"SOT":"rra"},"words":[{"w":"rra","hl":"rr","lang":"Sesotho","gloss":"father","audio":"audio/words/rra.mp3","src":"R"}]},{"m":"Syllabic Approximants & Trills","p":"Lateral","v":"voiced","img":"images/Syllabic_lateral_approximant.png","ipa":"l̩","syl":false,"snd":null,"sp":{"SOT":"lla"},"words":[]}]</script>
         </div><!-- end chart-section -->
         
         <!-- Audio elements container -->
@@ -2124,226 +1123,123 @@
     </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+/* Consonant chart, drawn from #chart-data.
+   Two tables: the five core manners first, then everything else, each with its
+   own header rows. Turning a place off removes its columns from both tables;
+   a place or manner with nothing to show in a table is left out of it. */
+(function(){
+  var DATA = JSON.parse(document.getElementById('chart-data').textContent);
+  var PLACES = ['Bilabial','Labio-dental','Dental','Alveolar','Post-alveolar','Retroflex','Palatal','Velar','Glottal','Lateral'];
+  var CORE = ['Plosive','Fricative','Affricate','Approximant','Nasal'];
+  var MORE = ['Ejectives & Implosive','Trill','Tap or Flap','Clicks','Syllabic Nasal','Syllabic Approximants & Trills'];
+  var TAG = {NGU:'Ng', SOT:'So', TSO:'Ts', VEN:'Ve'};
+  var LANGTAG = {'isiZulu':'zu','isiXhosa':'xh','siSwati':'ss','Sesotho':'st','Setswana':'tn','Tshivenda':'ve','Xitsonga':'ts','isiZulu, Sesotho':'zu, st','all':''};
+  var CORE_PLACES = ['Bilabial','Alveolar','Palatal','Velar','Lateral'];
+  var placeOn = {}, mannerOn = {};
+  PLACES.forEach(function(p){ placeOn[p] = true; });
+  CORE.concat(MORE).forEach(function(m){ mannerOn[m] = true; });
 
-  // ── 1. Find the table ────────────────────────────────────
-  const bigTable = Array.from(document.querySelectorAll('.table-container table'))
-    .find(t => t.querySelector('thead')?.textContent?.includes('CONSONANTS CHART'));
-  if (!bigTable) return;
+  function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function cellAt(m,p,v){ for(var i=0;i<DATA.length;i++){ var c=DATA[i]; if(c.m===m&&c.p===p&&c.v===v) return c; } return null; }
 
-  const thead = bigTable.tHead;
-  const tbody = bigTable.tBodies[0];
-  const rPlaces     = thead?.rows?.[1];   // "Bilabial", "Alveolar" … (each colspan=2)
-  const rSubheaders = thead?.rows?.[2];   // "Aspirated/Voiced" subheaders
-  if (!rPlaces || !rSubheaders || !tbody) return;
-
-  // ── 2. Build place map ───────────────────────────────────
-  let colIndex = 0;
-  const placeMap = [];
-  for (let i = 1; i < rPlaces.cells.length; i++) {
-    const th   = rPlaces.cells[i];
-    const span = Number(th.colSpan || 1);
-    const label = th.textContent.trim();
-    const key   = label.toLowerCase().replace(/\s+/g, '-');
-    placeMap.push({ key, label, th, start: colIndex, span });
-    colIndex += span;
+  function spellings(sp){
+    var keys = Object.keys(sp); if(!keys.length) return '';
+    var groups = {}, order = [];
+    keys.forEach(function(k){ if(!groups[sp[k]]){ groups[sp[k]] = []; order.push(sp[k]); } groups[sp[k]].push(k); });
+    if(order.length === 1 && keys.length === 4) return '<span class="cc-sp">' + esc(order[0]) + '</span>';
+    order.sort(function(a,b){ return groups[b].length - groups[a].length; });
+    return order.map(function(v){
+      return '<span class="cc-sp">' + esc(v) + ' <i>' + groups[v].map(function(k){ return TAG[k]||k; }).join(' ') + '</i></span>';
+    }).join('');
   }
+  function word(w){
+    var i = w.w.indexOf(w.hl), shown = i < 0 ? esc(w.w) : esc(w.w.slice(0,i)) + '<b>' + esc(w.hl) + '</b>' + esc(w.w.slice(i + w.hl.length));
+    var tag = LANGTAG.hasOwnProperty(w.lang) ? LANGTAG[w.lang] : w.lang;
+    var gloss = '<span class="cc-gloss">' + esc(w.gloss) + (tag ? ' &middot; ' + esc(tag) : '') + '</span>';
+    if(w.audio) return '<button class="cc-word" data-snd="' + esc(w.audio) + '" aria-label="Hear ' + esc(w.w) + '">' + shown + ' &#128264;' + gloss + '</button>';
+    return '<span class="cc-word">' + shown + gloss + '</span>';
+  }
+  function cell(c){
+    if(!c) return '<td class="cc-empty"></td>';
+    var syl = c.syl ? c.ipa + 'a' : c.ipa;
+    var img = '<img src="' + esc(c.img) + '" alt="' + esc(syl) + ' in isiBheqe" loading="lazy">';
+    var glyph = c.snd ? '<button class="cc-glyph" data-snd="' + esc(c.snd) + '" aria-label="Hear ' + esc(syl) + '">' + img + '</button>'
+                      : '<span class="cc-glyph mute" title="No recording yet">' + img + '</span>';
+    return '<td class="cc"><div class="cc-in">' + glyph + (syl ? '<div class="cc-ipa">' + esc(syl) + '</div>' : '')
+         + spellings(c.sp) + c.words.map(word).join('') + '</div></td>';
+  }
+  function build(el, manners){
+    var rows = manners.filter(function(m){ return mannerOn[m] && DATA.some(function(c){ return c.m===m && placeOn[c.p]; }); });
+    var places = PLACES.filter(function(p){ return placeOn[p] && DATA.some(function(c){ return c.p===p && rows.indexOf(c.m) >= 0; }); });
+    if(!rows.length || !places.length){ el.innerHTML = '<p class="chart-empty">Nothing to show here. Turn on a place or a manner above.</p>'; return; }
+    var h = '<table class="chart-tbl"><thead><tr><th class="corner" rowspan="2">Manner &darr;<br>Place &rarr;</th>';
+    places.forEach(function(p){ h += '<th colspan="2">' + esc(p) + '</th>'; });
+    h += '</tr><tr>';
+    places.forEach(function(){ h += '<th>voiceless</th><th>voiced</th>'; });
+    h += '</tr></thead><tbody>';
+    rows.forEach(function(m){
+      h += '<tr><th class="row-head" scope="row">' + esc(m) + '</th>';
+      places.forEach(function(p){ h += cell(cellAt(m,p,'voiceless')) + cell(cellAt(m,p,'voiced')); });
+      h += '</tr>';
+    });
+    el.innerHTML = h + '</tbody></table>';
+  }
+  function render(){ build(document.getElementById('chart-core'), CORE); build(document.getElementById('chart-more'), MORE); }
 
-  // ── 3. Build manner map ──────────────────────────────────
-  const mannerRows   = {};
-  const mannerLabels = {};
-  Array.from(tbody.rows).forEach(tr => {
-    const cell = tr.cells[0];
-    if (!cell) return;
-    const label = cell.textContent.trim();
-    const key   = label.toLowerCase().replace(/[\s()&]+/g, '_').replace(/_+/g, '_').replace(/^_|_$/g, '');
-    mannerLabels[key] = label;
-    (mannerRows[key] ||= []).push(tr);
+  // Sound: one Audio object per file, made on first tap.
+  var cache = {};
+  document.querySelector('.chart-section').addEventListener('click', function(e){
+    var btn = e.target.closest('[data-snd]'); if(!btn) return;
+    var src = btn.getAttribute('data-snd'), a = cache[src] || (cache[src] = new Audio(src));
+    a.currentTime = 0; btn.classList.add('playing');
+    a.onended = function(){ btn.classList.remove('playing'); };
+    a.play().catch(function(){ btn.classList.remove('playing'); });
   });
 
-  // ── 4. State ─────────────────────────────────────────────
-  const colState = Object.fromEntries(placeMap.map(p => [p.key, true]));
-  const rowState = Object.fromEntries(Object.keys(mannerRows).map(k => [k, true]));
-
-  // Core preset: the places most common across SA languages
-  const CORE_PLACES = new Set(['bilabial', 'alveolar', 'palatal', 'velar', 'lateral']);
-
-  // ── 5. Visibility helpers ────────────────────────────────
-  function setColumnVisible(placeKey, visible) {
-    const m = placeMap.find(p => p.key === placeKey);
-    if (!m) return;
-    m.th.classList.toggle('th-collapsed', !visible);
-    for (let i = 0; i < m.span; i++) {
-      const hCell = rSubheaders.cells[1 + m.start + i];
-      if (hCell) hCell.style.display = visible ? '' : 'none';
-    }
-    Array.from(tbody.rows).forEach(tr => {
-      for (let i = 0; i < m.span; i++) {
-        const td = tr.cells[1 + m.start + i];
-        if (td) td.style.display = visible ? '' : 'none';
-      }
-    });
+  // Chips
+  var panel = document.getElementById('chart-toggles');
+  panel.className = 'toggle-panel'; panel.innerHTML = '';
+  function chip(label, cls, on, click){
+    var b = document.createElement('button'); b.textContent = label;
+    b.className = 'chip ' + cls + (on ? ' on' : ' off'); b.addEventListener('click', click); return b;
   }
-
-  function setMannerVisible(key, visible) {
-    (mannerRows[key] || []).forEach(tr => { tr.style.display = visible ? '' : 'none'; });
+  function section(label){
+    var s = document.createElement('div'); s.className = 'toggle-section';
+    s.innerHTML = '<div class="toggle-section-label">' + label + '</div><div class="toggle-chips"></div>';
+    panel.appendChild(s); return s.querySelector('.toggle-chips');
   }
-
-  // ── 6. Chip factory ──────────────────────────────────────
-  const placeChips  = {};
-  const mannerChips = {};
-
-  function makeChip(label, classes, onClick) {
-    const btn = document.createElement('button');
-    btn.textContent = label;
-    btn.className   = 'chip ' + classes;
-    btn.addEventListener('click', onClick);
-    return btn;
+  var presets = document.createElement('div'); presets.className = 'toggle-presets'; panel.appendChild(presets);
+  var placeBox = section('Places of articulation'), mannerBox = section('Manners of articulation');
+  var placeChips = {}, mannerChips = {};
+  function sync(){
+    PLACES.forEach(function(p){ placeChips[p].className = 'chip chip-place ' + (placeOn[p] ? 'on' : 'off'); });
+    CORE.concat(MORE).forEach(function(m){ mannerChips[m].className = 'chip chip-manner ' + (mannerOn[m] ? 'on' : 'off'); });
+    render();
   }
-
-  function updateChip(btn, isOn, type) {
-    btn.classList.toggle('on',  isOn);
-    btn.classList.toggle('off', !isOn);
+  function preset(key){
+    PLACES.forEach(function(p){ placeOn[p] = key === 'all' || CORE_PLACES.indexOf(p) >= 0; });
+    CORE.concat(MORE).forEach(function(m){ mannerOn[m] = true; });
+    presets.querySelectorAll('.chip-preset').forEach(function(c){ c.classList.toggle('active-preset', c.dataset.preset === key); });
+    sync();
   }
-
-  // ── 7. Preset logic ───────────────────────────────────────
-  let activePreset = null; // 'core' | 'all' | null
-
-  function applyPreset(preset) {
-    activePreset = preset;
-    // Update preset chip highlights
-    document.querySelectorAll('.chip-preset').forEach(c => {
-      c.classList.toggle('active-preset', c.dataset.preset === preset);
-    });
-
-    if (preset === 'all') {
-      placeMap.forEach(p => {
-        colState[p.key] = true;
-        setColumnVisible(p.key, true);
-        if (placeChips[p.key]) updateChip(placeChips[p.key], true, 'place');
-      });
-      Object.keys(mannerRows).forEach(k => {
-        rowState[k] = true;
-        setMannerVisible(k, true);
-        if (mannerChips[k]) updateChip(mannerChips[k], true, 'manner');
-      });
-    } else if (preset === 'core') {
-      placeMap.forEach(p => {
-        const on = CORE_PLACES.has(p.key);
-        colState[p.key] = on;
-        setColumnVisible(p.key, on);
-        if (placeChips[p.key]) updateChip(placeChips[p.key], on, 'place');
-      });
-      Object.keys(mannerRows).forEach(k => {
-        rowState[k] = true;
-        setMannerVisible(k, true);
-        if (mannerChips[k]) updateChip(mannerChips[k], true, 'manner');
-      });
-    }
-  }
-
-  // ── 8. Build the panel ────────────────────────────────────
-  const panel = document.getElementById('chart-toggles');
-  if (!panel) return;
-  panel.innerHTML = '';
-  panel.className = 'toggle-panel';
-
-  // Presets row
-  const presetsRow = document.createElement('div');
-  presetsRow.className = 'toggle-presets';
-
-  const presetDefs = [
-    { label: '⭐ Core languages', key: 'core',
-      title: 'Shows Bilabial, Alveolar, Palatal, Velar & Lateral — the places used across most SA languages' },
-    { label: '🌍 Show all', key: 'all',
-      title: 'Show every place of articulation and every manner' },
-  ];
-  presetDefs.forEach(({ label, key, title }) => {
-    const btn = makeChip(label, 'chip-preset', () => applyPreset(key));
-    btn.dataset.preset = key;
-    btn.title = title;
-    presetsRow.appendChild(btn);
+  [['⭐ Core places','core','Bilabial, Alveolar, Palatal, Velar and Lateral: the places used across most South African languages'],
+   ['🌍 Show all','all','Every place and every manner']].forEach(function(d){
+    var b = chip(d[0], 'chip-preset', true, function(){ preset(d[1]); }); b.className = 'chip chip-preset'; b.dataset.preset = d[1]; b.title = d[2]; presets.appendChild(b);
   });
-  panel.appendChild(presetsRow);
-
-  // Places section
-  const placesSection = document.createElement('div');
-  placesSection.className = 'toggle-section';
-  const placesLabel = document.createElement('div');
-  placesLabel.className = 'toggle-section-label';
-  placesLabel.textContent = 'Places of articulation';
-  const placesChips = document.createElement('div');
-  placesChips.className = 'toggle-chips';
-
-  placeMap.forEach(p => {
-    const btn = makeChip(p.label, 'chip chip-place on', () => {
-      activePreset = null;
-      document.querySelectorAll('.chip-preset').forEach(c => c.classList.remove('active-preset'));
-      colState[p.key] = !colState[p.key];
-      setColumnVisible(p.key, colState[p.key]);
-      updateChip(btn, colState[p.key], 'place');
-    });
-    updateChip(btn, true, 'place');
-    placeChips[p.key] = btn;
-    placesChips.appendChild(btn);
+  function clearPreset(){ presets.querySelectorAll('.chip-preset').forEach(function(c){ c.classList.remove('active-preset'); }); }
+  PLACES.forEach(function(p){
+    placeChips[p] = chip(p, 'chip-place', true, function(){ placeOn[p] = !placeOn[p]; clearPreset(); sync(); });
+    placeBox.appendChild(placeChips[p]);
+  });
+  CORE.concat(MORE).forEach(function(m){
+    mannerChips[m] = chip(m, 'chip-manner', true, function(){ mannerOn[m] = !mannerOn[m]; clearPreset(); sync(); });
+    mannerBox.appendChild(mannerChips[m]);
   });
 
-  placesSection.appendChild(placesLabel);
-  placesSection.appendChild(placesChips);
-  panel.appendChild(placesSection);
-
-  // Manners section
-  const mannersSection = document.createElement('div');
-  mannersSection.className = 'toggle-section';
-  const mannersLabel = document.createElement('div');
-  mannersLabel.className = 'toggle-section-label';
-  mannersLabel.textContent = 'Manners of articulation';
-  const mannersChips = document.createElement('div');
-  mannersChips.className = 'toggle-chips';
-
-  Object.keys(mannerRows).forEach(key => {
-    const label = mannerLabels[key] || key.replace(/_/g, ' ');
-    const btn = makeChip(label, 'chip chip-manner on', () => {
-      activePreset = null;
-      document.querySelectorAll('.chip-preset').forEach(c => c.classList.remove('active-preset'));
-      rowState[key] = !rowState[key];
-      setMannerVisible(key, rowState[key]);
-      updateChip(btn, rowState[key], 'manner');
-    });
-    updateChip(btn, true, 'manner');
-    mannerChips[key] = btn;
-    mannersChips.appendChild(btn);
-  });
-
-  mannersSection.appendChild(mannersLabel);
-  mannersSection.appendChild(mannersChips);
-  panel.appendChild(mannersSection);
-
-  // ── 9. Auto-apply Core preset on mobile + hide sparse rows ──
-  const SPARSE_ROWS = new Set([
-    'tap_or_flap',
-    'syllabic_approximants_&_trills',
-    'ejectives_&_implosive'
-  ]);
-
-  if (window.innerWidth < 768) {
-    applyPreset('core');
-    // Hide sparse manner rows on mobile by default
-    Object.keys(mannerRows).forEach(k => {
-      if (SPARSE_ROWS.has(k)) {
-        rowState[k] = false;
-        setMannerVisible(k, false);
-        if (mannerChips[k]) updateChip(mannerChips[k], false, 'manner');
-      }
-    });
-    // Add a small note under the manner chips
-    const sparseNote = document.createElement('p');
-    sparseNote.style.cssText = 'font-size:0.72rem;color:#9ca3af;text-align:center;margin:0.5rem 0 0;';
-    sparseNote.textContent = 'Some rare sounds hidden — tap their chip to show them.';
-    mannersSection.appendChild(sparseNote);
-  }
-
-});
+  // Phones start on the core places, with "More sounds" folded away.
+  if(window.innerWidth < 768){ document.getElementById('chart-more-wrap').open = false; preset('core'); }
+  else { preset('all'); }
+})();
 </script>
 
 </body>
