@@ -533,7 +533,28 @@
 .cc-glyph img { width:48px; height:48px; object-fit:contain; display:block; }
 .cc-glyph.mute { border-color:#e5e7eb; background:transparent; cursor:default; }
 .cc-glyph.playing, .cc-word.playing { background:#d1fae5; border-color:#10b981; }
-.cc-ipa { font-size:0.95rem; font-weight:700; color:#1f2937; }
+.cc-main { font-size:1.05rem; font-weight:700; color:#1f2937; line-height:1.2; }
+.cc-ipa { font-size:0.74rem; color:#6b7280; font-family:'Charis SIL','Doulos SIL','Gentium Plus','Noto Serif',Georgia,serif; }
+.rh-plain { display:block; font-size:0.72rem; font-weight:500; color:#6b7280; margin-bottom:0.15rem; }
+.row-new > * { animation: rowIn 0.6s ease-out; }
+@keyframes rowIn { from { background:#fef9c3; } }
+@media (prefers-reduced-motion: reduce){ .row-new > * { animation:none; } }
+.chart-steps { background:#fff; border:1px solid #e5e7eb; border-radius:0.75rem; padding:0.9rem 1rem; margin:0 0 0.75rem;
+  display:flex; flex-direction:column; gap:0.6rem; }
+.steps-count { font-size:0.68rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:#4f46e5; }
+.steps-head h4 { margin:0.2rem 0 0.25rem; font-size:1.05rem; color:#1f2937; }
+.steps-head h4 span { font-weight:400; color:#6b7280; font-size:0.85rem; }
+.steps-head p { margin:0; font-size:0.88rem; color:#374151; }
+.steps-nav { display:flex; gap:0.5rem; flex-wrap:wrap; }
+.link-btn { background:none; border:none; padding:0.3rem 0; color:#4f46e5; font:inherit; font-size:0.82rem; text-decoration:underline; cursor:pointer; align-self:flex-start; }
+.steps-whole { margin:0; font-size:0.85rem; color:#6b7280; }
+.chart-tbl th.row-head { min-width:110px; }
+/* One place at a time (phones): the table fits the screen, no sideways scroll */
+.chart-tbl.one { width:100%; min-width:0; table-layout:fixed; }
+.chart-tbl.one th.row-head, .chart-tbl.one th.corner { width:28%; min-width:0; position:static; font-size:0.72rem; }
+.chart-tbl.one td.cc, .chart-tbl.one td.cc-empty { min-width:0; max-width:none; padding:0.45rem 0.25rem; }
+.chart-tbl.one .cc-word { font-size:0.74rem; padding:0.2rem; }
+.chart-tbl.one .rh-plain { font-size:0.66rem; }
 .cc-sp { display:block; font-size:0.74rem; color:#4b5563; line-height:1.3; }
 .cc-sp i { font-style:normal; font-size:0.62rem; color:#9ca3af; letter-spacing:0.03em; }
 .cc-word { display:block; width:100%; margin-top:0.15rem; padding:0.25rem 0.3rem; border:1px solid #e5e7eb; border-radius:0.5rem;
@@ -949,8 +970,9 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
             <div class="chart-hint">&#128264; Tap a symbol to hear its syllable, or a word to hear the word</div>
             <div id="chart-toggles"></div>
             <p class="chart-note">Every symbol in this chart is a whole syllable: the consonant written with the vowel <em>a</em> (the downward triangle). Turn the triangle to change the vowel; the consonant marks stay where they are.</p>
-            <p class="chart-legend">Under each symbol: how it is spelled in the Latin alphabet. A spelling with no language named is the same in Nguni, Sotho, Tsonga and Venda.</p>
+            <p class="chart-legend">Under each symbol: the usual Latin spelling in large letters, and the sound in <strong>IPA</strong> in square brackets. IPA is the International Phonetic Alphabet that linguists use worldwide; its letters don't always match our spelling. IPA <em>[j]</em> is the <em>y</em> in <em>yini</em>, IPA <em>[x]</em> is the <em>rh</em> in <em>rhoxisa</em>, and IPA <em>[c]</em> is spelled <em>ty</em> or <em>tj</em>. A spelling with no language named is the same in Nguni, Sotho, Tsonga and Venda.</p>
             <h3 class="chart-title">Core sounds <span>the five basic manners</span></h3>
+            <div class="chart-steps" id="chart-steps"></div>
             <div class="table-container" id="chart-core"></div>
             <details class="chart-more" id="chart-more-wrap" open>
               <summary>More sounds <span>ejectives, implosives, trills, clicks and syllabic consonants</span></summary>
@@ -1124,33 +1146,51 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
 
 <script>
 /* Consonant chart, drawn from #chart-data.
-   Two tables: the five core manners first, then everything else, each with its
-   own header rows. Turning a place off removes its columns from both tables;
-   a place or manner with nothing to show in a table is left out of it. */
+   Two tables: the five core manners, then "More sounds". First-time visitors
+   meet the core manners one at a time in Pule's order (plosive, fricative,
+   affricate, approximant, nasal); each step adds a row under the last, and
+   "More sounds" opens after the nasal step. "Show the whole chart" skips the
+   steps and is remembered on that device.
+   On phones the chart shows one place at a time, so it fits the screen;
+   "All places" brings every column back, with sideways scrolling. */
 (function(){
   var DATA = JSON.parse(document.getElementById('chart-data').textContent);
   var PLACES = ['Bilabial','Labio-dental','Dental','Alveolar','Post-alveolar','Retroflex','Palatal','Velar','Glottal','Lateral'];
   var CORE = ['Plosive','Fricative','Affricate','Approximant','Nasal'];
   var MORE = ['Ejectives & Implosive','Trill','Tap or Flap','Clicks','Syllabic Nasal','Syllabic Approximants & Trills'];
+  var STEPS = [
+    ['Once-off sounds', 'plosives', 'The air is stopped completely, then released in one pop.'],
+    ['Continuous sounds, with a hiss', 'fricatives', 'The air keeps flowing through a narrow gap, so you hear a hiss.'],
+    ['Once-off, then continuous', 'affricates', 'A pop that turns straight into a hiss: the first two kinds joined.'],
+    ['Continuous sounds, no hiss', 'approximants, or semivowels', 'The tongue only comes close, so the air flows smoothly.'],
+    ['Continuous sounds through the nose', 'nasals', 'The mouth is closed, so the air leaves through the nose.']
+  ];
   var TAG = {NGU:'Nguni', SOT:'Sotho', TSO:'Tsonga', VEN:'Venda'};
   var LANGTAG = {'isiZulu':'Zulu','isiXhosa':'Xhosa','siSwati':'Swati','Sesotho':'Sotho','Setswana':'Tswana','Tshivenda':'Venda','Xitsonga':'Tsonga','isiZulu, Sesotho':'Zulu, Sotho','all':''};
   var CORE_PLACES = ['Bilabial','Alveolar','Palatal','Velar','Lateral'];
+  var PHONE = window.matchMedia('(max-width: 767px)').matches;
   var placeOn = {}, mannerOn = {};
   PLACES.forEach(function(p){ placeOn[p] = true; });
   CORE.concat(MORE).forEach(function(m){ mannerOn[m] = true; });
+  var onePlace = PHONE, step = 1, whole = false;
+  try { whole = localStorage.getItem('ibq-chart-whole') === '1'; } catch(e){}
 
   function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function cellAt(m,p,v){ for(var i=0;i<DATA.length;i++){ var c=DATA[i]; if(c.m===m&&c.p===p&&c.v===v) return c; } return null; }
 
-  function spellings(sp){
-    var keys = Object.keys(sp); if(!keys.length) return '';
-    var groups = {}, order = [];
+  /* Spelling first, IPA second: the large line is the spelling most language
+     groups share; the others follow with their language names. */
+  function spellBlock(c, syl){
+    var sp = c.sp, keys = Object.keys(sp), groups = {}, order = [];
     keys.forEach(function(k){ if(!groups[sp[k]]){ groups[sp[k]] = []; order.push(sp[k]); } groups[sp[k]].push(k); });
-    if(order.length === 1 && keys.length === 4) return '<span class="cc-sp">' + esc(order[0]) + '</span>';
     order.sort(function(a,b){ return groups[b].length - groups[a].length; });
-    return order.map(function(v){
-      return '<span class="cc-sp">' + esc(v) + ' <i>(' + groups[v].map(function(k){ return TAG[k]||k; }).join(', ') + ')</i></span>';
-    }).join('');
+    var names = function(v){ return groups[v].map(function(k){ return TAG[k]||k; }).join(', '); };
+    var ipa = syl ? '<div class="cc-ipa">[' + esc(syl) + ']</div>' : '';
+    if(!order.length) return '<div class="cc-main">' + esc(syl || '') + '</div>';
+    var main = order[0], all = groups[main].length === 4;
+    var h = '<div class="cc-main">' + esc(main) + '</div>' + (all ? '' : '<span class="cc-sp"><i>(' + names(main) + ')</i></span>') + ipa;
+    order.slice(1).forEach(function(v){ h += '<span class="cc-sp">' + esc(v) + ' <i>(' + names(v) + ')</i></span>'; });
+    return h;
   }
   function word(w){
     var i = w.w.indexOf(w.hl), shown = i < 0 ? esc(w.w) : esc(w.w.slice(0,i)) + '<b>' + esc(w.hl) + '</b>' + esc(w.w.slice(i + w.hl.length));
@@ -1165,26 +1205,63 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
     var img = '<img src="' + esc(c.img) + '" alt="' + esc(syl) + ' in isiBheqe" loading="lazy">';
     var glyph = c.snd ? '<button class="cc-glyph" data-snd="' + esc(c.snd) + '" aria-label="Hear ' + esc(syl) + '">' + img + '</button>'
                       : '<span class="cc-glyph mute" title="No recording yet">' + img + '</span>';
-    return '<td class="cc"><div class="cc-in">' + glyph + (syl ? '<div class="cc-ipa">' + esc(syl) + '</div>' : '')
-         + spellings(c.sp) + c.words.map(word).join('') + '</div></td>';
+    return '<td class="cc"><div class="cc-in">' + glyph + spellBlock(c, syl) + c.words.map(word).join('') + '</div></td>';
   }
   function build(el, manners){
-    var rows = manners.filter(function(m){ return mannerOn[m] && DATA.some(function(c){ return c.m===m && placeOn[c.p]; }); });
-    var places = PLACES.filter(function(p){ return placeOn[p] && DATA.some(function(c){ return c.p===p && rows.indexOf(c.m) >= 0; }); });
-    if(!rows.length || !places.length){ el.innerHTML = '<p class="chart-empty">Nothing to show here. Turn on a place or a manner above.</p>'; return; }
-    var h = '<table class="chart-tbl"><thead><tr><th class="corner" rowspan="2">Manner &darr;<br>Place &rarr;</th>';
+    /* During the steps every unlocked row shows, even where this place has no
+       such sound, and the columns stay put so only rows change. */
+    var stepping = !whole && manners === CORE;
+    var rows = manners.filter(function(m){ return mannerOn[m] && (stepping || DATA.some(function(c){ return c.m===m && placeOn[c.p]; })); });
+    var places = PLACES.filter(function(p){ return placeOn[p] && DATA.some(function(c){ return c.p===p && manners.indexOf(c.m) >= 0; }); });
+    if(!rows.length || !places.length){ el.innerHTML = '<p class="chart-empty">' + (onePlace ? 'No sounds at this place in this part of the chart. Choose another place above.' : 'Nothing to show here. Turn on a place or a manner above.') + '</p>'; return; }
+    var h = '<table class="chart-tbl' + (onePlace ? ' one' : '') + '"><thead><tr><th class="corner" rowspan="2">Manner &darr;<br>Place &rarr;</th>';
     places.forEach(function(p){ h += '<th colspan="2">' + esc(p) + '</th>'; });
     h += '</tr><tr>';
     places.forEach(function(){ h += '<th>voiceless</th><th>voiced</th>'; });
     h += '</tr></thead><tbody>';
     rows.forEach(function(m){
-      h += '<tr><th class="row-head" scope="row">' + esc(m) + '</th>';
+      var idx = CORE.indexOf(m), label = esc(m);
+      if(idx >= 0) label = '<span class="rh-plain">' + esc(STEPS[idx][0]) + '</span>' + esc(m);
+      h += '<tr' + (!whole && idx === step-1 ? ' class="row-new"' : '') + '><th class="row-head" scope="row">' + label + '</th>';
       places.forEach(function(p){ h += cell(cellAt(m,p,'voiceless')) + cell(cellAt(m,p,'voiced')); });
       h += '</tr>';
     });
     el.innerHTML = h + '</tbody></table>';
   }
-  function render(){ build(document.getElementById('chart-core'), CORE); build(document.getElementById('chart-more'), MORE); }
+
+  var stepsEl = document.getElementById('chart-steps'), moreWrap = document.getElementById('chart-more-wrap');
+  function renderSteps(){
+    if(whole){
+      stepsEl.innerHTML = '<p class="steps-whole">Showing the whole chart. <button class="link-btn" data-act="restart">Learn it step by step</button></p>';
+      return;
+    }
+    var st = STEPS[step-1];
+    var h = '<div class="steps-head"><span class="steps-count">Step ' + step + ' of 5</span>'
+          + '<h4>' + esc(st[0]) + ' <span>(' + esc(st[1]) + ')</span></h4><p>' + esc(st[2]) + '</p></div><div class="steps-nav">';
+    if(step > 1) h += '<button class="wt-nav-btn sec" data-act="back">&larr; Back</button>';
+    if(step < 5) h += '<button class="wt-nav-btn pri" data-act="next">Next: ' + esc(STEPS[step][0].toLowerCase()) + ' &rarr;</button>';
+    else h += '<button class="wt-nav-btn pri" data-act="more">On to more sounds &darr;</button>';
+    h += '</div><button class="link-btn" data-act="whole">Show the whole chart</button>';
+    stepsEl.innerHTML = h;
+  }
+  function render(){
+    if(!whole) CORE.forEach(function(m, i){ mannerOn[m] = i < step; });
+    moreWrap.hidden = !whole && step < 5;
+    mannerBoxWrap.hidden = !whole;
+    renderSteps();
+    build(document.getElementById('chart-core'), CORE);
+    build(document.getElementById('chart-more'), MORE);
+  }
+  stepsEl.addEventListener('click', function(e){
+    var b = e.target.closest('[data-act]'); if(!b) return;
+    var act = b.getAttribute('data-act');
+    if(act === 'next' && step < 5) step++;
+    if(act === 'back' && step > 1) step--;
+    if(act === 'more'){ moreWrap.open = true; moreWrap.scrollIntoView({behavior:'smooth', block:'start'}); return; }
+    if(act === 'whole'){ whole = true; CORE.concat(MORE).forEach(function(m){ mannerOn[m] = true; }); try{ localStorage.setItem('ibq-chart-whole','1'); }catch(e){} sync(); return; }
+    if(act === 'restart'){ whole = false; step = 1; try{ localStorage.removeItem('ibq-chart-whole'); }catch(e){} }
+    render();
+  });
 
   // Sound: one Audio object per file, made on first tap.
   var cache = {};
@@ -1199,46 +1276,52 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
   // Chips
   var panel = document.getElementById('chart-toggles');
   panel.className = 'toggle-panel'; panel.innerHTML = '';
-  function chip(label, cls, on, click){
-    var b = document.createElement('button'); b.textContent = label;
-    b.className = 'chip ' + cls + (on ? ' on' : ' off'); b.addEventListener('click', click); return b;
+  function chip(label, cls, click){
+    var b = document.createElement('button'); b.textContent = label; b.className = 'chip ' + cls; b.addEventListener('click', click); return b;
   }
   function section(label){
     var s = document.createElement('div'); s.className = 'toggle-section';
     s.innerHTML = '<div class="toggle-section-label">' + label + '</div><div class="toggle-chips"></div>';
-    panel.appendChild(s); return s.querySelector('.toggle-chips');
+    panel.appendChild(s); return s;
   }
   var presets = document.createElement('div'); presets.className = 'toggle-presets'; panel.appendChild(presets);
-  var placeBox = section('Places of articulation'), mannerBox = section('Manners of articulation');
-  var placeChips = {}, mannerChips = {};
+  var placeWrap = section('Places of articulation'), mannerBoxWrap = section('Manners of articulation');
+  var placeBox = placeWrap.querySelector('.toggle-chips'), mannerBox = mannerBoxWrap.querySelector('.toggle-chips');
+  var placeLabel = placeWrap.querySelector('.toggle-section-label');
+  var placeChips = {}, mannerChips = {}, presetChips = {};
   function sync(){
     PLACES.forEach(function(p){ placeChips[p].className = 'chip chip-place ' + (placeOn[p] ? 'on' : 'off'); });
     CORE.concat(MORE).forEach(function(m){ mannerChips[m].className = 'chip chip-manner ' + (mannerOn[m] ? 'on' : 'off'); });
+    placeLabel.textContent = onePlace ? 'Choose a place of articulation' : 'Places of articulation';
     render();
   }
-  function preset(key){
-    PLACES.forEach(function(p){ placeOn[p] = key === 'all' || CORE_PLACES.indexOf(p) >= 0; });
-    CORE.concat(MORE).forEach(function(m){ mannerOn[m] = true; });
-    presets.querySelectorAll('.chip-preset').forEach(function(c){ c.classList.toggle('active-preset', c.dataset.preset === key); });
+  function setPreset(key){
+    Object.keys(presetChips).forEach(function(k){ presetChips[k].classList.toggle('active-preset', k === key); });
+    if(key === 'one'){ onePlace = true; var first = PLACES.filter(function(p){ return placeOn[p]; })[0] || 'Bilabial'; PLACES.forEach(function(p){ placeOn[p] = p === first; }); }
+    else { onePlace = false; PLACES.forEach(function(p){ placeOn[p] = key === 'all' || CORE_PLACES.indexOf(p) >= 0; }); }
     sync();
   }
-  [['⭐ Core places','core','Bilabial, Alveolar, Palatal, Velar and Lateral: the places used across most South African languages'],
-   ['🌍 Show all','all','Every place and every manner']].forEach(function(d){
-    var b = chip(d[0], 'chip-preset', true, function(){ preset(d[1]); }); b.className = 'chip chip-preset'; b.dataset.preset = d[1]; b.title = d[2]; presets.appendChild(b);
+  var presetDefs = PHONE
+    ? [['One place at a time','one','Fits your screen: pick a place below'], ['All places ↔','all','Every place: scroll sideways']]
+    : [['⭐ Core places','core','Bilabial, Alveolar, Palatal, Velar and Lateral: the places used across most South African languages'], ['🌍 Show all','all','Every place and every manner']];
+  presetDefs.forEach(function(d){
+    var b = chip(d[0], 'chip-preset', function(){ setPreset(d[1]); }); b.title = d[2]; presetChips[d[1]] = b; presets.appendChild(b);
   });
-  function clearPreset(){ presets.querySelectorAll('.chip-preset').forEach(function(c){ c.classList.remove('active-preset'); }); }
+  function clearPreset(){ Object.keys(presetChips).forEach(function(k){ if(!(onePlace && k === 'one')) presetChips[k].classList.remove('active-preset'); }); }
   PLACES.forEach(function(p){
-    placeChips[p] = chip(p, 'chip-place', true, function(){ placeOn[p] = !placeOn[p]; clearPreset(); sync(); });
+    placeChips[p] = chip(p, 'chip-place', function(){
+      if(onePlace){ PLACES.forEach(function(q){ placeOn[q] = q === p; }); }
+      else { placeOn[p] = !placeOn[p]; clearPreset(); }
+      sync();
+    });
     placeBox.appendChild(placeChips[p]);
   });
   CORE.concat(MORE).forEach(function(m){
-    mannerChips[m] = chip(m, 'chip-manner', true, function(){ mannerOn[m] = !mannerOn[m]; clearPreset(); sync(); });
+    mannerChips[m] = chip(m, 'chip-manner', function(){ mannerOn[m] = !mannerOn[m]; clearPreset(); sync(); });
     mannerBox.appendChild(mannerChips[m]);
   });
 
-  // Phones start on the core places, with "More sounds" folded away.
-  if(window.innerWidth < 768){ document.getElementById('chart-more-wrap').open = false; preset('core'); }
-  else { preset('all'); }
+  if(PHONE){ moreWrap.open = false; setPreset('one'); } else { setPreset('all'); }
 })();
 </script>
 
