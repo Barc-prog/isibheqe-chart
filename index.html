@@ -555,6 +555,13 @@
 .chart-tbl.one td.cc, .chart-tbl.one td.cc-empty { min-width:0; max-width:none; padding:0.45rem 0.25rem; }
 .chart-tbl.one .cc-word { font-size:0.74rem; padding:0.2rem; }
 .chart-tbl.one .rh-plain { font-size:0.66rem; }
+.place-nav { padding:0.3rem !important; }
+.place-nav { white-space:nowrap; }
+.place-nav > span { display:inline-block; vertical-align:middle; margin:0 0.4rem; line-height:1.15; }
+.place-nav small { display:block; font-size:0.62rem; font-weight:500; opacity:0.85; }
+.pl-btn { vertical-align:middle; width:44px; height:44px; border-radius:50%; border:2px solid rgba(255,255,255,0.7);
+  background:rgba(255,255,255,0.15); color:#fff; font-size:1.6rem; line-height:1; cursor:pointer; }
+.pl-btn:active { background:rgba(255,255,255,0.35); }
 .cc-sp { display:block; font-size:0.74rem; color:#4b5563; line-height:1.3; }
 .cc-sp i { font-style:normal; font-size:0.62rem; color:#9ca3af; letter-spacing:0.03em; }
 .cc-word { display:block; width:100%; margin-top:0.15rem; padding:0.25rem 0.3rem; border:1px solid #e5e7eb; border-radius:0.5rem;
@@ -1207,6 +1214,13 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
                       : '<span class="cc-glyph mute" title="No recording yet">' + img + '</span>';
     return '<td class="cc"><div class="cc-in">' + glyph + spellBlock(c, syl) + c.words.map(word).join('') + '</div></td>';
   }
+  /* Phones: move to the previous or next place that has any sounds. */
+  function placesWithSounds(){ return PLACES.filter(function(p){ return DATA.some(function(c){ return c.p === p; }); }); }
+  function stepPlace(dir){
+    var all = placesWithSounds(), cur = all.filter(function(p){ return placeOn[p]; })[0] || all[0];
+    var next = all[(all.indexOf(cur) + dir + all.length) % all.length];
+    PLACES.forEach(function(p){ placeOn[p] = p === next; }); sync();
+  }
   function build(el, manners){
     /* During the steps every unlocked row shows, even where this place has no
        such sound, and the columns stay put so only rows change. */
@@ -1215,7 +1229,13 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
     var places = PLACES.filter(function(p){ return placeOn[p] && DATA.some(function(c){ return c.p===p && manners.indexOf(c.m) >= 0; }); });
     if(!rows.length || !places.length){ el.innerHTML = '<p class="chart-empty">' + (onePlace ? 'No sounds at this place in this part of the chart. Choose another place above.' : 'Nothing to show here. Turn on a place or a manner above.') + '</p>'; return; }
     var h = '<table class="chart-tbl' + (onePlace ? ' one' : '') + '"><thead><tr><th class="corner" rowspan="2">Manner &darr;<br>Place &rarr;</th>';
-    places.forEach(function(p){ h += '<th colspan="2">' + esc(p) + '</th>'; });
+    places.forEach(function(p){
+      if(!onePlace){ h += '<th colspan="2">' + esc(p) + '</th>'; return; }
+      var all = placesWithSounds(), n = all.indexOf(p) + 1;
+      h += '<th colspan="2" class="place-nav"><button class="pl-btn" data-pl="-1" aria-label="Previous place">&lsaquo;</button>'
+         + '<span>' + esc(p) + '<small>' + n + ' of ' + all.length + ' &middot; swipe</small></span>'
+         + '<button class="pl-btn" data-pl="1" aria-label="Next place">&rsaquo;</button></th>';
+    });
     h += '</tr><tr>';
     places.forEach(function(){ h += '<th>voiceless</th><th>voiced</th>'; });
     h += '</tr></thead><tbody>';
@@ -1266,11 +1286,23 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
   // Sound: one Audio object per file, made on first tap.
   var cache = {};
   document.querySelector('.chart-section').addEventListener('click', function(e){
+    var pl = e.target.closest('[data-pl]'); if(pl){ stepPlace(+pl.getAttribute('data-pl')); return; }
     var btn = e.target.closest('[data-snd]'); if(!btn) return;
     var src = btn.getAttribute('data-snd'), a = cache[src] || (cache[src] = new Audio(src));
     a.currentTime = 0; btn.classList.add('playing');
     a.onended = function(){ btn.classList.remove('playing'); };
     a.play().catch(function(){ btn.classList.remove('playing'); });
+  });
+
+  // Swipe sideways on a table to change place (one-place mode only).
+  ['chart-core','chart-more'].forEach(function(id){
+    var el = document.getElementById(id), x0 = null, y0 = 0;
+    el.addEventListener('touchstart', function(e){ var t = e.touches[0]; x0 = t.clientX; y0 = t.clientY; }, {passive:true});
+    el.addEventListener('touchend', function(e){
+      if(x0 === null || !onePlace) return;
+      var t = e.changedTouches[0], dx = t.clientX - x0, dy = t.clientY - y0; x0 = null;
+      if(Math.abs(dx) > 60 && Math.abs(dx) > 1.5 * Math.abs(dy)) stepPlace(dx < 0 ? 1 : -1);
+    }, {passive:true});
   });
 
   // Chips
