@@ -1,0 +1,238 @@
+{
+  "_status": "UNVERIFIED candidates, pasted 21 Oct 2026 from an AI-generated summary that calls itself a PanSALB dataset. Not checked against any PanSALB source. Do not publish until Pule / Fanyane confirm.",
+  "project": "Isibheqe Sohlamvu / Ditema tsa Dinoko Phonetic Mapping",
+  "language_families": {
+    "nguni": [
+      "isiZulu",
+      "Siswati",
+      "isiNdebele",
+      "isiXhosa"
+    ],
+    "sotho_tswana": [
+      "Sepedi",
+      "Setswana",
+      "Sesotho"
+    ],
+    "tsonga": [
+      "Xitsonga"
+    ],
+    "venda": [
+      "Tshivenḓa"
+    ]
+  },
+  "grid_axes_and_categories": {
+    "place_of_articulation": {
+      "isiZulu": {
+        "term": "Indawo yokuphimisa",
+        "literal_gloss": "Place of uttering/pronouncing (-phimisa)"
+      },
+      "Siswati": {
+        "term": "Tindzawo tekutsintsa",
+        "literal_gloss": "Places of contact/touching (-tsintsa)"
+      },
+      "isiNdebele": {
+        "term": "Indawo yokubiza",
+        "literal_gloss": "Place of calling/naming (-biza)"
+      },
+      "isiXhosa": {
+        "term": "Indawo yokuphimisa",
+        "literal_gloss": "Place of pronouncing"
+      },
+      "Sepedi": {
+        "term": "Lefelo la kwagatšo",
+        "literal_gloss": "Place of making heard (-kwa)"
+      },
+      "Setswana": {
+        "term": "Lefelo la tlhagiso ya medumo",
+        "literal_gloss": "Place of sound production"
+      },
+      "Sesotho": {
+        "term": "Lefelo la hlahiso",
+        "literal_gloss": "Place of production"
+      },
+      "Xitsonga": {
+        "term": "Ndzawu ya matwariselo",
+        "literal_gloss": "Place of vocalization (-twa)"
+      },
+      "Tshivenḓa": {
+        "term": "Fhethu ha mubulo",
+        "literal_gloss": "Place of enunciation (-vula)"
+      }
+    },
+    "manner_of_articulation": {
+      "isiZulu": {
+        "term": "Indlela yokuphimisa",
+        "literal_gloss": "Way/path of pronouncing"
+      },
+      "Siswati": {
+        "term": "Imisindvo yenkhulumo",
+        "literal_gloss": "Sounds of speech (-khuluma)"
+      },
+      "isiNdebele": {
+        "term": "Isimo / Indlela yokubiza",
+        "literal_gloss": "Manner/condition of calling"
+      },
+      "isiXhosa": {
+        "term": "Indlela yokuphimisa",
+        "literal_gloss": "Way/path of pronouncing"
+      },
+      "Sepedi": {
+        "term": "Mokgwa wa kwagatšo",
+        "literal_gloss": "Manner of making heard"
+      },
+      "Setswana": {
+        "term": "Mokgwa wa kwagatšo",
+        "literal_gloss": "Manner of making heard"
+      },
+      "Sesotho": {
+        "term": "Mokgwa wa hlahiso",
+        "literal_gloss": "Manner of production"
+      },
+      "Xitsonga": {
+        "term": "Mpfumawulo",
+        "literal_gloss": "Resonance/sound (-pfuma)"
+      },
+      "Tshivenḓa": {
+        "term": "Nḓila ya kubulele",
+        "literal_gloss": "Method/way of speaking (-vhula)"
+      }
+    },
+    "consonants": {
+      "Nguni": "Ongwaqa / Izongwaqa",
+      "Sotho_Tswana": "Ditumammogo / Ditumammhoho (sounds together)",
+      "Xitsonga": "Switatisi",
+      "Tshivenḓa": "Mubulo / Themba"
+    },
+    "vowels": {
+      "Nguni": "Izinkamisa / Bonkhamisa / Abokamisa",
+      "Sotho_Tswana": "Ditumanoši / Ditumanosi (sounds alone)",
+      "Xitsonga": "Switwari (independent sound units)",
+      "Tshivenḓa": "Pfhalandoṱhe"
+    }
+  },
+  "places_of_articulation": [
+    {
+      "ipa_label": "Bilabial",
+      "isiZulu_Siswati_isiNdebele": "Undebembili / Undzebembili (two lips: undebe + -bili)",
+      "Sepedi_Setswana": "Pou / Ditumapou / Ditumammogopou (lip sounds)",
+      "Xitsonga": "Milomu / Xa milomu (lips / of the mouth)",
+      "Tshivenḓa": "Meme (lip/rim)"
+    },
+    {
+      "ipa_label": "Labiodental",
+      "isiZulu_Siswati_isiNdebele": "Undebezinyo / Undzebetinyo (lip + tooth: undebe + izinyo)",
+      "Sepedi_Setswana": "Pouinong / Ditumammogopouinong (at lip and tooth)",
+      "Xitsonga": "Nomutino (mouth/lip + tooth: nomu + tino)",
+      "Tshivenḓa": "Ndumamulomo (biting/connecting lip to mouth)"
+    },
+    {
+      "ipa_label": "Dental",
+      "isiZulu_Siswati_isiNdebele": "Amazinyo / Umatinyweni / Uzinyo (at the teeth)",
+      "Sepedi_Setswana": "Leino (tooth)",
+      "Xitsonga": "Tino (tooth)",
+      "Tshivenḓa": "Ndumalulimi (touching/biting the tongue - for ṱ, ḓ)"
+    },
+    {
+      "ipa_label": "Alveolar",
+      "isiZulu_Siswati_isiNdebele": "Unsinini / Usinini (at the gums: izinsini + -ini)",
+      "Sepedi_Setswana": "Marinini / Ditumammogarinini (gums)",
+      "Xitsonga": "Alivhiyola (nativized alveolus)",
+      "Tshivenḓa": "Marinini (gums)"
+    },
+    {
+      "ipa_label": "Lateral Alveolar",
+      "isiZulu_Siswati_isiNdebele": "Unsinininhlangothi / Unsininiceleni (gums + side)",
+      "Sepedi_Setswana": "Hlakore / Tumatlhaamarama (side / jaw-cheeks)",
+      "Xitsonga": "Alivhiyolatlhelo (alveolar + side: tlhelo)",
+      "Tshivenḓa": "Marinini-tlhelo"
+    },
+    {
+      "ipa_label": "Palatal / Alveopalatal",
+      "isiZulu_Siswati_isiNdebele": "Ulwangeni / Urhwalabha / Usininirhwalabha (at the palate/roof of mouth)",
+      "Sepedi_Setswana": "Logalapa / Tumagalapa (hard palate)",
+      "Xitsonga": "Malaka (tonsils / palato-alveolar muscles)",
+      "Tshivenḓa": "Lulimi / Palatali"
+    },
+    {
+      "ipa_label": "Velar",
+      "isiZulu_Siswati_isiNdebele": "Umalakeni / Umalageni / Umalakanya (soft palate / tonsil area)",
+      "Sepedi_Setswana": "Tengwana / Tumatengwana (inner throat)",
+      "Xitsonga": "Lakalaka (uvula / deep throat)",
+      "Tshivenḓa": "Haṅwanimurahu (back of the throat)"
+    },
+    {
+      "ipa_label": "Glottal",
+      "isiZulu_Siswati_isiNdebele": "Umphinjeni (at the throat: umphimbo + -eni)",
+      "Sepedi_Setswana": "Mokolo",
+      "Xitsonga": "Nkolo (throat/larynx)",
+      "Tshivenḓa": "Mugodi-vhuya"
+    }
+  ],
+  "manners_of_articulation": [
+    {
+      "ipa_label": "Plosive / Explosive",
+      "isiZulu_Siswati_isiNdebele": "Ubhamu / Umadubula / Udumuza (bang / shoot / rumble)",
+      "Sepedi_Setswana": "Thunya / Ditumathunya (blast / explode)",
+      "Xitsonga": "Xibulukelahandle (that explodes outward: -buluka + handle)",
+      "Tshivenḓa": "Mubvumothivhelwa (obstructed sound breaking through)"
+    },
+    {
+      "ipa_label": "Implosive",
+      "isiZulu_Siswati_isiNdebele": "Ububula / Umabibitfwa (soft indrawn moan/swallow)",
+      "Xitsonga": "Xibulukelandzeni (that explodes inward: -buluka + ndzeni)"
+    },
+    {
+      "ipa_label": "Fricative",
+      "isiZulu_Siswati_isiNdebele": "Umfuthwa / Umavuthelwa / Isikhuhlwa (blown/hissing/scraping)",
+      "Sepedi_Setswana": "Putšwetšo / Ditumagwasa (blowing/rustling)",
+      "Xitsonga": "Xikhuhlano (scraping/friction sound: -khuhla)",
+      "isiXhosa": "Isikhuhlwa / Isifutho (scraping/blown sound)"
+    },
+    {
+      "ipa_label": "Affricate",
+      "isiZulu_Siswati_isiNdebele": "Umfuthwambhanqwa / Sicinisamfutfo / Umavuthelwagandelela (paired/strengthened blown sound)",
+      "Sepedi_Setswana": "Gwaša / Kgwasa (heavy rustling sound)",
+      "Xitsonga": "Ntsetelo (pinched/clicked release sound: -tsetela)"
+    },
+    {
+      "ipa_label": "Nasal",
+      "isiZulu_Siswati_isiNdebele": "Omankankeni / Bomafonkholo / Umakghadlana (snuffling/snorting resonance)",
+      "Sepedi_Setswana": "Nko / Ditumanko (nose sounds)",
+      "Xitsonga": "Xinhompfu (nose sound: nhompfu)",
+      "Tshivenḓa": "Nasala"
+    },
+    {
+      "ipa_label": "Approximant / Semi-vowel",
+      "isiZulu_Siswati_isiNdebele": "Usondelela / Bosankhamisa / Usingakamisa (the near-approacher / pseudo-vowel)",
+      "Sepedi_Setswana": "Sedumedi",
+      "Xitsonga": "Xitwalana (little heard unit / semi-vowel)"
+    },
+    {
+      "ipa_label": "Clicks",
+      "isiZulu_Siswati_isiNdebele": "Ongwaqabathwa / Bongwacabatfwa (consonants of the San/Khoisan people)",
+      "Xitsonga": "Swibulukelandzeni / Q / C / X",
+      "Sepedi_Setswana": "Medumo ya Sekhoisan / Dikgwasa"
+    }
+  ],
+  "featural_modifiers": {
+    "prenasalisation": {
+      "Xitsonga": "Nhompfuhato",
+      "isiZulu": "Ukunkankaza",
+      "Sotho_Tswana": "Kutlo-nko"
+    },
+    "labialisation": {
+      "Xitsonga": "Nomuhato (w-mark)",
+      "isiZulu": "Ukwenza ngemilomu",
+      "Sotho_Tswana": "Pouinto"
+    },
+    "palatalisation": {
+      "Xitsonga": "Ndzakahato (y-mark)",
+      "isiZulu": "Ukulwangisa"
+    },
+    "aspiration_breathiness": {
+      "Xitsonga": "Ntiyisiso / Mpfumawulo wa ntiyisiso (h-mark)",
+      "Sotho_Tswana": "Mohemo / Maswafo (lung/breath sound)",
+      "isiZulu": "Umoya / Umfuthwa"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "_status": "SOURCED from official orthography books (PanSALB / National Lexicography Units). Still needs Pule / Fanyane to choose which terms the chart uses. Extracted 24 Oct 2026.",
+  "_sources": {
+    "ZUL": "isiZulu: Ukuvamisa Imithetho Yokubhala (PanSALB). Section 6.3 'Ukuchazwa Kongwaqa BesiZulu', printed pp. 64-68; consonant chart p. 78 (taken from IsiZulu Soqobo, Zulu et al. 1987:19).",
+    "VEN": "Tshivenda Orthography and Spelling Rules, 14 Dec 2023. Section 3.2, printed p. 8.",
+    "SOT": "Sesotho: Melawana ya Mopeleto le Karohanyo ya Mantswe Mongolong wa Sesotho (2019). Kgaolo 1, printed pp. 1-11 (PDF pp. 14-24). Read by OCR, so check spellings against the printed book."
+  },
+  "headings": {
+    "place_of_articulation": {"ZUL": "Indawo lapho kuphinyiswa khona ongwaqa", "VEN": "Fhethu ha mubulo"},
+    "manner_of_articulation": {"ZUL": "Indlela yokuphimisa ongwaqa (chart heading: Isimo / Indlela yokuphimisa)", "VEN": "Nḓila ya kubulele"},
+    "consonants": {"ZUL": "ongwaqa", "VEN": "themba", "SOT": "didumammoho"},
+    "vowels": {"ZUL": "onkamisa", "VEN": "pfhalandoṱhe", "SOT": "didumannotshi / didumanotshi"},
+    "semivowels": {"ZUL": "osingankamisa", "VEN": "pfhalanyana"}
+  },
+  "places": {
+    "bilabial": {"ZUL": "undebembili", "VEN": "meme"},
+    "labiodental": {"ZUL": "undebezinyo", "VEN": "ndumamulomo"},
+    "dental": {"ZUL": "(click only) ongumazinyweni", "VEN": "ndumalulimi"},
+    "alveolar": {"ZUL": "unsinini", "VEN": "marinini"},
+    "lateral alveolar": {"ZUL": "unsinininhlangothi", "SOT": "lehlakore (side; describes lateral release)"},
+    "alveopalatal / prepalatal": {"ZUL": "unsininilwangeni", "VEN": "thangelaphalathala"},
+    "palatal": {"ZUL": "ulwangeni", "VEN": "phalathala", "SOT": "mahalapa (hard palate)"},
+    "velar": {"ZUL": "umalakeni", "VEN": "haṅwanimurahu", "SOT": "mahanana a bonojwana (soft palate)"},
+    "glottal": {"ZUL": "umphinjeni", "VEN": "gulokulo"},
+    "labiovelar": {"VEN": "memehaṅwanimurahu"},
+    "labioalveolar": {"VEN": "mememarinini"}
+  },
+  "manners": {
+    "stops (umbrella)": {"ZUL": "omvinjwa"},
+    "continuants (umbrella)": {"ZUL": "omahululeka"},
+    "plosive": {"ZUL": "ubhamu / umadubula", "VEN": "mubvumothivhelwa / tshitopo", "SOT": "sekgitli"},
+    "implosive": {"ZUL": "umbibithwa"},
+    "fricative": {"ZUL": "umfuthwa / ungwaqamfuthwa", "VEN": "tswatswara", "SOT": "sehohli"},
+    "affricate": {"ZUL": "umfuthwambhanqwa", "VEN": "thatsuvha / tshayatswatswara", "SOT": "modumo o rarahaneng (complex sound: sekgitli + sehohli)"},
+    "nasal": {"ZUL": "umankankeni", "VEN": "nyungi", "SOT": "ditumanko / botumanko"},
+    "approximant": {"ZUL": "usondelela", "VEN": "pfhalanyana (glide)"},
+    "lateral": {"ZUL": "unhlangothi"},
+    "liquid": {"VEN": "tsuvha"},
+    "trill": {"ZUL": "uvevezela"},
+    "click": {"ZUL": "ungwaqabathwa"}
+  },
+  "phonation_and_airstream": {
+    "voiced": {"ZUL": "onezwi", "SOT": "o kodufaditsweng"},
+    "voiceless": {"ZUL": "ongenazwi", "SOT": "o sa kodufatswang"},
+    "aspirated": {"ZUL": "ompheshethwa", "SOT": "phefumoloho (aspiration)"},
+    "ejective": {"ZUL": "ababukhali (chart row label, p. 78); described as imisindo engasebenzisi umoya wasemaphashini, p. 68"},
+    "breathy voice": {"ZUL": "abanezwikazi (chart); ovungazayo noma onokuphephetha (p. 77)"}
+  },
+  "vowel_descriptions_ZUL": {
+    "front / back": "ophambili / osemuva (ongemuva)",
+    "high / low": "ophezulu / ophansi",
+    "spread / rounded lips": "izindebe zinwebekile / izindebe ziyindilinga"
+  }
+}
