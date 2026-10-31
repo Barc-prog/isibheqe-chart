@@ -502,6 +502,10 @@
 .vowel-btn { min-width:44px; min-height:44px; border-radius:999px; border:1.5px solid #bfdbfe; background:#eff6ff;
   color:#1d4ed8; font-weight:700; font-size:1rem; cursor:pointer; }
 .vowel-btn:active { background:#dbeafe; }
+.word-hot { fill: rgba(255,255,255,0.001); stroke: rgba(129,140,248,0.55); stroke-width:2; stroke-dasharray:5 4; cursor:pointer; }
+.word-hot:hover { fill: rgba(99,102,241,0.18); stroke:#6366f1; }
+.word-hot.vh-playing { fill: rgba(16,185,129,0.22); stroke:#10b981; }
+.word-btn { font-size:0.8rem; padding:0 0.7rem; background:#f5f3ff; border-color:#ddd6fe; }
 .house-callout { background:#fefce8; border-left:4px solid #ca8a04; border-radius:0.5rem; padding:0.7rem 0.9rem;
   font-size:0.85rem; color:#422006; margin:0 0 1rem; line-height:1.5; }
 .word-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; margin-top:0.6rem; }
@@ -628,7 +632,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
 
       <!-- Interactive Onkamisa diagram -->
       <div class="onkamisa-wrap">
-        <p class="onkamisa-hint">👆 Tap a vowel to hear it &mdash; on the diagram or the buttons below</p>
+        <p class="onkamisa-hint">👆 Tap a vowel or a word to hear it &mdash; on the diagram or the buttons below</p>
         <div class="onkamisa-container">
           <img src="images/isibheqe-onkamisa-768x515.png"
                alt="The Onkamisa diagram showing all seven vowels of IsiBheqe inside a large inverted triangle"
@@ -677,6 +681,23 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
                      points="332,339 421,335 376,420"
                      onclick="onkamisaPlay('a_sound', this)"/>
 
+            <!-- example words on the diagram -->
+            <rect class="word-hot" x="5" y="45" width="103" height="67" rx="6"
+                  data-label="imithi: a word with i" onclick="onkamisaPlay('w_imithi', this)"/>
+            <rect class="word-hot" x="652" y="45" width="100" height="67" rx="6"
+                  data-label="umuntu: a word with u" onclick="onkamisaPlay('w_umuntu', this)"/>
+            <rect class="word-hot" x="42" y="155" width="88" height="57" rx="6"
+                  data-label="ekete: a word with e" onclick="onkamisaPlay('w_ekete', this)"/>
+            <rect class="word-hot" x="20" y="210" width="122" height="58" rx="6"
+                  data-label="keleleme: a word with e" onclick="onkamisaPlay('w_keleleme', this)"/>
+            <rect class="word-hot" x="150" y="310" width="65" height="58" rx="6"
+                  data-label="ewe: a word with ɛ" onclick="onkamisaPlay('w_ewe', this)"/>
+            <rect class="word-hot" x="595" y="165" width="125" height="60" rx="6"
+                  data-label="omosotho: a word with o" onclick="onkamisaPlay('w_omosotho', this)"/>
+            <rect class="word-hot" x="540" y="268" width="100" height="60" rx="6"
+                  data-label="ogogo: a word with ɔ" onclick="onkamisaPlay('w_ogogo', this)"/>
+            <rect class="word-hot" x="495" y="373" width="109" height="59" rx="6"
+                  data-label="amabhaca: a word with a" onclick="onkamisaPlay('w_amabhaca', this)"/>
           </svg>
         </div>
         <div class="vowel-btns">
@@ -687,6 +708,16 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
           <button class="vowel-btn" onclick="onkamisaPlay('ɛ_sound', null, 'ɛ — open-mid front vowel')">ɛ</button>
           <button class="vowel-btn" onclick="onkamisaPlay('ɔ_sound', null, 'ɔ — open-mid back vowel')">ɔ</button>
           <button class="vowel-btn" onclick="onkamisaPlay('a_sound', null, 'a — low vowel, tongue drops')">a</button>
+        </div>
+        <div class="vowel-btns word-btns">
+          <button class="vowel-btn word-btn" onclick="onkamisaPlay('w_imithi', null, 'imithi: a word with i')">imithi</button>
+          <button class="vowel-btn word-btn" onclick="onkamisaPlay('w_umuntu', null, 'umuntu: a word with u')">umuntu</button>
+          <button class="vowel-btn word-btn" onclick="onkamisaPlay('w_ekete', null, 'ekete: a word with e')">ekete</button>
+          <button class="vowel-btn word-btn" onclick="onkamisaPlay('w_keleleme', null, 'keleleme: a word with e')">keleleme</button>
+          <button class="vowel-btn word-btn" onclick="onkamisaPlay('w_ewe', null, 'ewe: a word with ɛ')">ewe</button>
+          <button class="vowel-btn word-btn" onclick="onkamisaPlay('w_omosotho', null, 'omosotho: a word with o')">omosotho</button>
+          <button class="vowel-btn word-btn" onclick="onkamisaPlay('w_ogogo', null, 'ogogo: a word with ɔ')">ogogo</button>
+          <button class="vowel-btn word-btn" onclick="onkamisaPlay('w_amabhaca', null, 'amabhaca: a word with a')">amabhaca</button>
         </div>
         <div class="onkamisa-lbl" id="onkamisa-lbl">&nbsp;</div>
       </div>
@@ -1000,13 +1031,21 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
             <audio id="w_bhabha" src="audio/words/bhabha.mp3" preload="auto"></audio>
             <audio id="w_papadi" src="audio/words/papadi.mp3" preload="auto"></audio>
             <audio id="w_baba" src="audio/words/baba.mp3" preload="auto"></audio>
-            <audio id="i_sound" src="audio/i_sound.ogg" preload="auto"></audio>
-            <audio id="e_sound" src="audio/e_sound.ogg" preload="auto"></audio>
-            <audio id="ɛ_sound" src="audio/ɛ_sound.ogg" preload="auto"></audio>
-            <audio id="a_sound" src="audio/a_sound.ogg" preload="auto"></audio>
-            <audio id="ɔ_sound" src="audio/ɔ_sound.ogg" preload="auto"></audio>
-            <audio id="o_sound" src="audio/o_sound.ogg" preload="auto"></audio>
-            <audio id="u_sound" src="audio/u_sound.ogg" preload="auto"></audio>
+            <audio id="i_sound" src="audio/vowels/i_vowel.mp3" preload="auto"></audio>
+            <audio id="e_sound" src="audio/vowels/e_vowel.mp3" preload="auto"></audio>
+            <audio id="ɛ_sound" src="audio/vowels/open_e_vowel.mp3" preload="auto"></audio>
+            <audio id="a_sound" src="audio/vowels/a_vowel.mp3" preload="auto"></audio>
+            <audio id="ɔ_sound" src="audio/vowels/open_o_vowel.mp3" preload="auto"></audio>
+            <audio id="o_sound" src="audio/vowels/o_vowel.mp3" preload="auto"></audio>
+            <audio id="u_sound" src="audio/vowels/u_vowel.mp3" preload="auto"></audio>
+            <audio id="w_imithi" src="audio/words/imithi.mp3" preload="none"></audio>
+            <audio id="w_umuntu" src="audio/words/umuntu.mp3" preload="none"></audio>
+            <audio id="w_ekete" src="audio/words/ekete.mp3" preload="none"></audio>
+            <audio id="w_keleleme" src="audio/words/keleleme.mp3" preload="none"></audio>
+            <audio id="w_ewe" src="audio/words/ewe.mp3" preload="none"></audio>
+            <audio id="w_omosotho" src="audio/words/omosotho.mp3" preload="none"></audio>
+            <audio id="w_ogogo" src="audio/words/ogogo.mp3" preload="none"></audio>
+            <audio id="w_amabhaca" src="audio/words/amabhaca.mp3" preload="none"></audio>
 
             
             <!-- Plosives -->
