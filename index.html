@@ -397,6 +397,9 @@
 .top-lines { display: inline-block; text-align: left; margin: 0 auto; }
 .wt-step-gloss { font-size: 0.65rem; color: #9ca3af; white-space: nowrap; margin-top: -0.2rem; }
 .wt-section-gloss { font-weight: 500; text-transform: none; letter-spacing: 0; color: #6b7280; margin-left: 0.4rem; }
+.heads-fig { margin: 0 0 1rem; text-align: center; }
+.heads-fig img { max-width: 360px; width: 100%; height: auto; display: inline-block; }
+.heads-fig figcaption { font-size: 0.75rem; color: #6b7280; margin-top: 0.25rem; }
 .wt-heading    { font-size: 1.2rem; font-weight: 700; color: #111827; margin: 0 0 0.2rem; }
 .wt-subheading { font-size: 0.875rem; color: #6b7280; margin: 0 0 1.25rem; }
 .wt-cols { display: flex; gap: 1.75rem; align-items: flex-start; }
@@ -555,6 +558,8 @@
 .cc-glyph.playing, .cc-word.playing { background:#d1fae5; border-color:#10b981; }
 .cc-main { font-size:1.05rem; font-weight:700; color:#1f2937; line-height:1.2; }
 .cc-ipa { font-size:0.74rem; color:#6b7280; font-family:'Charis SIL','Doulos SIL','Gentium Plus','Noto Serif',Georgia,serif; }
+.zu-term { display:block; font-weight:700; }
+.en-gloss { font-weight:400; opacity:0.75; font-size:0.85em; }
 .rh-plain { display:block; font-size:0.72rem; font-weight:500; color:#6b7280; margin-bottom:0.15rem; }
 .row-new > * { animation: rowIn 0.6s ease-out; }
 @keyframes rowIn { from { background:#fef9c3; } }
@@ -628,7 +633,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
             <img src="images/Aspirated_bilabial_plosive.png" alt="ibheqe for pha">
           </div>
           <div class="wt-symbol-cap">p&#x02B0;a</div>
-          <button class="wt-play" onclick="wtPlay('Aspirated_bilabial_plosive',this)">&#9654; Hear it</button>
+          <button class="wt-play" onclick="wtPlay('pha_bandile',this)">&#9654; Hear it</button>
         </div>
         <div class="wt-col-text">
           <ul class="wt-lines">
@@ -656,6 +661,10 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
         <li><em>e</em> and <em>&#603;</em> are made at the front, so they point left (the front of a face looking left).</li>
         <li><em>o</em> and <em>&#596;</em> are made at the back, so they point right.</li>
       </ul>
+      <figure class="heads-fig">
+        <img src="images/onkamisa-heads-facing-left.jpg" alt="Vowel triangle with three heads facing left: i and u at the top, e and ɛ pointing left, o and ɔ pointing right, a at the bottom">
+        <figcaption>The head faces left: front vowels point left, back vowels point right.</figcaption>
+      </figure>
 
       <!-- Interactive Onkamisa diagram -->
       <div class="onkamisa-wrap">
@@ -768,47 +777,47 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
       </div>
 
       <div style="margin-bottom:1.1rem;">
-        <div class="wt-section-label" style="color:#6366f1;">Where <!-- TODO: siNtu term --><span class="wt-section-gloss">place of articulation</span></div>
+        <div class="wt-section-label" style="color:#6366f1;">Indawo lapho kuphinyiswa khona<span class="wt-section-gloss">place of articulation</span></div>
         <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">The <strong>position</strong> of the mark shows where in your mouth the sound is made.</p>
         <div class="place-pills">
-          <span class="place-pill">Lips (<em>ndebembili</em>) &rarr; <em>pha, ba, ma</em></span>
-          <span class="place-pill">Teeth/Ridge &rarr; <em>ta, da, na</em></span>
-          <span class="place-pill">Roof of mouth &rarr; <em>ja, nya</em></span>
-          <span class="place-pill">Back of throat &rarr; <em>ka, ga</em></span>
+          <span class="place-pill"><strong>Ondebembili</strong> (lips) &rarr; <em>pha, ba, ma</em></span>
+          <span class="place-pill"><strong>Onsinini</strong> (ridge behind the teeth) &rarr; <em>ta, da, na</em></span>
+          <span class="place-pill"><strong>Olwangeni</strong> (roof of the mouth) &rarr; <em>ja, nya</em></span>
+          <span class="place-pill"><strong>Omalakeni</strong> (back of the mouth) &rarr; <em>ka, ga</em></span>
         </div>
       </div>
 
       <div style="margin-bottom:1.1rem;">
-        <div class="wt-section-label" style="color:#059669;">How <!-- TODO: siNtu term --><span class="wt-section-gloss">manner of articulation</span></div>
+        <div class="wt-section-label" style="color:#059669;">Indlela yokuphimisa<span class="wt-section-gloss">manner of articulation</span></div>
         <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">The <strong>shape</strong> of the mark shows how the air moves.<br><strong>Once-off:</strong> the air stops, then pops.<br><strong>Continuous:</strong> the air keeps flowing.</p>
         <div class="manner-grid">
           <div class="manner-card">
             <div>
-              <div class="manner-name">Once-off <span class="manner-tech">(Plosive)</span></div>
+              <div class="manner-name">Omadubula <span class="manner-tech">once-off (plosive)</span></div>
               <div class="manner-eg"><em>thatha</em> &mdash; "take" (isiZulu)</div>
             </div>
           </div>
           <div class="manner-card">
             <div>
-              <div class="manner-name">Continuous, with a hiss <span class="manner-tech">(Fricative)</span></div>
+              <div class="manner-name">Omfuthwa <span class="manner-tech">continuous, with a hiss (fricative)</span></div>
               <div class="manner-eg"><em>sapha</em> &mdash; "hand over" (isiXhosa)</div>
             </div>
           </div>
           <div class="manner-card">
             <div>
-              <div class="manner-name">Once-off, then continuous <span class="manner-tech">(Affricate)</span></div>
+              <div class="manner-name">Omfuthwambhanqwa <span class="manner-tech">once-off, then continuous (affricate)</span></div>
               <div class="manner-eg"><em>tsatsa</em> &mdash; "take" (siSwati)</div>
             </div>
           </div>
           <div class="manner-card">
             <div>
-              <div class="manner-name">Continuous, no hiss <span class="manner-tech">(Approximant)</span></div>
+              <div class="manner-name">Osondelela <span class="manner-tech">continuous, no hiss (approximant)</span></div>
               <div class="manner-eg"><em>lala</em> &mdash; "sleep" (isiZulu)</div>
             </div>
           </div>
           <div class="manner-card">
             <div>
-              <div class="manner-name">Continuous, through the nose <span class="manner-tech">(Nasal)</span></div>
+              <div class="manner-name">Omankankeni <span class="manner-tech">continuous, through the nose (nasal)</span></div>
               <div class="manner-eg"><em>nana</em> &mdash; "child" (isiXhosa)</div>
             </div>
           </div>
@@ -1082,6 +1091,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
             
             <!-- Plosives -->
             <audio id="Aspirated_bilabial_plosive" src="audio/Aspirated_voiceless_bilabial_stop.ogg"></audio>
+            <audio id="pha_bandile" src="audio/cues/Aspirated_bilabial_plosive_a.mp3"></audio>
             <audio id="Voiced_bilabial_plosive" src="audio/Voiced_bilabial_plosive.mp3"></audio>
             <audio id="Ejective_bilabial" src="audio/Bilabial_ejective_plosive.mp3"></audio>
             <audio id="Implosive_bilabial" src="audio/Voiced_bilabial_implosive.mp3"></audio>
@@ -1245,6 +1255,9 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
   ];
   var TAG = {NGU:'Nguni', SOT:'Sotho', TSO:'Tsonga', VEN:'Venda'};
   var LANGTAG = {'isiZulu':'Zulu','isiXhosa':'Xhosa','siSwati':'Swati','Sesotho':'Sotho','Setswana':'Tswana','Tshivenda':'Venda','Xitsonga':'Tsonga','isiZulu, Sesotho':'Zulu, Sotho','all':''};
+  var ZU_P = {'Bilabial':'ondebembili','Labio-dental':'ondebezinyo','Dental':'ozinyo','Alveolar':'onsinini','Post-alveolar':'onsininilwangeni','Palatal':'olwangeni','Velar':'omalakeni','Glottal':'omphinjeni','Lateral':'ohlangothi'};
+  var ZU_M = {'Plosive':'omadubula','Fricative':'omfuthwa','Affricate':'omfuthwambhanqwa','Approximant':'osondelela','Nasal':'omankankeni'};
+  function zuLabel(map, en){ return map[en] ? '<span class="zu-term">' + map[en] + '</span> <span class="en-gloss">' + esc(en) + '</span>' : esc(en); }
   var CORE_PLACES = ['Bilabial','Alveolar','Palatal','Velar','Lateral'];
   var PHONE = window.matchMedia('(max-width: 767px)').matches;
   var placeOn = {}, mannerOn = {};
@@ -1301,10 +1314,10 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
     if(!rows.length || !places.length){ el.innerHTML = '<p class="chart-empty">' + (onePlace ? 'No sounds at this place in this part of the chart. Choose another place above.' : 'Nothing to show here. Turn on a place or a manner above.') + '</p>'; return; }
     var h = '<table class="chart-tbl' + (onePlace ? ' one' : '') + '"><thead><tr><th class="corner" rowspan="2">Manner &darr;<br>Place &rarr;</th>';
     places.forEach(function(p){
-      if(!onePlace){ h += '<th colspan="2">' + esc(p) + '</th>'; return; }
+      if(!onePlace){ h += '<th colspan="2">' + zuLabel(ZU_P, p) + '</th>'; return; }
       var all = placesWithSounds(), n = all.indexOf(p) + 1;
       h += '<th colspan="2" class="place-nav"><button class="pl-btn" data-pl="-1" aria-label="Previous place">&lsaquo;</button>'
-         + '<span>' + esc(p) + '<small>' + n + ' of ' + all.length + ' &middot; swipe</small></span>'
+         + '<span>' + zuLabel(ZU_P, p) + '<small>' + n + ' of ' + all.length + ' &middot; swipe</small></span>'
          + '<button class="pl-btn" data-pl="1" aria-label="Next place">&rsaquo;</button></th>';
     });
     h += '</tr><tr>';
@@ -1312,7 +1325,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
     h += '</tr></thead><tbody>';
     rows.forEach(function(m){
       var idx = CORE.indexOf(m), label = esc(m);
-      if(idx >= 0) label = '<span class="rh-plain">' + esc(STEPS[idx][0]) + '</span>' + esc(m);
+      if(idx >= 0) label = '<span class="zu-term">' + ZU_M[m] + '</span><span class="rh-plain">' + esc(STEPS[idx][0]) + '</span>' + esc(m);
       h += '<tr' + (!whole && idx === step-1 ? ' class="row-new"' : '') + '><th class="row-head" scope="row">' + label + '</th>';
       places.forEach(function(p){ h += cell(cellAt(m,p,'voiceless')) + cell(cellAt(m,p,'voiced')); });
       h += '</tr>';
@@ -1328,7 +1341,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
     }
     var st = STEPS[step-1];
     var h = '<div class="steps-head"><span class="steps-count">Step ' + step + ' of 5</span>'
-          + '<h4>' + esc(st[0]) + ' <span>(' + esc(st[1]) + ')</span></h4><p>' + esc(st[2]) + '</p></div><div class="steps-nav">';
+          + '<h4>' + ZU_M[CORE[step-1]].charAt(0).toUpperCase() + ZU_M[CORE[step-1]].slice(1) + ': ' + esc(st[0].toLowerCase()) + ' <span>(' + esc(st[1]) + ')</span></h4><p>' + esc(st[2]) + '</p></div><div class="steps-nav">';
     if(step > 1) h += '<button class="wt-nav-btn sec" data-act="back">&larr; Back</button>';
     if(step < 5) h += '<button class="wt-nav-btn pri" data-act="next">Next: ' + esc(STEPS[step][0].toLowerCase()) + ' &rarr;</button>';
     else h += '<button class="wt-nav-btn pri" data-act="more">On to more sounds &darr;</button>';
