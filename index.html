@@ -397,6 +397,12 @@
 .top-lines { display: inline-block; text-align: left; margin: 0 auto; }
 .wt-step-gloss { font-size: 0.65rem; color: #9ca3af; white-space: nowrap; margin-top: -0.2rem; }
 .wt-section-gloss { font-weight: 500; text-transform: none; letter-spacing: 0; color: #6b7280; margin-left: 0.4rem; }
+.place-rows { margin: 0 0 1rem; text-align: center; }
+.place-rows p { font-size: 0.8rem; color: #6b7280; margin: 0 0 0.5rem; }
+.place-row { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+.pr-tile { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 0.6rem; padding: 0.4rem 0.5rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; min-width: 64px; }
+.pr-tile img { width: 52px; height: 52px; object-fit: contain; }
+.pr-tile span { font-weight: 700; font-size: 0.85rem; color: #1f2937; }
 .heads-fig { margin: 0 0 1rem; text-align: center; }
 .heads-fig img { max-width: 360px; width: 100%; height: auto; display: inline-block; }
 .heads-fig figcaption { font-size: 0.75rem; color: #6b7280; margin-top: 0.25rem; }
@@ -665,6 +671,11 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
         <img src="images/onkamisa-heads-facing-left.jpg" alt="Vowel triangle with three heads facing left: i and u at the top, e and ɛ pointing left, o and ɔ pointing right, a at the bottom">
         <figcaption>The head faces left: front vowels point left, back vowels point right.</figcaption>
       </figure>
+      <div class="place-rows">
+        <p>The same head places the consonant: the mark moves from the lips (left) to the back of the mouth (right). Tap to hear.</p>
+        <div class="place-row"><button class="pr-tile" onclick="new Audio('audio/cues/Aspirated_bilabial_plosive_a.mp3').play()"><img src="images/Aspirated_bilabial_plosive.png" alt="pha"><span>pha</span></button><button class="pr-tile" onclick="new Audio('audio/cues/Aspirated_alveolar_plosive_a.mp3').play()"><img src="images/Aspirated_alveolar_plosive.png" alt="tha"><span>tha</span></button><button class="pr-tile" onclick="new Audio('audio/cues/Aspirated_velar_plosive_a.mp3').play()"><img src="images/Aspirated_velar_plosive.png" alt="kha"><span>kha</span></button></div>
+        <div class="place-row"><button class="pr-tile" onclick="new Audio('audio/cues/Voiceless_labiodental_fricative_a.mp3').play()"><img src="images/Voiceless_labiodental_fricative.png" alt="fa"><span>fa</span></button><button class="pr-tile" onclick="new Audio('audio/cues/Voiceless_alveolar_fricative_a.mp3').play()"><img src="images/Voiceless_alveolar_fricative.png" alt="sa"><span>sa</span></button><button class="pr-tile" onclick="new Audio('audio/cues/Voiceless_velar_fricative_a.mp3').play()"><img src="images/Voiceless_velar_fricative.png" alt="rha / ga"><span>rha / ga</span></button><button class="pr-tile" onclick="new Audio('audio/cues/Voiceless_lateral_fricative_a.mp3').play()"><img src="images/Voiceless_lateral_fricative.png" alt="hla"><span>hla</span></button></div>
+      </div>
 
       <!-- Interactive Onkamisa diagram -->
       <div class="onkamisa-wrap">
