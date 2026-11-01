@@ -292,26 +292,37 @@
         <!-- Header and Instructions remain the same -->
     <header class="text-center mb-12">
             <h1 class="text-4xl font-bold text-gray-900">The IsiBheqe soHlamvu Syllabary</h1>
-            <p style="font-size: 1.25rem; color: #6b7280; margin-top: 0.5rem;">A simple explainer page with interactive chart</p>
+            <p style="font-size: 1.25rem; color: #6b7280; margin-top: 0.5rem;">Learn how the symbols work, then hear them in the chart</p>
             <a href="#consonants-chart" style="display:inline-block;margin-top:0.5rem;font-size:0.8rem;color:#6366f1;font-weight:600;text-decoration:none;">↓ Skip to interactive chart</a>
             
             <div class="mt-4 text-gray-700 max-w-4xl mx-auto" style="font-size: 1rem; line-height: 1.8;"> 
-                <p>IsiBheqe soHlamvu is a modern, <strong>phonetically-based</strong> indigenous writing system developed for all Southern African isiNtu languages. It is also known as <em>Ditema tsa Dinoko</em>, <em>Xifhungo xa Manungu</em>, or <em>Vhuga ha Madungo</em>.</p>
+                <ul class="wt-lines top-lines">
+                  <li><strong>IsiBheqe soHlamvu</strong> is a writing system for the siNtu languages of Southern Africa.</li>
+                  <li>It is also called <em>Ditema tsa Dinoko</em>, <em>Xifhungo xa Manungu</em> and <em>Vhuga ha Madungo</em>.</li>
+                  <li>It is a <strong>syllabary</strong>: one symbol for each syllable.</li>
+                  <li>It is <strong>featural</strong>: the shape of a symbol shows how your mouth makes the sound.</li>
+                </ul>
 
                 <details style="margin: 0.5rem 0 1rem;">
                     <summary style="cursor:pointer; font-size:0.85rem; color:#6366f1; font-weight:600; list-style:none; display:inline-flex; align-items:center; gap:0.3rem;">
                         <span id="hdr-more-label">&#x25B8; Background &amp; context</span>
                     </summary>
                     <div style="margin-top:0.75rem;">
-                        <p>IsiBheqe/Ditema draws from Southern African traditional art, like Sesotho <em>litema</em> art (used on murals) and isiZulu <em>ucu</em> art (used on beadwork). This art was decorative but also used systems of shapes to convey messages—births, milestones, news for neighbors and travelers.</p>
-                        <p>The script can be used for all Southern African isiNtu languages and dialects. It's especially useful for languages without formal Latin orthography, like sePulana, isiBhaca, isiHlubi, sePhuthi, isiLala, isiNhlangwini, and Northern Transvaal isiNdebele.</p>
+                        <ul class="wt-lines top-lines">
+                          <li>The shapes come from Southern African art: Sesotho <em>litema</em> (murals) and isiZulu <em>ucu</em> (beadwork).</li>
+                          <li>That art used systems of shapes to share news: births, milestones, messages for travellers.</li>
+                          <li>The script works for any siNtu language or dialect.</li>
+                          <li>It helps most where a language has no official spelling: sePulana, isiBhaca, isiHlubi, sePhuthi, isiLala, isiNhlangwini, Northern Transvaal isiNdebele.</li>
+                        </ul>
                     </div>
                 </details>
 
                 <div style="background: #eff6ff; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6; margin-top: 1rem;">
                     <p style="margin: 0;"><strong>Using this page:</strong></p>
-                    <p style="margin-top: 0.5rem;">👆 <strong>Step through the walkthrough</strong> below to understand the writing system<br>
-                    🎵 <strong>Interactive chart</strong> — click any symbol to hear it</p>
+                    <ul class="wt-lines top-lines" style="margin-top:0.5rem;">
+                      <li>Start with the four steps below.</li>
+                      <li>Then explore the chart: tap any symbol to hear it.</li>
+                    </ul>
                 </div>
             </div>
         </header>
@@ -381,6 +392,11 @@
   from { opacity: 0; transform: translateY(5px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+.wt-lines { list-style: disc; padding-left: 1.2rem; margin: 0 0 0.75rem; font-size: 0.9rem; color: #374151; line-height: 1.6; }
+.wt-lines li { margin: 0.15rem 0; }
+.top-lines { display: inline-block; text-align: left; margin: 0 auto; }
+.wt-step-gloss { font-size: 0.65rem; color: #9ca3af; white-space: nowrap; margin-top: -0.2rem; }
+.wt-section-gloss { font-weight: 500; text-transform: none; letter-spacing: 0; color: #6b7280; margin-left: 0.4rem; }
 .wt-heading    { font-size: 1.2rem; font-weight: 700; color: #111827; margin: 0 0 0.2rem; }
 .wt-subheading { font-size: 0.875rem; color: #6b7280; margin: 0 0 1.25rem; }
 .wt-cols { display: flex; gap: 1.75rem; align-items: flex-start; }
@@ -493,7 +509,7 @@
   .wt-cols { flex-direction: column; }
   .wt-panel { padding: 1.2rem 1rem; }
   .manner-grid { grid-template-columns: 1fr; }
-  .wt-step-label { display: none; }
+  .wt-step-label, .wt-step-gloss { display: none; }
 }
 
 /* --- Oct 2026 review additions --- */
@@ -581,22 +597,22 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
   <div class="wt-steps">
     <div class="wt-step-btn active" data-step="0">
       <div class="wt-step-num">1</div>
-      <div class="wt-step-label">The Syllable</div>
+      <div class="wt-step-label">Ibheqe</div><div class="wt-step-gloss">syllable</div>
     </div>
     <div class="wt-step-divider"></div>
     <div class="wt-step-btn" data-step="1">
       <div class="wt-step-num">2</div>
-      <div class="wt-step-label">The Vowel</div>
+      <div class="wt-step-label">Onkamisa</div><div class="wt-step-gloss">vowels</div>
     </div>
     <div class="wt-step-divider"></div>
     <div class="wt-step-btn" data-step="2">
       <div class="wt-step-num">3</div>
-      <div class="wt-step-label">The Consonant</div>
+      <div class="wt-step-label">Ongwaqa</div><div class="wt-step-gloss">consonants</div>
     </div>
     <div class="wt-step-divider"></div>
     <div class="wt-step-btn" data-step="3">
       <div class="wt-step-num">4</div>
-      <div class="wt-step-label">The Mode</div>
+      <div class="wt-step-label">Uphimbo, lerothodi</div><div class="wt-step-gloss">throat marks</div>
     </div>
   </div>
 
@@ -605,7 +621,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
     <!-- Panel 1: The Syllable -->
     <div class="wt-panel active" id="wt-p0">
       <div class="wt-heading">Every symbol is a whole syllable</div>
-      <div class="wt-subheading">Not sound by sound &mdash; one symbol, one complete syllable unit</div>
+      <div class="wt-subheading">One symbol, one syllable</div>
       <div class="wt-cols">
         <div class="wt-col-visual">
           <div class="wt-symbol-box">
@@ -615,10 +631,15 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
           <button class="wt-play" onclick="wtPlay('Aspirated_bilabial_plosive',this)">&#9654; Hear it</button>
         </div>
         <div class="wt-col-text">
-          <p>In English you write one letter per sound: <em>g-e-t</em> = 3 letters for 3 sounds. IsiBheqe works differently &mdash; one symbol captures a full syllable: vowel and consonant bundled together.</p>
-          <p>A single symbol is called an <strong>ibheqe</strong> (plural: <em>amabheqe</em>). The symbol to the left is the ibheqe for <strong>p&#x02B0;a</strong> &mdash; the syllable in <em>pha</em>, meaning "give" in isiZulu and Sesotho. Two symbols already make words: <em>i&middot;pha</em> (give) and <em>m&middot;pha</em> (give me).</p>
+          <ul class="wt-lines">
+            <li>English writes one letter per sound: <em>g-e-t</em> is 3 letters.</li>
+            <li>IsiBheqe writes one symbol per syllable.</li>
+            <li>One symbol is an <strong>ibheqe</strong>. More than one: <em>amabheqe</em>.</li>
+            <li>The symbol here is <strong>pha</strong>: "give" in isiZulu and Sesotho.</li>
+            <li>Two symbols already make words: <em>i&middot;pha</em> (give), <em>m&middot;pha</em> (give me).</li>
+          </ul>
           <div class="wt-callout">
-            Every ibheqe has <strong>two parts</strong>: a triangle in the middle (the <em>vowel</em>), and marks around it (the <em>consonant</em>). The next two steps explain each.
+            Every ibheqe has <strong>two parts</strong>: the triangle is the vowel; the marks around it are the consonant.
           </div>
         </div>
       </div>
@@ -628,11 +649,17 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
     <div class="wt-panel" id="wt-p1">
       <div class="wt-heading">The triangle is the vowel</div>
       <div class="wt-subheading">Its direction shows where your tongue goes</div>
-      <p style="font-size:0.875rem;color:#374151;margin:0 0 0.75rem;">At the centre of every ibheqe is a triangle &mdash; the <strong>nucleus</strong>. Think of the triangle as your mouth. The direction it points shows where your <strong>tongue</strong> goes when you make the vowel. For <em>i</em> the tongue rises to the roof of your mouth, so the triangle points up. For <em>a</em> the tongue drops to the floor of your mouth, so it points down. Your jaw only moves to make room: it drops for <em>a</em> because the tongue needs the space.</p>
+      <ul class="wt-lines">
+        <li>The triangle is your mouth. It points where your <strong>tongue</strong> goes.</li>
+        <li><em>i</em> and <em>u</em>: the tongue rises, so the triangle points up.</li>
+        <li><em>a</em>: the tongue drops, so it points down.</li>
+        <li><em>e</em> and <em>&#603;</em> are made at the front, so they point left (the front of a face looking left).</li>
+        <li><em>o</em> and <em>&#596;</em> are made at the back, so they point right.</li>
+      </ul>
 
       <!-- Interactive Onkamisa diagram -->
       <div class="onkamisa-wrap">
-        <p class="onkamisa-hint">👆 Tap a vowel or a word to hear it &mdash; on the diagram or the buttons below</p>
+        <p class="onkamisa-hint">Tap a vowel or a word to hear it &mdash; on the diagram or the buttons below</p>
         <div class="onkamisa-container">
           <img src="images/isibheqe-onkamisa-768x515.png"
                alt="The Onkamisa diagram showing all seven vowels of IsiBheqe inside a large inverted triangle"
@@ -723,7 +750,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
       </div>
 
       <p style="font-size:0.78rem;color:#6b7280;margin-top:0.25rem;text-align:center;">
-        Try it: say <em>lilimi</em> and feel where your tongue sits. Now say <em>lala</em>. With <em>lilimi</em> your tongue rises to the roof of your mouth; with <em>lala</em> it drops to the floor. That is why <em>i</em> points up and <em>a</em> points down. For <em>e</em> and <em>o</em>, try <em>ewe</em> and <em>oko oko</em>.
+        Try it: say <em>lilimi</em>, then <em>lala</em>. Feel your tongue rise, then drop.<br>For <em>e</em> and <em>o</em>, try <em>ewe</em> and <em>oko oko</em>.
       </p>
     </div>
 
@@ -732,12 +759,17 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
       <div class="wt-heading">The marks show the consonant</div>
       <div class="wt-subheading">Where in your mouth, and how the air moves</div>
       <div class="house-callout">
-        Think of the triangle as a house, and the house as your mouth. The <strong>tip</strong> is your lips: the doorway the breath leaves through, like the smoke-hole at the top of a thatched house. The <strong>base</strong> is the back of your throat. The <strong>sides</strong> are the sides of your tongue. A consonant mark shows which part of the house the sound is made in, and what happens there.
+        <ul class="wt-lines" style="margin:0;">
+          <li>Think of the triangle as a house, and the house as your mouth.</li>
+          <li>The <strong>tip</strong> is your lips: the doorway the breath leaves through.</li>
+          <li>The <strong>base</strong> is the back of your throat.</li>
+          <li>The <strong>sides</strong> are the sides of your tongue.</li>
+        </ul>
       </div>
 
       <div style="margin-bottom:1.1rem;">
-        <div class="wt-section-label" style="color:#6366f1;">&#9312; WHERE &mdash; Place of articulation</div>
-        <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">Start with <em>where</em>. The position of the mark around the triangle shows where in the mouth-house the sound is made:</p>
+        <div class="wt-section-label" style="color:#6366f1;">Where <!-- TODO: siNtu term --><span class="wt-section-gloss">place of articulation</span></div>
+        <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">The <strong>position</strong> of the mark shows where in your mouth the sound is made.</p>
         <div class="place-pills">
           <span class="place-pill">Lips (<em>ndebembili</em>) &rarr; <em>pha, ba, ma</em></span>
           <span class="place-pill">Teeth/Ridge &rarr; <em>ta, da, na</em></span>
@@ -747,39 +779,34 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
       </div>
 
       <div style="margin-bottom:1.1rem;">
-        <div class="wt-section-label" style="color:#059669;">&#9313; HOW &mdash; Manner of articulation</div>
-        <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">Then <em>how</em>. The <em>shape</em> of the mark shows how the air moves. There are two basic kinds of sound: a <strong>once-off</strong> sound, where the air is stopped and released in one pop, and a <strong>continuous</strong> sound, where the air keeps flowing. Everything else builds on these two:</p>
+        <div class="wt-section-label" style="color:#059669;">How <!-- TODO: siNtu term --><span class="wt-section-gloss">manner of articulation</span></div>
+        <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">The <strong>shape</strong> of the mark shows how the air moves.<br><strong>Once-off:</strong> the air stops, then pops.<br><strong>Continuous:</strong> the air keeps flowing.</p>
         <div class="manner-grid">
           <div class="manner-card">
-            <div class="manner-icon">&#128165;</div>
             <div>
               <div class="manner-name">Once-off <span class="manner-tech">(Plosive)</span></div>
               <div class="manner-eg"><em>thatha</em> &mdash; "take" (isiZulu)</div>
             </div>
           </div>
           <div class="manner-card">
-            <div class="manner-icon">&#127788;</div>
             <div>
               <div class="manner-name">Continuous, with a hiss <span class="manner-tech">(Fricative)</span></div>
               <div class="manner-eg"><em>sapha</em> &mdash; "hand over" (isiXhosa)</div>
             </div>
           </div>
           <div class="manner-card">
-            <div class="manner-icon">&#128165;&#127788;</div>
             <div>
               <div class="manner-name">Once-off, then continuous <span class="manner-tech">(Affricate)</span></div>
               <div class="manner-eg"><em>tsatsa</em> &mdash; "take" (siSwati)</div>
             </div>
           </div>
           <div class="manner-card">
-            <div class="manner-icon">&#12336;</div>
             <div>
               <div class="manner-name">Continuous, no hiss <span class="manner-tech">(Approximant)</span></div>
               <div class="manner-eg"><em>lala</em> &mdash; "sleep" (isiZulu)</div>
             </div>
           </div>
           <div class="manner-card">
-            <div class="manner-icon">&#129296;</div>
             <div>
               <div class="manner-name">Continuous, through the nose <span class="manner-tech">(Nasal)</span></div>
               <div class="manner-eg"><em>nana</em> &mdash; "child" (isiXhosa)</div>
@@ -793,37 +820,42 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
 
     <!-- Panel 4: The Mode -->
     <div class="wt-panel" id="wt-p3">
-      <div class="wt-heading">Small marks change the version</div>
-      <div class="wt-subheading">Same place, same shape &mdash; a different sound</div>
-      <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">Your lips make all four of these words the same way. What changes is what your throat does. Two extra marks show it: the <strong>uphimbo</strong>, a line down the middle of the triangle, means voiced (your throat buzzes); the <strong>lerothodi</strong>, a small dot, means the air does not come from your lungs. Tap a word to hear it.</p>
+      <div class="wt-heading">Small marks show what your throat does</div>
+      <div class="wt-subheading">Same place, same shape, different sound</div>
+      <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">These four words all start at your lips. Only your throat changes.</p>
+      <ul class="wt-lines">
+        <li><strong>Uphimbo</strong>, a line down the middle: voiced. Your throat buzzes.</li>
+        <li><strong>Lerothodi</strong>, a small dot: the air does not come from your lungs.</li>
+        <li>Tap a word to hear it.</li>
+      </ul>
       <div class="word-grid">
         <div class="word-card" onclick="wtPlay('w_phapha',null)" role="button">
           <div class="wc-mode">No extra mark</div>
           <img src="images/words/phapha.svg" alt="phapha in isiBheqe">
-          <div class="wc-word"><strong>pha</strong>pha &#128264;</div>
+          <div class="wc-word"><strong>pha</strong>pha &#9654;</div>
           <div class="wc-gloss">be overenthusiastic (isiZulu, Sesotho)</div>
         </div>
         <div class="word-card" onclick="wtPlay('w_bhabha',null)" role="button">
           <div class="wc-mode">Uphimbo: voiced</div>
           <img src="images/words/bhabha.svg" alt="bhabha in isiBheqe">
-          <div class="wc-word"><strong>bha</strong>bha &#128264;</div>
+          <div class="wc-word"><strong>bha</strong>bha &#9654;</div>
           <div class="wc-gloss">trap (isiZulu)</div>
         </div>
         <div class="word-card" onclick="wtPlay('w_papadi',null)" role="button">
           <div class="wc-mode">Lerothodi: ejective</div>
           <img src="images/words/papadi.svg" alt="papadi in isiBheqe">
-          <div class="wc-word"><strong>pa</strong>padi &#128264;</div>
+          <div class="wc-word"><strong>pa</strong>padi &#9654;</div>
           <div class="wc-gloss">a game (Sesotho)</div>
         </div>
         <div class="word-card" onclick="wtPlay('w_baba',null)" role="button">
           <div class="wc-mode">Uphimbo + lerothodi: implosive</div>
           <img src="images/words/baba.svg" alt="baba in isiBheqe">
-          <div class="wc-word"><strong>ba</strong>ba &#128264;</div>
+          <div class="wc-word"><strong>ba</strong>ba &#9654;</div>
           <div class="wc-gloss">be bitter (isiZulu)</div>
         </div>
       </div>
       <div class="wt-callout" style="margin-top:0.8rem;">
-        Spelling in the Latin alphabet hides these differences: <em>p</em>, <em>ph</em>, <em>b</em> and <em>bh</em> mean different sounds in different languages. In isiBheqe the mark always tells you what your throat is doing. The closer look below goes through each mark.
+        Latin spelling hides these differences: <em>p</em>, <em>ph</em>, <em>b</em> and <em>bh</em> mean different sounds in different languages.<br>In isiBheqe the mark always shows what your throat is doing.
       </div>
     </div>
   </div>
@@ -918,7 +950,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
 
     <!-- VOICING -->
     <div class="mode-block">
-      <div class="mode-block-title" style="color:#4f46e5;">① Voicing — the line down the middle</div>
+      <div class="mode-block-title" style="color:#4f46e5;">Voicing — the line down the middle</div>
       <p>Your vocal cords can buzz (voiced) or stay quiet (voiceless) for any consonant. In the symbol, voicing is the <strong>uphimbo</strong>: a vertical line from the tip of the triangle to its base, like the central post of a house. You can feel it as a buzz in your throat from the first moment of the sound.</p>
       <div class="mode-try"><strong>Try it:</strong> Put your hand on your throat. Say <strong>"pha"</strong> — no buzz at the start. Now say <strong>"bha"</strong> — the buzz starts immediately.</div>
       <div class="mode-pair">
@@ -941,7 +973,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
 
     <!-- EJECTIVES -->
     <div class="mode-block">
-      <div class="mode-block-title" style="color:#b45309;">② Ejectives — the lerothodi dot (also <em>ilithonsi</em>, <em>iliconsi</em>)</div>
+      <div class="mode-block-title" style="color:#b45309;">Ejectives — the lerothodi dot (also <em>ilithonsi</em>, <em>iliconsi</em>)</div>
       <p>English doesn't have ejectives, but they're common in isiZulu, Sesotho, and Setswana. The air does not come from your lungs. Your throat closes, the air trapped in your mouth is squeezed, and it pops out sharply. <em>Lerothodi</em>, <em>ilithonsi</em> and <em>iliconsi</em> all mean a droplet.</p>
       <div class="mode-try"><strong>Try it:</strong> Say <strong>"pha"</strong> normally. Now hold your breath tight, close your lips, and release sharply — that popping sensation is close to an ejective.</div>
       <div class="mode-pair">
@@ -967,7 +999,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
 
     <!-- IMPLOSIVES -->
     <div class="mode-block">
-      <div class="mode-block-title" style="color:#065f46;">③ Implosives</div>
+      <div class="mode-block-title" style="color:#065f46;">Implosives</div>
       <p>An implosive looks voiced — and it is — but there's a subtle extra quality. As the lips close and release, air briefly draws <em>inward</em> before the burst outward. It gives the sound a slightly hollow, sunken quality.</p>
       <div class="mode-try"><strong>Listen for it:</strong> In isiZulu, <strong>bha</strong> is the plain voiced sound and <strong>ba</strong> is the implosive. In isiBheqe the implosive carries both marks: the uphimbo (voiced) and the lerothodi (no air from the lungs).</div>
       <div class="mode-pair">
@@ -990,7 +1022,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
 
     <!-- PRENASALISATION -->
     <div class="mode-block">
-      <div class="mode-block-title" style="color:#1d4ed8;">④ Prenasalisation — the ingungwana</div>
+      <div class="mode-block-title" style="color:#1d4ed8;">Prenasalisation — the ingungwana</div>
       <p>The ingungwana is a circle at the tip of the triangle, touching it. It opens a second doorway for the air: the nose. The air starts out through your nose, then the consonant follows through your mouth, so fast that it is one sound, not two.</p>
       <img src="images/DtsD_Example_Diacritic_Consonant_Prenasalization.svg.png" alt="The ingungwana: a circle touching the tip of the triangle" style="width:90px;display:block;margin:0.5rem auto;">
       <div class="mode-try"><strong>Try it:</strong> Say <strong>inkosi</strong> slowly &mdash; feel the <em>n</em> flowing straight into the <em>k</em>? That is prenasalisation: <em>mba, nda, nga</em> in isiNtu are single onset sounds, not clusters.</div>
@@ -1005,7 +1037,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
 
  <!-- CONSONANTS CHART -->
         <div class="chart-section" id="consonants-chart">
-            <div class="chart-hint">&#128264; Tap a symbol to hear its syllable, or a word to hear the word</div>
+            <div class="chart-hint">Tap a symbol to hear its syllable, or a word to hear the word</div>
             <div id="chart-toggles"></div>
             <p class="chart-note">Every symbol in this chart is a whole syllable: the consonant written with the vowel <em>a</em> (the downward triangle). Turn the triangle to change the vowel; the consonant marks stay where they are.</p>
             <p class="chart-legend">Under each symbol: the usual Latin spelling in large letters, and the sound in <strong>IPA</strong> in square brackets. IPA is the International Phonetic Alphabet that linguists use worldwide; its letters don't always match our spelling. IPA <em>[j]</em> is the <em>y</em> in <em>yini</em>, IPA <em>[x]</em> is the <em>rh</em> in <em>rhoxisa</em>, and IPA <em>[c]</em> is spelled <em>ty</em> or <em>tj</em>. A spelling with no language named is the same in Nguni, Sotho, Tsonga and Venda.</p>
@@ -1242,7 +1274,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
     var i = w.w.indexOf(w.hl), shown = i < 0 ? esc(w.w) : esc(w.w.slice(0,i)) + '<b>' + esc(w.hl) + '</b>' + esc(w.w.slice(i + w.hl.length));
     var tag = LANGTAG.hasOwnProperty(w.lang) ? LANGTAG[w.lang] : w.lang;
     var gloss = '<span class="cc-gloss">' + esc(w.gloss) + (tag ? ' (' + esc(tag) + ')' : '') + '</span>';
-    if(w.audio) return '<button class="cc-word" data-snd="' + esc(w.audio) + '" aria-label="Hear ' + esc(w.w) + '">' + shown + ' &#128264;' + gloss + '</button>';
+    if(w.audio) return '<button class="cc-word" data-snd="' + esc(w.audio) + '" aria-label="Hear ' + esc(w.w) + '">' + shown + ' &#9654;' + gloss + '</button>';
     return '<span class="cc-word">' + shown + gloss + '</span>';
   }
   function cell(c){
@@ -1374,7 +1406,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
   }
   var presetDefs = PHONE
     ? [['One place at a time','one','Fits your screen: pick a place below'], ['All places ↔','all','Every place: scroll sideways']]
-    : [['⭐ Core places','core','Bilabial, Alveolar, Palatal, Velar and Lateral: the places used across most South African languages'], ['🌍 Show all','all','Every place and every manner']];
+    : [['Core places','core','Bilabial, Alveolar, Palatal, Velar and Lateral: the places used across most South African languages'], ['Show all','all','Every place and every manner']];
   presetDefs.forEach(function(d){
     var b = chip(d[0], 'chip-preset', function(){ setPreset(d[1]); }); b.title = d[2]; presetChips[d[1]] = b; presets.appendChild(b);
   });
