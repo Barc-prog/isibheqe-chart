@@ -423,6 +423,13 @@
 .izimpawu-grid figcaption small { display: block; color: #6b7280; font-size: 0.68rem; }
 .page-credits { max-width: 760px; margin: 2rem auto 1.5rem; padding: 0.9rem 1rem 0; border-top: 1px solid #e5e7eb; font-size: 0.72rem; color: #6b7280; line-height: 1.6; }
 .page-credits a, .chart-legend a { color: inherit; text-decoration: underline; }
+.hero-line { font-size: 1.35rem; font-weight: 700; color: #1f2937; text-align: center; margin: 1.2rem 0 1.6rem; line-height: 1.3; }
+.hero-sub { font-size: 0.92rem; color: #374151; text-align: center; margin: 0 0 0.6rem; }
+.shapes-fig { margin: 0 0 1.2rem; text-align: center; }
+.shapes-fig img { width: 100%; max-width: 440px; height: auto; display: inline-block; }
+.shapes-fig figcaption, .mc-note { font-size: 0.7rem; color: #6b7280; margin-top: 0.3rem; }
+.shapes-fig a { color: inherit; text-decoration: underline; }
+.mini-tbl .mc-row small b { color: #1f2937; }
 .mini-chart { margin: 0.6rem 0 1.1rem; }
 .mini-wrap { overflow-x: auto; }
 .mini-tbl { border-collapse: collapse; width: 100%; font-size: 0.7rem; }
@@ -610,7 +617,7 @@
 .zu-term { display:block; font-weight:700; }
 .cc-noimg { display:inline-flex; align-items:center; justify-content:center; width:52px; height:52px; border:1.5px dashed #c7d2fe; border-radius:0.5rem; color:#6b7280; font-size:0.85rem; }
 .en-gloss { font-weight:400; opacity:0.75; font-size:0.85em; }
-.rh-plain { display:block; font-size:0.72rem; font-weight:500; color:#6b7280; margin-bottom:0.15rem; }
+.rh-plain { display:block; font-size:0.7rem; font-weight:400; color:#6b7280; margin-top:0.1rem; }
 .row-new > * { animation: rowIn 0.6s ease-out; }
 @keyframes rowIn { from { background:#fef9c3; } }
 @media (prefers-reduced-motion: reduce){ .row-new > * { animation:none; } }
@@ -818,14 +825,12 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
     <div class="wt-panel" id="wt-p2">
       <div class="wt-heading">The marks show the consonant</div>
       <div class="wt-subheading">Where in your mouth, and how the air moves</div>
-      <div class="house-callout">
-        <ul class="wt-lines" style="margin:0;">
-          <li>Think of the triangle as a house, and the house as your mouth.</li>
-          <li>The <strong>tip</strong> is your lips: the doorway the breath leaves through.</li>
-          <li>The <strong>base</strong> is the back of your throat.</li>
-          <li>The <strong>sides</strong> are the sides of your tongue.</li>
-        </ul>
-      </div>
+      <p class="hero-line">Think of the triangle as your mouth.</p>
+      <p class="hero-sub">The shape of the symbol is made to mimic the shape of the mouth.</p>
+      <figure class="shapes-fig">
+        <img src="images/DtsD_ConsonantShapes.jpg" alt="Four consonant symbols, s, f, th and ph, each beside a drawing of the mouth with the same triangle laid over it" loading="lazy">
+        <figcaption>Graphic: Pule kaJanolintshi and Francis Burger, via <a href="https://en.wikipedia.org/wiki/File:DtsD_ConsonantShapes.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 4.0</figcaption>
+      </figure>
       <div class="mini-chart">
         <ul class="wt-lines">
           <li><strong>Across</strong>, the same mark moves around the triangle: where in your mouth.</li>
@@ -838,48 +843,13 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
             <tr><th><span lang="zu">Ondebembili</span><small>lips</small></th><th><span lang="zu">Ondebezinyo</span><small>lip, teeth</small></th><th><span lang="zu">Onsinini</span><small>tooth ridge</small></th><th><span lang="zu">Omalakeni</span><small>back of mouth</small></th><th><span lang="zu">Ohlangothi</span><small>side of tongue</small></th></tr>
           </thead>
           <tbody>
-            <tr><th class="mc-row"><span lang="zu">Omadubula /<br>omvinjwa</span><small>stops, plosives</small></th><td><button class="mc-cell" onclick="new Audio('audio/cues/Aspirated_bilabial_plosive_a.mp3').play()" aria-label="Hear pha"><img src="images/Aspirated_bilabial_plosive.png" alt="pha"><b>pha</b></button></td><td class="mc-empty"></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Aspirated_alveolar_plosive_a.mp3').play()" aria-label="Hear tha"><img src="images/Aspirated_alveolar_plosive.png" alt="tha"><b>tha</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Aspirated_velar_plosive_a.mp3').play()" aria-label="Hear kha"><img src="images/Aspirated_velar_plosive.png" alt="kha"><b>kha</b></button></td><td class="mc-empty"></td></tr>
-            <tr><th class="mc-row"><span lang="zu">Omfuthwa</span><small>fricatives</small></th><td class="mc-empty"></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_labiodental_fricative_a.mp3').play()" aria-label="Hear fa"><img src="images/Voiceless_labiodental_fricative.png" alt="fa"><b>fa</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_alveolar_fricative_a.mp3').play()" aria-label="Hear sa"><img src="images/Voiceless_alveolar_fricative.png" alt="sa"><b>sa</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_velar_fricative_a.mp3').play()" aria-label="Hear rha/ga"><img src="images/Voiceless_velar_fricative.png" alt="rha/ga"><b>rha/ga</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_lateral_fricative_a.mp3').play()" aria-label="Hear hla"><img src="images/Voiceless_lateral_fricative.png" alt="hla"><b>hla</b></button></td></tr>
+            <tr><th class="mc-row"><span lang="zu">Omadubula /<br>omvinjwa</span><small><b>plosives</b>: once-off</small></th><td><button class="mc-cell" onclick="new Audio('audio/cues/Aspirated_bilabial_plosive_a.mp3').play()" aria-label="Hear pha"><img src="images/Aspirated_bilabial_plosive.png" alt="pha"><b>pha</b></button></td><td class="mc-empty"></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Aspirated_alveolar_plosive_a.mp3').play()" aria-label="Hear tha"><img src="images/Aspirated_alveolar_plosive.png" alt="tha"><b>tha</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Aspirated_velar_plosive_a.mp3').play()" aria-label="Hear kha"><img src="images/Aspirated_velar_plosive.png" alt="kha"><b>kha</b></button></td><td class="mc-empty"></td></tr>
+            <tr><th class="mc-row"><span lang="zu">Omfuthwa</span><small><b>fricatives</b>: continuous</small></th><td class="mc-empty"></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_labiodental_fricative_a.mp3').play()" aria-label="Hear fa"><img src="images/Voiceless_labiodental_fricative.png" alt="fa"><b>fa</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_alveolar_fricative_a.mp3').play()" aria-label="Hear sa"><img src="images/Voiceless_alveolar_fricative.png" alt="sa"><b>sa</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_velar_fricative_a.mp3').play()" aria-label="Hear rha/ga"><img src="images/Voiceless_velar_fricative.png" alt="rha/ga"><b>rha/ga</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_lateral_fricative_a.mp3').play()" aria-label="Hear hla"><img src="images/Voiceless_lateral_fricative.png" alt="hla"><b>hla</b></button></td></tr>
           </tbody>
         </table></div>
+        <p class="mc-note">The other manners, and the clicks, each have their own mark. You will meet them in the chart.</p>
       </div>
 
-      <div style="margin-bottom:1.1rem;">
-        <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">The <strong>shape</strong> of the mark shows how the air moves.<br><strong>Once-off:</strong> the air stops, then pops.<br><strong>Continuous:</strong> the air keeps flowing.</p>
-        <div class="manner-grid">
-          <div class="manner-card">
-            <div>
-              <div class="manner-name">Omadubula / omvinjwa <span class="manner-tech">once-off (stops, plosives)</span></div>
-              <div class="manner-eg"><em>thatha</em> &mdash; "take" (isiZulu)</div>
-            </div>
-          </div>
-          <div class="manner-card">
-            <div>
-              <div class="manner-name">Omfuthwa <span class="manner-tech">continuous, with a hiss (fricatives)</span></div>
-              <div class="manner-eg"><em>sapha</em> &mdash; "hand over" (isiXhosa)</div>
-            </div>
-          </div>
-          <div class="manner-card">
-            <div>
-              <div class="manner-name">Omfuthwambhanqwa <span class="manner-tech">once-off, then continuous (affricate)</span></div>
-              <div class="manner-eg"><em>tsatsa</em> &mdash; "take" (siSwati)</div>
-            </div>
-          </div>
-          <div class="manner-card">
-            <div>
-              <div class="manner-name">Osondelela <span class="manner-tech">continuous, no hiss (approximant)</span></div>
-              <div class="manner-eg"><em>lala</em> &mdash; "sleep" (isiZulu)</div>
-            </div>
-          </div>
-          <div class="manner-card">
-            <div>
-              <div class="manner-name">Omankankeni <span class="manner-tech">continuous, through the nose (nasal)</span></div>
-              <div class="manner-eg"><em>nana</em> &mdash; "child" (isiXhosa)</div>
-            </div>
-          </div>
-        </div>
-        <p style="font-size:0.78rem;color:#6b7280;margin:0.5rem 0 0;">Clicks have their own shapes; you will meet them in the chart.</p>
-      </div>
 
     </div>
 
@@ -1312,7 +1282,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
   var TAG = {NGU:'Nguni', SOT:'Sotho', TSO:'Tsonga', VEN:'Venda'};
   var LANGTAG = {'isiZulu':'Zulu','isiXhosa':'Xhosa','siSwati':'Swati','Sesotho':'Sotho','Setswana':'Tswana','Tshivenda':'Venda','Xitsonga':'Tsonga','isiZulu, Sesotho':'Zulu, Sotho','all':''};
   var ZU_P = {'Bilabial':'ondebembili','Labio-dental':'ondebezinyo','Dental':'ozinyo','Alveolar':'onsinini','Post-alveolar':'onsininilwangeni','Palatal':'olwangeni','Velar':'omalakeni','Glottal':'omphinjeni','Lateral':'ohlangothi'};
-  var ZU_M = {'Plosive':'omadubula','Fricative':'omfuthwa','Affricate':'omfuthwambhanqwa','Approximant':'osondelela','Nasal':'omankankeni'};
+  var ZU_M = {'Plosive':'omadubula / omvinjwa','Fricative':'omfuthwa','Affricate':'omfuthwambhanqwa','Approximant':'osondelela','Nasal':'omankankeni'};
   function zuLabel(map, en){ return map[en] ? '<span class="zu-term">' + map[en] + '</span> <span class="en-gloss">' + esc(en) + '</span>' : esc(en); }
   var CORE_PLACES = ['Bilabial','Labio-dental','Alveolar','Palatal','Velar','Glottal','Lateral'];
   var PHONE = window.matchMedia('(max-width: 767px)').matches;
@@ -1382,7 +1352,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
     h += '</tr></thead><tbody>';
     rows.forEach(function(m){
       var idx = CORE.indexOf(m), label = esc(m);
-      if(idx >= 0) label = '<span class="zu-term">' + ZU_M[m] + '</span><span class="rh-plain">' + esc(STEPS[idx][0]) + '</span>' + esc(m);
+      if(idx >= 0) label = '<span class="zu-term">' + ZU_M[m] + '</span>' + esc(m) + '<span class="rh-plain">' + esc(STEPS[idx][0].toLowerCase()) + '</span>';
       h += '<tr' + (!whole && idx === step-1 ? ' class="row-new"' : '') + '><th class="row-head" scope="row">' + label + '</th>';
       places.forEach(function(p){ h += cell(cellAt(m,p,'voiceless')) + cell(cellAt(m,p,'voiced')); });
       h += '</tr>';
@@ -1398,9 +1368,9 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
     }
     var st = STEPS[step-1];
     var h = '<div class="steps-head"><span class="steps-count">Step ' + step + ' of 5</span>'
-          + '<h4>' + ZU_M[CORE[step-1]].charAt(0).toUpperCase() + ZU_M[CORE[step-1]].slice(1) + ': ' + esc(st[0].toLowerCase()) + ' <span>(' + esc(st[1]) + ')</span></h4><p>' + esc(st[2]) + '</p></div><div class="steps-nav">';
+          + '<h4>' + ZU_M[CORE[step-1]].charAt(0).toUpperCase() + ZU_M[CORE[step-1]].slice(1) + ' <span><b>' + esc(st[1]) + '</b>: ' + esc(st[0].toLowerCase()) + '</span></h4><p>' + esc(st[2]) + '</p></div><div class="steps-nav">';
     if(step > 1) h += '<button class="wt-nav-btn sec" data-act="back">&larr; Back</button>';
-    if(step < 5) h += '<button class="wt-nav-btn pri" data-act="next">Next: ' + esc(STEPS[step][0].toLowerCase()) + ' &rarr;</button>';
+    if(step < 5) h += '<button class="wt-nav-btn pri" data-act="next">Next: ' + ZU_M[CORE[step]] + ' (' + esc(STEPS[step][1]) + ') &rarr;</button>';
     else h += '<button class="wt-nav-btn pri" data-act="more">On to more sounds &darr;</button>';
     h += '</div><button class="link-btn" data-act="whole">Show the whole chart</button>';
     stepsEl.innerHTML = h;
@@ -1499,7 +1469,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
 </script>
 
 <footer class="page-credits">
-  <p><strong>Credits.</strong> Text, the vowel diagram, the isiBheqe explainer image and the <em>izimpawu</em> symbols come from <a href="https://isibheqe.org.za" target="_blank" rel="noopener">isibheqe.org.za</a>, used under its Creative Commons licence (CC BY-NC-SA: credit the source, non-commercial, share alike). The head diagram in step 2 is from <a href="https://commons.wikimedia.org/wiki/File:Onkamisa_(Emlonyeni).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Recordings: Bandile Ngidi.</p>
+  <p><strong>Credits.</strong> Text, the vowel diagram, the isiBheqe explainer image and the <em>izimpawu</em> symbols come from <a href="https://isibheqe.org.za" target="_blank" rel="noopener">isibheqe.org.za</a>, used under its Creative Commons licence (CC BY-NC-SA: credit the source, non-commercial, share alike). From <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a>: the head diagram in step 2, and the consonant shapes graphic in step 3 by Pule kaJanolintshi and Francis Burger (CC BY-SA 4.0). Recordings: Bandile Ngidi.</p>
 </footer>
 
 </body>
