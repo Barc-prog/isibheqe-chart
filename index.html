@@ -312,10 +312,15 @@
                         <div class="ntu-quote">
                           <figure class="ntu-fig">
                             <img src="images/isibheqe-org-explainer-sentence.png" alt="The same isiZulu text written in isiBheqe, with each syllable romanised underneath" loading="lazy">
-                            <figcaption>Written in isiBheqe; the same text follows below. Source: <a href="https://isibheqe.org.za" target="_blank" rel="noopener">isibheqe.org.za</a></figcaption>
+                            <figcaption>Written in isiBheqe; the same text follows below. Source: <a href="https://isibheqe.org.za" target="_blank" rel="noopener">isibheqe.org.za</a>, CC BY-NC-SA</figcaption>
                           </figure>
                           <p lang="zu">Lolu hlelo lokuloba luvela ebuciko bomdabuko, sithi: ditema tsa Sesotho, igwalo zesiNdebele, namabheqe esiZulu, nezinye izinhlelo zezimpawu zesintu. IsiBheqe SoHlamvu (Ditema tsa Dinoko) siyaqhubeka ngalokhu ngokufanekisela izimpawu ezilimini zethu.</p>
                           <p class="ntu-en" lang="en">This writing system originates in traditional arts, such as Sesotho mural art, isiNdebele house painting and isiZulu beaded messages, as well as other traditional symbologies. IsiBheqe SoHlamvu (Ditema tsa Dinoko) continues in this by relating the symbols to our languages directly.</p>
+                        </div>
+                        <div class="izimpawu">
+                          <p class="izimpawu-head"><strong lang="zu">Izimpawu zesintu</strong><span>Older siNtu symbols that carry a meaning, not a sound</span></p>
+                          <div class="izimpawu-grid"><figure><img src="images/izimpawu-intombazanyana.png" alt="intombazanyana: baby girl" loading="lazy"><figcaption><span lang="zu">intombazanyana</span><small>baby girl</small></figcaption></figure><figure><img src="images/izimpawu-owesifazane.png" alt="owesifazane: woman" loading="lazy"><figcaption><span lang="zu">owesifazane</span><small>woman</small></figcaption></figure><figure><img src="images/izimpawu-owesilisa.png" alt="owesilisa: man" loading="lazy"><figcaption><span lang="zu">owesilisa</span><small>man</small></figcaption></figure><figure><img src="images/izimpawu-inkosikazi.png" alt="inkosikazi: chieftainess" loading="lazy"><figcaption><span lang="zu">inkosikazi</span><small>chieftainess</small></figcaption></figure><figure><img src="images/izimpawu-inkosi.png" alt="inkosi: chief" loading="lazy"><figcaption><span lang="zu">inkosi</span><small>chief</small></figcaption></figure><figure><img src="images/izimpawu-isalukazi.png" alt="isalukazi: old woman" loading="lazy"><figcaption><span lang="zu">isalukazi</span><small>old woman</small></figcaption></figure></div>
+                          <p class="fig-credit">Symbols: <a href="https://isibheqe.org.za" target="_blank" rel="noopener">isibheqe.org.za</a> (by Taurai Mtake), CC BY-NC-SA</p><!-- TODO: confirm the artist's name with Bandile -->
                         </div>
                         <ul class="wt-lines top-lines">
                           <li>The script works for any siNtu language or dialect.</li>
@@ -406,13 +411,28 @@
 .wt-section-gloss { font-weight: 500; text-transform: none; letter-spacing: 0; color: #6b7280; margin-left: 0.4rem; }
 .place-rows { margin: 0 0 1rem; text-align: center; }
 .place-rows p { font-size: 0.8rem; color: #6b7280; margin: 0 0 0.5rem; }
-.place-row { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
-.pr-tile { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 0.6rem; padding: 0.4rem 0.5rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; min-width: 64px; }
-.pr-tile img { width: 52px; height: 52px; object-fit: contain; }
-.pr-tile span { font-weight: 700; font-size: 0.85rem; color: #1f2937; }
 .heads-fig { margin: 0 0 1rem; text-align: center; }
 .heads-fig img { max-width: 360px; width: 100%; height: auto; display: inline-block; }
 .wip-note { max-width: 640px; margin: 0.75rem auto 0.25rem; padding: 0.5rem 0.9rem; background: #fffbeb; border: 1px solid #fcd34d; border-radius: 0.5rem; font-size: 0.85rem; color: #78350f; line-height: 1.5; }
+.izimpawu { margin: 0.25rem 0 0.9rem; text-align: left; }
+.izimpawu-head { margin: 0 0 0.4rem; font-size: 0.9rem; }
+.izimpawu-head span { display:block; font-size: 0.78rem; color: #6b7280; }
+.izimpawu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; }
+@media (min-width: 640px) { .izimpawu-grid { grid-template-columns: repeat(6, 1fr); } }
+.izimpawu-grid figure { margin: 0; text-align: center; }
+.izimpawu-grid img { width: 100%; max-width: 84px; aspect-ratio: 1; border-radius: 0.4rem; display: block; margin: 0 auto 0.2rem; }
+.izimpawu-grid figcaption { font-size: 0.72rem; line-height: 1.2; color: #1f2937; }
+.izimpawu-grid figcaption small { display: block; color: #6b7280; font-size: 0.68rem; }
+.pr-group { text-align: left; font-size: 0.78rem; color: #6b7280; margin: 0.6rem 0 0.1rem; }
+.pr-group span { font-weight: 700; color: #1f2937; margin-right: 0.35rem; }
+.word-grid.pr-grid { grid-template-columns: repeat(3, 1fr); margin-top: 0.3rem; gap: 0.4rem; }
+.word-grid.pr-grid.four { grid-template-columns: repeat(4, 1fr); }
+.pr-grid .wc-word { font-size: 0.9rem; white-space: nowrap; }
+.pr-grid .word-card { padding: 0.5rem 0.3rem; cursor: pointer; }
+.pr-grid .wc-mode { font-size: 0.68rem; }
+.pr-grid .wc-gloss { font-size: 0.66rem; line-height: 1.25; }
+.page-credits { max-width: 760px; margin: 2rem auto 1.5rem; padding: 0.9rem 1rem 0; border-top: 1px solid #e5e7eb; font-size: 0.72rem; color: #6b7280; line-height: 1.6; }
+.page-credits a, .chart-legend a { color: inherit; text-decoration: underline; }
 .ntu-quote { text-align: left; max-width: 640px; margin: 0 auto 0.75rem; }
 .ntu-quote p { margin: 0 0 0.4rem; font-size: 0.95rem; line-height: 1.6; color: #1f2937; }
 .ntu-quote .ntu-en { font-size: 0.85rem; color: #6b7280; }
@@ -780,6 +800,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
           <button class="vowel-btn word-btn" onclick="onkamisaPlay('w_amabhaca', null, 'amabhaca: a word with a')">amabhaca</button>
         </div>
         <div class="onkamisa-lbl" id="onkamisa-lbl">&nbsp;</div>
+        <p class="fig-credit" style="text-align:center;margin:0.2rem 0 0;">Vowel diagram: <a href="https://isibheqe.org.za" target="_blank" rel="noopener">isibheqe.org.za</a>, CC BY-NC-SA</p>
       </div>
 
       <p style="font-size:0.78rem;color:#6b7280;margin-top:0.25rem;text-align:center;">
@@ -800,9 +821,16 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
         </ul>
       </div>
       <div class="place-rows">
-        <p><strong>Across:</strong> the place moves from the lips (left) to the back of the mouth (right).<br><strong>Down:</strong> the manner changes. Top row: <em>omadubula</em> (once-off). Bottom row: <em>omfuthwa</em> (continuous, with a hiss).<br>Tap to hear.</p>
-        <div class="place-row"><button class="pr-tile" onclick="new Audio('audio/cues/Aspirated_bilabial_plosive_a.mp3').play()"><img src="images/Aspirated_bilabial_plosive.png" alt="pha"><span>pha</span></button><button class="pr-tile" onclick="new Audio('audio/cues/Aspirated_alveolar_plosive_a.mp3').play()"><img src="images/Aspirated_alveolar_plosive.png" alt="tha"><span>tha</span></button><button class="pr-tile" onclick="new Audio('audio/cues/Aspirated_velar_plosive_a.mp3').play()"><img src="images/Aspirated_velar_plosive.png" alt="kha"><span>kha</span></button></div>
-        <div class="place-row"><button class="pr-tile" onclick="new Audio('audio/cues/Voiceless_labiodental_fricative_a.mp3').play()"><img src="images/Voiceless_labiodental_fricative.png" alt="fa"><span>fa</span></button><button class="pr-tile" onclick="new Audio('audio/cues/Voiceless_alveolar_fricative_a.mp3').play()"><img src="images/Voiceless_alveolar_fricative.png" alt="sa"><span>sa</span></button><button class="pr-tile" onclick="new Audio('audio/cues/Voiceless_velar_fricative_a.mp3').play()"><img src="images/Voiceless_velar_fricative.png" alt="rha / ga"><span>rha / ga</span></button><button class="pr-tile" onclick="new Audio('audio/cues/Voiceless_lateral_fricative_a.mp3').play()"><img src="images/Voiceless_lateral_fricative.png" alt="hla"><span>hla</span></button></div>
+        <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;text-align:left;">Seven sounds, read two ways.</p>
+        <ul class="wt-lines" style="text-align:left;">
+          <li><strong>Across:</strong> the mark moves from the lips (left) to the back of the mouth (right).</li>
+          <li><strong>Down:</strong> the mark changes shape, because the air moves differently.</li>
+          <li>Tap a sound to hear it.</li>
+        </ul>
+        <div class="pr-group"><span lang="zu">Omadubula</span> once-off: the air stops, then pops</div>
+        <div class="word-grid pr-grid"><div class="word-card" role="button" onclick="new Audio('audio/cues/Aspirated_bilabial_plosive_a.mp3').play()"><div class="wc-mode">Ondebembili</div><img src="images/Aspirated_bilabial_plosive.png" alt="pha"><div class="wc-word"><strong>pha</strong> &#9654;</div><div class="wc-gloss">lips</div></div><div class="word-card" role="button" onclick="new Audio('audio/cues/Aspirated_alveolar_plosive_a.mp3').play()"><div class="wc-mode">Onsinini</div><img src="images/Aspirated_alveolar_plosive.png" alt="tha"><div class="wc-word"><strong>tha</strong> &#9654;</div><div class="wc-gloss">tooth ridge</div></div><div class="word-card" role="button" onclick="new Audio('audio/cues/Aspirated_velar_plosive_a.mp3').play()"><div class="wc-mode">Omalakeni</div><img src="images/Aspirated_velar_plosive.png" alt="kha"><div class="wc-word"><strong>kha</strong> &#9654;</div><div class="wc-gloss">back of mouth</div></div></div>
+        <div class="pr-group"><span lang="zu">Omfuthwa</span> continuous, with a hiss</div>
+        <div class="word-grid pr-grid four"><div class="word-card" role="button" onclick="new Audio('audio/cues/Voiceless_labiodental_fricative_a.mp3').play()"><div class="wc-mode">Ondebezinyo</div><img src="images/Voiceless_labiodental_fricative.png" alt="fa"><div class="wc-word"><strong>fa</strong> &#9654;</div><div class="wc-gloss">lip and teeth</div></div><div class="word-card" role="button" onclick="new Audio('audio/cues/Voiceless_alveolar_fricative_a.mp3').play()"><div class="wc-mode">Onsinini</div><img src="images/Voiceless_alveolar_fricative.png" alt="sa"><div class="wc-word"><strong>sa</strong> &#9654;</div><div class="wc-gloss">tooth ridge</div></div><div class="word-card" role="button" onclick="new Audio('audio/cues/Voiceless_velar_fricative_a.mp3').play()"><div class="wc-mode">Omalakeni</div><img src="images/Voiceless_velar_fricative.png" alt="rha / ga"><div class="wc-word"><strong>rha/ga</strong> &#9654;</div><div class="wc-gloss">back of mouth</div></div><div class="word-card" role="button" onclick="new Audio('audio/cues/Voiceless_lateral_fricative_a.mp3').play()"><div class="wc-mode">Ohlangothi</div><img src="images/Voiceless_lateral_fricative.png" alt="hla"><div class="wc-word"><strong>hla</strong> &#9654;</div><div class="wc-gloss">side of tongue</div></div></div>
       </div>
 
       <div style="margin-bottom:1.1rem;">
@@ -1078,7 +1106,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
             <div class="chart-hint">Tap a symbol to hear its syllable, or a word to hear the word</div>
             <div id="chart-toggles"></div>
             <p class="chart-note">Every symbol in this chart is a whole syllable: the consonant written with the vowel <em>a</em> (the downward triangle). Turn the triangle to change the vowel; the consonant marks stay where they are.</p>
-            <p class="chart-legend">Under each symbol: the usual Latin spelling in large letters, and the sound in <strong>IPA</strong> in square brackets. IPA is the International Phonetic Alphabet that linguists use worldwide; its letters don't always match our spelling. IPA <em>[j]</em> is the <em>y</em> in <em>yini</em>, IPA <em>[x]</em> is the <em>rh</em> in <em>rhoxisa</em>, and IPA <em>[c]</em> is spelled <em>ty</em> or <em>tj</em>. A spelling with no language named is the same in Nguni, Sotho, Tsonga and Venda.</p>
+            <p class="chart-legend">Under each symbol: the usual spelling, then the sound in <strong>IPA</strong> (the International Phonetic Alphabet) in square brackets. <a href="https://www.ipachart.com/" target="_blank" rel="noopener">Hear every IPA sound</a>. A spelling with no language named is the same in Nguni, Sotho, Tsonga and Venda.</p>
             <h3 class="chart-title">Core sounds <span>the five basic manners</span></h3>
             <div class="chart-steps" id="chart-steps"></div>
             <div class="table-container" id="chart-core"></div>
@@ -1470,6 +1498,10 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
   if(PHONE){ moreWrap.open = false; setPreset('one'); } else { setPreset('all'); }
 })();
 </script>
+
+<footer class="page-credits">
+  <p><strong>Credits.</strong> Text, the vowel diagram, the isiBheqe explainer image and the <em>izimpawu</em> symbols come from <a href="https://isibheqe.org.za" target="_blank" rel="noopener">isibheqe.org.za</a>, used under its Creative Commons licence (CC BY-NC-SA: credit the source, non-commercial, share alike). The head diagram in step 2 is from <a href="https://commons.wikimedia.org/wiki/File:Onkamisa_(Emlonyeni).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>. Recordings: Bandile Ngidi.</p>
+</footer>
 
 </body>
 </html>
