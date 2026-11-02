@@ -409,8 +409,6 @@
 .top-lines { display: inline-block; text-align: left; margin: 0 auto; }
 .wt-step-gloss { font-size: 0.65rem; color: #9ca3af; white-space: nowrap; margin-top: -0.2rem; }
 .wt-section-gloss { font-weight: 500; text-transform: none; letter-spacing: 0; color: #6b7280; margin-left: 0.4rem; }
-.place-rows { margin: 0 0 1rem; text-align: center; }
-.place-rows p { font-size: 0.8rem; color: #6b7280; margin: 0 0 0.5rem; }
 .heads-fig { margin: 0 0 1rem; text-align: center; }
 .heads-fig img { max-width: 360px; width: 100%; height: auto; display: inline-block; }
 .wip-note { max-width: 640px; margin: 0.75rem auto 0.25rem; padding: 0.5rem 0.9rem; background: #fffbeb; border: 1px solid #fcd34d; border-radius: 0.5rem; font-size: 0.85rem; color: #78350f; line-height: 1.5; }
@@ -423,16 +421,24 @@
 .izimpawu-grid img { width: 100%; max-width: 84px; aspect-ratio: 1; border-radius: 0.4rem; display: block; margin: 0 auto 0.2rem; }
 .izimpawu-grid figcaption { font-size: 0.72rem; line-height: 1.2; color: #1f2937; }
 .izimpawu-grid figcaption small { display: block; color: #6b7280; font-size: 0.68rem; }
-.pr-group { text-align: left; font-size: 0.78rem; color: #6b7280; margin: 0.6rem 0 0.1rem; }
-.pr-group span { font-weight: 700; color: #1f2937; margin-right: 0.35rem; }
-.word-grid.pr-grid { grid-template-columns: repeat(3, 1fr); margin-top: 0.3rem; gap: 0.4rem; }
-.word-grid.pr-grid.four { grid-template-columns: repeat(4, 1fr); }
-.pr-grid .wc-word { font-size: 0.9rem; white-space: nowrap; }
-.pr-grid .word-card { padding: 0.5rem 0.3rem; cursor: pointer; }
-.pr-grid .wc-mode { font-size: 0.68rem; }
-.pr-grid .wc-gloss { font-size: 0.66rem; line-height: 1.25; }
 .page-credits { max-width: 760px; margin: 2rem auto 1.5rem; padding: 0.9rem 1rem 0; border-top: 1px solid #e5e7eb; font-size: 0.72rem; color: #6b7280; line-height: 1.6; }
 .page-credits a, .chart-legend a { color: inherit; text-decoration: underline; }
+.mini-chart { margin: 0.6rem 0 1.1rem; }
+.mini-wrap { overflow-x: auto; }
+.mini-tbl { border-collapse: collapse; width: 100%; font-size: 0.7rem; }
+.mini-tbl th, .mini-tbl td { border: 1px solid #e0e7ff; padding: 0.3rem 0.2rem; text-align: center; vertical-align: middle; }
+.mini-tbl thead th { background: #4f46e5; color: #fff; font-weight: 600; }
+.mini-tbl thead th small, .mini-tbl .mc-row small { display: block; font-weight: 400; opacity: 0.8; font-size: 0.6rem; }
+.mini-tbl thead th span, .mc-corner span, .mc-span span { font-weight: 400; opacity: 0.8; }
+.mini-tbl .mc-span { font-size: 0.68rem; }
+.mini-tbl .mc-corner { font-size: 0.6rem; width: 20%; }
+@media (max-width: 480px) { .mini-tbl { table-layout: fixed; } .mini-tbl .mc-corner { width: 24%; } .mini-tbl thead tr:nth-child(2) th { font-size: 0.5rem; padding: 0.25rem 0; letter-spacing: -0.03em; } .mini-tbl thead th small { display: none; } .mc-cell img { width: 28px; height: 28px; } .mini-tbl .mc-row { font-size: 0.62rem; } .mini-tbl td { padding: 0.2rem 0.05rem; } }
+.mini-tbl .mc-row { background: #f8f9ff; color: #374151; text-align: left; font-size: 0.72rem; }
+.mini-tbl .mc-row small { color: #6b7280; opacity: 1; }
+.mc-cell { background: none; border: 0; padding: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; width: 100%; }
+.mc-cell img { width: 36px; height: 36px; object-fit: contain; }
+.mc-cell b { font-size: 0.75rem; color: #1f2937; }
+.mc-empty { background: #fafafa; }
 .ntu-quote { text-align: left; max-width: 640px; margin: 0 auto 0.75rem; }
 .ntu-quote p { margin: 0 0 0.4rem; font-size: 0.95rem; line-height: 1.6; color: #1f2937; }
 .ntu-quote .ntu-en { font-size: 0.85rem; color: #6b7280; }
@@ -820,43 +826,36 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
           <li>The <strong>sides</strong> are the sides of your tongue.</li>
         </ul>
       </div>
-      <div class="place-rows">
-        <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;text-align:left;">Seven sounds, read two ways.</p>
-        <ul class="wt-lines" style="text-align:left;">
-          <li><strong>Across:</strong> the mark moves from the lips (left) to the back of the mouth (right).</li>
-          <li><strong>Down:</strong> the mark changes shape, because the air moves differently.</li>
-          <li>Tap a sound to hear it.</li>
+      <div class="mini-chart">
+        <ul class="wt-lines">
+          <li><strong>Across</strong>, the same mark moves around the triangle: where in your mouth.</li>
+          <li><strong>Down</strong>, a different mark: how the air moves.</li>
+          <li>Tap a symbol to hear it. The full chart further down works the same way.</li>
         </ul>
-        <div class="pr-group"><span lang="zu">Omadubula</span> once-off: the air stops, then pops</div>
-        <div class="word-grid pr-grid"><div class="word-card" role="button" onclick="new Audio('audio/cues/Aspirated_bilabial_plosive_a.mp3').play()"><div class="wc-mode">Ondebembili</div><img src="images/Aspirated_bilabial_plosive.png" alt="pha"><div class="wc-word"><strong>pha</strong> &#9654;</div><div class="wc-gloss">lips</div></div><div class="word-card" role="button" onclick="new Audio('audio/cues/Aspirated_alveolar_plosive_a.mp3').play()"><div class="wc-mode">Onsinini</div><img src="images/Aspirated_alveolar_plosive.png" alt="tha"><div class="wc-word"><strong>tha</strong> &#9654;</div><div class="wc-gloss">tooth ridge</div></div><div class="word-card" role="button" onclick="new Audio('audio/cues/Aspirated_velar_plosive_a.mp3').play()"><div class="wc-mode">Omalakeni</div><img src="images/Aspirated_velar_plosive.png" alt="kha"><div class="wc-word"><strong>kha</strong> &#9654;</div><div class="wc-gloss">back of mouth</div></div></div>
-        <div class="pr-group"><span lang="zu">Omfuthwa</span> continuous, with a hiss</div>
-        <div class="word-grid pr-grid four"><div class="word-card" role="button" onclick="new Audio('audio/cues/Voiceless_labiodental_fricative_a.mp3').play()"><div class="wc-mode">Ondebezinyo</div><img src="images/Voiceless_labiodental_fricative.png" alt="fa"><div class="wc-word"><strong>fa</strong> &#9654;</div><div class="wc-gloss">lip and teeth</div></div><div class="word-card" role="button" onclick="new Audio('audio/cues/Voiceless_alveolar_fricative_a.mp3').play()"><div class="wc-mode">Onsinini</div><img src="images/Voiceless_alveolar_fricative.png" alt="sa"><div class="wc-word"><strong>sa</strong> &#9654;</div><div class="wc-gloss">tooth ridge</div></div><div class="word-card" role="button" onclick="new Audio('audio/cues/Voiceless_velar_fricative_a.mp3').play()"><div class="wc-mode">Omalakeni</div><img src="images/Voiceless_velar_fricative.png" alt="rha / ga"><div class="wc-word"><strong>rha/ga</strong> &#9654;</div><div class="wc-gloss">back of mouth</div></div><div class="word-card" role="button" onclick="new Audio('audio/cues/Voiceless_lateral_fricative_a.mp3').play()"><div class="wc-mode">Ohlangothi</div><img src="images/Voiceless_lateral_fricative.png" alt="hla"><div class="wc-word"><strong>hla</strong> &#9654;</div><div class="wc-gloss">side of tongue</div></div></div>
+        <div class="mini-wrap"><table class="mini-tbl">
+          <thead>
+            <tr><th class="mc-corner" rowspan="2">Indlela yokuphimisa <span>manner</span> &darr;</th><th class="mc-span" colspan="5">Indawo lapho kuphinyiswa khona <span>place</span> &rarr;</th></tr>
+            <tr><th><span lang="zu">Ondebembili</span><small>lips</small></th><th><span lang="zu">Ondebezinyo</span><small>lip, teeth</small></th><th><span lang="zu">Onsinini</span><small>tooth ridge</small></th><th><span lang="zu">Omalakeni</span><small>back of mouth</small></th><th><span lang="zu">Ohlangothi</span><small>side of tongue</small></th></tr>
+          </thead>
+          <tbody>
+            <tr><th class="mc-row"><span lang="zu">Omadubula /<br>omvinjwa</span><small>stops, plosives</small></th><td><button class="mc-cell" onclick="new Audio('audio/cues/Aspirated_bilabial_plosive_a.mp3').play()" aria-label="Hear pha"><img src="images/Aspirated_bilabial_plosive.png" alt="pha"><b>pha</b></button></td><td class="mc-empty"></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Aspirated_alveolar_plosive_a.mp3').play()" aria-label="Hear tha"><img src="images/Aspirated_alveolar_plosive.png" alt="tha"><b>tha</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Aspirated_velar_plosive_a.mp3').play()" aria-label="Hear kha"><img src="images/Aspirated_velar_plosive.png" alt="kha"><b>kha</b></button></td><td class="mc-empty"></td></tr>
+            <tr><th class="mc-row"><span lang="zu">Omfuthwa</span><small>fricatives</small></th><td class="mc-empty"></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_labiodental_fricative_a.mp3').play()" aria-label="Hear fa"><img src="images/Voiceless_labiodental_fricative.png" alt="fa"><b>fa</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_alveolar_fricative_a.mp3').play()" aria-label="Hear sa"><img src="images/Voiceless_alveolar_fricative.png" alt="sa"><b>sa</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_velar_fricative_a.mp3').play()" aria-label="Hear rha/ga"><img src="images/Voiceless_velar_fricative.png" alt="rha/ga"><b>rha/ga</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_lateral_fricative_a.mp3').play()" aria-label="Hear hla"><img src="images/Voiceless_lateral_fricative.png" alt="hla"><b>hla</b></button></td></tr>
+          </tbody>
+        </table></div>
       </div>
 
       <div style="margin-bottom:1.1rem;">
-        <div class="wt-section-label" style="color:#6366f1;">Indawo lapho kuphinyiswa khona<span class="wt-section-gloss">place of articulation</span></div>
-        <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">The <strong>position</strong> of the mark shows where in your mouth the sound is made.</p>
-        <div class="place-pills">
-          <span class="place-pill"><strong>Ondebembili</strong> (lips) &rarr; <em>pha, ba, ma</em></span>
-          <span class="place-pill"><strong>Onsinini</strong> (ridge behind the teeth) &rarr; <em>ta, da, na</em></span>
-          <span class="place-pill"><strong>Olwangeni</strong> (roof of the mouth) &rarr; <em>ja, nya</em></span>
-          <span class="place-pill"><strong>Omalakeni</strong> (back of the mouth) &rarr; <em>ka, ga</em></span>
-        </div>
-      </div>
-
-      <div style="margin-bottom:1.1rem;">
-        <div class="wt-section-label" style="color:#059669;">Indlela yokuphimisa<span class="wt-section-gloss">manner of articulation</span></div>
         <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">The <strong>shape</strong> of the mark shows how the air moves.<br><strong>Once-off:</strong> the air stops, then pops.<br><strong>Continuous:</strong> the air keeps flowing.</p>
         <div class="manner-grid">
           <div class="manner-card">
             <div>
-              <div class="manner-name">Omadubula <span class="manner-tech">once-off (plosive)</span></div>
+              <div class="manner-name">Omadubula / omvinjwa <span class="manner-tech">once-off (stops, plosives)</span></div>
               <div class="manner-eg"><em>thatha</em> &mdash; "take" (isiZulu)</div>
             </div>
           </div>
           <div class="manner-card">
             <div>
-              <div class="manner-name">Omfuthwa <span class="manner-tech">continuous, with a hiss (fricative)</span></div>
+              <div class="manner-name">Omfuthwa <span class="manner-tech">continuous, with a hiss (fricatives)</span></div>
               <div class="manner-eg"><em>sapha</em> &mdash; "hand over" (isiXhosa)</div>
             </div>
           </div>
