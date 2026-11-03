@@ -309,14 +309,7 @@
                 </ul>
 
 
-                <div style="background: #eff6ff; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6; margin-top: 1rem;">
-                    <p style="margin: 0;"><strong>Using this page:</strong></p>
-                    <ol class="page-map">
-                      <li><a href="#sivelaphi"><span lang="zu">Sivelaphi isiBheqe?</span></a> Where the script comes from.</li>
-                      <li><a href="#how-it-works">How it works.</a> Four short steps.</li>
-                      <li><a href="#step-by-step">Step by step.</a> The interactive chart: tap any symbol to hear it.</li>
-                    </ol>
-                </div>
+                
             </div>
         </header>
      </div>
@@ -403,6 +396,7 @@
 .izimpawu-grid figcaption { font-size: 0.72rem; line-height: 1.2; color: #1f2937; }
 .izimpawu-grid figcaption small { display: block; color: #6b7280; font-size: 0.68rem; }
 .page-credits { max-width: 760px; margin: 2rem auto 1.5rem; padding: 0.9rem 1rem 0; border-top: 1px solid #e5e7eb; font-size: 0.72rem; color: #6b7280; line-height: 1.6; }
+.credits-more > summary { cursor: pointer; color: #4f46e5; font-weight: 600; }
 .page-credits a, .chart-legend a { color: inherit; text-decoration: underline; }
 .marks3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin: 0.4rem 0 0.5rem; }
 .mk { border: 1.5px solid #e5e7eb; background: #fff; border-radius: 0.75rem; padding: 0.5rem 0.3rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.1rem; transition: border-color .2s, box-shadow .2s, transform .2s; }
@@ -439,6 +433,9 @@
 .mode-choice { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; max-width: 620px; margin: 0 auto 0.6rem; }
 .mode-choice button { border: 2px solid #c7d2fe; background: #fff; color: #3730a3; border-radius: 0.9rem; padding: 1rem 0.75rem; font-size: 1rem; font-weight: 700; cursor: pointer; line-height: 1.3; }
 .mode-choice button.on { background: #4f46e5; border-color: #4f46e5; color: #fff; }
+.chart-section.unchosen > :not(.chart-intro):not(.mode-choice) { display: none; }
+.chart-section #chart-toggles { margin-top: 1rem; border-radius: 0.75rem; border-bottom: 1px solid #e5e7eb; }
+#chart-toggles[hidden], .toggle-section[hidden] { display: none !important; }
 .chart-tap { text-align: center; font-size: 0.8rem; color: #6b7280; margin: 0 0 1rem; }
 .toggle-section-label span { text-transform: none; letter-spacing: 0; font-weight: 400; margin-left: 0.3rem; }
 .mini-chart { margin: 0.6rem 0 1.1rem; }
@@ -613,6 +610,10 @@
   border:1.5px solid #bfdbfe; border-radius:999px; padding:0.45rem 0.9rem; margin:0 auto 0.75rem; width:fit-content; }
 
 /* --- Consonant chart (drawn from data) --- */
+.chart-key { max-width: 420px; margin: 0 auto 0.75rem; }
+.key-svg { display: block; width: 100%; height: auto; margin-top: 0.5rem; font-family: 'Inter', sans-serif; }
+.key-note { font-size: 0.78rem; color: #6b7280; text-align: center; margin: 0.4rem 0 0; }
+.key-note a { color: inherit; text-decoration: underline; }
 .chart-note { max-width:760px; margin:0.9rem auto 0.4rem; font-size:0.88rem; color:#374151; text-align:center; line-height:1.5; }
 .chart-legend { font-size:0.72rem; color:#6b7280; text-align:center; margin:0 0 0.75rem; }
 .chart-title { font-size:1rem; font-weight:700; color:#1f2937; margin:1.4rem 0 0.4rem; }
@@ -715,6 +716,8 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
   <h2>IsiBheqe / Ditema: how does it work?</h2>
   <p>Four short steps, then a closer look if you want it</p>
 </div>
+<details class="bg-details hiw-details">
+<summary>Show how it works</summary>
 <div class="walkthrough">
 
   <div class="wt-steps">
@@ -754,6 +757,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
           <button class="wt-play" onclick="wtPlay('pha_bandile',this)">&#9654; Hear it</button>
         </div>
         <div class="wt-col-text">
+          <details class="wt-more"><summary>Read more</summary>
           <ul class="wt-lines">
             <li>English writes one letter per sound: <em>g-e-t</em> is 3 letters.</li>
             <li>IsiBheqe writes one symbol per syllable.</li>
@@ -761,6 +765,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
             <li>The symbol here is <strong>pha</strong>: "give" in isiZulu and Sesotho.</li>
             <li>Two symbols already make words: <em>i&middot;pha</em> (give), <em>m&middot;pha</em> (give me).</li>
           </ul>
+          </details>
           <div class="wt-callout">
             Every ibheqe has <strong>two parts</strong>: the triangle is the vowel; the marks around it are the consonant.
           </div>
@@ -990,6 +995,8 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
     if (cur === TOTAL - 1) {
       nextBtn.textContent = '\u2193 Explore the chart';
       nextBtn.onclick = function() {
+        var cs = document.getElementById('consonants-chart');
+        if (cs && cs.classList.contains('unchosen')) document.querySelector('#mode-choice [data-mode="steps"]').click();
         var el = document.querySelector('.table-container');
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       };
@@ -1153,6 +1160,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
 
   </div>
 </details>
+</details><!-- end how-it-works fold -->
 
  <!-- CONSONANTS CHART -->
 <div class="page-section-head" id="step-by-step">
@@ -1160,16 +1168,49 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
   <h2>Step by step</h2>
   <p>The interactive chart</p>
 </div>
-        <div class="chart-section" id="consonants-chart">
+        <div class="chart-section unchosen" id="consonants-chart">
             <p class="chart-intro">Use this interactive chart to learn more Ditema symbols.</p>
             <div class="mode-choice" id="mode-choice">
               <button type="button" data-mode="steps">Learn the basics, step by step</button>
               <button type="button" data-mode="whole">See the whole chart</button>
             </div>
             <p class="chart-tap">Tap a symbol to hear its syllable, or a word to hear the word.</p>
-            <div id="chart-toggles"></div>
-            <p class="chart-note">Every symbol in this chart is a whole syllable: the consonant written with the vowel <em>a</em> (the downward triangle). Turn the triangle to change the vowel; the consonant marks stay where they are.</p>
-            <p class="chart-legend">Under each symbol: the usual spelling, then the sound in <strong>IPA</strong> (the International Phonetic Alphabet) in square brackets. <a href="https://www.ipachart.com/" target="_blank" rel="noopener">Hear every IPA sound</a>. A spelling with no language named is the same in Nguni, Sotho, Tsonga and Venda.</p>
+            <details class="bg-details chart-key">
+              <summary>How to read a cell</summary><!-- TODO: siNtu terms for the labels below -->
+              <svg class="key-svg" viewBox="0 0 360 240" role="img" aria-label="One chart cell, bha, with five labels: the ibheqe, the spelling, the languages that spell it this way, the IPA, and an example word">
+                <defs><marker id="key-ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#4f46e5"/></marker></defs>
+                <rect x="6" y="6" width="140" height="228" rx="10" fill="#fff" stroke="#e5e7eb"/>
+                <rect x="41" y="14" width="70" height="70" rx="10" fill="#fff" stroke="#c7d2fe"/>
+                <image href="images/Voiced_bilabial_plosive.png" x="49" y="22" width="54" height="54"/>
+                <text x="76" y="108" text-anchor="middle" font-size="17" font-weight="700" fill="#111827">bha</text>
+                <text x="76" y="124" text-anchor="middle" font-size="9" fill="#9ca3af">(Nguni, Sotho, Tsonga)</text>
+                <text x="76" y="144" text-anchor="middle" font-size="11" fill="#6b7280">[ba]</text>
+                <text x="76" y="160" text-anchor="middle" font-size="10" fill="#4b5563">ba (Venda)</text>
+                <rect x="20" y="172" width="112" height="44" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+                <text x="76" y="190" text-anchor="middle" font-size="11" fill="#1d4ed8" font-weight="700">bhabha &#9654;</text>
+                <text x="76" y="206" text-anchor="middle" font-size="9" fill="#4b5563">trap (Zulu)</text>
+                <g font-size="9.5" fill="#1f2937">
+                  <rect x="200" y="8" width="154" height="40" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
+                  <text x="207" y="24"><tspan font-weight="700">Ibheqe</tspan>: the symbol for this</text><text x="207" y="38">syllable. Tap it to hear it.</text>
+                  <rect x="200" y="56" width="154" height="28" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
+                  <text x="207" y="74"><tspan font-weight="700">Spelling</tspan> in Latin letters</text>
+                  <rect x="200" y="92" width="154" height="40" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
+                  <text x="207" y="108">Languages that <tspan font-weight="700">spell it</tspan></text><text x="207" y="122">this way; other spellings below</text>
+                  <rect x="200" y="140" width="154" height="40" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
+                  <text x="207" y="156"><tspan font-weight="700">IPA</tspan>: how it sounds, in signs</text><text x="207" y="170">used for every language</text>
+                  <rect x="200" y="188" width="154" height="40" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
+                  <text x="207" y="204"><tspan font-weight="700">Example word</tspan> with this</text><text x="207" y="218">syllable. Tap it to hear it.</text>
+                </g>
+                <g stroke="#4f46e5" stroke-width="1.3" fill="none" marker-end="url(#key-ah)">
+                  <path d="M200,28 L116,40"/>
+                  <path d="M200,70 L104,103"/>
+                  <path d="M200,112 L134,121"/>
+                  <path d="M200,160 L94,141"/>
+                  <path d="M200,208 L136,196"/>
+                </g>
+              </svg>
+              <p class="key-note">Every symbol in the chart uses the vowel <em>a</em>, the downward triangle. <a href="https://www.ipachart.com/" target="_blank" rel="noopener">Hear every IPA sound</a>.</p>
+            </details>
             <h3 class="chart-title">Core sounds <span>the five basic manners</span></h3>
             <div class="chart-steps" id="chart-steps"></div>
             <div class="table-container" id="chart-core"></div>
@@ -1177,6 +1218,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
               <summary>More sounds <span>ejectives, implosives, trills, clicks and syllabic consonants</span></summary>
               <div class="table-container" id="chart-more"></div>
             </details>
+            <div id="chart-toggles"></div>
             <!-- Chart data: one entry per cell. m = manner, p = place, v = voiceless/voiced,
                  sp = Latin spelling by language group (kept from the old hover text),
                  words = example words (src R = recorded, M = confirmed in the 9 Oct meeting). -->
@@ -1432,7 +1474,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
     var stepping = !whole && manners === CORE;
     var rows = manners.filter(function(m){ return mannerOn[m] && (stepping || DATA.some(function(c){ return c.m===m && placeOn[c.p]; })); });
     var places = PLACES.filter(function(p){ return placeOn[p] && DATA.some(function(c){ return c.p===p && manners.indexOf(c.m) >= 0; }); });
-    if(!rows.length || !places.length){ el.innerHTML = '<p class="chart-empty">' + (onePlace ? 'No sounds at this place in this part of the chart. Choose another place above.' : 'Nothing to show here. Turn on a place or a manner above.') + '</p>'; return; }
+    if(!rows.length || !places.length){ el.innerHTML = '<p class="chart-empty">' + (onePlace ? 'No sounds at this place in this part of the chart. Use the arrows to choose another place.' : 'Nothing to show here. Turn on a place or a manner below.') + '</p>'; return; }
     var h = '<table class="chart-tbl' + (onePlace ? ' one' : '') + '"><thead><tr><th class="corner" rowspan="2">Manner &darr;<br>Place &rarr;</th>';
     places.forEach(function(p){
       if(!onePlace){ h += '<th colspan="2">' + zuLabel(ZU_P, p) + '</th>'; return; }
@@ -1470,7 +1512,9 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
     stepsEl.innerHTML = h;
   }
   var modeBtns = document.querySelectorAll('#mode-choice [data-mode]');
+  var chosen = false;
   function setMode(m){
+    chosen = true; document.getElementById('consonants-chart').classList.remove('unchosen');
     whole = (m === 'whole');
     if(whole){ CORE.concat(MORE).forEach(function(x){ mannerOn[x] = true; }); }
     else { step = 1; }
@@ -1480,10 +1524,12 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
   }
   Array.prototype.forEach.call(modeBtns, function(b){ b.addEventListener('click', function(){ setMode(b.getAttribute('data-mode')); }); });
   function render(){
-    Array.prototype.forEach.call(modeBtns, function(b){ b.classList.toggle('on', (b.getAttribute('data-mode') === 'whole') === whole); });
+    Array.prototype.forEach.call(modeBtns, function(b){ b.classList.toggle('on', chosen && (b.getAttribute('data-mode') === 'whole') === whole); });
     if(!whole) CORE.forEach(function(m, i){ mannerOn[m] = i < step; });
     moreWrap.hidden = !whole && step < 5;
     mannerBoxWrap.hidden = !whole;
+    placeWrap.hidden = PHONE && !whole; // phones: the arrows in the chart header move between places
+    panel.hidden = placeWrap.hidden && mannerBoxWrap.hidden;
     renderSteps();
     build(document.getElementById('chart-core'), CORE);
     build(document.getElementById('chart-more'), MORE);
@@ -1566,7 +1612,10 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
 </script>
 
 <footer class="page-credits">
-  <p><strong>Credits.</strong> Text, the vowel diagram, the isiBheqe explainer image and the <em>izimpawu</em> symbols come from <a href="https://isibheqe.org.za" target="_blank" rel="noopener">isibheqe.org.za</a>, used under its Creative Commons licence (CC BY-NC-SA: credit the source, non-commercial, share alike). From <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a>: the head diagram in step 2, the consonant shapes graphic in step 3 by Pule kaJanolintshi and Francis Burger (CC BY-SA 4.0), and the three mark diagrams in step 4. Recordings: Bandile Ngidi.</p>
+  <p><strong>Credits.</strong> Text and images: <a href="https://isibheqe.org.za" target="_blank" rel="noopener">isibheqe.org.za</a> (CC BY-NC-SA) and <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a> (CC BY-SA). Recordings: Bandile Ngidi.</p>
+  <details class="credits-more"><summary>Full credits</summary>
+  <p>Text, the vowel diagram, the isiBheqe explainer image and the <em>izimpawu</em> symbols come from <a href="https://isibheqe.org.za" target="_blank" rel="noopener">isibheqe.org.za</a>, used under its Creative Commons licence (CC BY-NC-SA: credit the source, non-commercial, share alike). From <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a>: the head diagram in step 2, the consonant shapes graphic in step 3 by Pule kaJanolintshi and Francis Burger (CC BY-SA 4.0), and the three mark diagrams in step 4. Recordings: Bandile Ngidi.</p>
+  </details>
 </footer>
 
 </body>
