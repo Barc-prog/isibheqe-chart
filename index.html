@@ -452,6 +452,8 @@
 @media (max-width: 480px) { .mini-tbl { table-layout: fixed; } .mini-tbl .mc-corner { width: 24%; } .mini-tbl thead tr:nth-child(2) th { font-size: 0.5rem; padding: 0.25rem 0; letter-spacing: -0.03em; } .mini-tbl thead th small { display: none; } .mc-cell img { width: 28px; height: 28px; } .mini-tbl .mc-row { font-size: 0.62rem; } .mini-tbl td { padding: 0.2rem 0.05rem; } }
 .mini-tbl .mc-row { background: #f8f9ff; color: #374151; text-align: left; font-size: 0.72rem; }
 .mini-tbl .mc-row small { color: #6b7280; opacity: 1; }
+.mc-st { display: block; font-weight: 400; font-size: 0.9em; }
+.mini-tbl thead .mc-st { color: #ccfbf1; }
 .mc-cell { background: none; border: 0; padding: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; width: 100%; }
 .mc-cell img { width: 36px; height: 36px; object-fit: contain; }
 .mc-cell b { font-size: 0.75rem; color: #1f2937; }
@@ -642,6 +644,9 @@
 .cc-main { font-size:1.05rem; font-weight:700; color:#1f2937; line-height:1.2; }
 .cc-ipa { font-size:0.74rem; color:#6b7280; font-family:'Charis SIL','Doulos SIL','Gentium Plus','Noto Serif',Georgia,serif; }
 .zu-term { display:block; font-weight:700; }
+span.st-term[lang=st] { display:block; font-style:italic; font-weight:400; color:#0f766e; font-size:0.9em; }
+.chip i[lang=st], .mc-st { color:#0f766e; font-style:italic; }
+.chart-tbl thead span.st-term[lang=st] { color:#ccfbf1; }
 .cc-noimg { display:inline-flex; align-items:center; justify-content:center; width:52px; height:52px; border:1.5px dashed #c7d2fe; border-radius:0.5rem; color:#6b7280; font-size:0.85rem; }
 .en-gloss { font-weight:400; opacity:0.75; font-size:0.85em; }
 .rh-plain { display:block; font-size:0.7rem; font-weight:400; color:#6b7280; margin-top:0.1rem; }
@@ -914,11 +919,11 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
         <div class="mini-wrap"><table class="mini-tbl">
           <thead>
             <tr><th class="mc-corner" rowspan="2">Indlela yokuphimisa <span>manner</span> &darr;</th><th class="mc-span" colspan="5">Indawo lapho kuphinyiswa khona <span>place</span> &rarr;</th></tr>
-            <tr><th><span lang="zu">Ondebembili</span><small>lips</small></th><th><span lang="zu">Ondebezinyo</span><small>lip, teeth</small></th><th><span lang="zu">Onsinini</span><small>tooth ridge</small></th><th><span lang="zu">Omalakeni</span><small>back of mouth</small></th><th><span lang="zu">Ohlangothi</span><small>side of tongue</small></th></tr>
+            <tr><th><span lang="zu">Ondebembili</span><small>lips</small></th><th><span lang="zu">Ondebezinyo</span><small>lip, teeth</small></th><th><span lang="zu">Onsinini</span><small>tooth ridge</small></th><th><span lang="zu">Omalakeni</span><span class="mc-st" lang="st">mahanana a bonojwana</span><small>back of mouth</small></th><th><span lang="zu">Ohlangothi</span><span class="mc-st" lang="st">lehlakore</span><small>side of tongue</small></th></tr>
           </thead>
           <tbody>
-            <tr><th class="mc-row"><span lang="zu">Omadubula /<br>omvinjwa</span><small><b>plosives</b>: once-off</small></th><td><button class="mc-cell" onclick="new Audio('audio/cues/Aspirated_bilabial_plosive_a.mp3').play()" aria-label="Hear pha"><img src="images/Aspirated_bilabial_plosive.png" alt="pha"><b>pha</b></button></td><td class="mc-empty"></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Aspirated_alveolar_plosive_a.mp3').play()" aria-label="Hear tha"><img src="images/Aspirated_alveolar_plosive.png" alt="tha"><b>tha</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Aspirated_velar_plosive_a.mp3').play()" aria-label="Hear kha"><img src="images/Aspirated_velar_plosive.png" alt="kha"><b>kha</b></button></td><td class="mc-empty"></td></tr>
-            <tr><th class="mc-row"><span lang="zu">Omfuthwa</span><small><b>fricatives</b>: continuous</small></th><td class="mc-empty"></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_labiodental_fricative_a.mp3').play()" aria-label="Hear fa"><img src="images/Voiceless_labiodental_fricative.png" alt="fa"><b>fa</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_alveolar_fricative_a.mp3').play()" aria-label="Hear sa"><img src="images/Voiceless_alveolar_fricative.png" alt="sa"><b>sa</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_velar_fricative_a.mp3').play()" aria-label="Hear rha/ga"><img src="images/Voiceless_velar_fricative.png" alt="rha/ga"><b>rha/ga</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_lateral_fricative_a.mp3').play()" aria-label="Hear hla"><img src="images/Voiceless_lateral_fricative.png" alt="hla"><b>hla</b></button></td></tr>
+            <tr><th class="mc-row"><span lang="zu">Omadubula /<br>omvinjwa</span><span class="mc-st" lang="st">dikgitli</span><small><b>plosives</b>: once-off</small></th><td><button class="mc-cell" onclick="new Audio('audio/cues/Aspirated_bilabial_plosive_a.mp3').play()" aria-label="Hear pha"><img src="images/Aspirated_bilabial_plosive.png" alt="pha"><b>pha</b></button></td><td class="mc-empty"></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Aspirated_alveolar_plosive_a.mp3').play()" aria-label="Hear tha"><img src="images/Aspirated_alveolar_plosive.png" alt="tha"><b>tha</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Aspirated_velar_plosive_a.mp3').play()" aria-label="Hear kha"><img src="images/Aspirated_velar_plosive.png" alt="kha"><b>kha</b></button></td><td class="mc-empty"></td></tr>
+            <tr><th class="mc-row"><span lang="zu">Omfuthwa</span><span class="mc-st" lang="st">dihohli</span><small><b>fricatives</b>: continuous</small></th><td class="mc-empty"></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_labiodental_fricative_a.mp3').play()" aria-label="Hear fa"><img src="images/Voiceless_labiodental_fricative.png" alt="fa"><b>fa</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_alveolar_fricative_a.mp3').play()" aria-label="Hear sa"><img src="images/Voiceless_alveolar_fricative.png" alt="sa"><b>sa</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_velar_fricative_a.mp3').play()" aria-label="Hear rha/ga"><img src="images/Voiceless_velar_fricative.png" alt="rha/ga"><b>rha/ga</b></button></td><td><button class="mc-cell" onclick="new Audio('audio/cues/Voiceless_lateral_fricative_a.mp3').play()" aria-label="Hear hla"><img src="images/Voiceless_lateral_fricative.png" alt="hla"><b>hla</b></button></td></tr>
           </tbody>
         </table></div>
         <p class="mc-note">The other manners, and the clicks, each have their own mark. You will meet them in the chart.</p>
@@ -1217,7 +1222,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
                   <path d="M200,208 L136,196"/>
                 </g>
               </svg>
-              <p class="key-note">Every symbol in the chart uses the vowel <em>a</em>, the downward triangle. <a href="https://www.ipachart.com/" target="_blank" rel="noopener">Hear every IPA sound</a>.</p>
+              <p class="key-note">Labels: <b>isiZulu</b>, <i style="color:#0f766e">Sesotho</i>, then English.<br>Every symbol in the chart uses the vowel <em>a</em>, the downward triangle. <a href="https://www.ipachart.com/" target="_blank" rel="noopener">Hear every IPA sound</a>.</p>
             </details>
             <h3 class="chart-title">Core sounds <span>the five basic manners</span></h3>
             <div class="chart-steps" id="chart-steps"></div>
@@ -1427,7 +1432,11 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
   var LANGTAG = {'isiZulu':'Zulu','isiXhosa':'Xhosa','siSwati':'Swati','Sesotho':'Sotho','Setswana':'Tswana','Tshivenda':'Venda','Xitsonga':'Tsonga','isiZulu, Sesotho':'Zulu, Sotho','all':''};
   var ZU_P = {'Bilabial':'ondebembili','Labio-dental':'ondebezinyo','Dental':'ozinyo','Alveolar':'onsinini','Post-alveolar':'onsininilwangeni','Palatal':'olwangeni','Velar':'omalakeni','Glottal':'omphinjeni','Lateral':'ohlangothi'};
   var ZU_M = {'Plosive':'omadubula / omvinjwa','Fricative':'omfuthwa','Affricate':'omfuthwambhanqwa','Approximant':'osondelela','Nasal':'omankankeni'};
-  function zuLabel(map, en){ return map[en] ? '<span class="zu-term">' + map[en] + '</span> <span class="en-gloss">' + esc(en) + '</span>' : esc(en); }
+  // Sesotho: PanSALB Sesotho book (2019) Kgaolo 1, printed pp. 1-11. Only terms printed there. TODO: confirm with Pule.
+  var ST_P = {'Palatal':'mahalapa','Velar':'mahanana a bonojwana','Lateral':'lehlakore'};
+  var ST_M = {'Plosive':'dikgitli','Fricative':'dihohli','Affricate':'medumo e rarahaneng','Nasal':'ditumanko'};
+  function stSpan(map, k){ return map[k] ? '<span class="st-term" lang="st">' + map[k] + '</span>' : ''; }
+  function zuLabel(map, en){ return map[en] ? '<span class="zu-term">' + map[en] + '</span>' + stSpan(map === ZU_P ? ST_P : ST_M, en) + ' <span class="en-gloss">' + esc(en) + '</span>' : esc(en); }
   var CORE_PLACES = ['Bilabial','Labio-dental','Alveolar','Palatal','Velar','Glottal','Lateral'];
   var PHONE = window.matchMedia('(max-width: 767px)').matches;
   var placeOn = {}, mannerOn = {};
@@ -1496,7 +1505,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
     h += '</tr></thead><tbody>';
     rows.forEach(function(m){
       var idx = CORE.indexOf(m), label = esc(m);
-      if(idx >= 0) label = '<span class="zu-term">' + ZU_M[m] + '</span>' + esc(m) + '<span class="rh-plain">' + esc(STEPS[idx][0].toLowerCase()) + '</span>';
+      if(idx >= 0) label = '<span class="zu-term">' + ZU_M[m] + '</span>' + stSpan(ST_M, m) + esc(m) + '<span class="rh-plain">' + esc(STEPS[idx][0].toLowerCase()) + '</span>';
       h += '<tr' + (!whole && idx === step-1 ? ' class="row-new"' : '') + '><th class="row-head" scope="row">' + label + '</th>';
       places.forEach(function(p){ h += cell(cellAt(m,p,'voiceless')) + cell(cellAt(m,p,'voiced')); });
       h += '</tr>';
@@ -1512,7 +1521,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
     }
     var st = STEPS[step-1];
     var h = '<div class="steps-head"><span class="steps-count">Step ' + step + ' of 5</span>'
-          + '<h4>' + ZU_M[CORE[step-1]].charAt(0).toUpperCase() + ZU_M[CORE[step-1]].slice(1) + ' <span><b>' + esc(st[1]) + '</b>: ' + esc(st[0].toLowerCase()) + '</span></h4><p>' + esc(st[2]) + '</p></div><div class="steps-nav">';
+          + '<h4>' + ZU_M[CORE[step-1]].charAt(0).toUpperCase() + ZU_M[CORE[step-1]].slice(1) + stSpan(ST_M, CORE[step-1]) + ' <span><b>' + esc(st[1]) + '</b>: ' + esc(st[0].toLowerCase()) + '</span></h4><p>' + esc(st[2]) + '</p></div><div class="steps-nav">';
     if(step > 1) h += '<button class="wt-nav-btn sec" data-act="back">&larr; Back</button>';
     if(step < 5) h += '<button class="wt-nav-btn pri" data-act="next">Next: ' + ZU_M[CORE[step]] + ' (' + esc(STEPS[step][1]) + ') &rarr;</button>';
     else h += '<button class="wt-nav-btn pri" data-act="more">On to more sounds &darr;</button>';
@@ -1579,7 +1588,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
   var panel = document.getElementById('chart-toggles');
   panel.className = 'toggle-panel'; panel.innerHTML = '';
   function chip(label, cls, click){
-    var b = document.createElement('button'); b.textContent = label; b.className = 'chip ' + cls; b.addEventListener('click', click); return b;
+    var b = document.createElement('button'); b.innerHTML = '<span>' + label + '</span>'; b.className = 'chip ' + cls; b.addEventListener('click', click); return b;
   }
   function section(label){
     var s = document.createElement('div'); s.className = 'toggle-section';
@@ -1598,8 +1607,8 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
   }
   function clearPreset(){}
   var PLAIN_P = {'Bilabial':'lips','Labio-dental':'lip and teeth','Dental':'teeth','Alveolar':'tooth ridge','Post-alveolar':'behind the tooth ridge','Retroflex':'tongue curled back','Palatal':'roof of the mouth','Velar':'back of the mouth','Glottal':'throat','Lateral':'side of the tongue'};
-  function placeLabelText(p){ return (ZU_P[p] ? ZU_P[p] : p) + ' \u00b7 ' + PLAIN_P[p]; }
-  function mannerLabelText(m){ var i = CORE.indexOf(m); return i >= 0 ? ZU_M[m] + ' (' + STEPS[i][1].split(',')[0] + ')' : m; }
+  function placeLabelText(p){ return (ZU_P[p] ? ZU_P[p] : p) + (ST_P[p] ? ' / <i lang="st">' + ST_P[p] + '</i>' : '') + ' \u00b7 ' + PLAIN_P[p]; }
+  function mannerLabelText(m){ var i = CORE.indexOf(m); return i >= 0 ? ZU_M[m] + (ST_M[m] ? ' / <i lang="st">' + ST_M[m] + '</i>' : '') + ' (' + STEPS[i][1].split(',')[0] + ')' : m; }
   PLACES.forEach(function(p){
     placeChips[p] = chip(placeLabelText(p), 'chip-place', function(){
       if(onePlace){ PLACES.forEach(function(q){ placeOn[q] = q === p; }); }
