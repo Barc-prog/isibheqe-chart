@@ -438,7 +438,9 @@
 #chart-toggles[hidden], .toggle-section[hidden] { display: none !important; }
 .chart-tap { text-align: center; font-size: 0.8rem; color: #6b7280; margin: 0 0 1rem; }
 .toggle-section-label span { text-transform: none; letter-spacing: 0; font-weight: 400; margin-left: 0.3rem; }
-.mini-chart { margin: 0.6rem 0 1.1rem; }
+.mini-chart { margin: 1rem 0 1.1rem; padding-top: 0.9rem; border-top: 1px solid #e5e7eb; }
+.mini-head { font-size: 1.05rem; font-weight: 700; color: #111827; text-align: center; margin: 0 0 0.5rem; }
+.down-arrow { text-align: center; font-size: 1.4rem; line-height: 1; color: #4f46e5; margin: 0 0 0.4rem; }
 .mini-wrap { overflow-x: auto; }
 .mini-tbl { border-collapse: collapse; width: 100%; font-size: 0.7rem; }
 .mini-tbl th, .mini-tbl td { border: 1px solid #e0e7ff; padding: 0.3rem 0.2rem; text-align: center; vertical-align: middle; }
@@ -611,6 +613,10 @@
 
 /* --- Consonant chart (drawn from data) --- */
 .chart-key { max-width: 420px; margin: 0 auto 0.75rem; }
+.chart-key > summary { font-size: 1.05rem; font-weight: 700; }
+.chart-key > summary::before { content: none; }
+.chart-key > summary::after { content: "  \2193"; }
+.chart-key[open] > summary::after { content: "  \2191"; }
 .key-svg { display: block; width: 100%; height: auto; margin-top: 0.5rem; font-family: 'Inter', sans-serif; }
 .key-note { font-size: 0.78rem; color: #6b7280; text-align: center; margin: 0.4rem 0 0; }
 .key-note a { color: inherit; text-decoration: underline; }
@@ -898,11 +904,13 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
         <figcaption>Graphic: Pule kaJanolintshi and Francis Burger, via <a href="https://en.wikipedia.org/wiki/File:DtsD_ConsonantShapes.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 4.0</figcaption>
       </figure>
       <div class="mini-chart">
+        <p class="mini-head">Try it: a small chart</p><!-- TODO: siNtu heading -->
         <ul class="wt-lines">
           <li><strong>Across</strong>, the same mark moves around the triangle: where in your mouth.</li>
           <li><strong>Down</strong>, a different mark: how the air moves.</li>
           <li>Tap a symbol to hear it. The full chart further down works the same way.</li>
         </ul>
+        <div class="down-arrow" aria-hidden="true">&darr;</div>
         <div class="mini-wrap"><table class="mini-tbl">
           <thead>
             <tr><th class="mc-corner" rowspan="2">Indlela yokuphimisa <span>manner</span> &darr;</th><th class="mc-span" colspan="5">Indawo lapho kuphinyiswa khona <span>place</span> &rarr;</th></tr>
