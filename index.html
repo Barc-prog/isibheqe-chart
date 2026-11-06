@@ -619,7 +619,10 @@
 .chart-key > summary::before { content: none; }
 .chart-key > summary::after { content: "  \2193"; }
 .chart-key[open] > summary::after { content: "  \2191"; }
-.key-svg { display: block; width: 100%; height: auto; margin-top: 0.5rem; font-family: 'Inter', sans-serif; }
+.key-svg { display: block; width: 100%; height: auto; margin-top: 0.5rem; font-family: 'Inter', sans-serif; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.key-tap { cursor: pointer; }
+.key-tap:focus { outline: none; }
+.key-tap:focus-visible rect, .key-tap.playing rect { stroke: #4f46e5; stroke-width: 2.5; }
 .key-note { font-size: 0.78rem; color: #6b7280; text-align: center; margin: 0.4rem 0 0; }
 .key-note a { color: inherit; text-decoration: underline; }
 .chart-note { max-width:760px; margin:0.9rem auto 0.4rem; font-size:0.88rem; color:#374151; text-align:center; line-height:1.5; }
@@ -1190,18 +1193,22 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
             <p class="chart-tap">Tap a symbol to hear its syllable, or a word to hear the word.</p>
             <details class="bg-details chart-key">
               <summary>How to read a cell</summary><!-- TODO: siNtu terms for the labels below -->
-              <svg class="key-svg" viewBox="0 0 360 240" role="img" aria-label="One chart cell, bha, with five labels: the ibheqe, the spelling, the languages that spell it this way, the IPA, and an example word">
+              <svg class="key-svg" viewBox="0 0 360 240" role="group" aria-label="One chart cell, bha, with five labels: the ibheqe, the spelling, the languages that spell it this way, the IPA, and an example word">
                 <defs><marker id="key-ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#4f46e5"/></marker></defs>
                 <rect x="6" y="6" width="140" height="228" rx="10" fill="#fff" stroke="#e5e7eb"/>
+                <g class="key-tap" data-snd="audio/cues/Voiced_bilabial_plosive_a.mp3" role="button" tabindex="0" aria-label="Hear bha">
                 <rect x="41" y="14" width="70" height="70" rx="10" fill="#fff" stroke="#c7d2fe"/>
                 <image href="images/Voiced_bilabial_plosive.png" x="49" y="22" width="54" height="54"/>
+                </g>
                 <text x="76" y="108" text-anchor="middle" font-size="17" font-weight="700" fill="#111827">bha</text>
                 <text x="76" y="124" text-anchor="middle" font-size="9" fill="#9ca3af">(Nguni)</text>
                 <text x="76" y="144" text-anchor="middle" font-size="11" fill="#6b7280">[ba]</text>
                 <text x="76" y="160" text-anchor="middle" font-size="10" fill="#4b5563">ba (Sotho, Tsonga, Venda)</text>
+                <g class="key-tap" data-snd="audio/words/bhabha.mp3" role="button" tabindex="0" aria-label="Hear bhabha">
                 <rect x="20" y="172" width="112" height="44" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
                 <text x="76" y="190" text-anchor="middle" font-size="11" fill="#1d4ed8" font-weight="700">bhabha &#9654;</text>
                 <text x="76" y="206" text-anchor="middle" font-size="9" fill="#4b5563">trap (Zulu)</text>
+                </g>
                 <g font-size="9.5" fill="#1f2937">
                   <rect x="200" y="8" width="154" height="40" rx="6" fill="#f5f3ff" stroke="#ddd6fe"/>
                   <text x="207" y="24"><tspan font-weight="700">Ibheqe</tspan>: the symbol for this</text><text x="207" y="38">syllable. Tap it to hear it.</text>
@@ -1479,26 +1486,32 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
     return '<td class="cc"><div class="cc-in">' + glyph + spellBlock(c, syl) + c.words.map(word).join('') + '</div></td>';
   }
   /* Phones: move to the previous or next place that has any sounds. */
-  function placesWithSounds(){ return PLACES.filter(function(p){ return DATA.some(function(c){ return c.p === p; }); }); }
-  function stepPlace(dir){
-    var all = placesWithSounds(), cur = all.filter(function(p){ return placeOn[p]; })[0] || all[0];
-    var next = all[(all.indexOf(cur) + dir + all.length) % all.length];
-    PLACES.forEach(function(p){ placeOn[p] = p === next; }); sync();
+  /* Each table keeps its own place, and steps only through places that
+     have sounds in that table (Hitekani, 5 Nov: the two moved together). */
+  function placesFor(manners){ return PLACES.filter(function(p){ return DATA.some(function(c){ return c.p === p && manners.indexOf(c.m) >= 0; }); }); }
+  var tablePlace = {core: 'Bilabial', more: null};
+  function curPlace(key){ var all = placesFor(key === 'core' ? CORE : MORE); return all.indexOf(tablePlace[key]) >= 0 ? tablePlace[key] : all[0]; }
+  function stepPlace(dir, key){
+    var all = placesFor(key === 'core' ? CORE : MORE), cur = curPlace(key);
+    tablePlace[key] = all[(all.indexOf(cur) + dir + all.length) % all.length];
+    if(key === 'core'){ PLACES.forEach(function(p){ placeOn[p] = p === tablePlace.core; }); }
+    sync();
   }
   function build(el, manners){
     /* During the steps every unlocked row shows, even where this place has no
        such sound, and the columns stay put so only rows change. */
-    var stepping = !whole && manners === CORE;
-    var rows = manners.filter(function(m){ return mannerOn[m] && (stepping || DATA.some(function(c){ return c.m===m && placeOn[c.p]; })); });
-    var places = PLACES.filter(function(p){ return placeOn[p] && DATA.some(function(c){ return c.p===p && manners.indexOf(c.m) >= 0; }); });
+    var stepping = !whole && manners === CORE, key = manners === CORE ? 'core' : 'more';
+    var here = onePlace ? curPlace(key) : null, on = function(p){ return onePlace ? p === here : placeOn[p]; };
+    var rows = manners.filter(function(m){ return mannerOn[m] && (stepping || DATA.some(function(c){ return c.m===m && on(c.p); })); });
+    var places = PLACES.filter(function(p){ return on(p) && DATA.some(function(c){ return c.p===p && manners.indexOf(c.m) >= 0; }); });
     if(!rows.length || !places.length){ el.innerHTML = '<p class="chart-empty">' + (onePlace ? 'No sounds at this place in this part of the chart. Use the arrows to choose another place.' : 'Nothing to show here. Turn on a place or a manner below.') + '</p>'; return; }
     var h = '<table class="chart-tbl' + (onePlace ? ' one' : '') + '"><thead><tr><th class="corner" rowspan="2">Manner &darr;<br>Place &rarr;</th>';
     places.forEach(function(p){
       if(!onePlace){ h += '<th colspan="2">' + zuLabel(ZU_P, p) + '</th>'; return; }
-      var all = placesWithSounds(), n = all.indexOf(p) + 1;
-      h += '<th colspan="2" class="place-nav"><button class="pl-btn" data-pl="-1" aria-label="Previous place">&lsaquo;</button>'
+      var all = placesFor(manners), n = all.indexOf(p) + 1;
+      h += '<th colspan="2" class="place-nav"><button class="pl-btn" data-pl="-1" data-tbl="' + key + '" aria-label="Previous place">&lsaquo;</button>'
          + '<span>' + zuLabel(ZU_P, p) + '<small>' + n + ' of ' + all.length + ' &middot; swipe</small></span>'
-         + '<button class="pl-btn" data-pl="1" aria-label="Next place">&rsaquo;</button></th>';
+         + '<button class="pl-btn" data-pl="1" data-tbl="' + key + '" aria-label="Next place">&rsaquo;</button></th>';
     });
     h += '</tr><tr>';
     places.forEach(function(){ h += '<th>voiceless</th><th>voiced</th>'; });
@@ -1565,12 +1578,18 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
   // Sound: one Audio object per file, made on first tap.
   var cache = {};
   document.querySelector('.chart-section').addEventListener('click', function(e){
-    var pl = e.target.closest('[data-pl]'); if(pl){ stepPlace(+pl.getAttribute('data-pl')); return; }
+    var pl = e.target.closest('[data-pl]'); if(pl){ stepPlace(+pl.getAttribute('data-pl'), pl.getAttribute('data-tbl')); return; }
     var btn = e.target.closest('[data-snd]'); if(!btn) return;
     var src = btn.getAttribute('data-snd'), a = cache[src] || (cache[src] = new Audio(src));
     a.currentTime = 0; btn.classList.add('playing');
     a.onended = function(){ btn.classList.remove('playing'); };
     a.play().catch(function(){ btn.classList.remove('playing'); });
+  });
+
+  // Keyboard: Enter or Space plays the cell guide's symbol and word.
+  document.querySelector('.chart-section').addEventListener('keydown', function(e){
+    var g = e.target.closest && e.target.closest('.key-tap');
+    if(g && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); g.dispatchEvent(new MouseEvent('click', {bubbles: true})); }
   });
 
   // Swipe sideways on a table to change place (one-place mode only).
@@ -1580,7 +1599,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
     el.addEventListener('touchend', function(e){
       if(x0 === null || !onePlace) return;
       var t = e.changedTouches[0], dx = t.clientX - x0, dy = t.clientY - y0; x0 = null;
-      if(Math.abs(dx) > 60 && Math.abs(dx) > 1.5 * Math.abs(dy)) stepPlace(dx < 0 ? 1 : -1);
+      if(Math.abs(dx) > 60 && Math.abs(dx) > 1.5 * Math.abs(dy)) stepPlace(dx < 0 ? 1 : -1, id === 'chart-core' ? 'core' : 'more');
     }, {passive:true});
   });
 
@@ -1611,7 +1630,7 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
   function mannerLabelText(m){ var i = CORE.indexOf(m); return i >= 0 ? ZU_M[m] + (ST_M[m] ? ' / <i lang="st">' + ST_M[m] + '</i>' : '') + ' (' + STEPS[i][1].split(',')[0] + ')' : m; }
   PLACES.forEach(function(p){
     placeChips[p] = chip(placeLabelText(p), 'chip-place', function(){
-      if(onePlace){ PLACES.forEach(function(q){ placeOn[q] = q === p; }); }
+      if(onePlace){ PLACES.forEach(function(q){ placeOn[q] = q === p; }); tablePlace.core = p; tablePlace.more = p; }
       else { placeOn[p] = !placeOn[p]; clearPreset(); }
       sync();
     });
