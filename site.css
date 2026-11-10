@@ -670,3 +670,35 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
 .page-link { display:inline-block; margin-top:0.6rem; font-size:0.9rem; color:#4f46e5; font-weight:700; text-decoration:none; }
 .page-link:hover { text-decoration:underline; }
 .bg-section > .izimpawu { margin-bottom: 1rem; }
+
+/* Steps 3 and 4 rebuilt from the consonants guide (10 Nov) */
+.lblock { margin: 1.1rem 0 0.4rem; padding-top: 0.9rem; border-top: 1px solid #e5e7eb; }
+.lblock p { font-size: 0.88rem; color: #374151; line-height: 1.55; margin: 0.45rem 0; }
+.lb-head { font-size: 1rem; font-weight: 700; color: #6b7280; margin: 0 0 0.4rem; }
+.lb-head span { color: #111827; font-size: 1.1rem; margin-right: 0.35rem; }
+.lb-note { font-size: 0.8rem !important; color: #6b7280 !important; }
+.head-fig { margin: 0.5rem auto 0.6rem; max-width: 420px; }
+.head-svg { width: 100%; height: auto; display: block; }
+.head-fig figcaption { font-size: 0.75rem; color: #6b7280; text-align: center; margin-top: 0.2rem; }
+.lg-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 0.5rem; margin: 0.5rem 0; }
+.lg { display: inline-flex; flex-direction: column; align-items: center; gap: 0.15rem; min-width: 4.4rem; padding: 0.45rem 0.5rem; border: 1px solid #e5e7eb; border-radius: 0.6rem; background: #fff; color: #111827; font: inherit; cursor: pointer; }
+.lg-quiet { cursor: default; background: #fafafa; }
+.lg svg { width: auto; display: block; overflow: visible; }
+.lg svg g, .lw svg g { stroke-width: 4.5; }
+.lg > span { font-size: 0.85rem; font-weight: 700; }
+.lg small { font-size: 0.68rem; color: #6b7280; max-width: 7rem; text-align: center; line-height: 1.25; }
+.lg.playing { border-color: #4f46e5; box-shadow: 0 0 0 2px #c7d2fe; }
+.lp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(8.4rem, 1fr)); gap: 0.4rem; margin: 0.5rem 0; }
+.lp { display: flex; align-items: center; justify-content: center; gap: 0.3rem; }
+.lp .lg { min-width: 3.3rem; padding: 0.35rem 0.3rem; }
+.lp { gap: 0.15rem; }
+.lp-arrow { color: #9ca3af; font-size: 1.1rem; }
+.lw-grid { display: grid; gap: 0.6rem; margin: 0.5rem 0; }
+.lw-pair { display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+@media (max-width: 480px){ .lw-pair { flex-direction: column; gap: 0.15rem; } .lw-pair .lp-arrow { transform: rotate(90deg); } }
+.lw-cell { display: flex; flex-direction: column; align-items: center; padding: 0.45rem 0.6rem; border: 1px solid #e5e7eb; border-radius: 0.6rem; background: #fafafa; }
+.lw { display: inline-flex; align-items: flex-start; gap: 0.1rem; color: #111827; }
+.lw svg { width: auto; display: block; }
+.lw-lat { font-size: 0.88rem; font-weight: 600; margin-top: 0.15rem; }
+.lw-lat b { color: #b45309; }
+.lw-gloss { font-size: 0.7rem; color: #6b7280; }
