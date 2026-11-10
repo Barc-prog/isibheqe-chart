@@ -287,6 +287,10 @@
   // Sesotho: PanSALB Sesotho book (2019) Kgaolo 1, printed pp. 1-11. Only terms printed there. TODO: confirm with Pule.
   var ST_P = {'Palatal':'mahalapa','Velar':'mahanana a bonojwana','Lateral':'lehlakore'};
   var ST_M = {'Plosive':'dikgitli','Fricative':'dihohli','Affricate':'medumo e rarahaneng','Nasal':'ditumanko'};
+  // More-sounds rows and the voicing columns (Pule and Fanyane, 10 Nov). Ejective affricates and
+  // aspirated clicks stay English: no term yet, and terms aren't coined here. TODO: siNtu term
+  var ZU_MORE = {'Ejectives & Implosive':'onguputshu · umbibithwa','Trill':'uvevezela','Clicks':'ongxapha','Syllabic Nasal':'amaQanda'};
+  var VOICE = {'voiceless':['ongenazwi','o sa kodufatswang'],'voiced':['onezwi','o kodufaditsweng']};
   function stSpan(map, k){ return map[k] ? '<span class="st-term" lang="st">' + map[k] + '</span>' : ''; }
   function zuLabel(map, en){ return map[en] ? '<span class="zu-term">' + map[en] + '</span>' + stSpan(map === ZU_P ? ST_P : ST_M, en) + ' <span class="en-gloss">' + esc(en) + '</span>' : esc(en); }
   var CORE_PLACES = ['Bilabial','Labio-dental','Alveolar','Palatal','Velar','Glottal','Lateral'];
@@ -365,10 +369,11 @@
          + '<button class="pl-btn" data-pl="1" data-tbl="' + key + '" aria-label="Next place">&rsaquo;</button></th>';
     });
     h += '</tr><tr>';
-    places.forEach(function(){ cols.forEach(function(v){ h += '<th' + (v === 'voiced' ? ' class="vd"' : '') + '>' + v + '</th>'; }); });
+    places.forEach(function(){ cols.forEach(function(v){ h += '<th' + (v === 'voiced' ? ' class="vd"' : '') + '><span class="zu-term">' + VOICE[v][0] + '</span><span class="st-term" lang="st">' + VOICE[v][1] + '</span> <span class="en-gloss">' + v + '</span></th>'; }); });
     h += '</tr></thead><tbody>';
     rows.forEach(function(m){
       var idx = CORE.indexOf(m), label = esc(m);
+      if(idx < 0 && ZU_MORE[m]) label = '<span class="zu-term">' + ZU_MORE[m] + '</span>' + esc(m);
       if(idx >= 0) label = '<span class="zu-term">' + ZU_M[m] + '</span>' + stSpan(ST_M, m) + esc(m) + '<span class="rh-plain">' + esc(STEPS[idx][0].toLowerCase()) + '</span>';
       h += '<tr' + (!whole && idx === step-1 ? ' class="row-new"' : '') + '><th class="row-head" scope="row">' + label + '</th>';
       places.forEach(function(p){ cols.forEach(function(v){ h += cell(cellAt(m,p,v), v); }); });
@@ -466,8 +471,7 @@
     panel.appendChild(s); return s;
   }
   var placeWrap = section('Indawo <span>place: where in the mouth</span>'), mannerBoxWrap = section('Indlela <span>manner: how the air moves</span>');
-  /* TODO: siNtu term for "voiced" */
-  var voiceWrap = section('Voiced sounds <span>the shaded columns, where the vocal cords vibrate</span>');
+  var voiceWrap = section('Onezwi <span>voiced: the shaded columns, where the vocal cords vibrate</span>');
   var voiceChip = chip('show the voiced columns', 'chip-voice', function(){ showVoiced = !showVoiced; sync(); });
   voiceWrap.querySelector('.toggle-chips').appendChild(voiceChip);
   var placeBox = placeWrap.querySelector('.toggle-chips'), mannerBox = mannerBoxWrap.querySelector('.toggle-chips');
@@ -483,7 +487,7 @@
   function clearPreset(){}
   var PLAIN_P = {'Bilabial':'lips','Labio-dental':'lip and teeth','Dental':'teeth','Alveolar':'tooth ridge','Post-alveolar':'behind the tooth ridge','Retroflex':'tongue curled back','Palatal':'roof of the mouth','Velar':'back of the mouth','Glottal':'throat','Lateral':'side of the tongue'};
   function placeLabelText(p){ return (ZU_P[p] ? ZU_P[p] : p) + (ST_P[p] ? ' / <i lang="st">' + ST_P[p] + '</i>' : '') + ' \u00b7 ' + PLAIN_P[p]; }
-  function mannerLabelText(m){ var i = CORE.indexOf(m); return i >= 0 ? ZU_M[m] + (ST_M[m] ? ' / <i lang="st">' + ST_M[m] + '</i>' : '') + ' (' + STEPS[i][1].split(',')[0] + ')' : m; }
+  function mannerLabelText(m){ var i = CORE.indexOf(m); return i >= 0 ? ZU_M[m] + (ST_M[m] ? ' / <i lang="st">' + ST_M[m] + '</i>' : '') + ' (' + STEPS[i][1].split(',')[0] + ')' : (ZU_MORE[m] ? ZU_MORE[m] + ' (' + m + ')' : m); }
   PLACES.forEach(function(p){
     placeChips[p] = chip(placeLabelText(p), 'chip-place', function(){
       if(onePlace){ PLACES.forEach(function(q){ placeOn[q] = q === p; }); tablePlace.core = p; tablePlace.more = p; }

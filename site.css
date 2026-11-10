@@ -627,6 +627,8 @@
 span.st-term[lang=st] { display:block; font-style:italic; font-weight:400; color:#0f766e; font-size:0.9em; }
 .chip i[lang=st], .mc-st { color:#0f766e; font-style:italic; }
 .chart-tbl thead span.st-term[lang=st] { color:#ccfbf1; }
+.chart-tbl thead tr:nth-child(2) span.st-term[lang=st] { color:#0f766e; font-size:0.62rem; line-height:1.2; }
+.chart-tbl thead tr:nth-child(2) span.zu-term { display:block; }
 .cc-noimg { display:inline-flex; align-items:center; justify-content:center; width:52px; height:52px; border:1.5px dashed #c7d2fe; border-radius:0.5rem; color:#6b7280; font-size:0.85rem; }
 .en-gloss { font-weight:400; opacity:0.75; font-size:0.85em; }
 .rh-plain { display:block; font-size:0.7rem; font-weight:400; color:#6b7280; margin-top:0.1rem; }
