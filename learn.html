@@ -75,35 +75,11 @@
   <span class="psh-num">2</span>
   <h2>IsiBheqe / Ditema: how does it work?</h2>
 </div>
-<details class="bg-details hiw-details" open>
-<summary>Show how it works</summary>
 <div class="walkthrough">
 
-  <div class="wt-steps">
-    <div class="wt-step-btn active" data-step="0">
-      <div class="wt-step-num">1</div>
-      <div class="wt-step-label">Ibheqe</div><div class="wt-step-gloss">syllable</div>
-    </div>
-    <div class="wt-step-divider"></div>
-    <div class="wt-step-btn" data-step="1">
-      <div class="wt-step-num">2</div>
-      <div class="wt-step-label">Onkamisa</div><div class="wt-step-gloss">vowels</div>
-    </div>
-    <div class="wt-step-divider"></div>
-    <div class="wt-step-btn" data-step="2">
-      <div class="wt-step-num">3</div>
-      <div class="wt-step-label">Ongwaqa</div><div class="wt-step-gloss">consonants</div>
-    </div>
-    <div class="wt-step-divider"></div>
-    <div class="wt-step-btn" data-step="3">
-      <div class="wt-step-num">4</div>
-      <div class="wt-step-label">Uphimbo, lerothodi</div><div class="wt-step-gloss">marks</div>
-    </div>
-  </div>
-
-  <div class="wt-panel-wrap">
-
     <!-- Panel 1: The Syllable -->
+    <details class="wt-fold" id="step-1" open>
+      <summary><span class="wt-step-num">1</span><span class="wt-step-label" lang="zu">Ibheqe</span><span class="wt-step-gloss">syllable</span></summary>
     <div class="wt-panel active" id="wt-p0">
       <div class="wt-heading">Every symbol is a whole syllable</div>
       <div class="wt-cols">
@@ -130,9 +106,13 @@
         </div>
       </div>
     </div>
+    <button class="wt-next" data-open="step-2" type="button">Next: <span lang="zu">Onkamisa</span> (vowels) &darr;</button>
+    </details>
 
     <!-- Panel 2: The Vowel -->
-    <div class="wt-panel" id="wt-p1">
+    <details class="wt-fold" id="step-2">
+      <summary><span class="wt-step-num">2</span><span class="wt-step-label" lang="zu">Onkamisa</span><span class="wt-step-gloss">vowels</span></summary>
+    <div class="wt-panel active" id="wt-p1">
       <div class="wt-heading">The triangle is the vowel</div>
       <ul class="wt-lines">
         <li>The triangle is your mouth. It points where your <strong>tongue</strong> goes.</li>
@@ -243,9 +223,13 @@
         Try it: say <em>lilimi</em>, then <em>lala</em>. Feel your tongue rise, then drop.<br>For <em>e</em> and <em>o</em>, try <em>ewe</em> and <em>oko oko</em>.
       </p>
     </div>
+    <button class="wt-next" data-open="step-3" type="button">Next: <span lang="zu">Ongwaqa</span> (consonants) &darr;</button>
+    </details>
 
     <!-- Panel 3: The Consonant -->
-    <div class="wt-panel" id="wt-p2">
+    <details class="wt-fold" id="step-3">
+      <summary><span class="wt-step-num">3</span><span class="wt-step-label" lang="zu">Ongwaqa</span><span class="wt-step-gloss">consonants</span></summary>
+    <div class="wt-panel active" id="wt-p2">
       <div class="wt-heading">The marks show the consonant</div>
       <p class="hero-line">Think of the triangle as your mouth.</p>
       <p class="hero-sub">The shape of the symbol is made to mimic the shape of the mouth.</p>
@@ -339,9 +323,13 @@
 
 
     </div>
+    <button class="wt-next" data-open="step-4" type="button">Next: <span lang="zu">Uphimbo, lerothodi</span> (marks) &darr;</button>
+    </details>
 
     <!-- Panel 4: The Mode -->
-    <div class="wt-panel" id="wt-p3">
+    <details class="wt-fold" id="step-4">
+      <summary><span class="wt-step-num">4</span><span class="wt-step-label" lang="zu">Uphimbo, lerothodi</span><span class="wt-step-gloss">marks</span></summary>
+    <div class="wt-panel active" id="wt-p3">
       <div class="wt-heading">Small marks show what your throat does</div>
       <p style="font-size:0.85rem;color:#374151;margin:0 0 0.5rem;">These four words all start at your lips. Only your throat changes.</p>
       <div class="marks3" id="marks3">
@@ -399,47 +387,19 @@
         <p class="lb-note">The circle gives the consonant a nasal start, as in <em>mba</em>.</p>
       </div>
     </div>
-  </div>
-
-  <div class="wt-nav">
-    <button class="wt-nav-btn sec" id="wt-back" disabled onclick="wtNav(-1)">&larr; Back</button>
-    <span class="wt-prog" id="wt-prog">Step 1 of 4</span>
-    <button class="wt-nav-btn pri" id="wt-next" onclick="wtNav(1)">Next &rarr;</button>
-  </div>
+    <a class="wt-next" href="index.html?mode=steps#step-by-step">Explore the chart &rarr;</a>
+    </details>
 
 </div>
 
 <script>
 (function(){
-  var cur = 0;
-  var TOTAL = 4;
-  var panels = ['wt-p0','wt-p1','wt-p2','wt-p3'];
-
-  window.wtNav = function(dir) {
-    var next = cur + dir;
-    if (next < 0 || next >= TOTAL) return;
-    var steps = document.querySelectorAll('.wt-step-btn');
-    steps[cur].classList.remove('active');
-    if (dir > 0) steps[cur].classList.add('done');
-    else         steps[cur].classList.remove('done');
-    document.getElementById(panels[cur]).classList.remove('active');
-    cur = next;
-    document.getElementById(panels[cur]).classList.add('active');
-    steps[cur].classList.remove('done');
-    steps[cur].classList.add('active');
-    document.getElementById('wt-back').disabled = (cur === 0);
-    document.getElementById('wt-prog').textContent = 'Step ' + (cur+1) + ' of ' + TOTAL;
-    var nextBtn = document.getElementById('wt-next');
-    if (cur === TOTAL - 1) {
-      nextBtn.textContent = 'Explore the chart \u2192';
-      nextBtn.onclick = function() {
-        location.href = 'index.html?mode=steps#step-by-step';
-      };
-    } else {
-      nextBtn.textContent = 'Next \u2192';
-      nextBtn.onclick = function() { wtNav(1); };
-    }
-  };
+  // Stacked steps (10 Nov): "Next" opens the next fold and scrolls to it
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('.wt-next[data-open]'); if(!b) return;
+    var d = document.getElementById(b.getAttribute('data-open'));
+    d.open = true; d.scrollIntoView({behavior:'smooth', block:'start'});
+  });
 
   // ── Onkamisa diagram click handler ──────────────────────
   window.onkamisaPlay = function(id, el, label) {
@@ -476,12 +436,6 @@
     }, { once: true });
   };
 
-  document.querySelectorAll('.wt-step-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var target = parseInt(btn.dataset.step);
-      if (target < cur) wtNav(target - cur);
-    });
-  });
 })();
 </script>
 
@@ -604,7 +558,6 @@
 
   </div>
 </details>
-</details><!-- end how-it-works fold -->
 
  <!-- CONSONANTS CHART -->
 <footer class="page-credits">
