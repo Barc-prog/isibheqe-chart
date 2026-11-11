@@ -211,49 +211,6 @@
         font-weight: 500;
     }
 
-    /* ── Articulatory Modes collapsible ────────────────────── */
-    .modes-section {
-        max-width: 760px;
-        margin: 0 auto 2.5rem;
-        border: 1px solid #e5e7eb;
-        border-radius: 1rem;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        background: #fff;
-    }
-    .modes-section > summary {
-        list-style: none;
-        cursor: pointer;
-        padding: 1rem 1.5rem;
-        font-size: 1rem;
-        font-weight: 700;
-        color: #4f46e5;
-        background: #f5f3ff;
-        border-bottom: 1px solid #e5e7eb;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        user-select: none;
-    }
-    .modes-section > summary::-webkit-details-marker { display: none; }
-    .modes-section > summary::after { content: "▸"; font-size: 0.9rem; color: #a5b4fc; }
-    .modes-section[open] > summary::after { content: "▾"; }
-    .modes-section > summary:hover { background: #ede9fe; }
-    .modes-body { padding: 1.5rem; }
-    .modes-intro { font-size: 0.9rem; color: #4b5563; text-align: center; margin-bottom: 1.5rem; line-height: 1.6; }
-    .mode-block { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 1.1rem 1.25rem; margin-bottom: 1rem; }
-    .mode-block:last-child { margin-bottom: 0; }
-    .mode-block-title { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.6rem; }
-    .mode-block p { font-size: 0.875rem; color: #374151; margin-bottom: 0.6rem; line-height: 1.65; }
-    .mode-try { background: #eff6ff; border-left: 3px solid #6366f1; border-radius: 0 0.4rem 0.4rem 0; padding: 0.55rem 0.85rem; font-size: 0.82rem; color: #374151; margin: 0.75rem 0; line-height: 1.6; }
-    .mode-pair { display: flex; gap: 0.75rem; margin-top: 0.75rem; flex-wrap: wrap; }
-    .mode-pair-card { flex: 1; min-width: 110px; background: #fff; border: 1.5px solid #e5e7eb; border-radius: 0.65rem; padding: 0.75rem; text-align: center; }
-    .mode-pair-card img { width: 56px; height: 56px; object-fit: contain; display: block; margin: 0 auto; }
-    .mode-pair-phoneme { font-size: 1.05rem; font-weight: 700; color: #1f2937; margin-top: 0.25rem; }
-    .mode-pair-label { font-size: 0.68rem; color: #6b7280; margin-top: 0.1rem; }
-    .mode-pair-word { font-size: 0.72rem; color: #9ca3af; font-style: italic; margin-top: 0.1rem; }
-    .mode-callout-ntu { background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 0.4rem 0.4rem 0; padding: 0.55rem 0.85rem; font-size: 0.82rem; color: #374151; margin-top: 0.75rem; line-height: 1.6; }
-
     /* ── Interactive Onkamisa diagram ──────────────────────── */
     .onkamisa-wrap { margin: 0.75rem 0 0.5rem; }
     .onkamisa-hint { font-size: 0.82rem; color: #6b7280; text-align: center; margin-bottom: 0.5rem; }
@@ -285,20 +242,6 @@
   max-width: 760px;
   margin: 0 auto 3.5rem;
 }
-.wt-steps {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.25rem;
-}
-.wt-step-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.3rem;
-  cursor: pointer;
-  padding: 0 0.5rem;
-}
 .wt-step-num {
   width: 34px; height: 34px;
   border-radius: 50%;
@@ -308,30 +251,12 @@
   font-weight: 700; font-size: 0.875rem;
   transition: background 0.2s, color 0.2s;
 }
-.wt-step-btn.active .wt-step-num  { background: #4f46e5; color: #fff; }
-.wt-step-btn.done   .wt-step-num  { background: #10b981; color: #fff; }
 .wt-step-label {
   font-size: 0.72rem; font-weight: 600;
   color: #9ca3af; white-space: nowrap;
   transition: color 0.2s;
 }
-.wt-step-btn.active .wt-step-label { color: #4f46e5; }
-.wt-step-btn.done   .wt-step-label { color: #10b981; }
-.wt-step-divider {
-  flex: 1; height: 2px;
-  background: #e5e7eb;
-  max-width: 72px;
-  margin-bottom: 18px;
-}
-.wt-panel-wrap {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
 .wt-panel {
-  display: none;
   padding: 1.75rem 2rem;
   animation: wtFade 0.28s ease;
 }
@@ -498,41 +423,11 @@
 .manner-name { font-weight: 700; font-size: 0.85rem; color: #1f2937; }
 .manner-tech { font-size: 0.7rem; color: #9ca3af; font-style: italic; }
 .manner-eg   { font-size: 0.78rem; color: #4b5563; margin-top: 0.15rem; }
-.mode-grid {
-  display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;
-  margin-top: 0.5rem;
-}
-.mode-card {
-  background: #f9fafb; border: 1.5px solid #e5e7eb;
-  border-radius: 0.75rem; padding: 0.75rem 1rem;
-  text-align: center; flex: 1; min-width: 105px;
-}
-.mode-card img { width: 60px; height: 60px; object-fit: contain; display: block; margin: 0 auto 0.35rem; }
-.mode-phoneme  { font-size: 1.1rem; font-weight: 700; color: #1f2937; }
-.mode-name     { font-size: 0.7rem; color: #6b7280; margin-top: 0.1rem; }
-.mode-word     { font-size: 0.75rem; color: #4b5563; font-style: italic; margin-top: 0.15rem; }
 .wt-section-label {
   font-size: 0.72rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.08em;
   margin-bottom: 0.35rem;
 }
-.wt-nav {
-  display: flex; justify-content: space-between;
-  align-items: center; margin-top: 0.9rem;
-}
-.wt-nav-btn {
-  display: inline-flex; align-items: center; gap: 0.35rem;
-  padding: 0.5rem 1.35rem; border-radius: 999px;
-  font-size: 0.85rem; font-weight: 600; cursor: pointer;
-  transition: background 0.15s, opacity 0.15s;
-  border: 1.5px solid transparent;
-}
-.wt-nav-btn.sec { background: #fff; border-color: #d1d5db; color: #374151; }
-.wt-nav-btn.sec:hover { background: #f9fafb; }
-.wt-nav-btn.sec:disabled { opacity: 0.35; cursor: default; pointer-events: none; }
-.wt-nav-btn.pri { background: #4f46e5; color: #fff; }
-.wt-nav-btn.pri:hover { background: #4338ca; }
-.wt-prog { font-size: 0.78rem; color: #9ca3af; }
 .wt-callout {
   background: #eff6ff;
   border-left: 3px solid #6366f1;
@@ -551,7 +446,6 @@
   .wt-cols { flex-direction: column; }
   .wt-panel { padding: 1.2rem 1rem; }
   .manner-grid { grid-template-columns: 1fr; }
-  .wt-step-label, .wt-step-gloss { display: none; }
 }
 
 /* --- Oct 2026 review additions --- */
@@ -704,3 +598,18 @@ button.cc-word { cursor:pointer; border-color:#bfdbfe; background:#eff6ff; min-h
 .lw-lat { font-size: 0.88rem; font-weight: 600; margin-top: 0.15rem; }
 .lw-lat b { color: #b45309; }
 .lw-gloss { font-size: 0.7rem; color: #6b7280; }
+
+/* Stacked steps (10 Nov): each step is a fold; the summaries read as an outline */
+.wt-fold { background:#fff; border:1px solid #e5e7eb; border-radius:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.06); margin-bottom:0.75rem; scroll-margin-top:0.75rem; }
+.wt-fold > summary { list-style:none; display:flex; align-items:center; gap:0.6rem; padding:0.85rem 1.1rem; cursor:pointer; }
+.wt-fold > summary::-webkit-details-marker { display:none; }
+.wt-fold > summary::after { content:"\2193"; margin-left:auto; color:#9ca3af; }
+.wt-fold[open] > summary::after { content:"\2191"; }
+.wt-fold > summary .wt-step-num { flex-shrink:0; }
+.wt-fold > summary .wt-step-label { font-size:1rem; font-weight:700; color:#111827; white-space:normal; }
+.wt-fold > summary .wt-step-gloss { font-size:0.8rem; margin-top:0; }
+.wt-fold[open] > summary .wt-step-num { background:#4f46e5; color:#fff; }
+.wt-fold > .wt-panel { padding-top:0.25rem; }
+.wt-next { display:inline-flex; margin:0 2rem 1.5rem; padding:0.5rem 1.35rem; border-radius:999px; border:0; background:#4f46e5; color:#fff; font:600 0.85rem/1.4 inherit; font-family:inherit; cursor:pointer; text-decoration:none; }
+.wt-next:hover { background:#4338ca; }
+@media (max-width:580px) { .wt-next { margin:0 1rem 1.2rem; } }
