@@ -354,6 +354,12 @@
 .ib-dark { background:#000; color:#fff; padding:12px; } .ib-dark .ib-lab, .ib-dark .ib-en { color:#bdbdbd; }
 .ib-light { background:#fff; color:#111; padding:12px; border:1px solid #e5e7eb; border-radius:0.5rem; } .ib-light .ib-lab, .ib-light .ib-en { color:#555; }
 .ib-flow .ib-line { column-gap:10px; } .ib-flow .ib-lab { font-size:10px; }
+/* Background extract (11 Nov): glyphs, syllables, then the English for that phrase, like the isibheqe.org.za original */
+.ib-gloss { display:flex; flex-wrap:wrap; column-gap:18px; align-items:flex-start; }
+.ib-chunk { display:inline-flex; flex-direction:column; max-width:100%; }
+.ib-gloss .ib-line { column-gap:8px; row-gap:6px; }
+.ib-gloss .ib-lab { font-size:10px; }
+.ib-gloss .ib-en { font-size:12px; line-height:1.35; margin:3px 0 10px; }
 .ntu-quote { text-align: left; max-width: 640px; margin: 0 auto 0.75rem; }
 .ntu-quote p { margin: 0 0 0.4rem; font-size: 0.95rem; line-height: 1.6; color: #1f2937; }
 .ntu-quote .ntu-en { font-size: 0.85rem; color: #6b7280; }
