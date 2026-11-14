@@ -16,7 +16,6 @@ A teaching page and an interactive consonant chart for **IsiBheqe soHlamvu** (is
 
 - **The script:** its creators, through isibheqe.org.za. Pule kaJanolintji (co-creator and linguist) checks the linguistics on this site.
 - **This site:** Bandile Ngidi, a collaborator on the script, not its creator.
-- **Recordings:** Bandile Ngidi.
 - **Images and text from isibheqe.org.za** (© Isibheqe Sohlamvu / Ditema tsa Dinoko) are used with permission. The chart's symbols are drawn in the isibheqe.org.za demo shapes; a redraw in the new keyboard and font shapes is planned.
 - **From Wikimedia Commons:** the consonant shapes graphic by Pule kaJanolintshi and Francis Burger (CC BY-SA 4.0), and the three mark diagrams by Lucas (Chromarrays, CC0).
 - **Spellings and IPA** are checked against the PanSALB orthography and spelling rules for the nine languages.
