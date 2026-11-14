@@ -24,7 +24,7 @@ The site's credits section has the full list.
 
 ## Corrections
 
-Spotted a wrong symbol, spelling, sound or word? Use the form linked at the bottom of each page (FORM_URL), open an issue on this repository, or tell Bandile in the isiBheqe WhatsApp group. Linguistic corrections go to Pule before they change the chart.
+Spotted a wrong symbol, spelling, sound or word? Use the form linked at the bottom of each page (https://forms.gle/a68zoqr1FyhAyBxb6), open an issue on this repository, or tell Bandile in the isiBheqe WhatsApp group. Linguistic corrections go to Pule before they change the chart.
 
 ## How the chart works
 
