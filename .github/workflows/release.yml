@@ -1,0 +1,39 @@
+name: Release
+
+# Makes the GitHub tag and release for the version in the VERSION file.
+# Runs by itself when a merged PR changes VERSION, or by hand from the
+# Actions tab (to tag an older commit, e.g. v1.0).
+on:
+  push:
+    branches: [main]
+    paths: [VERSION]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version without the v, e.g. 1.0"
+        required: true
+      ref:
+        description: "Commit to tag (leave empty for the latest)"
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create the release if it doesn't exist yet
+        env:
+          GH_TOKEN: ${{ github.token }}
+          IN_VERSION: ${{ inputs.version }}
+          IN_REF: ${{ inputs.ref }}
+        run: |
+          V="${IN_VERSION:-$(tr -d '[:space:]' < VERSION)}"
+          REF="${IN_REF:-$GITHUB_SHA}"
+          if gh release view "v$V" >/dev/null 2>&1; then
+            echo "v$V already exists"; exit 0
+          fi
+          gh release create "v$V" --target "$REF" \
+            --title "isiBheqe chart $V" --generate-notes
