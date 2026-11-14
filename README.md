@@ -22,6 +22,21 @@ A teaching page and an interactive consonant chart for **IsiBheqe soHlamvu** (is
 
 The site's credits section has the full list.
 
+## How this was made
+
+This site was built by Bandile Ngidi with Claude, an AI assistant made by Anthropic. Bandile made the decisions: what the site teaches, in what order, what goes on each page and what stays off. Claude wrote most of the code and page layout to his instructions, and drafted some of the English explanations, which Bandile then edited.
+
+**Checked by people, not by AI:**
+- **Spellings and sounds:** checked against the PanSALB orthography and spelling rules for the nine languages, corrected by Pule kaJanolintji (co-creator and linguist) and by a Xitsonga speaker, and being checked by a Tshivenda speaker.
+- **Example words:** checked by Bandile. Some English meanings were first suggested by Claude, and each was checked before it went on the chart.
+- **Recordings:** a human voice, not generated.
+
+**Not made by AI:**
+- The symbols are drawn by the script's own glyph engine, made by its creators. Claude ran the engine but never changed it.
+- The texts and images from isibheqe.org.za, used with permission.
+
+If something looks wrong, please tell us through the form: https://forms.gle/a68zoqr1FyhAyBxb6
+
 ## Corrections
 
 Spotted a wrong symbol, spelling, sound or word? Use the form linked at the bottom of each page (https://forms.gle/a68zoqr1FyhAyBxb6), open an issue on this repository, or tell Bandile in the isiBheqe WhatsApp group. Linguistic corrections go to Pule before they change the chart.
